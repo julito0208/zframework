@@ -1,0 +1,26 @@
+#imagecropdialog {
+	width: 700px;
+	padding: 0 20px 10px 20px;
+}
+
+
+
+
+#imagecropdialog div.image-crop {
+	position: relative;
+	top: -10px;
+}
+
+#imagecropdialog .image-crop,
+#imagecropdialog .image-crop .crop-image {
+	/*width: auto !important;*/
+}
+
+
+#imagecropdialog .error-block {
+	border: solid 1px #E55;
+	background: #FFE1E7;
+	margin: 0 0 30px 0;
+	padding: 7px 10px;
+	color: #000;
+}

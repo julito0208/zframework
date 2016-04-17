@@ -1,0 +1,59 @@
+
+.page-message-block
+{
+    background: #EAEAEA;
+    border: solid 1px #222;
+    border-radius: 5px;
+    padding: 5px 20px 20px;
+    margin: 50px;
+    color: #111;
+    box-shadow: 0px 0px 2px 2px rgba(255,255,255,0.2);
+}
+
+.page-message-block .close-button
+{
+    color: #333;
+}
+
+.page-message-block .text
+{
+    width: 300px;
+    padding: 15px 10px 5px 5px;
+    font-size: 11pt;
+}
+
+.page-message-block.error,
+.page-message-block.danger
+{
+    background: #D44B47;
+    color: #FFF;
+}
+
+.page-message-block.success
+{
+    background: #595;
+    color: #FFF;
+}
+
+.page-message-block.primary
+{
+    background: #337AB7;
+    color: #FFF;
+}
+
+.page-message-block.warning
+{
+    background: #D4933C;
+    color: #FFF;
+}
+
+.page-message-block.inverted
+{
+    background: #333;
+    color: #FFF;
+}
+
+.page-message-block.inverted .close-button
+{
+    color: #FFF;
+}

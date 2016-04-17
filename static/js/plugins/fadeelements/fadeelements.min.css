@@ -1,0 +1,12 @@
+.fade-element
+{
+	position: absolute;
+}
+.fade-element.fade-hidden
+{
+	display: none;
+}
+.fade-element.fade-visible
+{
+	display: block;
+}

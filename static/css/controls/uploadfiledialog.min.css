@@ -1,0 +1,23 @@
+#dialog-upload-file {
+	
+}
+#dialog-upload-file .data-block {
+	width: 580px;
+	padding: 20px 20px 10px;
+}
+#dialog-upload-file .data-block label,
+#dialog-upload-file .data-block input {
+	display: inline;
+}
+#dialog-upload-file .data-block input {
+	margin: 0 0 0 10px;
+	background: #FFF;
+	padding: 10px 20px;
+	border: solid 1px #666;
+	width: 370px;
+}
+#dialog-upload-file .help-bottom
+{
+	color: #999;
+	padding: 20px 0 0 0px;
+}

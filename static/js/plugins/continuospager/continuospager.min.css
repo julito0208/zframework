@@ -1,0 +1,8 @@
+
+.zwidget-continuos-pager-loading {
+	background-image: url(./zwidgets-images/loading-block-background-small.gif);
+	background-position: center center;
+	background-repeat: no-repeat;	
+	padding: 20px 0;
+	height: 30px;
+}

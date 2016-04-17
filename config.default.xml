@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Se pueden usar valores de otras variables para definir nuevas variables (util cuando se especifican directorios) -->
+
+<!-- Todos los directorios serán relativos al directorio de este archivo config.xml -->
+
+<!-- Hay algunas variables que se definen a partir de la configuración de apache del zframework. Estas son:
+	
+	zframework_dir -> ZFRAMEWORK_DIR
+	server_name -> ZFRAMEWORK_SERVER_NAME
+	site_dir -> ZFRAMEWORK_APP_DIR
+	app_dir -> ZFRAMEWORK_APP_DIR
+	www_dir -> ZFRAMEWORK_WWW_DIR
+	backend_dir -> ZFRAMEWORK_BACKEND_DIR
+	site_url -> ZFRAMEWORK_URL
+	config_file -> ZFRAMEWORK_CONFIG_FILE
+-->
+
+<!-- Para especificar un array como valor, se pueden separar los valores por :: (dos veces :) -->
+<!-- También se puede usar la expresión [value1,value2,...] para especificar repetición -->
+<!-- Por ejemplo, la variable <variable1>/dir/[subdir1,subdir2,subdir3]</variable1> tendrá el valor en array (/dir/subdir1,/dir/subdir2,/dir/subdir3) -->
+
+<!-- Los parametros que usen :: para denotar varios valores de un array, o [..] para denotar repetición y crear un array serán convertidos en array automaticamente -->
+<!-- No obstante, para denotar explicitamente que un parametro sea tomado como array (para evitar errores, como por ejemplo un array de un valor), se puede poner ARRAY| antes del valor -->
+
+
+<zphp_config>
+
+	<!-- Versión del Zframework-->
+	<version>0.1a</version>
+
+	<!-- Activa el modo de debug -->
+	<debug_mode>1</debug_mode>
+
+	<!-- Especifica si el sitio es live -->
+	<live_mode>0</live_mode>
+
+	<!-- Especifica si el sitio está en development -->
+	<development_mode>1</development_mode>
+
+	<!-- Directorio dentro del dominio donde se encuentra el sitio (generalmente vacio, se usa cuando el sitio se encuentra en un subdirectorio, como www.domain.com/site) -->
+	<site_document_path></site_document_path>
+	
+	<!-- Nombre del sitio -->
+	<site_name>Sitio</site_name>
+
+	<!-- Dominio del sitio (sin protocolo), por defecto el server_name -->
+	<server_name>server_name</server_name>
+
+	<!-- Dominio del sitio (sin protocolo), por defecto el server_name -->
+	<site_domain>{server_name}</site_domain>
+
+	<!-- Protocolo por defecto (generalmente http) -->
+	<site_protocol>http</site_protocol>
+	
+	 <!-- URL del sitio, por defecto se arma con las anteriores variables -->
+    <site_url>{site_protocol}://{site_domain}{site_document_path}</site_url>
+	
+	<!-- Default charset -->
+	<charset>utf-8</charset>
+
+	<!-- Archivos a incluir por defecto -->
+	<auto_include_files>ARRAY|{BACKEND_DIR}/init.php</auto_include_files>
+
+	<!--Carpeta para archivos temporales-->
+	<tmp_dir>/tmp</tmp_dir>
+
+	<under_construction>0</under_construction>
+
+	<under_maintenance>0</under_maintenance>
+
+
+	<!-- configuración de la autocarga de clases -->
+	<autoload_classes>
+
+		<!-- Directorios donde se buscarán las clases -->		
+		<dir array="true">{BACKEND_DIR}/*::{BACKEND_DIR}/controls/*</dir>
+
+		<!-- Formato para buscar clases (el parámetro será el nombre de la clase -->
+		<format array="true">%s.php::%s.class.php</format>
+
+	</autoload_classes>
+	
+	<!--Para las conexiones SQL-->
+	<db>
+
+		<debug>0</debug>
+		
+		<!-- Configuraciones de logs -->
+		<log>
+			<!-- Loguea errores -->
+			<errors>1</errors>
+			<!--Loguea Querys-->
+			<querys>0</querys>
+		</log>
+
+		<!--Carpeta de los servicios de la bd -->
+		<entities_dir>{BACKEND_DIR}/entities</entities_dir>
+
+		<!--Busqueda de Texto Completo--> 
+		<full_text_search>
+			<!-- Archivo .ini que contendrá traducciones para mejorar la busqueda de texto completo (por ejemplo televisor = tv) -->
+			<!-- Además de este archivo se cargará otro por defecto del framework (puede omitirlo) -->
+			<dict_file>{BACKEND_DIR}/resources/sql/fulltextsearch.dict.ini</dict_file>
+		</full_text_search>
+		
+		<!--Templates SQL--> 
+		<sql_templates>
+
+			<!-- Directorios donde se buscarán templates de sql -->
+			<dir array="true">{BACKEND_DIR}/sql</dir>
+
+			<!-- Formato para buscar templates de sql (el parámetro será el nombre del template) -->
+			<format array="true">%s.sql</format>
+
+		</sql_templates>
+
+        <!-- DB Migrations -->
+        <sql_migrations>
+
+            <!-- Directorios donde se buscarán templates de sql -->
+            <dir>{BACKEND_DIR}/migrations</dir>
+
+            <!-- Expresión regular para los archivos de migración -->
+            <run_format>%s_run.sql</run_format>
+
+            <!-- Formato para los archivos de rollback de migración -->
+            <rollback_format>%s_rollback.sql</rollback_format>
+
+        </sql_migrations>
+
+		<!--Conexiones-->
+		<connection>
+
+			<!--Motor por defecto-->
+			<default_engine>mysql</default_engine>
+
+			<!--Parámetros para el motor mysql-->
+			<mysql>
+				<server>localhost</server>
+				<dbname>zentefi</dbname>
+				<user>root</user>
+				<pass>123456</pass>
+				<port></port>
+				<charset>latin1</charset>
+			</mysql>
+
+		</connection>
+
+	</db>
+
+	<!-- Opciones para el soporte multi-idioma -->	
+	<multi_language>
+		
+		<!-- Activa el soporte multi-idioma -->	
+		<enabled>0</enabled>
+
+		<!-- Idiomas soportados, separados por coma (no lo hacemos array si no se mergerean con los configs) -->	
+		<languages>es,en</languages>
+
+		<!-- Idiomas por defecto -->	
+		<default_language>es-AR</default_language>
+
+		<!-- Formato de las urls con el idioma explicito, el primer arg es el idioma, y el segundo arg es la url -->	
+		<url_language_format>/%1$s/%2$s</url_language_format>
+
+		<!-- Sección por defecto -->	
+		<default_section>main</default_section>
+
+		<!-- Tablas para los idiomas -->
+		<tables>
+			<languages_table>zf_language</languages_table>
+			<languages_codes_table>zf_language_code</languages_codes_table>
+			<languages_region_table>zf_language_region</languages_region_table>
+			<languages_section_table>zf_language_section</languages_section_table>
+			<languages_text_table>zf_language_text</languages_text_table>
+		</tables>
+
+	</multi_language>	
+	
+	<!--Opciones para el redireccionamiento (usado en conjunto con el mod rewrite de apache --> 
+	<redirect_control>
+
+		<!--Configuraciones de expresiones de URLS-->
+		<url_pattern>
+			<!--Si debe ser case sensitive-->
+			<case_sensitive>1</case_sensitive>
+			
+			<!--Si la expresion debe ser estricta al inicio-->
+			<strict_start>1</strict_start>
+		</url_pattern>
+
+		<!-- Configuraciones de ajax -->
+		<ajax>
+
+			<!--Llamadas a clases ajax handlers-->
+			<handlers>
+				<!-- Expresión regular para las urls que llaman a ajax handlers. El grupo 1 es la clase y el grupo 2 es el metodo -->
+				<call_pattern>\!(.+)\((.+)\)</call_pattern>
+			</handlers>
+
+			<!--Llamadas a metodos estaticos de clases-->
+			<static>
+				<!-- Prefijo para los métodos estáticos que pueden ser llamados por ajax -->
+				<methods_prefix>ajax_</methods_prefix>
+
+				<!-- Expresión regular para las urls que llaman métodos estáticos. El grupo 1 es la clase y el grupo 2 es el metodo -->
+				<methods_call_pattern>\!(.+)\((.+)\)</methods_call_pattern>
+			</static>
+
+		</ajax>
+
+		<!-- Parámetros para páginas especiales -->
+		<special_pages>
+			<!-- Parámetros para la página de notfound -->
+			<not_found>
+				<page_control>HTMLPageNotFound</page_control>
+			</not_found>
+			<under_construction>
+				<page_control>HTMLPageUnderConstruction</page_control>
+			</under_construction>
+			<under_maintenance>
+				<page_control>HTMLPageUnderMaintenance</page_control>
+			</under_maintenance>
+		</special_pages>
+
+		<!-- Parámetros para ingresar a las páginas de herramientas de desarrollo del framework -->
+		<dev_tools>
+			<!-- Nombre del prefijo para acceder a las páginas de herramientas de desarrollo del framework -->
+			<dirname>ztools</dirname>
+		</dev_tools>
+
+	</redirect_control>
+
+	<!-- URL relativa al BASE URL de la carpeta statica (para que pueda accederse desde afuera) de zframework -->
+	<!-- Acá se encuentran las librerias js y css comunes (como jquery y zscript) -->
+	<zframework_static>
+		<url>/zframework/static</url>
+		<charset>{charset}</charset>
+		<cache>
+			<enabled>1</enabled>
+			<days>15</days>
+		</cache>
+	</zframework_static>
+
+
+	<!--Configuraciones de disp movil-->
+	<mobile>
+	
+		<!--Forzar como disp movil--> 
+		<force>0</force>
+		
+		<!--Si el force o el get_varname es tablet -->
+		<force_tablet>0</force_tablet>
+		
+	</mobile>
+
+	<!--Configuraciones de HTML-->
+	<!--Todos los parametros aca son relativos al BASE URL especificado-->
+	<html>
+
+		<!-- Título de la página HTML por defecto -->
+		<title>{site_name}</title>
+
+		<!-- Para la base url se puede usar {site_url}, o bien dejarlo en 0 para que no use base url -->
+		<base_url>{site_url}</base_url>
+		
+		<!-- Keywords por defecto -->
+		<keywords>ARRAY|</keywords>
+
+		<!-- Author por defecto -->
+		<author>Zentefi</author>
+		
+		<!-- Description por defecto -->
+		<description></description>
+
+
+		<!-- Mimetype por defecto -->
+		<mimetype>text/html</mimetype>
+
+		<!-- Idioma del documento HTML -->
+		<language>en</language>
+
+		<!-- Charset por defecto -->
+		<charset>{charset}</charset>
+
+		<!-- Favicon por defecto -->
+		<icon></icon>
+
+		<!-- Si se debe comprimir el codigo HTML generado (activarlo hace que demore un poco un más en procesar la salida) -->
+		<compress>1</compress>
+
+		<!-- Si se deben usar scripts mimificados de js (se usara min.js) -->
+		<use_min_js>0</use_min_js>
+
+		<!-- Si se deben usar css mimificados (se usara min.css) -->
+		<use_min_css>0</use_min_css>
+
+        <!-- Si se deben unificar los js -->
+        <unify_js>
+            <enabled>0</enabled>
+            <dir>/static/unify/js</dir>
+        </unify_js>
+
+		<!-- Si al estar en develop, forzar la recarga de js y css mediante un ?_id=random -->
+		<force_reload_css_js>0</force_reload_css_js>
+	</html>
+	
+	<!--Configuraciones de Textos-->
+	<text>
+
+		<!--Mimetype de los textblocks-->		
+		<mimetype>text/plain</mimetype>
+		
+		<!--Charsets de los mimetypes-->
+		<charset>{charset}</charset>
+		
+	</text>
+
+	<!--Configuraciones de EMAIL-->
+	<email>
+
+		<!-- Configuraciones de logs -->
+		<log>
+			<!-- Loguea errores -->
+			<errors>1</errors>
+			<!--Loguea Comandos-->
+			<commands>0</commands>
+		</log>
+
+		<send>1</send>
+
+		<!--Tipo de cuerpo por defecto (html o texto plano)-->
+		<text_type>html</text_type>
+
+		<!--Email y nombre del emisor--> 
+		<from>
+			<name>Zentefi</name>
+			<email>contacto@zentefi.com.ar</email>
+		</from>
+
+		<!--Email y nombre de respuesta --> 
+		<reply>
+			<name></name>
+			<email></email>
+		</reply>
+
+		<!--Fuerza el envio a destinatarios-->
+		<!--Sus valores son arrays para que se pueda especificar más de uno-->
+		<force_to>
+			<name array="true"></name>
+			<email array="true"></email>
+		</force_to>
+
+		<!--Fuerza el envio de una copia a destinatarios-->
+		<!--Sus valores son arrays para que se pueda especificar más de uno-->
+		<force_cc>
+			<name array="true"></name>
+			<email array="true"></email>
+		</force_cc>
+
+		<!--Fuerza el envio de una copia oculta a destinatarios-->
+		<!--Sus valores son arrays para que se pueda especificar más de uno-->
+		<force_cco>
+			<name array="true"></name>
+			<email array="true"></email>
+		</force_cco>
+
+		
+		<!--Configuración del servidor SMTP (para envio de emails)-->
+		<smtp>
+
+			<!-- Server smtp-->
+			<server>mail.test.com</server>
+
+			<!--Activar para usar conexion segura-->
+			<ssl>1</ssl>
+
+			<!--Puerto de la conexion (generalmente, si es ssl 465, si no 25)-->
+			<port>465</port>
+
+			<!--Protocolo de la conexion (generalmente, si es ssl tls, si no dejar vacio)-->
+			<protocol>tls</protocol>
+
+			<user>
+				<!--Usuario para el server smtp-->
+				<login>loginsmtp</login>
+
+				<!--Pass para el server smtp-->
+				<pass>passsmtp</pass>
+			</user>
+
+		</smtp>
+
+	</email>
+
+	<!--Configuración de cache-->
+	<cache>
+
+		<!--Si se activa o no el uso de cache-->
+		<enabled>0</enabled>
+
+		<!--El sistema de cache que se usara-->
+		<system>memcached</system>
+
+		<!--Configuraciones para el sistema de cache de archivos-->
+		<system_file>
+			<dir>{SITE_DIR}/cache</dir>
+		</system_file>
+
+		<!--Configuraciones para el sistema de cache memcached -->
+		<system_memcached>
+			<host>127.0.0.1</host>
+			<port>11211</port>
+			<timeout>60</timeout>
+		</system_memcached>
+
+	</cache>
+
+	<!-- Configuraciones de crones -->
+	<!-- Para usar un cron, se debe correr: php init.php {commando_cron} {nombre_cron} -->
+	<crons>
+
+        <!--Comando PHP-->
+        <php_command>php</php_command>
+
+		<!--Directorio con los crones-->
+		<dir>{site_dir}/crons</dir>
+
+		<!--Comando que especifica que se debe ejecutar un cron-->
+		<command>cron</command>
+		
+	</crons>
+
+
+	<!-- Configuraciones de logs -->
+	<logs>
+
+		<!--Directorio con los logs-->
+		<dir>{SITE_DIR}/logs</dir>
+
+		<!--Formatos del archivo de log (el parametro es el nombre)-->
+		<file_formats>
+			<!--Archivo de log normal-->
+			<log_file>%s.log</log_file>
+
+			<!--Archivo de log de error-->
+			<error_file>%s.error.log</error_file>
+
+		</file_formats>
+
+	</logs>
+
+	<!--Configuración de Captcha-->
+	<captcha>
+	
+		<!-- URL para mostrar la imagen captcha (relative al base url del html) -->
+		<url>/_captcha</url>
+
+		<!--Parametros de la imagen captcha-->
+		<image>
+			<size_width> 120 </size_width>
+			<size_height> 30 </size_height>
+			<background_color> #f8f8f8 </background_color>
+			<border_color> black </border_color>
+			<border_width> 1 </border_width>
+			<code_length> 4 </code_length>
+			<text_chars>A,B,C,D,E,F,G,H,I,J,K,L,M,N,P,Q,R,T,U,V,W,X,Z</text_chars>
+			<text_size_min> 15 </text_size_min>
+			<text_size_max> 20 </text_size_max>
+			<text_angle_min> -40 </text_angle_min>
+			<text_angle_max> 40 </text_angle_max>
+			<text_alpha_min> 20 </text_alpha_min>
+			<text_alpha_max> 30 </text_alpha_max>
+			<background_text_size_min> 8 </background_text_size_min>
+			<background_text_size_max> 12 </background_text_size_max>
+			<background_text_angle_min> -90 </background_text_angle_min>
+			<background_text_angle_max> 90 </background_text_angle_max>
+			<background_text_alpha_min> 95 </background_text_alpha_min>
+			<background_text_alpha_max> 100 </background_text_alpha_max>
+			<background_text_density> 0.09 </background_text_density>
+			<code_duration_secs> 600 </code_duration_secs>
+		</image>
+
+	</captcha>
+
+
+	<image>
+		<font>arial</font>
+		<font_size>14</font_size>
+		<type>jpeg</type>
+		<default_color>black</default_color>
+		<default_line_color>#F00</default_line_color>
+		<default_line_width>1</default_line_width>
+		<default_fill_color></default_fill_color>
+		<default_background>white</default_background>
+		<default_width>640</default_width>
+		<default_height>480</default_height>
+		<default_quality>90</default_quality>
+		<url_format>images/%s.%s</url_format>
+		<path_format>images/%s.%s</path_format>
+		<save_thumb>0</save_thumb>
+        <default_id_image_file>default</default_id_image_file>
+        <crop_aspect>0</crop_aspect>
+        <default_thumb_type>default</default_thumb_type>
+        <default_type>png</default_type>
+	</image>
+
+	<error_reporting>
+
+		<enabled>0</enabled>
+		<recipients array="true">ARRAY|</recipients>
+
+	</error_reporting>
+
+
+	<!--Configuración de algunas apis de google-->
+	<google>
+	
+		<!--Configuración de la api de geolocator-->
+		<geolocator>
+
+			<!--Api Key-->
+			<api_key>AIzaSyDuH05w16VnM2oJIYEYQ2fUU0YXA7G39io</api_key>		
+
+		</geolocator>
+
+	</google>
+
+	<!--Configuración de la característica de Parámetros guardados en archivos-->
+	<params>
+		<!--Path al archivo de parámetros-->
+		<file>{backend_dir}/params.php</file>
+	</params>
+
+	
+	<!--Configuración de la clase de LocationWeather-->
+	<location_weather>
+		<!--Intervalo de actualización en minutos-->
+		<update_interval_minutes>10</update_interval_minutes>
+	</location_weather>
+	
+	<!--Configuración de políticas de acceso-->
+	<access_control>
+		
+		<!--Está activado el control de acceso-->
+		<enabled>1</enabled>
+		
+		<!--Datos de login por defecto a cualquier url del sitio (en blanco para permitir siempre)-->
+		<user></user>
+		<password></password>
+		<prompt_text>Login</prompt_text>
+		
+		<!--Datos de login a urls públicas (implementan la interfaz AccessControlPublic) (en blanco para permitir siempre)-->
+		<public>
+			<user></user>
+			<password></password>
+			<prompt_text>Login</prompt_text>
+		</public>
+
+		<!--Datos de login a urls administrativas (implementan la interfaz AccessControlAdmin) (en blanco para permitir siempre)-->
+		<admin>
+			<user>zentefiadmin</user>
+			<password>zentefi2011admin</password>
+			<prompt_text>Admin Login</prompt_text>
+		</admin>
+				
+		<!--Datos de login a urls de desarrollo (implementan la interfaz AccessControlDevelopment) (en blanco para permitir siempre)-->
+		<development>
+			<user>zentefidev</user>
+			<password>zentefi2011dev</password>
+			<prompt_text>Development Login</prompt_text>
+		</development>
+				
+		<!--Datos de login maestro (abre todos los demás)-->
+		<master>
+			<user>zentefi</user>
+			<password>jojeda2011</password>
+		</master>
+		
+	</access_control>
+	
+	
+	<solr>
+		<hostname>localhost</hostname>
+		
+		<!-- Default 8983, secure 8443 -->
+		<port>8983</port>
+
+		<url_prefix>/solr</url_prefix>
+		<core>collection1</core>
+	</solr>
+	
+	<javascript>
+	
+		<jwplayer>
+			<account_token>yEMZzK__EeSuPxJtO5t17w</account_token>
+		</jwplayer>
+	
+	</javascript>
+	
+	<user_session>
+		
+		<logout>
+			<url>/logout</url>
+			<redirect>{site_url}</redirect>
+		</logout>
+		
+	</user_session>
+
+    <recaptcha>
+        <sitekey>sitekey</sitekey>
+        <privatekey>privatekey</privatekey>
+    </recaptcha>
+		
+</zphp_config>

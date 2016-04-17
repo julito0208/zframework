@@ -1,0 +1,27 @@
+div.image-crop {
+	/*width: 600px;*/
+}
+img.image-crop {
+	/*width: 400px;*/
+}
+.image-crop .crop-image {
+	/*width: 400px;*/
+	border: solid 1px #222;
+}
+.image-crop div.image-crop-preview {
+	border: solid 1px #222;
+	margin: 0 0 0px 0;
+}
+.image-crop .left-desc {
+	width: 160px;
+	margin-left: 20px;
+}
+.image-crop .left-desc .help {
+	font-size: 10pt;
+	padding: 20px 0 0 10px;
+	color: #333;
+}
+.image-crop .left-desc .help p {
+	padding: 0 0 10px 0;
+	margin: 0;
+}

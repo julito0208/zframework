@@ -1,0 +1,210 @@
+meter meter1
+earth
+compass
+sun
+meter2
+point
+on-off
+forbidden
+zoom
+mark
+battery-empty
+battery-half
+battery-full
+battery-charge
+clock
+spaceship
+bike
+motorbike
+aeroplane
+ship
+train
+tram
+bus bus1
+bus2
+car car1
+car2
+sunglasses
+temple
+gear gear1
+gear2
+gear3
+gamepad
+cassette
+cloud-upload upload
+cloud-download download
+cloud
+unlock unlock1
+unlock2
+lock
+eraser erase
+health
+strong 
+like
+dislike
+share
+facebook
+twitter
+basketball
+camera3
+camera2
+camera1 camera
+video1 video
+video2 camrecorder
+tv television
+window application
+eye
+home
+shop1 bag1 shop bag
+shop2 bag2
+trash
+tag-delete
+tag-add
+tag tag1
+tag2
+tag3
+credit-card-master-card2 master-card2
+credit-card-master-card credit-card-master-card1 master-card master-card1
+credit-card
+flag
+diamond
+headphones
+speaker speaker-mute speaker1
+speaker2 speaker-low
+speaker3 speaker-medium
+speaker4 speaker-high
+mic mic1
+mic2
+tickets tickets1
+tickets2
+comment-circle-empty comment-circle2
+comment-circle comment-circle1
+comment-square comment-square1 comment
+comment-circle-square comment-square2
+hearth favorite
+glass glass1
+cup cup1
+cup2
+cup3
+cup4
+glass2
+glass3 beer
+coffee
+drink2
+drink1 drink
+icecream3
+icecream2
+icecream1 icecream
+food chicken
+emblem
+check accept
+cross cancel
+plus
+minus
+star
+refresh2
+arrow-down down
+arrow-up up
+arrow-right right
+arrow-left left
+notebook-check
+application-check
+caution warning
+key
+ordered-list list2
+list3
+list list1
+grid2
+grid grid1
+focus focus2
+focus2
+calendar2
+calendar calendar1
+group people
+person human person1
+user person2 user-male user-m person-m person-male
+person3 user-female user-f person-f person-female
+eraser2
+pen pen1
+pen2
+pencil
+tie1 tie
+tie2
+briefcase
+diskette save
+crop
+envelope email mail
+envelope2
+box
+clip1 clip attachment
+clip2
+agenda agenda1 agenda-money
+agenda2
+copy
+card
+documents docs
+calc calculator
+paste
+paste-check
+document doc
+document-add doc-add
+document-remove doc-remove
+folder
+folder-add
+folder-remove
+graph1 graph
+graph2
+graph3
+graph4
+mouse
+monitor display
+tablets-vertical tablets tablets1
+tablets-horizontal tablets2
+tablet tablet1 tablet-vertical
+tablet2 tablet-horizontal
+smartphone-vertical smartphones smartphones1
+smartphones-horizontal smartphones2
+smartphone smartphone1 smartphone-vertical
+smartphone2 smartphone-horizontal
+picture1 image1 picture image
+picture2 image2
+picture3 image3
+picture4 image4 user-picture user-image user-avatar
+plant
+fish
+refrigerator
+barbacue
+dish2
+microwave-oven microwave
+cook-tool
+dish
+cutlery2
+cutlery1 cutlery
+vessel1 vessel
+vessel2
+bottle3
+bottle1 bottle
+bottle2
+bread
+chef
+water drop
+rice2
+rice1 rice
+soap
+egg easter-egg
+cake2
+cake1 cake
+spiral
+palette
+lollipop
+pizza1 pizza
+pizza2
+refresh1 refresh
+backward rewind media-backward media-rewind
+play media-play
+pause media-pause
+forward media-forward
+repeat media-repeat
+stop media-stop
+music
+shuffle random

@@ -1,0 +1,12 @@
+.icon-social-network { display: inline-block; background-repeat: no-repeat; background-image: url(./icons.png); }
+.icon-social-network.size-24 {width: 24px; height: 24px; }
+.icon-social-network.size-16 {width: 16px; height: 16px; }
+.icon-social-network.facebook.size-24 { background-position: 0 0; }
+.icon-social-network.google-plus.size-24 { background-position: 0 -24px; }
+.icon-social-network.twitter.size-24 { background-position: 0 -48px; }
+.icon-social-network.linkedin.size-24 { background-position: 0 -72px; }
+.icon-social-network.facebook.size-16 { background-position: -24px 0; }
+.icon-social-network.google-plus.size-16 { background-position: -24px -16px; }
+.icon-social-network.twitter.size-16 { background-position: -24px -32px; }
+.icon-social-network.linkedin.size-16 { background-position: -24px -48px; }
+

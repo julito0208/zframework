@@ -1,0 +1,1 @@
+<![CDATA[<?=str_replace(']]>', ']]&gt;', $html)?>]]>

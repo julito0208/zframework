@@ -1,0 +1,48 @@
+.icon-webcontrol { display: inline-block; background-repeat: no-repeat; }
+.icon-webcontrol.black { background-image: url(./icons-black.png); }
+.icon-webcontrol.blue { background-image: url(./icons-blue.png); }
+.icon-webcontrol.green { background-image: url(./icons-green.png); }
+.icon-webcontrol.red { background-image: url(./icons-red.png); }
+.icon-webcontrol.yellow { background-image: url(./icons-yellow.png); }
+.icon-webcontrol.size-32 { width: 32px; height: 32px }
+.icon-webcontrol.size-24 { width: 24px; height: 24px }
+.icon-webcontrol.size-16 { width: 16px; height: 16px }
+.icon-webcontrol.chartlink.size-32 { background-position: -0px -0px;}
+.icon-webcontrol.config.size-32 { background-position: -0px -32px;}
+.icon-webcontrol.delete.size-32 { background-position: -0px -64px;}
+.icon-webcontrol.down.size-32 { background-position: -0px -96px;}
+.icon-webcontrol.edit.size-32 { background-position: -0px -128px;}
+.icon-webcontrol.gallerylink.size-32 { background-position: -0px -160px;}
+.icon-webcontrol.imagelink.size-32 { background-position: -0px -192px;}
+.icon-webcontrol.info.size-32 { background-position: -0px -224px;}
+.icon-webcontrol.left.size-32 { background-position: -0px -256px;}
+.icon-webcontrol.print.size-32 { background-position: -0px -288px;}
+.icon-webcontrol.right.size-32 { background-position: -0px -320px;}
+.icon-webcontrol.up.size-32 { background-position: -0px -352px;}
+.icon-webcontrol.view.size-32 { background-position: -0px -384px;}
+.icon-webcontrol.chartlink.size-24 { background-position: -32px -0px;}
+.icon-webcontrol.config.size-24 { background-position: -32px -24px;}
+.icon-webcontrol.delete.size-24 { background-position: -32px -48px;}
+.icon-webcontrol.down.size-24 { background-position: -32px -72px;}
+.icon-webcontrol.edit.size-24 { background-position: -32px -96px;}
+.icon-webcontrol.gallerylink.size-24 { background-position: -32px -120px;}
+.icon-webcontrol.imagelink.size-24 { background-position: -32px -144px;}
+.icon-webcontrol.info.size-24 { background-position: -32px -168px;}
+.icon-webcontrol.left.size-24 { background-position: -32px -192px;}
+.icon-webcontrol.print.size-24 { background-position: -32px -216px;}
+.icon-webcontrol.right.size-24 { background-position: -32px -240px;}
+.icon-webcontrol.up.size-24 { background-position: -32px -264px;}
+.icon-webcontrol.view.size-24 { background-position: -32px -288px;}
+.icon-webcontrol.chartlink.size-16 { background-position: -56px -0px;}
+.icon-webcontrol.config.size-16 { background-position: -56px -16px;}
+.icon-webcontrol.delete.size-16 { background-position: -56px -32px;}
+.icon-webcontrol.down.size-16 { background-position: -56px -48px;}
+.icon-webcontrol.edit.size-16 { background-position: -56px -64px;}
+.icon-webcontrol.gallerylink.size-16 { background-position: -56px -80px;}
+.icon-webcontrol.imagelink.size-16 { background-position: -56px -96px;}
+.icon-webcontrol.info.size-16 { background-position: -56px -112px;}
+.icon-webcontrol.left.size-16 { background-position: -56px -128px;}
+.icon-webcontrol.print.size-16 { background-position: -56px -144px;}
+.icon-webcontrol.right.size-16 { background-position: -56px -160px;}
+.icon-webcontrol.up.size-16 { background-position: -56px -176px;}
+.icon-webcontrol.view.size-16 { background-position: -56px -192px;}

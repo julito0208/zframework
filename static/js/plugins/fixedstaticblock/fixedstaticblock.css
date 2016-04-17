@@ -1,0 +1,30 @@
+
+.zwidget-fixed-static-block {
+	
+}
+
+.zwidget-fixed-static-block .zwidget-fixed-static-content-block {
+	float: left;
+}
+
+.zwidget-fixed-static-block .zwidget-fixed-static-button-close-block {
+	float: right;
+	padding: 0 10px 0 0px;
+	text-align: right;
+	height: 16px;
+	width: 16px;
+}
+
+.zwidget-fixed-static-block .zwidget-fixed-static-button-close-block a {
+	height: 16px;
+	width: 16px;
+	text-decoration: none;
+	position: absolute;
+	margin-right: 20px;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+.zwidget-fixed-static-block .zwidget-fixed-static-button-close-block a:hover {
+	background-position: center bottom;
+}

@@ -1,0 +1,52 @@
+
+El framework necesita que se definan algunas directivas de apache:
+	
+	# Directorio del sitio (puede o no coincidir con el DocumentRoot que es el www)
+	SetEnv ZFRAMEWORK_APP_DIR "/path/site" 
+	
+	# Acción que hará que siempre se cargue el init del zframework
+	php_value auto_prepend_file "/path/zframework/init.php"
+
+Se supone que dentro de ZFRAMEWORK_APP_DIR existen las carpetas "www" y "backend" y que existe el archivo config.xml
+
+Para incluir los estaticos del zframework (css, js, etc), se recomienda crear un link en /www/static/zframework (o la ubicación especificada en el config) a  /zframework/static.
+También se puede crear un virtual server.
+Si no se lo usa de esta forma, puede demorar mucho en cargar.
+
+Se debe ejecutar init.php siempre.
+
+Este leera un archivos de configuracion "config.xml".
+
+El archivo config.xml se buscara en el directorio de __FILE__ y en todos los directorios padres (hasta encontrarlo).
+
+Para el llamado de crons, suponiendo que "zframework/init.php" es la ruta completa, CRONNAME es el nombre del cron y ARGS.. son alguns parametros para pasar al cron:
+
+	php zframework/init.php cron APP_DIR CRONNAME ARGS..
+
+o
+
+	php zframework/cron.php APP_DIR CRONNAME ARGS..
+
+El comando "cron" se puede cambiar en el config.xml
+
+Si se está ejecutando el zframework dentro de la carpeta del sitio "sitio/zframework", se puede obviar el app_dir en la llamada del cron, y en el .htaccess
+
+Lo mas importante del .htaccess es que tenga la redireccion de cualquier url al index:
+
+RewriteRule ^(.+)$ index.php  [NC,L]
+
+Y en el index definir los redireccionamientos
+
+No se debe olvidar al final del index poner:
+
+RedirectControl::redirect_process();
+
+Para correr crons:
+
+	Llamar por consola al bin php seguidos por los args:
+
+		/path/zframework/cron.php (path al archivo cron.php en el zframework)
+		cron (comando para identificar que se trata de un cron)
+		site_dir (path al dir del sitio)
+		cron (nombre del cron)
+		args (argumentos al cron)

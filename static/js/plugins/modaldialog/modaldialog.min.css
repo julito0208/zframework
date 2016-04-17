@@ -1,0 +1,499 @@
+
+div.modaldialog {
+	border: solid 1px #333;
+	padding: 0;
+	border-radius: 5px !important;
+	background-color: #F8F8F8;
+	box-shadow: 2px 2px 4px 4px rgba(0,0,0,0.15);
+}
+
+div.modaldialog div.body {
+	padding: 10px 20px 10px 20px;
+	border-radius: 5px !important;
+}
+
+#modaldialog-header {
+	border-radius: 5px 5px 0 0;
+}
+div.modaldialog div.body div.alert-dialog,
+div.modaldialog div.body div.confirm-dialog{
+	padding: 0 10px 10px 10px;
+    min-width: 400px;
+}
+div.modaldialog div.body div.alert-dialog p {
+	padding-top: 5px;
+}
+
+/* Bloques de clear despues de los bloques flotantes anteriores */
+div.modaldialog .clear {
+	clear: both;
+	display: block;
+	max-height: 0px;
+	padding: 0;
+	margin: 0;
+}
+
+div.modaldialog div.body div.buttons {
+	text-align: right;
+	padding: 20px 0 0 !important;
+	margin: 25px 0 0 !important;
+	border-top: solid 1px #999;
+	white-space: nowrap;
+	clear: both !important;
+	width: auto !important;
+}
+div.modaldialog div.body div.buttons table {
+	width: 100%;
+}
+
+div#modaldialog-container div#modaldialog-body button.modaldialog-button {
+	
+	/*width: 130px;*/
+	padding: 5px 20px;
+	/*border: solid 1px #666;*/
+	/*border-radius: 3px;*/
+	/*box-shadow: 1px 1px 0px rgba(50,50,50,0.3);*/
+	/*font-size: 9.5pt;*/
+	/*line-height: 25px;*/
+	/*vertical-align: middle;*/
+	cursor: pointer;
+	margin: 0 0 0 20px;
+	text-align: center;
+	/*color: #000;*/
+    /*background: #FEFEFE;*/
+}
+
+div#modaldialog-container div#modaldialog-body .float-left button.modaldialog-button {
+	margin: 0 20px 0 0;
+}
+
+div#modaldialog-container div#modaldialog-body *.align-left button.modaldialog-button {
+	margin: 0 15px 0 0;
+}
+
+div#modaldialog-container div#modaldialog-body *.align-center button.modaldialog-button {
+	margin: 0 7px 0 7px;
+}
+
+div#modaldialog-container div#modaldialog-body *.align-right button.modaldialog-button {
+	margin: 0 0 0 15px;
+}
+
+div#modaldialog-container div#modaldialog-body button.modaldialog-button::-moz-focus-inner {
+	border-color: transparent !important;
+}
+
+div#modaldialog-container div#modaldialog-body button.modaldialog-button span {
+	padding: 0;	
+}
+div#modaldialog-container div#modaldialog-body button.modaldialog-button-hover {
+	border: solid 1px #333;
+	background-color: #FFF !important;
+	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.2);
+}
+
+div#modaldialog-container div#modaldialog-body button.modaldialog-button-hover span {
+	text-decoration: underline;
+	
+}
+
+div#modaldialog-container div#modaldialog-body button.modaldialog-button-focused {
+	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.3);
+}
+
+div#modaldialog-container div#modaldialog-body button.modaldialog-button-icon {
+	text-align: left;
+	padding: 2px 20px 2px 5px;
+}
+
+div#modaldialog-container div#modaldialog-body button.modaldialog-button-icon {
+	background-repeat: no-repeat;
+	background-position: 20px center;	
+	padding: 3px 15px 3px 35px;
+	/*text-indent: 30px;*/
+}
+div#modaldialog-container div#modaldialog-body button.modaldialog-button-icon span {
+    padding: 0 0 0 5px !important;
+}
+div#modaldialog-container div#modaldialog-body button.button-submit {
+	background-image: url(./images/modaldialog-button-icon-submit.png);
+}
+div#modaldialog-container div#modaldialog-body button.button-accept {
+	background-image: url(./images/modaldialog-button-icon-submit.png);
+}
+div#modaldialog-container div#modaldialog-body button.button-cancel {
+	background-image: url(./images/modaldialog-button-icon-cancel.png);
+}
+div#modaldialog-container div#modaldialog-body button.button-next {
+	background-image: url(./images/modaldialog-button-icon-next.png);
+}
+div#modaldialog-container div#modaldialog-body button.button-back  {
+	background-image: url(./images/modaldialog-button-icon-back.png);
+}
+div#modaldialog-container div#modaldialog-body button.button-download {
+	background-image: url(./images/modaldialog-button-icon-download.png);
+}
+div#modaldialog-container div#modaldialog-body button.button-print {
+	background-image: url(./images/modaldialog-button-icon-print.png);
+}
+div#modaldialog-container div#modaldialog-body button.button-delete {
+	background-image: url(./images/modaldialog-button-icon-delete.png);
+}
+div#modaldialog-container div#modaldialog-body button.button-save {
+	background-image: url(./images/modaldialog-button-icon-save.png);
+}
+div#modaldialog-container div#modaldialog-body button.button-refresh {
+	background-image: url(./images/modaldialog-button-icon-refresh.png);
+}
+
+
+div#modaldialog-container.modaldialog-error div#modaldialog-body,
+div#modaldialog-container.modaldialog-question div#modaldialog-body,
+div#modaldialog-container.modaldialog-caution div#modaldialog-body {
+	background-repeat: no-repeat;
+	background-position: left 15px;
+	padding-left: 70px;
+	padding-top: 20px;
+	margin-left: 20px;
+}
+
+div#modaldialog-container.modaldialog-error div#modaldialog-body {
+	background-image: url(./images/modaldialog-theme-background-error.gif);
+}
+div#modaldialog-container.modaldialog-caution div#modaldialog-body {
+	background-image: url(./images/modaldialog-theme-background-caution.gif);
+}
+div#modaldialog-container.modaldialog-question div#modaldialog-body {
+	background-image: url(./images/modaldialog-theme-background-question.gif);
+}
+
+
+div.modaldialog div.header div.title {
+    background: #222;
+	color: #FFF;
+	vertical-align: top;
+	padding: 0;
+	border-radius: 3px 3px 0 0;
+	border: solid 1px #888;
+}
+div.modaldialog div.header div.title .text {
+	font-size: 9pt;
+	font-weight: bold;
+	vertical-align: top;
+	padding: 4px 10px;
+}
+
+div.modaldialog div.header span.close-button {
+	cursor: pointer;
+	font-weight: bold;
+	padding: 0px 4px;
+	/*border: solid 1px #888;*/
+	border-right: 0;
+	border-top: 0;
+	vertical-align: middle;
+	/*background-color: #EEE;*/
+}
+
+div.modaldialog div.header div.title span.close-button {
+	
+	background-color: transparent;
+	color: #FFF;
+	position: relative;
+	border: 0;
+	top: 1px;
+	left: -3px;
+	padding: 0 5px 0;
+	vertical-align: top;
+}
+
+body.modaldialog-MSIE-6-fix select { 
+	visibility: hidden; 
+}
+
+body.modaldialog-firefox-fix div#modaldialog-container div#modaldialog-body button.modaldialog-button-icon span {
+	background-position: 13px 0px;
+}
+
+body.under-modaldialog *.modaldialog-hidden {
+	visibility: hidden; 
+}
+
+div.modaldialog-image img.image {
+	border: solid 1px #222;
+	display: block;
+	margin: 0 !important;
+	padding: 0 !important;
+	/*cursor: pointer;*/
+}
+div.modaldialog-image div.image-title {
+	font-weight: bold;
+	padding: 5px 0 7px;
+	border-bottom: solid 1px #CCC;
+	margin-bottom: 25px;
+}
+
+div.modaldialog-image div.description {
+	color: #333;
+	font-weight: bold;
+	padding: 20px 0 0;
+}
+
+#modaldialog-container {
+	text-align: left;
+}
+
+div#modaldialog-container div.calendar-dialog {
+	padding: 10px 10px 10px;
+}
+div#modaldialog-container div.calendar-dialog div.fecha-block {
+	padding: 5px 0 30px;
+	font-size: 11pt;
+}
+
+div#modaldialog-container div.calendar-dialog div.fecha-block .fecha-text {
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+div#modaldialog-container div.calendar-dialog div.fecha-block .title {
+	color: #2C2C2C;
+}
+
+div#modaldialog-container div.calendar-dialog div.fecha-block .fecha-text-button {
+	margin-left: 15px;
+	font-size: 10pt;
+	text-decoration: none;
+}
+
+div#modaldialog-container div.calendar-dialog div.fecha-block .fecha-text-button:hover {
+	text-decoration: underline;
+}
+
+
+
+
+div#modaldialog-container div.calendar-dialog div.fecha-actual-block {
+	padding: 15px 0 10px;
+	font-size: 10pt;
+	text-align: right;
+}
+
+div#modaldialog-container div.calendar-dialog div.fecha-actual-block .fecha-text {
+	margin-left: 10px;
+}
+
+div#modaldialog-container div.calendar-dialog div.fecha-actual-block .title {
+	color: #777;
+}
+
+div#modaldialog-container div.calendar-dialog div.fecha-actual-block .fecha-text-button {
+	margin-left: 15px;
+	font-size: 10pt;
+	text-decoration: none;
+}
+
+div#modaldialog-container div.calendar-dialog div.fecha-actual-block .fecha-text-button:hover {
+	text-decoration: underline;
+}
+
+
+
+div#modaldialog-container div.calendar-dialog table.calendar-table {
+	border-collapse: separate;
+	border: solid 1px #111 !important;
+	margin-bottom: 10px;
+	z-index: 10;
+}
+
+
+div#modaldialog-container div.calendar-dialog table.calendar-table td,
+div#modaldialog-container div.calendar-dialog table.calendar-table th {
+	vertical-align: middle;
+	font-size: 11pt;
+	
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table tr.days-names-row th {
+	text-align: center;
+	font-size: 9pt;
+	font-weight: bold;
+	color: #222;
+	border-bottom: solid 1px #777;
+	padding: 6px 0 4px;
+	background: #DDD;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table td.day-cell {
+	width: 45px;
+	text-align: center;
+	padding: 0;
+	background: #FEFEFE;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table td.day-cell a {
+	
+	display: block;
+	padding: 6px 0;
+	text-decoration: none;
+	border: solid 1px #D2D2D2;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table td.day-cell-enabled a {
+	color: #111;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table td.day-cell-disabled a {
+	color: #CCC;
+	cursor: default;
+}
+
+
+div#modaldialog-container div.calendar-dialog table.calendar-table td.day-cell-actual a {
+	background: #EEE;
+	border: solid 1px #CCC;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table td.day-cell-selected a {
+	background: #CCC;
+	border: solid 1px #999;
+}
+
+
+div#modaldialog-container div.calendar-dialog table.calendar-table td.day-cell-enabled a:hover {
+	background: #DDD;
+	border: solid 1px #AAA;
+	text-decoration: underline;
+}
+
+
+div#modaldialog-container div.calendar-dialog table.calendar-table tr.title-row th {
+	background: #666;
+	border: 0 !important;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table tr.title-row th.month-name-cell {
+	text-align: center;
+	color: #FFF;
+	padding: 8px 0;
+	font-size: 10pt;
+	
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table tr.title-row table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table th.button-cell {
+	width: 40px;
+	background: #F00;
+	padding: 2px 0 4px;
+	border-bottom: solid 1px #666;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table th.button-cell a {
+	color: #EEE;
+	text-decoration: none;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table th.button-cell a:hover {
+	text-decoration: underline;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table th.left {
+	text-align: left;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table th.right {
+	text-align: right;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table th.left a {
+	margin-left: 14px;
+}
+
+div#modaldialog-container div.calendar-dialog table.calendar-table th.right a {
+	margin-right: 14px;
+}
+
+div#modaldialog-container .images-list-buttons-block {
+	position: absolute !important;
+	z-index: 25;
+	height: 1px;
+	visibility: hidden;
+    text-align: center;
+}
+div#modaldialog-container .images-list-buttons-block .button {
+	height: 50px;
+	width: 50px;
+	background-image: url("./images/modaldialog-imagelist-buttons.png");
+	background-repeat: no-repeat;
+	text-decoration: none;
+	cursor: pointer;
+	margin-top: -30px;
+	display: inline-block;
+    opacity: 0.6;
+}
+div#modaldialog-container .images-list-buttons-block .prev-button  {
+	background-position: 0 0;
+	margin-left: 15px;
+	float: left;
+}
+div#modaldialog-container .images-list-buttons-block .download-button,
+div#modaldialog-container .images-list-buttons-block .play-pause-button  {
+	background-image: none;
+    display: inline-block;
+    background: rgba(120,120,120,0.9);
+    padding: 5px 20px !important;
+    border-radius: 5px;
+    line-height: 20px;
+    height: 30px;
+    text-align: center;
+    width: auto;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+    border: solid 1px #333;
+    color: #111;
+    font-weight: bold;
+}
+div#modaldialog-container .images-list-buttons-block .download-button:hover,
+div#modaldialog-container .images-list-buttons-block .play-pause-button:hover  {
+    background: rgba(200,200,200,1);
+}
+div#modaldialog-container .images-list-buttons-block .next-button  {
+	background-position: -50px 0;
+	margin-right: 10px;
+	float: right;
+}
+
+div#modaldialog-container .images-list-buttons-block .prev-button:hover {
+	background-position: 0 -50px;
+}
+div#modaldialog-container .images-list-buttons-block .next-button:hover {
+	background-position: -50px -50px;
+}
+
+div#modaldialog-container .dialog-image-container .images-list-buttons-block.visible {
+	visibility: visible;
+    opacity: 0.7;
+}
+div#modaldialog-container .image-dialog-content .position-block {
+	font-size: 10pt;
+	color: #333;
+	padding: 15px 0 0 0;
+	font-weight: bold;
+}
+div#modaldialog-container.modaldialog-image .buttons {
+	margin-top: 15px !important;
+}
+
+div#modaldialog-container .buttons-left {
+	text-align:left;
+	float:left;
+	
+}
+div#modaldialog-container div#modaldialog-body .buttons-left button {
+	margin: 0 20px 0 0 !important;
+}
+div#modaldialog-container div#modaldialog-body .buttons {
+	padding-bottom: 10px !important;
+}

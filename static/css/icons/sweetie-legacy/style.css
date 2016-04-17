@@ -1,0 +1,677 @@
+.icon-sweetie-legacy { display: inline-block; background-repeat: no-repeat; background-image: url(./icons.png);}
+.icon-sweetie-legacy.size-24 { width: 24px; height: 24px }
+.icon-sweetie-legacy.size-16 { width: 16px; height: 16px }
+.icon-sweetie-legacy.size-12 { width: 12px; height: 12px }
+.icon-sweetie-legacy.size-8 { width: 8px; height: 8px }
+.icon-sweetie-legacy.size-24.arrow-back {background-position: 0px 0px; }
+.icon-sweetie-legacy.size-24.arrow-down {background-position: 0px -24px; }
+.icon-sweetie-legacy.size-24.arrow-first {background-position: 0px -48px; }
+.icon-sweetie-legacy.size-24.arrow-forward {background-position: 0px -72px; }
+.icon-sweetie-legacy.size-24.arrow-last {background-position: 0px -96px; }
+.icon-sweetie-legacy.size-24.arrow-left {background-position: 0px -120px; }
+.icon-sweetie-legacy.size-24.arrow-next {background-position: 0px -144px; }
+.icon-sweetie-legacy.size-24.arrow-previous {background-position: 0px -168px; }
+.icon-sweetie-legacy.size-24.arrow-right {background-position: 0px -192px; }
+.icon-sweetie-legacy.size-24.arrow-up {background-position: 0px -216px; }
+.icon-sweetie-legacy.size-24.book-blue-add {background-position: 0px -240px; }
+.icon-sweetie-legacy.size-24.book-blue-check {background-position: 0px -264px; }
+.icon-sweetie-legacy.size-24.book-blue-mark {background-position: 0px -288px; }
+.icon-sweetie-legacy.size-24.book-blue-open {background-position: 0px -312px; }
+.icon-sweetie-legacy.size-24.book-blue {background-position: 0px -336px; }
+.icon-sweetie-legacy.size-24.book-blue-remove {background-position: 0px -360px; }
+.icon-sweetie-legacy.size-24.book-green-add {background-position: 0px -384px; }
+.icon-sweetie-legacy.size-24.book-green-check {background-position: 0px -408px; }
+.icon-sweetie-legacy.size-24.book-green-mark {background-position: 0px -432px; }
+.icon-sweetie-legacy.size-24.book-green-open {background-position: 0px -456px; }
+.icon-sweetie-legacy.size-24.book-green {background-position: 0px -480px; }
+.icon-sweetie-legacy.size-24.book-green-remove {background-position: 0px -504px; }
+.icon-sweetie-legacy.size-24.book-red-add {background-position: 0px -528px; }
+.icon-sweetie-legacy.size-24.book-red-check {background-position: 0px -552px; }
+.icon-sweetie-legacy.size-24.book-red-mark {background-position: 0px -576px; }
+.icon-sweetie-legacy.size-24.book-red-open {background-position: 0px -600px; }
+.icon-sweetie-legacy.size-24.book-red {background-position: 0px -624px; }
+.icon-sweetie-legacy.size-24.book-red-remove {background-position: 0px -648px; }
+.icon-sweetie-legacy.size-24.circle-blue-add {background-position: 0px -672px; }
+.icon-sweetie-legacy.size-24.circle-blue-check {background-position: 0px -696px; }
+.icon-sweetie-legacy.size-24.circle-blue-delete {background-position: 0px -720px; }
+.icon-sweetie-legacy.size-24.circle-blue {background-position: 0px -744px; }
+.icon-sweetie-legacy.size-24.circle-blue-remove {background-position: 0px -768px; }
+.icon-sweetie-legacy.size-24.circle-green-add {background-position: 0px -792px; }
+.icon-sweetie-legacy.size-24.circle-green-check {background-position: 0px -816px; }
+.icon-sweetie-legacy.size-24.circle-green-delete {background-position: 0px -840px; }
+.icon-sweetie-legacy.size-24.circle-green {background-position: 0px -864px; }
+.icon-sweetie-legacy.size-24.circle-green-remove {background-position: 0px -888px; }
+.icon-sweetie-legacy.size-24.circle-red-add {background-position: 0px -912px; }
+.icon-sweetie-legacy.size-24.circle-red-check {background-position: 0px -936px; }
+.icon-sweetie-legacy.size-24.circle-red-delete {background-position: 0px -960px; }
+.icon-sweetie-legacy.size-24.circle-red {background-position: 0px -984px; }
+.icon-sweetie-legacy.size-24.circle-red-remove {background-position: 0px -1008px; }
+.icon-sweetie-legacy.size-24.clock {background-position: 0px -1032px; }
+.icon-sweetie-legacy.size-24.columns {background-position: 0px -1056px; }
+.icon-sweetie-legacy.size-24.comment-important {background-position: 0px -1080px; }
+.icon-sweetie-legacy.size-24.comment {background-position: 0px -1104px; }
+.icon-sweetie-legacy.size-24.comment-question {background-position: 0px -1128px; }
+.icon-sweetie-legacy.size-24.comment-square-important {background-position: 0px -1152px; }
+.icon-sweetie-legacy.size-24.comment-square {background-position: 0px -1176px; }
+.icon-sweetie-legacy.size-24.comment-square-question {background-position: 0px -1200px; }
+.icon-sweetie-legacy.size-24.control-pause {background-position: 0px -1224px; }
+.icon-sweetie-legacy.size-24.control-stop {background-position: 0px -1248px; }
+.icon-sweetie-legacy.size-24.cube-blue {background-position: 0px -1272px; }
+.icon-sweetie-legacy.size-24.cube-green {background-position: 0px -1296px; }
+.icon-sweetie-legacy.size-24.cube-red {background-position: 0px -1320px; }
+.icon-sweetie-legacy.size-24.email-add {background-position: 0px -1344px; }
+.icon-sweetie-legacy.size-24.email-b {background-position: 0px -1368px; }
+.icon-sweetie-legacy.size-24.email-edit {background-position: 0px -1392px; }
+.icon-sweetie-legacy.size-24.email-forward {background-position: 0px -1416px; }
+.icon-sweetie-legacy.size-24.email-letter {background-position: 0px -1440px; }
+.icon-sweetie-legacy.size-24.email {background-position: 0px -1464px; }
+.icon-sweetie-legacy.size-24.email-remove {background-position: 0px -1488px; }
+.icon-sweetie-legacy.size-24.email-reply {background-position: 0px -1512px; }
+.icon-sweetie-legacy.size-24.em-check {background-position: 0px -1536px; }
+.icon-sweetie-legacy.size-24.em-cross {background-position: 0px -1560px; }
+.icon-sweetie-legacy.size-24.em-down {background-position: 0px -1584px; }
+.icon-sweetie-legacy.size-24.em-heart {background-position: 0px -1608px; }
+.icon-sweetie-legacy.size-24.em-left {background-position: 0px -1632px; }
+.icon-sweetie-legacy.size-24.em-open {background-position: 0px -1656px; }
+.icon-sweetie-legacy.size-24.em-pencil {background-position: 0px -1680px; }
+.icon-sweetie-legacy.size-24.em-plus {background-position: 0px -1704px; }
+.icon-sweetie-legacy.size-24.em-right {background-position: 0px -1728px; }
+.icon-sweetie-legacy.size-24.em-up {background-position: 0px -1752px; }
+.icon-sweetie-legacy.size-24.file-archive {background-position: 0px -1776px; }
+.icon-sweetie-legacy.size-24.file-page {background-position: 0px -1800px; }
+.icon-sweetie-legacy.size-24.frame-add {background-position: 0px -1824px; }
+.icon-sweetie-legacy.size-24.frame-close {background-position: 0px -1848px; }
+.icon-sweetie-legacy.size-24.frame-open {background-position: 0px -1872px; }
+.icon-sweetie-legacy.size-24.frame {background-position: 0px -1896px; }
+.icon-sweetie-legacy.size-24.heart-gold-l {background-position: 0px -1920px; }
+.icon-sweetie-legacy.size-24.heart-gold-m {background-position: 0px -1944px; }
+.icon-sweetie-legacy.size-24.heart-gold {background-position: 0px -1968px; }
+.icon-sweetie-legacy.size-24.heart-gold-s {background-position: 0px -1992px; }
+.icon-sweetie-legacy.size-24.heart-gold-xs {background-position: 0px -2016px; }
+.icon-sweetie-legacy.size-24.heart-gold-xxs {background-position: 0px -2040px; }
+.icon-sweetie-legacy.size-24.heart-red-l {background-position: 0px -2064px; }
+.icon-sweetie-legacy.size-24.heart-red-m {background-position: 0px -2088px; }
+.icon-sweetie-legacy.size-24.heart-red {background-position: 0px -2112px; }
+.icon-sweetie-legacy.size-24.heart-red-s {background-position: 0px -2136px; }
+.icon-sweetie-legacy.size-24.heart-red-xs {background-position: 0px -2160px; }
+.icon-sweetie-legacy.size-24.heart-red-xxs {background-position: 0px -2184px; }
+.icon-sweetie-legacy.size-24.heart-silver-l {background-position: 0px -2208px; }
+.icon-sweetie-legacy.size-24.heart-silver-m {background-position: 0px -2232px; }
+.icon-sweetie-legacy.size-24.heart-silver {background-position: 0px -2256px; }
+.icon-sweetie-legacy.size-24.heart-silver-s {background-position: 0px -2280px; }
+.icon-sweetie-legacy.size-24.heart-silver-xs {background-position: 0px -2304px; }
+.icon-sweetie-legacy.size-24.heart-silver-xxs {background-position: 0px -2328px; }
+.icon-sweetie-legacy.size-24.image-add {background-position: 0px -2352px; }
+.icon-sweetie-legacy.size-24.image-check {background-position: 0px -2376px; }
+.icon-sweetie-legacy.size-24.image-open {background-position: 0px -2400px; }
+.icon-sweetie-legacy.size-24.image {background-position: 0px -2424px; }
+.icon-sweetie-legacy.size-24.image-remove {background-position: 0px -2448px; }
+.icon-sweetie-legacy.size-24.imageset-add {background-position: 0px -2472px; }
+.icon-sweetie-legacy.size-24.imageset-check {background-position: 0px -2496px; }
+.icon-sweetie-legacy.size-24.imageset-open {background-position: 0px -2520px; }
+.icon-sweetie-legacy.size-24.imageset {background-position: 0px -2544px; }
+.icon-sweetie-legacy.size-24.imageset-remove {background-position: 0px -2568px; }
+.icon-sweetie-legacy.size-24.member-add {background-position: 0px -2592px; }
+.icon-sweetie-legacy.size-24.member-heart {background-position: 0px -2616px; }
+.icon-sweetie-legacy.size-24.member {background-position: 0px -2640px; }
+.icon-sweetie-legacy.size-24.member-profile {background-position: 0px -2664px; }
+.icon-sweetie-legacy.size-24.member-remove {background-position: 0px -2688px; }
+.icon-sweetie-legacy.size-24.message-info {background-position: 0px -2712px; }
+.icon-sweetie-legacy.size-24.message-warn {background-position: 0px -2736px; }
+.icon-sweetie-legacy.size-24.podcast-rect {background-position: 0px -2760px; }
+.icon-sweetie-legacy.size-24.podcast-square {background-position: 0px -2784px; }
+.icon-sweetie-legacy.size-24.rss-rect {background-position: 0px -2808px; }
+.icon-sweetie-legacy.size-24.rss-square {background-position: 0px -2832px; }
+.icon-sweetie-legacy.size-24.settings-silver { background-position: 0px -3127px }
+.icon-sweetie-legacy.size-24.sidebar { background-position: 0px -3151px }
+.icon-sweetie-legacy.size-24.square-blue-add { background-position: 0px -3175px }
+.icon-sweetie-legacy.size-24.square-blue-check { background-position: 0px -3199px }
+.icon-sweetie-legacy.size-24.square-blue-delete { background-position: 0px -3223px }
+.icon-sweetie-legacy.size-24.square-blue { background-position: 0px -3247px }
+.icon-sweetie-legacy.size-24.square-blue-remove { background-position: 0px -3271px }
+.icon-sweetie-legacy.size-24.square-green-add { background-position: 0px -3295px }
+.icon-sweetie-legacy.size-24.square-green-check { background-position: 0px -3319px }
+.icon-sweetie-legacy.size-24.square-green-delete { background-position: 0px -3343px }
+.icon-sweetie-legacy.size-24.square-green { background-position: 0px -3367px }
+.icon-sweetie-legacy.size-24.square-green-remove { background-position: 0px -3391px }
+.icon-sweetie-legacy.size-24.square-red-add { background-position: 0px -3415px }
+.icon-sweetie-legacy.size-24.square-red-check { background-position: 0px -3439px }
+.icon-sweetie-legacy.size-24.square-red-delete { background-position: 0px -3463px }
+.icon-sweetie-legacy.size-24.square-red { background-position: 0px -3487px }
+.icon-sweetie-legacy.size-24.square-red-remove { background-position: 0px -3511px }
+.icon-sweetie-legacy.size-24.star-cold { background-position: 0px -3535px }
+.icon-sweetie-legacy.size-24.star-hot { background-position: 0px -3559px }
+.icon-sweetie-legacy.size-24.tab-add { background-position: 0px -3583px }
+.icon-sweetie-legacy.size-24.tab-close { background-position: 0px -3607px }
+.icon-sweetie-legacy.size-24.tab-open { background-position: 0px -3631px }
+.icon-sweetie-legacy.size-24.tab { background-position: 0px -3655px }
+.icon-sweetie-legacy.size-24.tag-add { background-position: 0px -3679px }
+.icon-sweetie-legacy.size-24.tag-check { background-position: 0px -3703px }
+.icon-sweetie-legacy.size-24.tag-cold { background-position: 0px -3727px }
+.icon-sweetie-legacy.size-24.tag-cross { background-position: 0px -3751px }
+.icon-sweetie-legacy.size-24.tag-hot { background-position: 0px -3775px }
+.icon-sweetie-legacy.size-24.tag-manager { background-position: 0px -3799px }
+.icon-sweetie-legacy.size-24.tag-pencil { background-position: 0px -3823px }
+.icon-sweetie-legacy.size-24.tag-remove { background-position: 0px -3847px }
+.icon-sweetie-legacy.size-24.tool-a { background-position: 0px -3871px }
+.icon-sweetie-legacy.size-24.tool-b { background-position: 0px -3895px }
+.icon-sweetie-legacy.size-24.tool-c { background-position: 0px -3919px }
+.icon-sweetie-legacy.size-24.tool-d { background-position: 0px -3943px }
+.icon-sweetie-legacy.size-24.tools { background-position: 0px -3967px }
+.icon-sweetie-legacy.size-24.video-rect { background-position: 0px -3991px }
+.icon-sweetie-legacy.size-24.video-square { background-position: 0px -4015px }
+.icon-sweetie-legacy.size-24.zoom-actual { background-position: 0px -4039px }
+.icon-sweetie-legacy.size-24.zoom-fill { background-position: 0px -4063px }
+.icon-sweetie-legacy.size-24.zoom-in { background-position: 0px -4087px }
+.icon-sweetie-legacy.size-24.zoom-out { background-position: 0px -4111px }
+.icon-sweetie-legacy.size-24.video-rect {background-position: 0px -3864px; }
+.icon-sweetie-legacy.size-24.video-square {background-position: 0px -3888px; }
+.icon-sweetie-legacy.size-24.zoom-actual {background-position: 0px -3912px; }
+.icon-sweetie-legacy.size-24.zoom-fill {background-position: 0px -3936px; }
+.icon-sweetie-legacy.size-24.zoom-in {background-position: 0px -3960px; }
+.icon-sweetie-legacy.size-24.zoom-out {background-position: 0px -3984px; }
+.icon-sweetie-legacy.size-24.zoom {background-position: 0px -4008px; }
+.icon-sweetie-legacy.size-16.arrow-back {background-position: -24px 0px; }
+.icon-sweetie-legacy.size-16.arrow-down {background-position: -24px -16px; }
+.icon-sweetie-legacy.size-16.arrow-first {background-position: -24px -32px; }
+.icon-sweetie-legacy.size-16.arrow-forward {background-position: -24px -48px; }
+.icon-sweetie-legacy.size-16.arrow-last {background-position: -24px -64px; }
+.icon-sweetie-legacy.size-16.arrow-left {background-position: -24px -80px; }
+.icon-sweetie-legacy.size-16.arrow-next {background-position: -24px -96px; }
+.icon-sweetie-legacy.size-16.arrow-previous {background-position: -24px -112px; }
+.icon-sweetie-legacy.size-16.arrow-right {background-position: -24px -128px; }
+.icon-sweetie-legacy.size-16.arrow-up {background-position: -24px -144px; }
+.icon-sweetie-legacy.size-16.book-blue-add {background-position: -24px -160px; }
+.icon-sweetie-legacy.size-16.book-blue-check {background-position: -24px -176px; }
+.icon-sweetie-legacy.size-16.book-blue-mark {background-position: -24px -192px; }
+.icon-sweetie-legacy.size-16.book-blue-open {background-position: -24px -208px; }
+.icon-sweetie-legacy.size-16.book-blue {background-position: -24px -224px; }
+.icon-sweetie-legacy.size-16.book-blue-remove {background-position: -24px -240px; }
+.icon-sweetie-legacy.size-16.book-green-add {background-position: -24px -256px; }
+.icon-sweetie-legacy.size-16.book-green-check {background-position: -24px -272px; }
+.icon-sweetie-legacy.size-16.book-green-mark {background-position: -24px -288px; }
+.icon-sweetie-legacy.size-16.book-green-open {background-position: -24px -304px; }
+.icon-sweetie-legacy.size-16.book-green {background-position: -24px -320px; }
+.icon-sweetie-legacy.size-16.book-green-remove {background-position: -24px -336px; }
+.icon-sweetie-legacy.size-16.book-red-add {background-position: -24px -352px; }
+.icon-sweetie-legacy.size-16.book-red-check {background-position: -24px -368px; }
+.icon-sweetie-legacy.size-16.book-red-mark {background-position: -24px -384px; }
+.icon-sweetie-legacy.size-16.book-red-open {background-position: -24px -400px; }
+.icon-sweetie-legacy.size-16.book-red {background-position: -24px -416px; }
+.icon-sweetie-legacy.size-16.book-red-remove {background-position: -24px -432px; }
+.icon-sweetie-legacy.size-16.circle-blue-add {background-position: -24px -448px; }
+.icon-sweetie-legacy.size-16.circle-blue-check {background-position: -24px -464px; }
+.icon-sweetie-legacy.size-16.circle-blue-delete {background-position: -24px -480px; }
+.icon-sweetie-legacy.size-16.circle-blue {background-position: -24px -496px; }
+.icon-sweetie-legacy.size-16.circle-blue-remove {background-position: -24px -512px; }
+.icon-sweetie-legacy.size-16.circle-green-add {background-position: -24px -528px; }
+.icon-sweetie-legacy.size-16.circle-green-check {background-position: -24px -544px; }
+.icon-sweetie-legacy.size-16.circle-green-delete {background-position: -24px -560px; }
+.icon-sweetie-legacy.size-16.circle-green {background-position: -24px -576px; }
+.icon-sweetie-legacy.size-16.circle-green-remove {background-position: -24px -592px; }
+.icon-sweetie-legacy.size-16.circle-red-add {background-position: -24px -608px; }
+.icon-sweetie-legacy.size-16.circle-red-check {background-position: -24px -624px; }
+.icon-sweetie-legacy.size-16.circle-red-delete {background-position: -24px -640px; }
+.icon-sweetie-legacy.size-16.circle-red {background-position: -24px -656px; }
+.icon-sweetie-legacy.size-16.circle-red-remove {background-position: -24px -672px; }
+.icon-sweetie-legacy.size-16.clock {background-position: -24px -688px; }
+.icon-sweetie-legacy.size-16.columns {background-position: -24px -704px; }
+.icon-sweetie-legacy.size-16.comment-important {background-position: -24px -720px; }
+.icon-sweetie-legacy.size-16.comment {background-position: -24px -736px; }
+.icon-sweetie-legacy.size-16.comment-question {background-position: -24px -752px; }
+.icon-sweetie-legacy.size-16.comment-square-important {background-position: -24px -768px; }
+.icon-sweetie-legacy.size-16.comment-square {background-position: -24px -784px; }
+.icon-sweetie-legacy.size-16.comment-square-question {background-position: -24px -800px; }
+.icon-sweetie-legacy.size-16.control-pause {background-position: -24px -816px; }
+.icon-sweetie-legacy.size-16.control-stop {background-position: -24px -832px; }
+.icon-sweetie-legacy.size-16.cube-blue {background-position: -24px -848px; }
+.icon-sweetie-legacy.size-16.cube-green {background-position: -24px -864px; }
+.icon-sweetie-legacy.size-16.cube-red {background-position: -24px -880px; }
+.icon-sweetie-legacy.size-16.email-add {background-position: -24px -896px; }
+.icon-sweetie-legacy.size-16.email-b {background-position: -24px -912px; }
+.icon-sweetie-legacy.size-16.email-edit {background-position: -24px -928px; }
+.icon-sweetie-legacy.size-16.email-forward {background-position: -24px -944px; }
+.icon-sweetie-legacy.size-16.email-letter {background-position: -24px -960px; }
+.icon-sweetie-legacy.size-16.email {background-position: -24px -976px; }
+.icon-sweetie-legacy.size-16.email-remove {background-position: -24px -992px; }
+.icon-sweetie-legacy.size-16.email-reply {background-position: -24px -1008px; }
+.icon-sweetie-legacy.size-16.em-check {background-position: -24px -1024px; }
+.icon-sweetie-legacy.size-16.em-cross {background-position: -24px -1040px; }
+.icon-sweetie-legacy.size-16.em-down {background-position: -24px -1056px; }
+.icon-sweetie-legacy.size-16.em-heart {background-position: -24px -1072px; }
+.icon-sweetie-legacy.size-16.em-left {background-position: -24px -1088px; }
+.icon-sweetie-legacy.size-16.em-open {background-position: -24px -1104px; }
+.icon-sweetie-legacy.size-16.em-pencil {background-position: -24px -1120px; }
+.icon-sweetie-legacy.size-16.em-plus {background-position: -24px -1136px; }
+.icon-sweetie-legacy.size-16.em-right {background-position: -24px -1152px; }
+.icon-sweetie-legacy.size-16.em-up {background-position: -24px -1168px; }
+.icon-sweetie-legacy.size-16.file-archive {background-position: -24px -1184px; }
+.icon-sweetie-legacy.size-16.file-page {background-position: -24px -1200px; }
+.icon-sweetie-legacy.size-16.frame-add {background-position: -24px -1216px; }
+.icon-sweetie-legacy.size-16.frame-close {background-position: -24px -1232px; }
+.icon-sweetie-legacy.size-16.frame-open {background-position: -24px -1248px; }
+.icon-sweetie-legacy.size-16.frame {background-position: -24px -1264px; }
+.icon-sweetie-legacy.size-16.heart-gold-l {background-position: -24px -1280px; }
+.icon-sweetie-legacy.size-16.heart-gold-m {background-position: -24px -1296px; }
+.icon-sweetie-legacy.size-16.heart-gold {background-position: -24px -1312px; }
+.icon-sweetie-legacy.size-16.heart-gold-s {background-position: -24px -1328px; }
+.icon-sweetie-legacy.size-16.heart-gold-xs {background-position: -24px -1344px; }
+.icon-sweetie-legacy.size-16.heart-gold-xxs {background-position: -24px -1360px; }
+.icon-sweetie-legacy.size-16.heart-red-l {background-position: -24px -1376px; }
+.icon-sweetie-legacy.size-16.heart-red-m {background-position: -24px -1392px; }
+.icon-sweetie-legacy.size-16.heart-red {background-position: -24px -1408px; }
+.icon-sweetie-legacy.size-16.heart-red-s {background-position: -24px -1424px; }
+.icon-sweetie-legacy.size-16.heart-red-xs {background-position: -24px -1440px; }
+.icon-sweetie-legacy.size-16.heart-silver-l { background-position: -24px -1486px }
+.icon-sweetie-legacy.size-16.heart-silver-m { background-position: -24px -1502px }
+.icon-sweetie-legacy.size-16.heart-silver { background-position: -24px -1518px }
+.icon-sweetie-legacy.size-16.heart-silver-s { background-position: -24px -1534px }
+.icon-sweetie-legacy.size-16.heart-silver-xs { background-position: -24px -1550px }
+.icon-sweetie-legacy.size-16.heart-silver-xxs { background-position: -24px -1566px }
+.icon-sweetie-legacy.size-16.image-add { background-position: -24px -1582px }
+.icon-sweetie-legacy.size-16.image-check { background-position: -24px -1598px }
+.icon-sweetie-legacy.size-16.image-open { background-position: -24px -1614px }
+.icon-sweetie-legacy.size-16.image { background-position: -24px -1630px }
+.icon-sweetie-legacy.size-16.image-remove { background-position: -24px -1646px }
+.icon-sweetie-legacy.size-16.imageset-add { background-position: -24px -1662px }
+.icon-sweetie-legacy.size-16.imageset-check { background-position: -24px -1678px }
+.icon-sweetie-legacy.size-16.imageset-open { background-position: -24px -1694px }
+.icon-sweetie-legacy.size-16.imageset { background-position: -24px -1710px }
+.icon-sweetie-legacy.size-16.imageset-remove { background-position: -24px -1726px }
+.icon-sweetie-legacy.size-16.member-add { background-position: -24px -1742px }
+.icon-sweetie-legacy.size-16.member-heart { background-position: -24px -1758px }
+.icon-sweetie-legacy.size-16.member { background-position: -24px -1774px }
+.icon-sweetie-legacy.size-16.member-profile { background-position: -24px -1790px }
+.icon-sweetie-legacy.size-16.member-remove { background-position: -24px -1806px }
+.icon-sweetie-legacy.size-16.message-info { background-position: -24px -1822px }
+.icon-sweetie-legacy.size-16.message-warn { background-position: -24px -1838px }
+.icon-sweetie-legacy.size-16.podcast-rect { background-position: -24px -1854px }
+.icon-sweetie-legacy.size-16.podcast-square { background-position: -24px -1870px }
+.icon-sweetie-legacy.size-16.rss-rect { background-position: -24px -1886px }
+.icon-sweetie-legacy.size-16.rss-square { background-position: -24px -1902px }
+.icon-sweetie-legacy.size-16.security-key { background-position: -24px -1918px }
+.icon-sweetie-legacy.size-16.security-lock-open { background-position: -24px -1934px }
+.icon-sweetie-legacy.size-16.security-lock { background-position: -24px -1950px }
+.icon-sweetie-legacy.size-16.settings-blue { background-position: -24px -1966px }
+.icon-sweetie-legacy.size-16.settings-orange { background-position: -24px -1982px }
+.icon-sweetie-legacy.size-16.settings { background-position: -24px -1998px }
+.icon-sweetie-legacy.size-16.settings-silver { background-position: -24px -2014px }
+.icon-sweetie-legacy.size-16.sidebar { background-position: -24px -2030px }
+.icon-sweetie-legacy.size-16.square-blue-add { background-position: -24px -2046px }
+.icon-sweetie-legacy.size-16.square-blue-check { background-position: -24px -2062px }
+.icon-sweetie-legacy.size-16.square-blue-delete { background-position: -24px -2078px }
+.icon-sweetie-legacy.size-16.square-blue { background-position: -24px -2094px }
+.icon-sweetie-legacy.size-16.square-blue-remove { background-position: -24px -2110px }
+.icon-sweetie-legacy.size-16.square-green-add { background-position: -24px -2126px }
+.icon-sweetie-legacy.size-16.square-green-check { background-position: -24px -2142px }
+.icon-sweetie-legacy.size-16.square-green-delete { background-position: -24px -2158px }
+.icon-sweetie-legacy.size-16.square-green { background-position: -24px -2174px }
+.icon-sweetie-legacy.size-16.square-green-remove { background-position: -24px -2190px }
+.icon-sweetie-legacy.size-16.square-red-add { background-position: -24px -2206px }
+.icon-sweetie-legacy.size-16.square-red-check { background-position: -24px -2222px }
+.icon-sweetie-legacy.size-16.square-red-delete { background-position: -24px -2238px }
+.icon-sweetie-legacy.size-16.square-red { background-position: -24px -2254px }
+.icon-sweetie-legacy.size-16.square-red-remove { background-position: -24px -2270px }
+.icon-sweetie-legacy.size-16.star-cold { background-position: -24px -2286px }
+.icon-sweetie-legacy.size-16.star-hot { background-position: -24px -2302px }
+.icon-sweetie-legacy.size-16.tab-add { background-position: -24px -2318px }
+.icon-sweetie-legacy.size-16.tab-close { background-position: -24px -2334px }
+.icon-sweetie-legacy.size-16.tab-open { background-position: -24px -2350px }
+.icon-sweetie-legacy.size-16.tab { background-position: -24px -2366px }
+.icon-sweetie-legacy.size-16.tag-add { background-position: -24px -2382px }
+.icon-sweetie-legacy.size-16.tag-check { background-position: -24px -2398px }
+.icon-sweetie-legacy.size-16.tag-cold { background-position: -24px -2414px }
+.icon-sweetie-legacy.size-16.tag-cross { background-position: -24px -2430px }
+.icon-sweetie-legacy.size-16.tag-hot { background-position: -24px -2446px }
+.icon-sweetie-legacy.size-16.tag-manager { background-position: -24px -2462px }
+.icon-sweetie-legacy.size-16.tag-pencil { background-position: -24px -2478px }
+.icon-sweetie-legacy.size-16.tag-remove { background-position: -24px -2494px }
+.icon-sweetie-legacy.size-16.tool-a { background-position: -24px -2510px }
+.icon-sweetie-legacy.size-16.tool-b { background-position: -24px -2526px }
+.icon-sweetie-legacy.size-16.tool-c { background-position: -24px -2542px }
+.icon-sweetie-legacy.size-16.tool-d { background-position: -24px -2558px }
+.icon-sweetie-legacy.size-16.tools { background-position: -24px -2574px }
+.icon-sweetie-legacy.size-16.video-rect { background-position: -24px -2590px }
+.icon-sweetie-legacy.size-16.video-square { background-position: -24px -2606px }
+.icon-sweetie-legacy.size-16.zoom-actual { background-position: -24px -2622px }
+.icon-sweetie-legacy.size-16.zoom-fill { background-position: -24px -2638px }
+.icon-sweetie-legacy.size-16.zoom-in { background-position: -24px -2654px }
+.icon-sweetie-legacy.size-16.zoom-out { background-position: -24px -2670px }
+.icon-sweetie-legacy.size-16.zoom { background-position: -24px -2686px }
+.icon-sweetie-legacy.size-16.zoom {background-position: -24px -2672px; }
+.icon-sweetie-legacy.size-12.arrow-back {background-position: -40px 0px; }
+.icon-sweetie-legacy.size-12.arrow-down {background-position: -40px -12px; }
+.icon-sweetie-legacy.size-12.arrow-first {background-position: -40px -24px; }
+.icon-sweetie-legacy.size-12.arrow-forward {background-position: -40px -36px; }
+.icon-sweetie-legacy.size-12.arrow-last {background-position: -40px -48px; }
+.icon-sweetie-legacy.size-12.arrow-left {background-position: -40px -60px; }
+.icon-sweetie-legacy.size-12.arrow-next {background-position: -40px -72px; }
+.icon-sweetie-legacy.size-12.arrow-previous {background-position: -40px -84px; }
+.icon-sweetie-legacy.size-12.arrow-right {background-position: -40px -96px; }
+.icon-sweetie-legacy.size-12.arrow-up {background-position: -40px -108px; }
+.icon-sweetie-legacy.size-12.book-blue-add {background-position: -40px -120px; }
+.icon-sweetie-legacy.size-12.book-blue-check {background-position: -40px -132px; }
+.icon-sweetie-legacy.size-12.book-blue-mark {background-position: -40px -144px; }
+.icon-sweetie-legacy.size-12.book-blue-open {background-position: -40px -156px; }
+.icon-sweetie-legacy.size-12.book-blue {background-position: -40px -168px; }
+.icon-sweetie-legacy.size-12.book-blue-remove {background-position: -40px -180px; }
+.icon-sweetie-legacy.size-12.book-green-add {background-position: -40px -192px; }
+.icon-sweetie-legacy.size-12.book-green-check {background-position: -40px -204px; }
+.icon-sweetie-legacy.size-12.book-green-mark {background-position: -40px -216px; }
+.icon-sweetie-legacy.size-12.book-green-open {background-position: -40px -228px; }
+.icon-sweetie-legacy.size-12.book-green {background-position: -40px -240px; }
+.icon-sweetie-legacy.size-12.book-green-remove {background-position: -40px -252px; }
+.icon-sweetie-legacy.size-12.book-red-add {background-position: -40px -264px; }
+.icon-sweetie-legacy.size-12.book-red-check {background-position: -40px -276px; }
+.icon-sweetie-legacy.size-12.book-red-mark {background-position: -40px -288px; }
+.icon-sweetie-legacy.size-12.book-red-open {background-position: -40px -300px; }
+.icon-sweetie-legacy.size-12.book-red {background-position: -40px -312px; }
+.icon-sweetie-legacy.size-12.book-red-remove {background-position: -40px -324px; }
+.icon-sweetie-legacy.size-12.circle-blue-add {background-position: -40px -336px; }
+.icon-sweetie-legacy.size-12.circle-blue-check {background-position: -40px -348px; }
+.icon-sweetie-legacy.size-12.circle-blue-delete {background-position: -40px -360px; }
+.icon-sweetie-legacy.size-12.circle-blue {background-position: -40px -372px; }
+.icon-sweetie-legacy.size-12.circle-blue-remove {background-position: -40px -384px; }
+.icon-sweetie-legacy.size-12.circle-green-add {background-position: -40px -396px; }
+.icon-sweetie-legacy.size-12.circle-green-check {background-position: -40px -408px; }
+.icon-sweetie-legacy.size-12.circle-green-delete {background-position: -40px -420px; }
+.icon-sweetie-legacy.size-12.circle-green {background-position: -40px -432px; }
+.icon-sweetie-legacy.size-12.circle-green-remove {background-position: -40px -444px; }
+.icon-sweetie-legacy.size-12.circle-red-add {background-position: -40px -456px; }
+.icon-sweetie-legacy.size-12.circle-red-check {background-position: -40px -468px; }
+.icon-sweetie-legacy.size-12.circle-red-delete {background-position: -40px -480px; }
+.icon-sweetie-legacy.size-12.circle-red {background-position: -40px -492px; }
+.icon-sweetie-legacy.size-12.circle-red-remove {background-position: -40px -504px; }
+.icon-sweetie-legacy.size-12.clock {background-position: -40px -516px; }
+.icon-sweetie-legacy.size-12.columns {background-position: -40px -528px; }
+.icon-sweetie-legacy.size-12.comment-important {background-position: -40px -540px; }
+.icon-sweetie-legacy.size-12.comment {background-position: -40px -552px; }
+.icon-sweetie-legacy.size-12.comment-question {background-position: -40px -564px; }
+.icon-sweetie-legacy.size-12.comment-square-important {background-position: -40px -576px; }
+.icon-sweetie-legacy.size-12.comment-square {background-position: -40px -588px; }
+.icon-sweetie-legacy.size-12.comment-square-question {background-position: -40px -600px; }
+.icon-sweetie-legacy.size-12.control-pause {background-position: -40px -612px; }
+.icon-sweetie-legacy.size-12.control-stop {background-position: -40px -624px; }
+.icon-sweetie-legacy.size-12.cube-blue {background-position: -40px -636px; }
+.icon-sweetie-legacy.size-12.cube-green {background-position: -40px -648px; }
+.icon-sweetie-legacy.size-12.cube-red {background-position: -40px -660px; }
+.icon-sweetie-legacy.size-12.email-add {background-position: -40px -672px; }
+.icon-sweetie-legacy.size-12.email-b {background-position: -40px -684px; }
+.icon-sweetie-legacy.size-12.email-edit {background-position: -40px -696px; }
+.icon-sweetie-legacy.size-12.email-forward {background-position: -40px -708px; }
+.icon-sweetie-legacy.size-12.email-letter {background-position: -40px -720px; }
+.icon-sweetie-legacy.size-12.email {background-position: -40px -732px; }
+.icon-sweetie-legacy.size-12.email-remove {background-position: -40px -744px; }
+.icon-sweetie-legacy.size-12.email-reply {background-position: -40px -756px; }
+.icon-sweetie-legacy.size-12.em-check {background-position: -40px -768px; }
+.icon-sweetie-legacy.size-12.em-cross {background-position: -40px -780px; }
+.icon-sweetie-legacy.size-12.em-down {background-position: -40px -792px; }
+.icon-sweetie-legacy.size-12.em-heart {background-position: -40px -804px; }
+.icon-sweetie-legacy.size-12.em-left {background-position: -40px -816px; }
+.icon-sweetie-legacy.size-12.em-open {background-position: -40px -828px; }
+.icon-sweetie-legacy.size-12.em-pencil {background-position: -40px -840px; }
+.icon-sweetie-legacy.size-12.em-plus {background-position: -40px -852px; }
+.icon-sweetie-legacy.size-12.em-right {background-position: -40px -864px; }
+.icon-sweetie-legacy.size-12.em-up {background-position: -40px -876px; }
+.icon-sweetie-legacy.size-12.file-archive {background-position: -40px -888px; }
+.icon-sweetie-legacy.size-12.file-page {background-position: -40px -900px; }
+.icon-sweetie-legacy.size-12.frame-add {background-position: -40px -912px; }
+.icon-sweetie-legacy.size-12.frame-close {background-position: -40px -924px; }
+.icon-sweetie-legacy.size-12.frame-open {background-position: -40px -936px; }
+.icon-sweetie-legacy.size-12.frame {background-position: -40px -948px; }
+.icon-sweetie-legacy.size-12.heart-gold-l {background-position: -40px -960px; }
+.icon-sweetie-legacy.size-12.heart-gold-m {background-position: -40px -972px; }
+.icon-sweetie-legacy.size-12.heart-gold {background-position: -40px -984px; }
+.icon-sweetie-legacy.size-12.heart-gold-s {background-position: -40px -996px; }
+.icon-sweetie-legacy.size-12.heart-gold-xs {background-position: -40px -1008px; }
+.icon-sweetie-legacy.size-12.heart-gold-xxs {background-position: -40px -1020px; }
+.icon-sweetie-legacy.size-12.heart-red-l {background-position: -40px -1032px; }
+.icon-sweetie-legacy.size-12.heart-red-m {background-position: -40px -1044px; }
+.icon-sweetie-legacy.size-12.heart-red {background-position: -40px -1056px; }
+.icon-sweetie-legacy.size-12.heart-red-s {background-position: -40px -1068px; }
+.icon-sweetie-legacy.size-12.heart-red-xs {background-position: -40px -1080px; }
+.icon-sweetie-legacy.size-12.heart-red-xxs {background-position: -40px -1092px; }
+.icon-sweetie-legacy.size-12.heart-silver-l {background-position: -40px -1104px; }
+.icon-sweetie-legacy.size-12.heart-silver-m {background-position: -40px -1116px; }
+.icon-sweetie-legacy.size-12.heart-silver {background-position: -40px -1128px; }
+.icon-sweetie-legacy.size-12.heart-silver-s {background-position: -40px -1140px; }
+.icon-sweetie-legacy.size-12.heart-silver-xs {background-position: -40px -1152px; }
+.icon-sweetie-legacy.size-12.heart-silver-xxs {background-position: -40px -1164px; }
+.icon-sweetie-legacy.size-12.image-add {background-position: -40px -1176px; }
+.icon-sweetie-legacy.size-12.image-check {background-position: -40px -1188px; }
+.icon-sweetie-legacy.size-12.image-open {background-position: -40px -1200px; }
+.icon-sweetie-legacy.size-12.image {background-position: -40px -1212px; }
+.icon-sweetie-legacy.size-12.image-remove {background-position: -40px -1224px; }
+.icon-sweetie-legacy.size-12.imageset-add {background-position: -40px -1236px; }
+.icon-sweetie-legacy.size-12.imageset-check {background-position: -40px -1248px; }
+.icon-sweetie-legacy.size-12.imageset-open {background-position: -40px -1260px; }
+.icon-sweetie-legacy.size-12.imageset {background-position: -40px -1272px; }
+.icon-sweetie-legacy.size-12.imageset-remove {background-position: -40px -1284px; }
+.icon-sweetie-legacy.size-12.member-add {background-position: -40px -1296px; }
+.icon-sweetie-legacy.size-12.member-heart {background-position: -40px -1308px; }
+.icon-sweetie-legacy.size-12.member {background-position: -40px -1320px; }
+.icon-sweetie-legacy.size-12.member-profile {background-position: -40px -1332px; }
+.icon-sweetie-legacy.size-12.member-remove {background-position: -40px -1344px; }
+.icon-sweetie-legacy.size-12.message-info {background-position: -40px -1356px; }
+.icon-sweetie-legacy.size-12.message-warn {background-position: -40px -1368px; }
+.icon-sweetie-legacy.size-12.podcast-rect {background-position: -40px -1380px; }
+.icon-sweetie-legacy.size-12.podcast-square {background-position: -40px -1392px; }
+.icon-sweetie-legacy.size-12.rss-rect {background-position: -40px -1404px; }
+.icon-sweetie-legacy.size-12.rss-square {background-position: -40px -1416px; }
+.icon-sweetie-legacy.size-12.security-key {background-position: -40px -1428px; }
+.icon-sweetie-legacy.size-12.security-lock-open {background-position: -40px -1440px; }
+.icon-sweetie-legacy.size-12.security-lock {background-position: -40px -1452px; }
+.icon-sweetie-legacy.size-12.settings-blue {background-position: -40px -1464px; }
+.icon-sweetie-legacy.size-12.settings-orange {background-position: -40px -1476px; }
+.icon-sweetie-legacy.size-12.settings {background-position: -40px -1488px; }
+.icon-sweetie-legacy.size-12.settings-silver {background-position: -40px -1500px; }
+.icon-sweetie-legacy.size-12.sidebar {background-position: -40px -1512px; }
+.icon-sweetie-legacy.size-12.square-blue-add {background-position: -40px -1524px; }
+.icon-sweetie-legacy.size-12.square-blue-check {background-position: -40px -1536px; }
+.icon-sweetie-legacy.size-12.square-blue-delete {background-position: -40px -1548px; }
+.icon-sweetie-legacy.size-12.square-blue {background-position: -40px -1560px; }
+.icon-sweetie-legacy.size-12.square-blue-remove {background-position: -40px -1572px; }
+.icon-sweetie-legacy.size-12.square-green-add {background-position: -40px -1584px; }
+.icon-sweetie-legacy.size-12.square-green-check {background-position: -40px -1596px; }
+.icon-sweetie-legacy.size-12.square-green-delete {background-position: -40px -1608px; }
+.icon-sweetie-legacy.size-12.square-green {background-position: -40px -1620px; }
+.icon-sweetie-legacy.size-12.square-green-remove {background-position: -40px -1632px; }
+.icon-sweetie-legacy.size-12.square-red-add {background-position: -40px -1644px; }
+.icon-sweetie-legacy.size-12.square-red-check {background-position: -40px -1656px; }
+.icon-sweetie-legacy.size-12.square-red-delete {background-position: -40px -1668px; }
+.icon-sweetie-legacy.size-12.square-red {background-position: -40px -1680px; }
+.icon-sweetie-legacy.size-12.square-red-remove {background-position: -40px -1692px; }
+.icon-sweetie-legacy.size-12.star-cold {background-position: -40px -1704px; }
+.icon-sweetie-legacy.size-12.star-hot {background-position: -40px -1716px; }
+.icon-sweetie-legacy.size-12.tab-add {background-position: -40px -1728px; }
+.icon-sweetie-legacy.size-12.tab-close {background-position: -40px -1740px; }
+.icon-sweetie-legacy.size-12.tab-open {background-position: -40px -1752px; }
+.icon-sweetie-legacy.size-12.tab {background-position: -40px -1764px; }
+.icon-sweetie-legacy.size-12.tag-add {background-position: -40px -1776px; }
+.icon-sweetie-legacy.size-12.tag-check {background-position: -40px -1788px; }
+.icon-sweetie-legacy.size-12.tag-cold {background-position: -40px -1800px; }
+.icon-sweetie-legacy.size-12.tag-cross {background-position: -40px -1812px; }
+.icon-sweetie-legacy.size-12.tag-hot {background-position: -40px -1824px; }
+.icon-sweetie-legacy.size-12.tag-manager {background-position: -40px -1836px; }
+.icon-sweetie-legacy.size-12.tag-pencil {background-position: -40px -1848px; }
+.icon-sweetie-legacy.size-12.tag-remove {background-position: -40px -1860px; }
+.icon-sweetie-legacy.size-12.tool-a {background-position: -40px -1872px; }
+.icon-sweetie-legacy.size-12.tool-b {background-position: -40px -1884px; }
+.icon-sweetie-legacy.size-12.tool-c {background-position: -40px -1896px; }
+.icon-sweetie-legacy.size-12.tool-d {background-position: -40px -1908px; }
+.icon-sweetie-legacy.size-12.tools {background-position: -40px -1920px; }
+.icon-sweetie-legacy.size-12.video-rect {background-position: -40px -1932px; }
+.icon-sweetie-legacy.size-12.video-square {background-position: -40px -1944px; }
+.icon-sweetie-legacy.size-12.zoom-actual {background-position: -40px -1956px; }
+.icon-sweetie-legacy.size-12.zoom-fill {background-position: -40px -1968px; }
+.icon-sweetie-legacy.size-12.zoom-in {background-position: -40px -1980px; }
+.icon-sweetie-legacy.size-12.zoom-out {background-position: -40px -1992px; }
+.icon-sweetie-legacy.size-12.zoom {background-position: -40px -2004px; }
+.icon-sweetie-legacy.size-8.arrow-back {background-position: -52px 0px; }
+.icon-sweetie-legacy.size-8.arrow-down {background-position: -52px -8px; }
+.icon-sweetie-legacy.size-8.arrow-first {background-position: -52px -16px; }
+.icon-sweetie-legacy.size-8.arrow-forward {background-position: -52px -24px; }
+.icon-sweetie-legacy.size-8.arrow-last {background-position: -52px -32px; }
+.icon-sweetie-legacy.size-8.arrow-left {background-position: -52px -40px; }
+.icon-sweetie-legacy.size-8.arrow-next {background-position: -52px -48px; }
+.icon-sweetie-legacy.size-8.arrow-previous {background-position: -52px -56px; }
+.icon-sweetie-legacy.size-8.arrow-right {background-position: -52px -64px; }
+.icon-sweetie-legacy.size-8.arrow-up {background-position: -52px -72px; }
+.icon-sweetie-legacy.size-8.book-blue-add {background-position: -52px -80px; }
+.icon-sweetie-legacy.size-8.book-blue-check {background-position: -52px -88px; }
+.icon-sweetie-legacy.size-8.book-blue-mark {background-position: -52px -96px; }
+.icon-sweetie-legacy.size-8.book-blue-open {background-position: -52px -104px; }
+.icon-sweetie-legacy.size-8.book-blue {background-position: -52px -112px; }
+.icon-sweetie-legacy.size-8.book-blue-remove {background-position: -52px -120px; }
+.icon-sweetie-legacy.size-8.book-green-add {background-position: -52px -128px; }
+.icon-sweetie-legacy.size-8.book-green-check {background-position: -52px -136px; }
+.icon-sweetie-legacy.size-8.book-green-mark {background-position: -52px -144px; }
+.icon-sweetie-legacy.size-8.book-green-open {background-position: -52px -152px; }
+.icon-sweetie-legacy.size-8.book-green {background-position: -52px -160px; }
+.icon-sweetie-legacy.size-8.book-green-remove {background-position: -52px -168px; }
+.icon-sweetie-legacy.size-8.book-red-add {background-position: -52px -176px; }
+.icon-sweetie-legacy.size-8.book-red-check {background-position: -52px -184px; }
+.icon-sweetie-legacy.size-8.book-red-mark {background-position: -52px -192px; }
+.icon-sweetie-legacy.size-8.book-red-open {background-position: -52px -200px; }
+.icon-sweetie-legacy.size-8.book-red {background-position: -52px -208px; }
+.icon-sweetie-legacy.size-8.book-red-remove {background-position: -52px -216px; }
+.icon-sweetie-legacy.size-8.circle-blue-add {background-position: -52px -224px; }
+.icon-sweetie-legacy.size-8.circle-blue-check {background-position: -52px -232px; }
+.icon-sweetie-legacy.size-8.circle-blue-delete {background-position: -52px -240px; }
+.icon-sweetie-legacy.size-8.circle-blue {background-position: -52px -248px; }
+.icon-sweetie-legacy.size-8.circle-blue-remove {background-position: -52px -256px; }
+.icon-sweetie-legacy.size-8.circle-green-add {background-position: -52px -264px; }
+.icon-sweetie-legacy.size-8.circle-green-check {background-position: -52px -272px; }
+.icon-sweetie-legacy.size-8.circle-green-delete {background-position: -52px -280px; }
+.icon-sweetie-legacy.size-8.circle-green {background-position: -52px -288px; }
+.icon-sweetie-legacy.size-8.circle-green-remove {background-position: -52px -296px; }
+.icon-sweetie-legacy.size-8.circle-red-add {background-position: -52px -304px; }
+.icon-sweetie-legacy.size-8.circle-red-check {background-position: -52px -312px; }
+.icon-sweetie-legacy.size-8.circle-red-delete {background-position: -52px -320px; }
+.icon-sweetie-legacy.size-8.circle-red {background-position: -52px -328px; }
+.icon-sweetie-legacy.size-8.circle-red-remove {background-position: -52px -336px; }
+.icon-sweetie-legacy.size-8.clock {background-position: -52px -344px; }
+.icon-sweetie-legacy.size-8.columns {background-position: -52px -352px; }
+.icon-sweetie-legacy.size-8.comment-important {background-position: -52px -360px; }
+.icon-sweetie-legacy.size-8.comment {background-position: -52px -368px; }
+.icon-sweetie-legacy.size-8.comment-question {background-position: -52px -376px; }
+.icon-sweetie-legacy.size-8.comment-square-important {background-position: -52px -384px; }
+.icon-sweetie-legacy.size-8.comment-square {background-position: -52px -392px; }
+.icon-sweetie-legacy.size-8.comment-square-question {background-position: -52px -400px; }
+.icon-sweetie-legacy.size-8.control-pause {background-position: -52px -408px; }
+.icon-sweetie-legacy.size-8.control-stop {background-position: -52px -416px; }
+.icon-sweetie-legacy.size-8.cube-blue {background-position: -52px -424px; }
+.icon-sweetie-legacy.size-8.cube-green {background-position: -52px -432px; }
+.icon-sweetie-legacy.size-8.cube-red {background-position: -52px -440px; }
+.icon-sweetie-legacy.size-8.email-add {background-position: -52px -448px; }
+.icon-sweetie-legacy.size-8.email-b {background-position: -52px -456px; }
+.icon-sweetie-legacy.size-8.email-edit {background-position: -52px -464px; }
+.icon-sweetie-legacy.size-8.email-forward {background-position: -52px -472px; }
+.icon-sweetie-legacy.size-8.email-letter {background-position: -52px -480px; }
+.icon-sweetie-legacy.size-8.email {background-position: -52px -488px; }
+.icon-sweetie-legacy.size-8.email-remove {background-position: -52px -496px; }
+.icon-sweetie-legacy.size-8.email-reply {background-position: -52px -504px; }
+.icon-sweetie-legacy.size-8.em-check {background-position: -52px -512px; }
+.icon-sweetie-legacy.size-8.em-cross {background-position: -52px -520px; }
+.icon-sweetie-legacy.size-8.em-down {background-position: -52px -528px; }
+.icon-sweetie-legacy.size-8.em-heart {background-position: -52px -536px; }
+.icon-sweetie-legacy.size-8.em-left {background-position: -52px -544px; }
+.icon-sweetie-legacy.size-8.em-open {background-position: -52px -552px; }
+.icon-sweetie-legacy.size-8.em-pencil {background-position: -52px -560px; }
+.icon-sweetie-legacy.size-8.em-plus {background-position: -52px -568px; }
+.icon-sweetie-legacy.size-8.em-right {background-position: -52px -576px; }
+.icon-sweetie-legacy.size-8.em-up {background-position: -52px -584px; }
+.icon-sweetie-legacy.size-8.file-archive {background-position: -52px -592px; }
+.icon-sweetie-legacy.size-8.file-page {background-position: -52px -600px; }
+.icon-sweetie-legacy.size-8.frame-add {background-position: -52px -608px; }
+.icon-sweetie-legacy.size-8.frame-close {background-position: -52px -616px; }
+.icon-sweetie-legacy.size-8.frame-open {background-position: -52px -624px; }
+.icon-sweetie-legacy.size-8.frame {background-position: -52px -632px; }
+.icon-sweetie-legacy.size-8.heart-gold-l {background-position: -52px -640px; }
+.icon-sweetie-legacy.size-8.heart-gold-m {background-position: -52px -648px; }
+.icon-sweetie-legacy.size-8.heart-gold {background-position: -52px -656px; }
+.icon-sweetie-legacy.size-8.heart-gold-s {background-position: -52px -664px; }
+.icon-sweetie-legacy.size-8.heart-gold-xs {background-position: -52px -672px; }
+.icon-sweetie-legacy.size-8.heart-gold-xxs {background-position: -52px -680px; }
+.icon-sweetie-legacy.size-8.heart-red-l {background-position: -52px -688px; }
+.icon-sweetie-legacy.size-8.heart-red-m {background-position: -52px -696px; }
+.icon-sweetie-legacy.size-8.heart-red {background-position: -52px -704px; }
+.icon-sweetie-legacy.size-8.heart-red-s {background-position: -52px -712px; }
+.icon-sweetie-legacy.size-8.heart-red-xs {background-position: -52px -720px; }
+.icon-sweetie-legacy.size-8.heart-red-xxs {background-position: -52px -728px; }
+.icon-sweetie-legacy.size-8.heart-silver-l {background-position: -52px -736px; }
+.icon-sweetie-legacy.size-8.heart-silver-m {background-position: -52px -744px; }
+.icon-sweetie-legacy.size-8.heart-silver {background-position: -52px -752px; }
+.icon-sweetie-legacy.size-8.heart-silver-s {background-position: -52px -760px; }
+.icon-sweetie-legacy.size-8.heart-silver-xs {background-position: -52px -768px; }
+.icon-sweetie-legacy.size-8.heart-silver-xxs {background-position: -52px -776px; }
+.icon-sweetie-legacy.size-8.image-add {background-position: -52px -784px; }
+.icon-sweetie-legacy.size-8.image-check {background-position: -52px -792px; }
+.icon-sweetie-legacy.size-8.image-open {background-position: -52px -800px; }
+.icon-sweetie-legacy.size-8.image {background-position: -52px -808px; }
+.icon-sweetie-legacy.size-8.image-remove {background-position: -52px -816px; }
+.icon-sweetie-legacy.size-8.imageset-add {background-position: -52px -824px; }
+.icon-sweetie-legacy.size-8.imageset-check {background-position: -52px -832px; }
+.icon-sweetie-legacy.size-8.imageset-open {background-position: -52px -840px; }
+.icon-sweetie-legacy.size-8.imageset {background-position: -52px -848px; }
+.icon-sweetie-legacy.size-8.imageset-remove {background-position: -52px -856px; }
+.icon-sweetie-legacy.size-8.member-add {background-position: -52px -864px; }
+.icon-sweetie-legacy.size-8.member-heart {background-position: -52px -872px; }
+.icon-sweetie-legacy.size-8.member {background-position: -52px -880px; }
+.icon-sweetie-legacy.size-8.member-profile {background-position: -52px -888px; }
+.icon-sweetie-legacy.size-8.member-remove {background-position: -52px -896px; }
+.icon-sweetie-legacy.size-8.message-info {background-position: -52px -904px; }
+.icon-sweetie-legacy.size-8.message-warn {background-position: -52px -912px; }
+.icon-sweetie-legacy.size-8.podcast-rect {background-position: -52px -920px; }
+.icon-sweetie-legacy.size-8.podcast-square {background-position: -52px -928px; }
+.icon-sweetie-legacy.size-8.rss-rect {background-position: -52px -936px; }
+.icon-sweetie-legacy.size-8.rss-square {background-position: -52px -944px; }
+.icon-sweetie-legacy.size-8.security-key {background-position: -52px -952px; }
+.icon-sweetie-legacy.size-8.security-lock-open {background-position: -52px -960px; }
+.icon-sweetie-legacy.size-8.security-lock {background-position: -52px -968px; }
+.icon-sweetie-legacy.size-8.settings-blue {background-position: -52px -976px; }
+.icon-sweetie-legacy.size-8.settings-orange {background-position: -52px -984px; }
+.icon-sweetie-legacy.size-8.settings {background-position: -52px -992px; }
+.icon-sweetie-legacy.size-8.settings-silver {background-position: -52px -1000px; }
+.icon-sweetie-legacy.size-8.sidebar {background-position: -52px -1008px; }
+.icon-sweetie-legacy.size-8.square-blue-add {background-position: -52px -1016px; }
+.icon-sweetie-legacy.size-8.square-blue-check {background-position: -52px -1024px; }
+.icon-sweetie-legacy.size-8.square-blue-delete {background-position: -52px -1032px; }
+.icon-sweetie-legacy.size-8.square-blue {background-position: -52px -1040px; }
+.icon-sweetie-legacy.size-8.square-blue-remove {background-position: -52px -1048px; }
+.icon-sweetie-legacy.size-8.square-green-add {background-position: -52px -1056px; }
+.icon-sweetie-legacy.size-8.square-green-check {background-position: -52px -1064px; }
+.icon-sweetie-legacy.size-8.square-green-delete {background-position: -52px -1072px; }
+.icon-sweetie-legacy.size-8.square-green {background-position: -52px -1080px; }
+.icon-sweetie-legacy.size-8.square-green-remove {background-position: -52px -1088px; }
+.icon-sweetie-legacy.size-8.square-red-add {background-position: -52px -1096px; }
+.icon-sweetie-legacy.size-8.square-red-check {background-position: -52px -1104px; }
+.icon-sweetie-legacy.size-8.square-red-delete {background-position: -52px -1112px; }
+.icon-sweetie-legacy.size-8.square-red {background-position: -52px -1120px; }
+.icon-sweetie-legacy.size-8.square-red-remove {background-position: -52px -1128px; }
+.icon-sweetie-legacy.size-8.star-cold {background-position: -52px -1136px; }
+.icon-sweetie-legacy.size-8.star-hot {background-position: -52px -1144px; }
+.icon-sweetie-legacy.size-8.tab-add {background-position: -52px -1152px; }
+.icon-sweetie-legacy.size-8.tab-close {background-position: -52px -1160px; }
+.icon-sweetie-legacy.size-8.tab-open {background-position: -52px -1168px; }
+.icon-sweetie-legacy.size-8.tab {background-position: -52px -1176px; }
+.icon-sweetie-legacy.size-8.tag-add {background-position: -52px -1184px; }
+.icon-sweetie-legacy.size-8.tag-check {background-position: -52px -1192px; }
+.icon-sweetie-legacy.size-8.tag-cold {background-position: -52px -1200px; }
+.icon-sweetie-legacy.size-8.tag-cross {background-position: -52px -1208px; }
+.icon-sweetie-legacy.size-8.tag-hot {background-position: -52px -1216px; }
+.icon-sweetie-legacy.size-8.tag-manager {background-position: -52px -1224px; }
+.icon-sweetie-legacy.size-8.tag-pencil {background-position: -52px -1232px; }
+.icon-sweetie-legacy.size-8.tag-remove {background-position: -52px -1240px; }
+.icon-sweetie-legacy.size-8.tool-a {background-position: -52px -1248px; }
+.icon-sweetie-legacy.size-8.tool-b {background-position: -52px -1256px; }
+.icon-sweetie-legacy.size-8.tool-c {background-position: -52px -1264px; }
+.icon-sweetie-legacy.size-8.tool-d {background-position: -52px -1272px; }
+.icon-sweetie-legacy.size-8.tools {background-position: -52px -1280px; }
+.icon-sweetie-legacy.size-8.video-rect {background-position: -52px -1288px; }
+.icon-sweetie-legacy.size-8.video-square {background-position: -52px -1296px; }
+.icon-sweetie-legacy.size-8.zoom-actual {background-position: -52px -1304px; }
+.icon-sweetie-legacy.size-8.zoom-fill {background-position: -52px -1312px; }
+.icon-sweetie-legacy.size-8.zoom-in {background-position: -52px -1320px; }
+.icon-sweetie-legacy.size-8.zoom-out {background-position: -52px -1328px; }
+.icon-sweetie-legacy.size-8.zoom {background-position: -52px -1336px; }

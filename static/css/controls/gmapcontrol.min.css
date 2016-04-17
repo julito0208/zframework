@@ -1,0 +1,24 @@
+.gmap-control-block {}
+.gmap-control-block {
+	border: solid 1px #222;
+	box-shadow: 1px 1px 1px 1px #CCC;
+}
+.gmap-control-block .gmap-container .gmap {
+	width: 100%;
+	height: 600px;
+}
+.gmap-control-block .gmap-type-controls {
+	text-align: right;
+	padding: 10px;
+	border-top: solid 1px #AAA;
+}
+.gmap-control-block .gmap-type-controls a {
+	font-size: 9pt;
+	color: #2977CA;
+	margin: 0 0 0 10px;
+}
+.gmap-control-block .gmap-type-controls a.selected {
+	color: #AAA;
+	text-decoration: none;
+	cursor: default;
+}

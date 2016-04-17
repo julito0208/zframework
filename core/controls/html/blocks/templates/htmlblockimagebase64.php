@@ -1,0 +1,1 @@
+<img alt="<?=HTMLHelper::escape($title)?>" title="<?=HTMLHelper::escape($title)?>" style="<?=($width ? "width: {$width}px;" : '')?><?=($height ? "height: {$height}px;" : '')?>" src="<?=HTMLHelper::escape('data:image/'.$image->get_type().';base64,'.$image->get_base64_contents())?>" />

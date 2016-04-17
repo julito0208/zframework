@@ -1,0 +1,640 @@
+.icon-simple,.icon-simple.black { display: inline-block !important; background-image: url(./icons-black.png); }
+.icon-simple.blue { background-image: url(./icons-blue.png); }
+.icon-simple.cyan { background-image: url(./icons-cyan.png); }
+.icon-simple.green { background-image: url(./icons-green.png); }
+.icon-simple.red { background-image: url(./icons-red.png); }
+.icon-simple.white { background-image: url(./icons-white.png); }
+.icon-simple.yellow { background-image: url(./icons-yellow.png); }
+.icon-simple.size-32 { width: 32px; height: 32px; }
+.icon-simple.size-24 { width: 24px; height: 24px; }
+.icon-simple.size-18 { width: 18px; height: 18px; }
+.icon-simple.size-32.meter, .icon-simple.size-32.meter1 { background-position: 0px 0px; }
+.icon-simple.size-32.earth { background-position: 0px -32px; }
+.icon-simple.size-32.compass { background-position: 0px -64px; }
+.icon-simple.size-32.sun { background-position: 0px -96px; }
+.icon-simple.size-32.meter2 { background-position: 0px -128px; }
+.icon-simple.size-32.point { background-position: 0px -160px; }
+.icon-simple.size-32.on-off { background-position: 0px -192px; }
+.icon-simple.size-32.forbidden { background-position: 0px -224px; }
+.icon-simple.size-32.zoom { background-position: 0px -256px; }
+.icon-simple.size-32.mark { background-position: 0px -288px; }
+.icon-simple.size-32.battery-empty { background-position: 0px -320px; }
+.icon-simple.size-32.battery-half { background-position: 0px -352px; }
+.icon-simple.size-32.battery-full { background-position: 0px -384px; }
+.icon-simple.size-32.battery-charge { background-position: 0px -416px; }
+.icon-simple.size-32.clock { background-position: 0px -448px; }
+.icon-simple.size-32.spaceship { background-position: 0px -480px; }
+.icon-simple.size-32.bike { background-position: 0px -512px; }
+.icon-simple.size-32.motorbike { background-position: 0px -544px; }
+.icon-simple.size-32.aeroplane { background-position: 0px -576px; }
+.icon-simple.size-32.ship { background-position: 0px -608px; }
+.icon-simple.size-32.train { background-position: 0px -640px; }
+.icon-simple.size-32.tram { background-position: 0px -672px; }
+.icon-simple.size-32.bus, .icon-simple.size-32.bus1 { background-position: 0px -704px; }
+.icon-simple.size-32.bus2 { background-position: 0px -736px; }
+.icon-simple.size-32.car, .icon-simple.size-32.car1 { background-position: 0px -768px; }
+.icon-simple.size-32.car2 { background-position: 0px -800px; }
+.icon-simple.size-32.sunglasses { background-position: 0px -832px; }
+.icon-simple.size-32.temple { background-position: 0px -864px; }
+.icon-simple.size-32.gear, .icon-simple.size-32.gear1 { background-position: 0px -896px; }
+.icon-simple.size-32.gear2 { background-position: 0px -928px; }
+.icon-simple.size-32.gear3 { background-position: 0px -960px; }
+.icon-simple.size-32.gamepad { background-position: 0px -992px; }
+.icon-simple.size-32.cassette { background-position: 0px -1024px; }
+.icon-simple.size-32.cloud-upload, .icon-simple.size-32.upload { background-position: 0px -1056px; }
+.icon-simple.size-32.cloud-download, .icon-simple.size-32.download { background-position: 0px -1088px; }
+.icon-simple.size-32.cloud { background-position: 0px -1120px; }
+.icon-simple.size-32.unlock, .icon-simple.size-32.unlock1 { background-position: 0px -1152px; }
+.icon-simple.size-32.unlock2 { background-position: 0px -1184px; }
+.icon-simple.size-32.lock { background-position: 0px -1216px; }
+.icon-simple.size-32.eraser, .icon-simple.size-32.erase { background-position: 0px -1248px; }
+.icon-simple.size-32.health { background-position: 0px -1280px; }
+.icon-simple.size-32.strong { background-position: 0px -1312px; }
+.icon-simple.size-32.like { background-position: 0px -1344px; }
+.icon-simple.size-32.dislike { background-position: 0px -1376px; }
+.icon-simple.size-32.share { background-position: 0px -1408px; }
+.icon-simple.size-32.facebook { background-position: 0px -1440px; }
+.icon-simple.size-32.twitter { background-position: 0px -1472px; }
+.icon-simple.size-32.basketball { background-position: 0px -1504px; }
+.icon-simple.size-32.camera3 { background-position: 0px -1536px; }
+.icon-simple.size-32.camera2 { background-position: 0px -1568px; }
+.icon-simple.size-32.camera1, .icon-simple.size-32.camera { background-position: 0px -1600px; }
+.icon-simple.size-32.video1, .icon-simple.size-32.video { background-position: 0px -1632px; }
+.icon-simple.size-32.video2, .icon-simple.size-32.camrecorder { background-position: 0px -1664px; }
+.icon-simple.size-32.tv, .icon-simple.size-32.television { background-position: 0px -1696px; }
+.icon-simple.size-32.window, .icon-simple.size-32.application { background-position: 0px -1728px; }
+.icon-simple.size-32.eye { background-position: 0px -1760px; }
+.icon-simple.size-32.home { background-position: 0px -1792px; }
+.icon-simple.size-32.shop1, .icon-simple.size-32.bag1, .icon-simple.size-32.shop, .icon-simple.size-32.bag { background-position: 0px -1824px; }
+.icon-simple.size-32.shop2, .icon-simple.size-32.bag2 { background-position: 0px -1856px; }
+.icon-simple.size-32.trash { background-position: 0px -1888px; }
+.icon-simple.size-32.tag-delete { background-position: 0px -1920px; }
+.icon-simple.size-32.tag-add { background-position: 0px -1952px; }
+.icon-simple.size-32.tag, .icon-simple.size-32.tag1 { background-position: 0px -1984px; }
+.icon-simple.size-32.tag2 { background-position: 0px -2016px; }
+.icon-simple.size-32.tag3 { background-position: 0px -2048px; }
+.icon-simple.size-32.credit-card-master-card2, .icon-simple.size-32.master-card2 { background-position: 0px -2080px; }
+.icon-simple.size-32.credit-card-master-card, .icon-simple.size-32.credit-card-master-card1, .icon-simple.size-32.master-card, .icon-simple.size-32.master-card1 { background-position: 0px -2112px; }
+.icon-simple.size-32.credit-card { background-position: 0px -2144px; }
+.icon-simple.size-32.flag { background-position: 0px -2176px; }
+.icon-simple.size-32.diamond { background-position: 0px -2208px; }
+.icon-simple.size-32.headphones { background-position: 0px -2240px; }
+.icon-simple.size-32.speaker, .icon-simple.size-32.speaker-mute, .icon-simple.size-32.speaker1 { background-position: 0px -2272px; }
+.icon-simple.size-32.speaker2, .icon-simple.size-32.speaker-low { background-position: 0px -2304px; }
+.icon-simple.size-32.speaker3, .icon-simple.size-32.speaker-medium { background-position: 0px -2336px; }
+.icon-simple.size-32.speaker4, .icon-simple.size-32.speaker-high { background-position: 0px -2368px; }
+.icon-simple.size-32.mic, .icon-simple.size-32.mic1 { background-position: 0px -2400px; }
+.icon-simple.size-32.mic2 { background-position: 0px -2432px; }
+.icon-simple.size-32.tickets, .icon-simple.size-32.tickets1 { background-position: 0px -2464px; }
+.icon-simple.size-32.tickets2 { background-position: 0px -2496px; }
+.icon-simple.size-32.comment-circle-empty, .icon-simple.size-32.comment-circle2 { background-position: 0px -2528px; }
+.icon-simple.size-32.comment-circle, .icon-simple.size-32.comment-circle1 { background-position: 0px -2560px; }
+.icon-simple.size-32.comment-square, .icon-simple.size-32.comment-square1, .icon-simple.size-32.comment { background-position: 0px -2592px; }
+.icon-simple.size-32.comment-circle-square, .icon-simple.size-32.comment-square2 { background-position: 0px -2624px; }
+.icon-simple.size-32.hearth, .icon-simple.size-32.favorite { background-position: 0px -2656px; }
+.icon-simple.size-32.glass, .icon-simple.size-32.glass1 { background-position: 0px -2688px; }
+.icon-simple.size-32.cup, .icon-simple.size-32.cup1 { background-position: 0px -2720px; }
+.icon-simple.size-32.cup2 { background-position: 0px -2752px; }
+.icon-simple.size-32.cup3 { background-position: 0px -2784px; }
+.icon-simple.size-32.cup4 { background-position: 0px -2816px; }
+.icon-simple.size-32.glass2 { background-position: 0px -2848px; }
+.icon-simple.size-32.glass3, .icon-simple.size-32.beer { background-position: 0px -2880px; }
+.icon-simple.size-32.coffee { background-position: 0px -2912px; }
+.icon-simple.size-32.drink2 { background-position: 0px -2944px; }
+.icon-simple.size-32.drink1, .icon-simple.size-32.drink { background-position: 0px -2976px; }
+.icon-simple.size-32.icecream3 { background-position: 0px -3008px; }
+.icon-simple.size-32.icecream2 { background-position: 0px -3040px; }
+.icon-simple.size-32.icecream1, .icon-simple.size-32.icecream { background-position: 0px -3072px; }
+.icon-simple.size-32.food, .icon-simple.size-32.chicken { background-position: 0px -3104px; }
+.icon-simple.size-32.emblem { background-position: 0px -3136px; }
+.icon-simple.size-32.check, .icon-simple.size-32.accept { background-position: 0px -3168px; }
+.icon-simple.size-32.cross, .icon-simple.size-32.cancel { background-position: 0px -3200px; }
+.icon-simple.size-32.plus { background-position: 0px -3232px; }
+.icon-simple.size-32.minus { background-position: 0px -3264px; }
+.icon-simple.size-32.star { background-position: 0px -3296px; }
+.icon-simple.size-32.refresh2 { background-position: 0px -3328px; }
+.icon-simple.size-32.arrow-down, .icon-simple.size-32.down { background-position: 0px -3360px; }
+.icon-simple.size-32.arrow-up, .icon-simple.size-32.up { background-position: 0px -3392px; }
+.icon-simple.size-32.arrow-right, .icon-simple.size-32.right { background-position: 0px -3424px; }
+.icon-simple.size-32.arrow-left, .icon-simple.size-32.left { background-position: 0px -3456px; }
+.icon-simple.size-32.notebook-check { background-position: 0px -3488px; }
+.icon-simple.size-32.application-check { background-position: 0px -3520px; }
+.icon-simple.size-32.caution, .icon-simple.size-32.warning { background-position: 0px -3552px; }
+.icon-simple.size-32.key { background-position: 0px -3584px; }
+.icon-simple.size-32.ordered-list, .icon-simple.size-32.list2 { background-position: 0px -3616px; }
+.icon-simple.size-32.list3 { background-position: 0px -3648px; }
+.icon-simple.size-32.list, .icon-simple.size-32.list1 { background-position: 0px -3680px; }
+.icon-simple.size-32.grid2 { background-position: 0px -3712px; }
+.icon-simple.size-32.grid, .icon-simple.size-32.grid1 { background-position: 0px -3744px; }
+.icon-simple.size-32.focus, .icon-simple.size-32.focus2 { background-position: 0px -3776px; }
+.icon-simple.size-32.focus2 { background-position: 0px -3808px; }
+.icon-simple.size-32.calendar2 { background-position: 0px -3840px; }
+.icon-simple.size-32.calendar, .icon-simple.size-32.calendar1 { background-position: 0px -3872px; }
+.icon-simple.size-32.group, .icon-simple.size-32.people { background-position: 0px -3904px; }
+.icon-simple.size-32.person, .icon-simple.size-32.human, .icon-simple.size-32.person1 { background-position: 0px -3936px; }
+.icon-simple.size-32.user, .icon-simple.size-32.person2, .icon-simple.size-32.user-male, .icon-simple.size-32.user-m, .icon-simple.size-32.person-m, .icon-simple.size-32.person-male { background-position: 0px -3968px; }
+.icon-simple.size-32.person3, .icon-simple.size-32.user-female, .icon-simple.size-32.user-f, .icon-simple.size-32.person-f, .icon-simple.size-32.person-female { background-position: 0px -4000px; }
+.icon-simple.size-32.eraser2 { background-position: 0px -4032px; }
+.icon-simple.size-32.pen, .icon-simple.size-32.pen1 { background-position: 0px -4064px; }
+.icon-simple.size-32.pen2 { background-position: 0px -4096px; }
+.icon-simple.size-32.pencil { background-position: 0px -4128px; }
+.icon-simple.size-32.tie1, .icon-simple.size-32.tie { background-position: 0px -4160px; }
+.icon-simple.size-32.tie2 { background-position: 0px -4192px; }
+.icon-simple.size-32.briefcase { background-position: 0px -4224px; }
+.icon-simple.size-32.diskette, .icon-simple.size-32.save { background-position: 0px -4256px; }
+.icon-simple.size-32.crop { background-position: 0px -4288px; }
+.icon-simple.size-32.envelope, .icon-simple.size-32.email, .icon-simple.size-32.mail { background-position: 0px -4320px; }
+.icon-simple.size-32.envelope2 { background-position: 0px -4352px; }
+.icon-simple.size-32.box { background-position: 0px -4384px; }
+.icon-simple.size-32.clip1, .icon-simple.size-32.clip, .icon-simple.size-32.attachment { background-position: 0px -4416px; }
+.icon-simple.size-32.clip2 { background-position: 0px -4448px; }
+.icon-simple.size-32.agenda, .icon-simple.size-32.agenda1, .icon-simple.size-32.agenda-money { background-position: 0px -4480px; }
+.icon-simple.size-32.agenda2 { background-position: 0px -4512px; }
+.icon-simple.size-32.copy { background-position: 0px -4544px; }
+.icon-simple.size-32.card { background-position: 0px -4576px; }
+.icon-simple.size-32.documents, .icon-simple.size-32.docs { background-position: 0px -4608px; }
+.icon-simple.size-32.calc, .icon-simple.size-32.calculator { background-position: 0px -4640px; }
+.icon-simple.size-32.paste { background-position: 0px -4672px; }
+.icon-simple.size-32.paste-check { background-position: 0px -4704px; }
+.icon-simple.size-32.document, .icon-simple.size-32.doc { background-position: 0px -4736px; }
+.icon-simple.size-32.document-add, .icon-simple.size-32.doc-add { background-position: 0px -4768px; }
+.icon-simple.size-32.document-remove, .icon-simple.size-32.doc-remove { background-position: 0px -4800px; }
+.icon-simple.size-32.folder { background-position: 0px -4832px; }
+.icon-simple.size-32.folder-add { background-position: 0px -4864px; }
+.icon-simple.size-32.folder-remove { background-position: 0px -4896px; }
+.icon-simple.size-32.graph1, .icon-simple.size-32.graph { background-position: 0px -4928px; }
+.icon-simple.size-32.graph2 { background-position: 0px -4960px; }
+.icon-simple.size-32.graph3 { background-position: 0px -4992px; }
+.icon-simple.size-32.graph4 { background-position: 0px -5024px; }
+.icon-simple.size-32.mouse { background-position: 0px -5056px; }
+.icon-simple.size-32.monitor, .icon-simple.size-32.display { background-position: 0px -5088px; }
+.icon-simple.size-32.tablets-vertical, .icon-simple.size-32.tablets, .icon-simple.size-32.tablets1 { background-position: 0px -5120px; }
+.icon-simple.size-32.tablets-horizontal, .icon-simple.size-32.tablets2 { background-position: 0px -5152px; }
+.icon-simple.size-32.tablet, .icon-simple.size-32.tablet1, .icon-simple.size-32.tablet-vertical { background-position: 0px -5184px; }
+.icon-simple.size-32.tablet2, .icon-simple.size-32.tablet-horizontal { background-position: 0px -5216px; }
+.icon-simple.size-32.smartphone-vertical, .icon-simple.size-32.smartphones, .icon-simple.size-32.smartphones1 { background-position: 0px -5248px; }
+.icon-simple.size-32.smartphones-horizontal, .icon-simple.size-32.smartphones2 { background-position: 0px -5280px; }
+.icon-simple.size-32.smartphone, .icon-simple.size-32.smartphone1, .icon-simple.size-32.smartphone-vertical { background-position: 0px -5312px; }
+.icon-simple.size-32.smartphone2, .icon-simple.size-32.smartphone-horizontal { background-position: 0px -5344px; }
+.icon-simple.size-32.picture1, .icon-simple.size-32.image1, .icon-simple.size-32.picture, .icon-simple.size-32.image { background-position: 0px -5376px; }
+.icon-simple.size-32.picture2, .icon-simple.size-32.image2 { background-position: 0px -5408px; }
+.icon-simple.size-32.picture3, .icon-simple.size-32.image3 { background-position: 0px -5440px; }
+.icon-simple.size-32.picture4, .icon-simple.size-32.image4, .icon-simple.size-32.user-picture, .icon-simple.size-32.user-image, .icon-simple.size-32.user-avatar { background-position: 0px -5472px; }
+.icon-simple.size-32.plant { background-position: 0px -5504px; }
+.icon-simple.size-32.fish { background-position: 0px -5536px; }
+.icon-simple.size-32.refrigerator { background-position: 0px -5568px; }
+.icon-simple.size-32.barbacue { background-position: 0px -5600px; }
+.icon-simple.size-32.dish2 { background-position: 0px -5632px; }
+.icon-simple.size-32.microwave-oven, .icon-simple.size-32.microwave { background-position: 0px -5664px; }
+.icon-simple.size-32.cook-tool { background-position: 0px -5696px; }
+.icon-simple.size-32.dish { background-position: 0px -5728px; }
+.icon-simple.size-32.cutlery2 { background-position: 0px -5760px; }
+.icon-simple.size-32.cutlery1, .icon-simple.size-32.cutlery { background-position: 0px -5792px; }
+.icon-simple.size-32.vessel1, .icon-simple.size-32.vessel { background-position: 0px -5824px; }
+.icon-simple.size-32.vessel2 { background-position: 0px -5856px; }
+.icon-simple.size-32.bottle3 { background-position: 0px -5888px; }
+.icon-simple.size-32.bottle1, .icon-simple.size-32.bottle { background-position: 0px -5920px; }
+.icon-simple.size-32.bottle2 { background-position: 0px -5952px; }
+.icon-simple.size-32.bread { background-position: 0px -5984px; }
+.icon-simple.size-32.chef { background-position: 0px -6016px; }
+.icon-simple.size-32.water, .icon-simple.size-32.drop { background-position: 0px -6048px; }
+.icon-simple.size-32.rice2 { background-position: 0px -6080px; }
+.icon-simple.size-32.rice1, .icon-simple.size-32.rice { background-position: 0px -6112px; }
+.icon-simple.size-32.soap { background-position: 0px -6144px; }
+.icon-simple.size-32.egg, .icon-simple.size-32.easter-egg { background-position: 0px -6176px; }
+.icon-simple.size-32.cake2 { background-position: 0px -6208px; }
+.icon-simple.size-32.cake1, .icon-simple.size-32.cake { background-position: 0px -6240px; }
+.icon-simple.size-32.spiral { background-position: 0px -6272px; }
+.icon-simple.size-32.palette { background-position: 0px -6304px; }
+.icon-simple.size-32.lollipop { background-position: 0px -6336px; }
+.icon-simple.size-32.pizza1, .icon-simple.size-32.pizza { background-position: 0px -6368px; }
+.icon-simple.size-32.pizza2 { background-position: 0px -6400px; }
+.icon-simple.size-32.refresh1, .icon-simple.size-32.refresh { background-position: 0px -6432px; }
+.icon-simple.size-32.backward, .icon-simple.size-32.rewind, .icon-simple.size-32.media-backward, .icon-simple.size-32.media-rewind { background-position: 0px -6464px; }
+.icon-simple.size-32.play, .icon-simple.size-32.media-play { background-position: 0px -6496px; }
+.icon-simple.size-32.pause, .icon-simple.size-32.media-pause { background-position: 0px -6528px; }
+.icon-simple.size-32.forward, .icon-simple.size-32.media-forward { background-position: 0px -6560px; }
+.icon-simple.size-32.repeat, .icon-simple.size-32.media-repeat { background-position: 0px -6592px; }
+.icon-simple.size-32.stop, .icon-simple.size-32.media-stop { background-position: 0px -6624px; }
+.icon-simple.size-32.music { background-position: 0px -6656px; }
+.icon-simple.size-32.shuffle, .icon-simple.size-32.random { background-position: 0px -6688px; }
+.icon-simple.size-24.meter, .icon-simple.size-24.meter1 { background-position: -32px 0px; }
+.icon-simple.size-24.earth { background-position: -32px -24px; }
+.icon-simple.size-24.compass { background-position: -32px -48px; }
+.icon-simple.size-24.sun { background-position: -32px -72px; }
+.icon-simple.size-24.meter2 { background-position: -32px -96px; }
+.icon-simple.size-24.point { background-position: -32px -120px; }
+.icon-simple.size-24.on-off { background-position: -32px -144px; }
+.icon-simple.size-24.forbidden { background-position: -32px -168px; }
+.icon-simple.size-24.zoom { background-position: -32px -192px; }
+.icon-simple.size-24.mark { background-position: -32px -216px; }
+.icon-simple.size-24.battery-empty { background-position: -32px -240px; }
+.icon-simple.size-24.battery-half { background-position: -32px -264px; }
+.icon-simple.size-24.battery-full { background-position: -32px -288px; }
+.icon-simple.size-24.battery-charge { background-position: -32px -312px; }
+.icon-simple.size-24.clock { background-position: -32px -336px; }
+.icon-simple.size-24.spaceship { background-position: -32px -360px; }
+.icon-simple.size-24.bike { background-position: -32px -384px; }
+.icon-simple.size-24.motorbike { background-position: -32px -408px; }
+.icon-simple.size-24.aeroplane { background-position: -32px -432px; }
+.icon-simple.size-24.ship { background-position: -32px -456px; }
+.icon-simple.size-24.train { background-position: -32px -480px; }
+.icon-simple.size-24.tram { background-position: -32px -504px; }
+.icon-simple.size-24.bus, .icon-simple.size-24.bus1 { background-position: -32px -528px; }
+.icon-simple.size-24.bus2 { background-position: -32px -552px; }
+.icon-simple.size-24.car, .icon-simple.size-24.car1 { background-position: -32px -576px; }
+.icon-simple.size-24.car2 { background-position: -32px -600px; }
+.icon-simple.size-24.sunglasses { background-position: -32px -624px; }
+.icon-simple.size-24.temple { background-position: -32px -648px; }
+.icon-simple.size-24.gear, .icon-simple.size-24.gear1 { background-position: -32px -672px; }
+.icon-simple.size-24.gear2 { background-position: -32px -696px; }
+.icon-simple.size-24.gear3 { background-position: -32px -720px; }
+.icon-simple.size-24.gamepad { background-position: -32px -744px; }
+.icon-simple.size-24.cassette { background-position: -32px -768px; }
+.icon-simple.size-24.cloud-upload, .icon-simple.size-24.upload { background-position: -32px -792px; }
+.icon-simple.size-24.cloud-download, .icon-simple.size-24.download { background-position: -32px -816px; }
+.icon-simple.size-24.cloud { background-position: -32px -840px; }
+.icon-simple.size-24.unlock, .icon-simple.size-24.unlock1 { background-position: -32px -864px; }
+.icon-simple.size-24.unlock2 { background-position: -32px -888px; }
+.icon-simple.size-24.lock { background-position: -32px -912px; }
+.icon-simple.size-24.eraser, .icon-simple.size-24.erase { background-position: -32px -936px; }
+.icon-simple.size-24.health { background-position: -32px -960px; }
+.icon-simple.size-24.strong { background-position: -32px -984px; }
+.icon-simple.size-24.like { background-position: -32px -1008px; }
+.icon-simple.size-24.dislike { background-position: -32px -1032px; }
+.icon-simple.size-24.share { background-position: -32px -1056px; }
+.icon-simple.size-24.facebook { background-position: -32px -1080px; }
+.icon-simple.size-24.twitter { background-position: -32px -1104px; }
+.icon-simple.size-24.basketball { background-position: -32px -1128px; }
+.icon-simple.size-24.camera3 { background-position: -32px -1152px; }
+.icon-simple.size-24.camera2 { background-position: -32px -1176px; }
+.icon-simple.size-24.camera1, .icon-simple.size-24.camera { background-position: -32px -1200px; }
+.icon-simple.size-24.video1, .icon-simple.size-24.video { background-position: -32px -1224px; }
+.icon-simple.size-24.video2, .icon-simple.size-24.camrecorder { background-position: -32px -1248px; }
+.icon-simple.size-24.tv, .icon-simple.size-24.television { background-position: -32px -1272px; }
+.icon-simple.size-24.window, .icon-simple.size-24.application { background-position: -32px -1296px; }
+.icon-simple.size-24.eye { background-position: -32px -1320px; }
+.icon-simple.size-24.home { background-position: -32px -1344px; }
+.icon-simple.size-24.shop1, .icon-simple.size-24.bag1, .icon-simple.size-24.shop, .icon-simple.size-24.bag { background-position: -32px -1368px; }
+.icon-simple.size-24.shop2, .icon-simple.size-24.bag2 { background-position: -32px -1392px; }
+.icon-simple.size-24.trash { background-position: -32px -1416px; }
+.icon-simple.size-24.tag-delete { background-position: -32px -1440px; }
+.icon-simple.size-24.tag-add { background-position: -32px -1464px; }
+.icon-simple.size-24.tag, .icon-simple.size-24.tag1 { background-position: -32px -1488px; }
+.icon-simple.size-24.tag2 { background-position: -32px -1512px; }
+.icon-simple.size-24.tag3 { background-position: -32px -1536px; }
+.icon-simple.size-24.credit-card-master-card2, .icon-simple.size-24.master-card2 { background-position: -32px -1560px; }
+.icon-simple.size-24.credit-card-master-card, .icon-simple.size-24.credit-card-master-card1, .icon-simple.size-24.master-card, .icon-simple.size-24.master-card1 { background-position: -32px -1584px; }
+.icon-simple.size-24.credit-card { background-position: -32px -1608px; }
+.icon-simple.size-24.flag { background-position: -32px -1632px; }
+.icon-simple.size-24.diamond { background-position: -32px -1656px; }
+.icon-simple.size-24.headphones { background-position: -32px -1680px; }
+.icon-simple.size-24.speaker, .icon-simple.size-24.speaker-mute, .icon-simple.size-24.speaker1 { background-position: -32px -1704px; }
+.icon-simple.size-24.speaker2, .icon-simple.size-24.speaker-low { background-position: -32px -1728px; }
+.icon-simple.size-24.speaker3, .icon-simple.size-24.speaker-medium { background-position: -32px -1752px; }
+.icon-simple.size-24.speaker4, .icon-simple.size-24.speaker-high { background-position: -32px -1776px; }
+.icon-simple.size-24.mic, .icon-simple.size-24.mic1 { background-position: -32px -1800px; }
+.icon-simple.size-24.mic2 { background-position: -32px -1824px; }
+.icon-simple.size-24.tickets, .icon-simple.size-24.tickets1 { background-position: -32px -1848px; }
+.icon-simple.size-24.tickets2 { background-position: -32px -1872px; }
+.icon-simple.size-24.comment-circle-empty, .icon-simple.size-24.comment-circle2 { background-position: -32px -1896px; }
+.icon-simple.size-24.comment-circle, .icon-simple.size-24.comment-circle1 { background-position: -32px -1920px; }
+.icon-simple.size-24.comment-square, .icon-simple.size-24.comment-square1, .icon-simple.size-24.comment { background-position: -32px -1944px; }
+.icon-simple.size-24.comment-circle-square, .icon-simple.size-24.comment-square2 { background-position: -32px -1968px; }
+.icon-simple.size-24.hearth, .icon-simple.size-24.favorite { background-position: -32px -1992px; }
+.icon-simple.size-24.glass, .icon-simple.size-24.glass1 { background-position: -32px -2016px; }
+.icon-simple.size-24.cup, .icon-simple.size-24.cup1 { background-position: -32px -2040px; }
+.icon-simple.size-24.cup2 { background-position: -32px -2064px; }
+.icon-simple.size-24.cup3 { background-position: -32px -2088px; }
+.icon-simple.size-24.cup4 { background-position: -32px -2112px; }
+.icon-simple.size-24.glass2 { background-position: -32px -2136px; }
+.icon-simple.size-24.glass3, .icon-simple.size-24.beer { background-position: -32px -2160px; }
+.icon-simple.size-24.coffee { background-position: -32px -2184px; }
+.icon-simple.size-24.drink2 { background-position: -32px -2208px; }
+.icon-simple.size-24.drink1, .icon-simple.size-24.drink { background-position: -32px -2232px; }
+.icon-simple.size-24.icecream3 { background-position: -32px -2256px; }
+.icon-simple.size-24.icecream2 { background-position: -32px -2280px; }
+.icon-simple.size-24.icecream1, .icon-simple.size-24.icecream { background-position: -32px -2304px; }
+.icon-simple.size-24.food, .icon-simple.size-24.chicken { background-position: -32px -2328px; }
+.icon-simple.size-24.emblem { background-position: -32px -2352px; }
+.icon-simple.size-24.check, .icon-simple.size-24.accept { background-position: -32px -2376px; }
+.icon-simple.size-24.cross, .icon-simple.size-24.cancel { background-position: -32px -2400px; }
+.icon-simple.size-24.plus { background-position: -32px -2424px; }
+.icon-simple.size-24.minus { background-position: -32px -2448px; }
+.icon-simple.size-24.star { background-position: -32px -2472px; }
+.icon-simple.size-24.refresh2 { background-position: -32px -2496px; }
+.icon-simple.size-24.arrow-down, .icon-simple.size-24.down { background-position: -32px -2520px; }
+.icon-simple.size-24.arrow-up, .icon-simple.size-24.up { background-position: -32px -2544px; }
+.icon-simple.size-24.arrow-right, .icon-simple.size-24.right { background-position: -32px -2568px; }
+.icon-simple.size-24.arrow-left, .icon-simple.size-24.left { background-position: -32px -2592px; }
+.icon-simple.size-24.notebook-check { background-position: -32px -2616px; }
+.icon-simple.size-24.application-check { background-position: -32px -2640px; }
+.icon-simple.size-24.caution, .icon-simple.size-24.warning { background-position: -32px -2664px; }
+.icon-simple.size-24.key { background-position: -32px -2688px; }
+.icon-simple.size-24.ordered-list, .icon-simple.size-24.list2 { background-position: -32px -2712px; }
+.icon-simple.size-24.list3 { background-position: -32px -2736px; }
+.icon-simple.size-24.list, .icon-simple.size-24.list1 { background-position: -32px -2760px; }
+.icon-simple.size-24.grid2 { background-position: -32px -2784px; }
+.icon-simple.size-24.grid, .icon-simple.size-24.grid1 { background-position: -32px -2808px; }
+.icon-simple.size-24.focus, .icon-simple.size-24.focus2 { background-position: -32px -2832px; }
+.icon-simple.size-24.focus2 { background-position: -32px -2856px; }
+.icon-simple.size-24.calendar2 { background-position: -32px -2880px; }
+.icon-simple.size-24.calendar, .icon-simple.size-24.calendar1 { background-position: -32px -2904px; }
+.icon-simple.size-24.group, .icon-simple.size-24.people { background-position: -32px -2928px; }
+.icon-simple.size-24.person, .icon-simple.size-24.human, .icon-simple.size-24.person1 { background-position: -32px -2952px; }
+.icon-simple.size-24.user, .icon-simple.size-24.person2, .icon-simple.size-24.user-male, .icon-simple.size-24.user-m, .icon-simple.size-24.person-m, .icon-simple.size-24.person-male { background-position: -32px -2976px; }
+.icon-simple.size-24.person3, .icon-simple.size-24.user-female, .icon-simple.size-24.user-f, .icon-simple.size-24.person-f, .icon-simple.size-24.person-female { background-position: -32px -3000px; }
+.icon-simple.size-24.eraser2 { background-position: -32px -3024px; }
+.icon-simple.size-24.pen, .icon-simple.size-24.pen1 { background-position: -32px -3048px; }
+.icon-simple.size-24.pen2 { background-position: -32px -3072px; }
+.icon-simple.size-24.pencil { background-position: -32px -3096px; }
+.icon-simple.size-24.tie1, .icon-simple.size-24.tie { background-position: -32px -3120px; }
+.icon-simple.size-24.tie2 { background-position: -32px -3144px; }
+.icon-simple.size-24.briefcase { background-position: -32px -3168px; }
+.icon-simple.size-24.diskette, .icon-simple.size-24.save { background-position: -32px -3192px; }
+.icon-simple.size-24.crop { background-position: -32px -3216px; }
+.icon-simple.size-24.envelope, .icon-simple.size-24.email, .icon-simple.size-24.mail { background-position: -32px -3240px; }
+.icon-simple.size-24.envelope2 { background-position: -32px -3264px; }
+.icon-simple.size-24.box { background-position: -32px -3288px; }
+.icon-simple.size-24.clip1, .icon-simple.size-24.clip, .icon-simple.size-24.attachment { background-position: -32px -3312px; }
+.icon-simple.size-24.clip2 { background-position: -32px -3336px; }
+.icon-simple.size-24.agenda, .icon-simple.size-24.agenda1, .icon-simple.size-24.agenda-money { background-position: -32px -3360px; }
+.icon-simple.size-24.agenda2 { background-position: -32px -3384px; }
+.icon-simple.size-24.copy { background-position: -32px -3408px; }
+.icon-simple.size-24.card { background-position: -32px -3432px; }
+.icon-simple.size-24.documents, .icon-simple.size-24.docs { background-position: -32px -3456px; }
+.icon-simple.size-24.calc, .icon-simple.size-24.calculator { background-position: -32px -3480px; }
+.icon-simple.size-24.paste { background-position: -32px -3504px; }
+.icon-simple.size-24.paste-check { background-position: -32px -3528px; }
+.icon-simple.size-24.document, .icon-simple.size-24.doc { background-position: -32px -3552px; }
+.icon-simple.size-24.document-add, .icon-simple.size-24.doc-add { background-position: -32px -3576px; }
+.icon-simple.size-24.document-remove, .icon-simple.size-24.doc-remove { background-position: -32px -3600px; }
+.icon-simple.size-24.folder { background-position: -32px -3624px; }
+.icon-simple.size-24.folder-add { background-position: -32px -3648px; }
+.icon-simple.size-24.folder-remove { background-position: -32px -3672px; }
+.icon-simple.size-24.graph1, .icon-simple.size-24.graph { background-position: -32px -3696px; }
+.icon-simple.size-24.graph2 { background-position: -32px -3720px; }
+.icon-simple.size-24.graph3 { background-position: -32px -3744px; }
+.icon-simple.size-24.graph4 { background-position: -32px -3768px; }
+.icon-simple.size-24.mouse { background-position: -32px -3792px; }
+.icon-simple.size-24.monitor, .icon-simple.size-24.display { background-position: -32px -3816px; }
+.icon-simple.size-24.tablets-vertical, .icon-simple.size-24.tablets, .icon-simple.size-24.tablets1 { background-position: -32px -3840px; }
+.icon-simple.size-24.tablets-horizontal, .icon-simple.size-24.tablets2 { background-position: -32px -3864px; }
+.icon-simple.size-24.tablet, .icon-simple.size-24.tablet1, .icon-simple.size-24.tablet-vertical { background-position: -32px -3888px; }
+.icon-simple.size-24.tablet2, .icon-simple.size-24.tablet-horizontal { background-position: -32px -3912px; }
+.icon-simple.size-24.smartphone-vertical, .icon-simple.size-24.smartphones, .icon-simple.size-24.smartphones1 { background-position: -32px -3936px; }
+.icon-simple.size-24.smartphones-horizontal, .icon-simple.size-24.smartphones2 { background-position: -32px -3960px; }
+.icon-simple.size-24.smartphone, .icon-simple.size-24.smartphone1, .icon-simple.size-24.smartphone-vertical { background-position: -32px -3984px; }
+.icon-simple.size-24.smartphone2, .icon-simple.size-24.smartphone-horizontal { background-position: -32px -4008px; }
+.icon-simple.size-24.picture1, .icon-simple.size-24.image1, .icon-simple.size-24.picture, .icon-simple.size-24.image { background-position: -32px -4032px; }
+.icon-simple.size-24.picture2, .icon-simple.size-24.image2 { background-position: -32px -4056px; }
+.icon-simple.size-24.picture3, .icon-simple.size-24.image3 { background-position: -32px -4080px; }
+.icon-simple.size-24.picture4, .icon-simple.size-24.image4, .icon-simple.size-24.user-picture, .icon-simple.size-24.user-image, .icon-simple.size-24.user-avatar { background-position: -32px -4104px; }
+.icon-simple.size-24.plant { background-position: -32px -4128px; }
+.icon-simple.size-24.fish { background-position: -32px -4152px; }
+.icon-simple.size-24.refrigerator { background-position: -32px -4176px; }
+.icon-simple.size-24.barbacue { background-position: -32px -4200px; }
+.icon-simple.size-24.dish2 { background-position: -32px -4224px; }
+.icon-simple.size-24.microwave-oven, .icon-simple.size-24.microwave { background-position: -32px -4248px; }
+.icon-simple.size-24.cook-tool { background-position: -32px -4272px; }
+.icon-simple.size-24.dish { background-position: -32px -4296px; }
+.icon-simple.size-24.cutlery2 { background-position: -32px -4320px; }
+.icon-simple.size-24.cutlery1, .icon-simple.size-24.cutlery { background-position: -32px -4344px; }
+.icon-simple.size-24.vessel1, .icon-simple.size-24.vessel { background-position: -32px -4368px; }
+.icon-simple.size-24.vessel2 { background-position: -32px -4392px; }
+.icon-simple.size-24.bottle3 { background-position: -32px -4416px; }
+.icon-simple.size-24.bottle1, .icon-simple.size-24.bottle { background-position: -32px -4440px; }
+.icon-simple.size-24.bottle2 { background-position: -32px -4464px; }
+.icon-simple.size-24.bread { background-position: -32px -4488px; }
+.icon-simple.size-24.chef { background-position: -32px -4512px; }
+.icon-simple.size-24.water, .icon-simple.size-24.drop { background-position: -32px -4536px; }
+.icon-simple.size-24.rice2 { background-position: -32px -4560px; }
+.icon-simple.size-24.rice1, .icon-simple.size-24.rice { background-position: -32px -4584px; }
+.icon-simple.size-24.soap { background-position: -32px -4608px; }
+.icon-simple.size-24.egg, .icon-simple.size-24.easter-egg { background-position: -32px -4632px; }
+.icon-simple.size-24.cake2 { background-position: -32px -4656px; }
+.icon-simple.size-24.cake1, .icon-simple.size-24.cake { background-position: -32px -4680px; }
+.icon-simple.size-24.spiral { background-position: -32px -4704px; }
+.icon-simple.size-24.palette { background-position: -32px -4728px; }
+.icon-simple.size-24.lollipop { background-position: -32px -4752px; }
+.icon-simple.size-24.pizza1, .icon-simple.size-24.pizza { background-position: -32px -4776px; }
+.icon-simple.size-24.pizza2 { background-position: -32px -4800px; }
+.icon-simple.size-24.refresh1, .icon-simple.size-24.refresh { background-position: -32px -4824px; }
+.icon-simple.size-24.backward, .icon-simple.size-24.rewind, .icon-simple.size-24.media-backward, .icon-simple.size-24.media-rewind { background-position: -32px -4848px; }
+.icon-simple.size-24.play, .icon-simple.size-24.media-play { background-position: -32px -4872px; }
+.icon-simple.size-24.pause, .icon-simple.size-24.media-pause { background-position: -32px -4896px; }
+.icon-simple.size-24.forward, .icon-simple.size-24.media-forward { background-position: -32px -4920px; }
+.icon-simple.size-24.repeat, .icon-simple.size-24.media-repeat { background-position: -32px -4944px; }
+.icon-simple.size-24.stop, .icon-simple.size-24.media-stop { background-position: -32px -4968px; }
+.icon-simple.size-24.music { background-position: -32px -4992px; }
+.icon-simple.size-24.shuffle, .icon-simple.size-24.random { background-position: -32px -5016px; }
+.icon-simple.size-18.meter, .icon-simple.size-18.meter1 { background-position: -56px 0px; }
+.icon-simple.size-18.earth { background-position: -56px -18px; }
+.icon-simple.size-18.compass { background-position: -56px -36px; }
+.icon-simple.size-18.sun { background-position: -56px -54px; }
+.icon-simple.size-18.meter2 { background-position: -56px -72px; }
+.icon-simple.size-18.point { background-position: -56px -90px; }
+.icon-simple.size-18.on-off { background-position: -56px -108px; }
+.icon-simple.size-18.forbidden { background-position: -56px -126px; }
+.icon-simple.size-18.zoom { background-position: -56px -144px; }
+.icon-simple.size-18.mark { background-position: -56px -162px; }
+.icon-simple.size-18.battery-empty { background-position: -56px -180px; }
+.icon-simple.size-18.battery-half { background-position: -56px -198px; }
+.icon-simple.size-18.battery-full { background-position: -56px -216px; }
+.icon-simple.size-18.battery-charge { background-position: -56px -234px; }
+.icon-simple.size-18.clock { background-position: -56px -252px; }
+.icon-simple.size-18.spaceship { background-position: -56px -270px; }
+.icon-simple.size-18.bike { background-position: -56px -288px; }
+.icon-simple.size-18.motorbike { background-position: -56px -306px; }
+.icon-simple.size-18.aeroplane { background-position: -56px -324px; }
+.icon-simple.size-18.ship { background-position: -56px -342px; }
+.icon-simple.size-18.train { background-position: -56px -360px; }
+.icon-simple.size-18.tram { background-position: -56px -378px; }
+.icon-simple.size-18.bus, .icon-simple.size-18.bus1 { background-position: -56px -396px; }
+.icon-simple.size-18.bus2 { background-position: -56px -414px; }
+.icon-simple.size-18.car, .icon-simple.size-18.car1 { background-position: -56px -432px; }
+.icon-simple.size-18.car2 { background-position: -56px -450px; }
+.icon-simple.size-18.sunglasses { background-position: -56px -468px; }
+.icon-simple.size-18.temple { background-position: -56px -486px; }
+.icon-simple.size-18.gear, .icon-simple.size-18.gear1 { background-position: -56px -504px; }
+.icon-simple.size-18.gear2 { background-position: -56px -522px; }
+.icon-simple.size-18.gear3 { background-position: -56px -540px; }
+.icon-simple.size-18.gamepad { background-position: -56px -558px; }
+.icon-simple.size-18.cassette { background-position: -56px -576px; }
+.icon-simple.size-18.cloud-upload, .icon-simple.size-18.upload { background-position: -56px -594px; }
+.icon-simple.size-18.cloud-download, .icon-simple.size-18.download { background-position: -56px -612px; }
+.icon-simple.size-18.cloud { background-position: -56px -630px; }
+.icon-simple.size-18.unlock, .icon-simple.size-18.unlock1 { background-position: -56px -648px; }
+.icon-simple.size-18.unlock2 { background-position: -56px -666px; }
+.icon-simple.size-18.lock { background-position: -56px -684px; }
+.icon-simple.size-18.eraser, .icon-simple.size-18.erase { background-position: -56px -702px; }
+.icon-simple.size-18.health { background-position: -56px -720px; }
+.icon-simple.size-18.strong { background-position: -56px -738px; }
+.icon-simple.size-18.like { background-position: -56px -756px; }
+.icon-simple.size-18.dislike { background-position: -56px -774px; }
+.icon-simple.size-18.share { background-position: -56px -792px; }
+.icon-simple.size-18.facebook { background-position: -56px -810px; }
+.icon-simple.size-18.twitter { background-position: -56px -828px; }
+.icon-simple.size-18.basketball { background-position: -56px -846px; }
+.icon-simple.size-18.camera3 { background-position: -56px -864px; }
+.icon-simple.size-18.camera2 { background-position: -56px -882px; }
+.icon-simple.size-18.camera1, .icon-simple.size-18.camera { background-position: -56px -900px; }
+.icon-simple.size-18.video1, .icon-simple.size-18.video { background-position: -56px -918px; }
+.icon-simple.size-18.video2, .icon-simple.size-18.camrecorder { background-position: -56px -936px; }
+.icon-simple.size-18.tv, .icon-simple.size-18.television { background-position: -56px -954px; }
+.icon-simple.size-18.window, .icon-simple.size-18.application { background-position: -56px -972px; }
+.icon-simple.size-18.eye { background-position: -56px -990px; }
+.icon-simple.size-18.home { background-position: -56px -1008px; }
+.icon-simple.size-18.shop1, .icon-simple.size-18.bag1, .icon-simple.size-18.shop, .icon-simple.size-18.bag { background-position: -56px -1026px; }
+.icon-simple.size-18.shop2, .icon-simple.size-18.bag2 { background-position: -56px -1044px; }
+.icon-simple.size-18.trash { background-position: -56px -1062px; }
+.icon-simple.size-18.tag-delete { background-position: -56px -1080px; }
+.icon-simple.size-18.tag-add { background-position: -56px -1098px; }
+.icon-simple.size-18.tag, .icon-simple.size-18.tag1 { background-position: -56px -1116px; }
+.icon-simple.size-18.tag2 { background-position: -56px -1134px; }
+.icon-simple.size-18.tag3 { background-position: -56px -1152px; }
+.icon-simple.size-18.credit-card-master-card2, .icon-simple.size-18.master-card2 { background-position: -56px -1170px; }
+.icon-simple.size-18.credit-card-master-card, .icon-simple.size-18.credit-card-master-card1, .icon-simple.size-18.master-card, .icon-simple.size-18.master-card1 { background-position: -56px -1188px; }
+.icon-simple.size-18.credit-card { background-position: -56px -1206px; }
+.icon-simple.size-18.flag { background-position: -56px -1224px; }
+.icon-simple.size-18.diamond { background-position: -56px -1242px; }
+.icon-simple.size-18.headphones { background-position: -56px -1260px; }
+.icon-simple.size-18.speaker, .icon-simple.size-18.speaker-mute, .icon-simple.size-18.speaker1 { background-position: -56px -1278px; }
+.icon-simple.size-18.speaker2, .icon-simple.size-18.speaker-low { background-position: -56px -1296px; }
+.icon-simple.size-18.speaker3, .icon-simple.size-18.speaker-medium { background-position: -56px -1314px; }
+.icon-simple.size-18.speaker4, .icon-simple.size-18.speaker-high { background-position: -56px -1332px; }
+.icon-simple.size-18.mic, .icon-simple.size-18.mic1 { background-position: -56px -1350px; }
+.icon-simple.size-18.mic2 { background-position: -56px -1368px; }
+.icon-simple.size-18.tickets, .icon-simple.size-18.tickets1 { background-position: -56px -1386px; }
+.icon-simple.size-18.tickets2 { background-position: -56px -1404px; }
+.icon-simple.size-18.comment-circle-empty, .icon-simple.size-18.comment-circle2 { background-position: -56px -1422px; }
+.icon-simple.size-18.comment-circle, .icon-simple.size-18.comment-circle1 { background-position: -56px -1440px; }
+.icon-simple.size-18.comment-square, .icon-simple.size-18.comment-square1, .icon-simple.size-18.comment { background-position: -56px -1458px; }
+.icon-simple.size-18.comment-circle-square, .icon-simple.size-18.comment-square2 { background-position: -56px -1476px; }
+.icon-simple.size-18.hearth, .icon-simple.size-18.favorite { background-position: -56px -1494px; }
+.icon-simple.size-18.glass, .icon-simple.size-18.glass1 { background-position: -56px -1512px; }
+.icon-simple.size-18.cup, .icon-simple.size-18.cup1 { background-position: -56px -1530px; }
+.icon-simple.size-18.cup2 { background-position: -56px -1548px; }
+.icon-simple.size-18.cup3 { background-position: -56px -1566px; }
+.icon-simple.size-18.cup4 { background-position: -56px -1584px; }
+.icon-simple.size-18.glass2 { background-position: -56px -1602px; }
+.icon-simple.size-18.glass3, .icon-simple.size-18.beer { background-position: -56px -1620px; }
+.icon-simple.size-18.coffee { background-position: -56px -1638px; }
+.icon-simple.size-18.drink2 { background-position: -56px -1656px; }
+.icon-simple.size-18.drink1, .icon-simple.size-18.drink { background-position: -56px -1674px; }
+.icon-simple.size-18.icecream3 { background-position: -56px -1692px; }
+.icon-simple.size-18.icecream2 { background-position: -56px -1710px; }
+.icon-simple.size-18.icecream1, .icon-simple.size-18.icecream { background-position: -56px -1728px; }
+.icon-simple.size-18.food, .icon-simple.size-18.chicken { background-position: -56px -1746px; }
+.icon-simple.size-18.emblem { background-position: -56px -1764px; }
+.icon-simple.size-18.check, .icon-simple.size-18.accept { background-position: -56px -1782px; }
+.icon-simple.size-18.cross, .icon-simple.size-18.cancel { background-position: -56px -1800px; }
+.icon-simple.size-18.plus { background-position: -56px -1818px; }
+.icon-simple.size-18.minus { background-position: -56px -1836px; }
+.icon-simple.size-18.star { background-position: -56px -1854px; }
+.icon-simple.size-18.refresh2 { background-position: -56px -1872px; }
+.icon-simple.size-18.arrow-down, .icon-simple.size-18.down { background-position: -56px -1890px; }
+.icon-simple.size-18.arrow-up, .icon-simple.size-18.up { background-position: -56px -1908px; }
+.icon-simple.size-18.arrow-right, .icon-simple.size-18.right { background-position: -56px -1926px; }
+.icon-simple.size-18.arrow-left, .icon-simple.size-18.left { background-position: -56px -1944px; }
+.icon-simple.size-18.notebook-check { background-position: -56px -1962px; }
+.icon-simple.size-18.application-check { background-position: -56px -1980px; }
+.icon-simple.size-18.caution, .icon-simple.size-18.warning { background-position: -56px -1998px; }
+.icon-simple.size-18.key { background-position: -56px -2016px; }
+.icon-simple.size-18.ordered-list, .icon-simple.size-18.list2 { background-position: -56px -2034px; }
+.icon-simple.size-18.list3 { background-position: -56px -2052px; }
+.icon-simple.size-18.list, .icon-simple.size-18.list1 { background-position: -56px -2070px; }
+.icon-simple.size-18.grid2 { background-position: -56px -2088px; }
+.icon-simple.size-18.grid, .icon-simple.size-18.grid1 { background-position: -56px -2106px; }
+.icon-simple.size-18.focus, .icon-simple.size-18.focus2 { background-position: -56px -2124px; }
+.icon-simple.size-18.focus2 { background-position: -56px -2142px; }
+.icon-simple.size-18.calendar2 { background-position: -56px -2160px; }
+.icon-simple.size-18.calendar, .icon-simple.size-18.calendar1 { background-position: -56px -2178px; }
+.icon-simple.size-18.group, .icon-simple.size-18.people { background-position: -56px -2196px; }
+.icon-simple.size-18.person, .icon-simple.size-18.human, .icon-simple.size-18.person1 { background-position: -56px -2214px; }
+.icon-simple.size-18.user, .icon-simple.size-18.person2, .icon-simple.size-18.user-male, .icon-simple.size-18.user-m, .icon-simple.size-18.person-m, .icon-simple.size-18.person-male { background-position: -56px -2232px; }
+.icon-simple.size-18.person3, .icon-simple.size-18.user-female, .icon-simple.size-18.user-f, .icon-simple.size-18.person-f, .icon-simple.size-18.person-female { background-position: -56px -2250px; }
+.icon-simple.size-18.eraser2 { background-position: -56px -2268px; }
+.icon-simple.size-18.pen, .icon-simple.size-18.pen1 { background-position: -56px -2286px; }
+.icon-simple.size-18.pen2 { background-position: -56px -2304px; }
+.icon-simple.size-18.pencil { background-position: -56px -2322px; }
+.icon-simple.size-18.tie1, .icon-simple.size-18.tie { background-position: -56px -2340px; }
+.icon-simple.size-18.tie2 { background-position: -56px -2358px; }
+.icon-simple.size-18.briefcase { background-position: -56px -2376px; }
+.icon-simple.size-18.diskette, .icon-simple.size-18.save { background-position: -56px -2394px; }
+.icon-simple.size-18.crop { background-position: -56px -2412px; }
+.icon-simple.size-18.envelope, .icon-simple.size-18.email, .icon-simple.size-18.mail { background-position: -56px -2430px; }
+.icon-simple.size-18.envelope2 { background-position: -56px -2448px; }
+.icon-simple.size-18.box { background-position: -56px -2466px; }
+.icon-simple.size-18.clip1, .icon-simple.size-18.clip, .icon-simple.size-18.attachment { background-position: -56px -2484px; }
+.icon-simple.size-18.clip2 { background-position: -56px -2502px; }
+.icon-simple.size-18.agenda, .icon-simple.size-18.agenda1, .icon-simple.size-18.agenda-money { background-position: -56px -2520px; }
+.icon-simple.size-18.agenda2 { background-position: -56px -2538px; }
+.icon-simple.size-18.copy { background-position: -56px -2556px; }
+.icon-simple.size-18.card { background-position: -56px -2574px; }
+.icon-simple.size-18.documents, .icon-simple.size-18.docs { background-position: -56px -2592px; }
+.icon-simple.size-18.calc, .icon-simple.size-18.calculator { background-position: -56px -2610px; }
+.icon-simple.size-18.paste { background-position: -56px -2628px; }
+.icon-simple.size-18.paste-check { background-position: -56px -2646px; }
+.icon-simple.size-18.document, .icon-simple.size-18.doc { background-position: -56px -2664px; }
+.icon-simple.size-18.document-add, .icon-simple.size-18.doc-add { background-position: -56px -2682px; }
+.icon-simple.size-18.document-remove, .icon-simple.size-18.doc-remove { background-position: -56px -2700px; }
+.icon-simple.size-18.folder { background-position: -56px -2718px; }
+.icon-simple.size-18.folder-add { background-position: -56px -2736px; }
+.icon-simple.size-18.folder-remove { background-position: -56px -2754px; }
+.icon-simple.size-18.graph1, .icon-simple.size-18.graph { background-position: -56px -2772px; }
+.icon-simple.size-18.graph2 { background-position: -56px -2790px; }
+.icon-simple.size-18.graph3 { background-position: -56px -2808px; }
+.icon-simple.size-18.graph4 { background-position: -56px -2826px; }
+.icon-simple.size-18.mouse { background-position: -56px -2844px; }
+.icon-simple.size-18.monitor, .icon-simple.size-18.display { background-position: -56px -2862px; }
+.icon-simple.size-18.tablets-vertical, .icon-simple.size-18.tablets, .icon-simple.size-18.tablets1 { background-position: -56px -2880px; }
+.icon-simple.size-18.tablets-horizontal, .icon-simple.size-18.tablets2 { background-position: -56px -2898px; }
+.icon-simple.size-18.tablet, .icon-simple.size-18.tablet1, .icon-simple.size-18.tablet-vertical { background-position: -56px -2916px; }
+.icon-simple.size-18.tablet2, .icon-simple.size-18.tablet-horizontal { background-position: -56px -2934px; }
+.icon-simple.size-18.smartphone-vertical, .icon-simple.size-18.smartphones, .icon-simple.size-18.smartphones1 { background-position: -56px -2952px; }
+.icon-simple.size-18.smartphones-horizontal, .icon-simple.size-18.smartphones2 { background-position: -56px -2970px; }
+.icon-simple.size-18.smartphone, .icon-simple.size-18.smartphone1, .icon-simple.size-18.smartphone-vertical { background-position: -56px -2988px; }
+.icon-simple.size-18.smartphone2, .icon-simple.size-18.smartphone-horizontal { background-position: -56px -3006px; }
+.icon-simple.size-18.picture1, .icon-simple.size-18.image1, .icon-simple.size-18.picture, .icon-simple.size-18.image { background-position: -56px -3024px; }
+.icon-simple.size-18.picture2, .icon-simple.size-18.image2 { background-position: -56px -3042px; }
+.icon-simple.size-18.picture3, .icon-simple.size-18.image3 { background-position: -56px -3060px; }
+.icon-simple.size-18.picture4, .icon-simple.size-18.image4, .icon-simple.size-18.user-picture, .icon-simple.size-18.user-image, .icon-simple.size-18.user-avatar { background-position: -56px -3078px; }
+.icon-simple.size-18.plant { background-position: -56px -3096px; }
+.icon-simple.size-18.fish { background-position: -56px -3114px; }
+.icon-simple.size-18.refrigerator { background-position: -56px -3132px; }
+.icon-simple.size-18.barbacue { background-position: -56px -3150px; }
+.icon-simple.size-18.dish2 { background-position: -56px -3168px; }
+.icon-simple.size-18.microwave-oven, .icon-simple.size-18.microwave { background-position: -56px -3186px; }
+.icon-simple.size-18.cook-tool { background-position: -56px -3204px; }
+.icon-simple.size-18.dish { background-position: -56px -3222px; }
+.icon-simple.size-18.cutlery2 { background-position: -56px -3240px; }
+.icon-simple.size-18.cutlery1, .icon-simple.size-18.cutlery { background-position: -56px -3258px; }
+.icon-simple.size-18.vessel1, .icon-simple.size-18.vessel { background-position: -56px -3276px; }
+.icon-simple.size-18.vessel2 { background-position: -56px -3294px; }
+.icon-simple.size-18.bottle3 { background-position: -56px -3312px; }
+.icon-simple.size-18.bottle1, .icon-simple.size-18.bottle { background-position: -56px -3330px; }
+.icon-simple.size-18.bottle2 { background-position: -56px -3348px; }
+.icon-simple.size-18.bread { background-position: -56px -3366px; }
+.icon-simple.size-18.chef { background-position: -56px -3384px; }
+.icon-simple.size-18.water, .icon-simple.size-18.drop { background-position: -56px -3402px; }
+.icon-simple.size-18.rice2 { background-position: -56px -3420px; }
+.icon-simple.size-18.rice1, .icon-simple.size-18.rice { background-position: -56px -3438px; }
+.icon-simple.size-18.soap { background-position: -56px -3456px; }
+.icon-simple.size-18.egg, .icon-simple.size-18.easter-egg { background-position: -56px -3474px; }
+.icon-simple.size-18.cake2 { background-position: -56px -3492px; }
+.icon-simple.size-18.cake1, .icon-simple.size-18.cake { background-position: -56px -3510px; }
+.icon-simple.size-18.spiral { background-position: -56px -3528px; }
+.icon-simple.size-18.palette { background-position: -56px -3546px; }
+.icon-simple.size-18.lollipop { background-position: -56px -3564px; }
+.icon-simple.size-18.pizza1, .icon-simple.size-18.pizza { background-position: -56px -3582px; }
+.icon-simple.size-18.pizza2 { background-position: -56px -3600px; }
+.icon-simple.size-18.refresh1, .icon-simple.size-18.refresh { background-position: -56px -3618px; }
+.icon-simple.size-18.backward, .icon-simple.size-18.rewind, .icon-simple.size-18.media-backward, .icon-simple.size-18.media-rewind { background-position: -56px -3636px; }
+.icon-simple.size-18.play, .icon-simple.size-18.media-play { background-position: -56px -3654px; }
+.icon-simple.size-18.pause, .icon-simple.size-18.media-pause { background-position: -56px -3672px; }
+.icon-simple.size-18.forward, .icon-simple.size-18.media-forward { background-position: -56px -3690px; }
+.icon-simple.size-18.repeat, .icon-simple.size-18.media-repeat { background-position: -56px -3708px; }
+.icon-simple.size-18.stop, .icon-simple.size-18.media-stop { background-position: -56px -3726px; }
+.icon-simple.size-18.music { background-position: -56px -3744px; }
+.icon-simple.size-18.shuffle, .icon-simple.size-18.random { background-position: -56px -3762px; }

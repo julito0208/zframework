@@ -1,0 +1,32 @@
+.htmlbox-table {
+	width: 100%;
+}
+.htmlbox-table td.html_button {
+	padding: 0 3px !important;
+	
+}
+.htmlbox-table td.html_button a {
+	display: inline !important;
+	background-color: #DADADA !important;
+	border-radius: 3px;
+	padding: 2px !important;
+	box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	border-color: #999 !important;
+}
+.htmlbox-table td.html_button a:hover {
+	border-color: #222 !important;
+}
+.htmlbox-table .htmlbox-text-container {
+	height: 250px;
+}
+.htmlbox-table .htmlbox-header {
+	background: #F2F2F2;
+	padding: 10px 5px !important;
+}
+.htmlbox-table select {
+	background: #FFF !important;
+	margin-right: 15px !important;
+}
+.htmlbox-table .htmlbox-separator {
+	padding: 0 6px !important;
+}

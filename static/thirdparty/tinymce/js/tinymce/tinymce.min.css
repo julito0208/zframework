@@ -1,0 +1,30 @@
+.mce-container.mce-toolbar {
+	padding: 5px 8px !important;
+}
+.mce-container.mce-btn-group {
+	margin-left: 10px !important;
+}
+.mce-container.mce-first.mce-btn-group {
+	margin-left: 0px !important;
+}
+.mce-btn-group .mce-btn {
+	border-color: #999 !important;
+}
+.mce-btn-group .mce-btn button {
+	border-right: solid 1px #AAA !important;
+}
+
+.mce-btn-group .mce-btn.mce-splitbtn button,
+.mce-btn-group .mce-btn.mce-colorbutton button {
+	border-right: 0 !important;
+}
+.mce-btn-group .mce-btn.mce-splitbtn button.mce-open,
+.mce-btn-group .mce-btn.mce-colorbutton button.mce-open {
+	border-right: solid 1px #999 !important;
+}
+.mce-btn-group .mce-btn.mce-last button {
+	/*border-right: 0 !important;*/
+}
+.mce-widget.mce-btn .mce-open {
+	border-left: solid 1px #BBB !important;
+}

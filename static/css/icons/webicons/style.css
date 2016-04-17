@@ -1,0 +1,35 @@
+.icon-webicon { display: inline-block; background-repeat: no-repeat; background-image: url(./icons-color.png); width: 16px; height: 16px; }
+.icon-webicon.grey { background-image: url(./icons-grey.png) !important; }
+.icon-webicon.black { background-image: url(./icons-black.png) !important; }
+.icon-webicon.green { background-image: url(./icons-color-green.png) !important; }
+.icon-webicon.blue { background-image: url(./icons-color-blue.png) !important; }
+.icon-webicon.yellow { background-image: url(./icons-color-yellow.png) !important; }
+.icon-webicon.cyan{ background-image: url(./icons-color-cyan.png) !important; }
+.icon-webicon.red { background-image: url(./icons-color-red.png) !important; }
+.icon-webicon.color { background-image: url(./icons-color.png); }
+.icon-webicon.action-add { background-position: 0px -0px; }
+.icon-webicon.action-check { background-position: 0px -16px; }
+.icon-webicon.action-delete { background-position: 0px -32px; }
+.icon-webicon.action-remove { background-position: 0px -48px; }
+.icon-webicon.application { background-position: 0px -64px; }
+.icon-webicon.arrow-back { background-position: 0px -80px; }
+.icon-webicon.arrow-down { background-position: 0px -96px; }
+.icon-webicon.arrow-next { background-position: 0px -112px; }
+.icon-webicon.arrow-top { background-position: 0px -128px; }
+.icon-webicon.comments { background-position: 0px -144px; }
+.icon-webicon.download { background-position: 0px -160px; }
+.icon-webicon.file { background-position: 0px -176px; }
+.icon-webicon.folder-files { background-position: 0px -192px; }
+.icon-webicon.folder { background-position: 0px -208px; }
+.icon-webicon.folder-open { background-position: 0px -224px; }
+.icon-webicon.letter { background-position: 0px -240px; }
+.icon-webicon.letter-open { background-position: 0px -256px; }
+.icon-webicon.login { background-position: 0px -272px; }
+.icon-webicon.maximize { background-position: 0px -288px; }
+.icon-webicon.minimize { background-position: 0px -304px; }
+.icon-webicon.reply { background-position: 0px -320px; }
+.icon-webicon.rss { background-position: 0px -336px; }
+.icon-webicon.save { background-position: 0px -352px; }
+.icon-webicon.search { background-position: 0px -368px; }
+.icon-webicon.time { background-position: 0px -384px; }
+.icon-webicon.user { background-position: 0px -400px; }

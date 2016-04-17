@@ -1,0 +1,124 @@
+
+jQuery Form Plugin
+Twitter.com
+
+    Getting Started
+    API
+    Options
+    Examples
+    Form Fields
+    FAQ
+    Download
+
+ajaxForm and ajaxSubmit Options
+
+Note: Aside from the options listed below, you can also pass any of the standard $.ajax options to ajaxForm and ajaxSubmit.
+Both ajaxForm and ajaxSubmit support numerous options which can be provided using an Options Object. The Options Object is simply a JavaScript object that contains properties with values set as follows:
+
+beforeSerialize
+    Callback function to be invoked before the form is serialized. This provides an opportunity to manipulate the form before it's values are retrieved. The beforeSerialize function is invoked with two arguments: the jQuery object for the form, and the Options Object passed into ajaxForm/ajaxSubmit.
+
+    beforeSerialize: function($form, options) { 
+        // return false to cancel submit                  
+    }
+
+    Default value: null 
+beforeSubmit
+    Callback function to be invoked before the form is submitted. The 'beforeSubmit' callback can be provided as a hook for running pre-submit logic or for validating the form data. If the 'beforeSubmit' callback returns false then the form will not be submitted. The 'beforeSubmit' callback is invoked with three arguments: the form data in array format, the jQuery object for the form, and the Options Object passed into ajaxForm/ajaxSubmit.
+
+    beforeSubmit: function(arr, $form, options) { 
+        // The array of form data takes the following form: 
+        // [ { name: 'username', value: 'jresig' }, { name: 'password', value: 'secret' } ] 
+         
+        // return false to cancel submit                  
+    }
+
+    Default value: null 
+clearForm
+    Boolean flag indicating whether the form should be cleared if the submit is successful
+    Default value: null 
+data
+    An object containing extra data that should be submitted along with the form.
+
+    data: { key1: 'value1', key2: 'value2' }
+
+dataType
+    Expected data type of the response. One of: null, 'xml', 'script', or 'json'. The dataType option provides a means for specifying how the server response should be handled. This maps directly to the jQuery.httpData method. The following values are supported:
+
+    'xml': if dataType == 'xml' the server response is treated as XML and the 'success' callback method, if specified, will be passed the responseXML value
+
+    'json': if dataType == 'json' the server response will be evaluted and passed to the 'success' callback, if specified
+
+    'script': if dataType == 'script' the server response is evaluated in the global context
+
+    Default value: null 
+error
+    Callback function to be invoked upon error. 
+forceSync
+    Boolean value. Set to true to remove short delay before posting form when uploading files (or using the iframe option). The delay is used to allow the browser to render DOM updates prior to performing a native form submit. This improves usability when displaying notifications to the user, such as "Please Wait..."
+    Default value: false
+    Added in v2.38
+iframe
+    Boolean flag indicating whether the form should always target the server response to an iframe. This is useful in conjuction with file uploads. See the File Uploads documentation on the Code Samples page for more info.
+    Default value: false 
+iframeSrc
+    String value that should be used for the iframe's src attribute when/if an iframe is used.
+    Default value: about:blank
+    Default value for pages that use https protocol: javascript:false 
+iframeTarget
+    Identifies the iframe element to be used as the response target for file uploads. By default, the plugin will create a temporary iframe element to capture the response when uploading files. This options allows you to use an existing iframe if you wish. When using this option the plugin will make no attempt at handling the response from the server.
+    Default value: null
+    Added in v2.76
+replaceTarget
+    Optionally used along with the the target option. Set to true if the target should be replaced or false if only the target contents should be replaced.
+    Default value: false
+    Added in v2.43
+resetForm
+    Boolean flag indicating whether the form should be reset if the submit is successful
+    Default value: null 
+semantic
+    Boolean flag indicating whether data must be submitted in strict semantic order (slower). Note that the normal form serialization is done in semantic order with the exception of input elements of type="image". You should only set the semantic option to true if your server has strict semantic requirements and your form contains an input element of type="image".
+    Default value: false 
+success
+    Callback function to be invoked after the form has been submitted. If a 'success' callback function is provided it is invoked after the response has been returned from the server. It is passed the following arguments:
+
+        1.) responseText or responseXML value (depending on the value of the dataType option).
+        2.) statusText
+        3.) xhr (or the jQuery-wrapped form element if using jQuery < 1.4)
+        4.) jQuery-wrapped form element (or undefined if using jQuery < 1.4)
+
+    Default value: null 
+target
+    Identifies the element(s) in the page to be updated with the server response. This value may be specified as a jQuery selection string, a jQuery object, or a DOM element.
+    Default value: null 
+type
+    The method in which the form data should be submitted, 'GET' or 'POST'.
+    Default value: value of form's method attribute (or 'GET' if none found) 
+uploadProgress
+    Callback function to be invoked with upload progress information (if supported by the browser). The callback is passed the following arguments:
+
+        1.) event; the browser event
+        2.) position (integer)
+        3.) total (integer)
+        4.) percentComplete (integer) 
+
+    Default value: null 
+url
+    URL to which the form data will be submitted.
+    Default value: value of form's action attribute 
+
+Example:
+
+// prepare Options Object 
+var options = { 
+    target:     '#divToUpdate', 
+    url:        'comment.php', 
+    success:    function() { 
+        alert('Thanks for your comment!'); 
+    } 
+}; 
+ 
+// pass options to ajaxForm 
+$('#myForm').ajaxForm(options);
+
+Note that the Options Object can also be used to pass values to jQuery's $.ajax method. If you are familiar with the options supported by $.ajax you may use them in the Options Object passed to ajaxForm and ajaxSubmit.
