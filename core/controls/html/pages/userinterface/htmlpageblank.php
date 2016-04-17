@@ -311,6 +311,12 @@ class HTMLPageBlank extends HTMLControl {
 					if(!in_array($js_file, $used_js_files))
 					{
 						$used_js_files[] = $js_file;
+
+						if(StringHelper::ends_with($js_file, 'zframework.php'))
+						{
+							$js_file.= ".aaaa";
+						}
+
 						$html.= "<script type='text/javascript' src='".HTMLHelper::escape($js_file)."'></script>\n";
 					}
 
@@ -343,10 +349,23 @@ class HTMLPageBlank extends HTMLControl {
 //					}
 
 					$js_file = self::_get_resource_link($js_file);
+					$zframework_used = false;
 
 					if(!in_array($js_file, $used_js_files))
 					{
 						$used_js_files[] = $js_file;
+
+						if(StringHelper::ends_with($js_file, 'zframework.php'))
+						{
+							if($zframework_used)
+							{
+								continue;
+							}
+
+							$js_file.= "?language=".LanguageHelper::get_current_language();
+							$zframework_used = true;
+						}
+
 						$html.= "<script type='text/javascript' src='".HTMLHelper::escape($js_file)."'></script>\n";
 					}
 

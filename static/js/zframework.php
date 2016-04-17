@@ -13,7 +13,15 @@ _zphp['is_mobile'] = <?=JSHelper::cast_bool(ZPHP::is_mobile())?>;
 _zphp['charset'] = <?=JSHelper::cast_str(ZPHP::get_config('html.charset'))?>;
 ZPHP = new Object();
 ZPHP.isMobile = function() { return _zphp['is_mobile']; };
-<?php LanguageHelper::set_current_language_from_url($_SERVER['HTTP_REFERER']); ?>
+<?php if(isset($_GET['language']) && $_GET['language'])
+{
+	LanguageHelper::set_current_language($_GET['language']);
+} 
+else
+{
+	LanguageHelper::set_current_language_from_url($_SERVER['HTTP_REFERER']);
+}
+?>
 var LanguageHelper = new Object();
 LanguageHelper.DefaultSection = <?=JSHelper::cast_str(ZPHP::get_config('multi_language_default_section'))?>;
 LanguageHelper.DefaultText = <?=JSHelper::cast_str(LanguageHelper::DEFAULT_TEXT)?>;
