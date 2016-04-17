@@ -67,7 +67,6 @@ class ZPHP {
 	
 	public static function load_initial_config($app_dir) {
 
-
 		if(!self::$_INITIAL_CONFIG_LOADED)
 		{
 			$app_dir = rtrim($app_dir, '/');
@@ -79,7 +78,7 @@ class ZPHP {
 			self::$_CONFIG->_set_value('backend_dir', self::$_CONFIG->get_value('site_dir').'/backend');
 			self::$_CONFIG->_set_value('www_dir', file_exists(self::$_CONFIG->get_value('site_dir').'/www') ? self::$_CONFIG->get_value('site_dir').'/www' : self::$_CONFIG->get_value('site_dir'));
 			self::$_CONFIG->_set_value('config_file', self::$_CONFIG->get_value('site_dir').'/config.xml');
-			
+
 			self::_load_config(dirname(__FILE__).'/config.default.xml');
 			self::_load_config(ZPHP::get_config('config_file'));
 
@@ -112,7 +111,7 @@ class ZPHP {
 				}
 				
 			}
-
+			
 			if(!$dirname || $dirname == '/')
 			{
 				$dirname = $app_dir;
@@ -791,6 +790,7 @@ if(!function_exists('text'))
 		return LanguageHelper::get_text($key, $language);
 	}
 }
+
 
 /* Set locale */
 setlocale(LC_ALL, str_replace('-', '_', LanguageHelper::get_default_language()).'.'.strtoupper(ZPHP::get_config('charset')));
