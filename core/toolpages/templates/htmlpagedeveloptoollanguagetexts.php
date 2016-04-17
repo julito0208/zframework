@@ -243,7 +243,7 @@
 	
 		<div class="help-text" style="float:left">
 			Mientras escriba un texto, presione CTRL+Enter para hacer aplicar los cambios<br />
-			Dentro de una secciÛn, puede presionar CTRL+Espacio para agregar un texto r·pidamente
+			Dentro de una secci√≥n, puede presionar CTRL+Espacio para agregar un texto r√°pidamente
 		</div>
 		
 		<div class="align-right" style="float:right">
@@ -267,7 +267,7 @@
 				<span class="sign" style="display: inline-block; width: 15px;"><?=($section_data['section']->get_id_language_section() == $selected_section ? '-' : '+')?></span>
 				<span class="text" style="text-decoration:underline;"><?=$section_data['section']->get_id_language_section()?></span>
 			</a>
-			
+
 			<div class="section-controls pull-right align-right" style="padding: 0 20px 0 0;<?=($section_data['section']->get_id_language_section() == $selected_section ? '' : ' display:none;')?>">
 				
 				<a style="font-weight: bold; font-size: 13pt; text-decoration: none; " href="javascript:void(0)" onclick="<?=HTMLHelper::escape(JSHelper::call_quote('addText', $section_data['section']->get_id_language_section()))?>" class="add-text-link">
@@ -280,6 +280,8 @@
 
 			</div>
 
+			<br />
+			
 			<? if(!empty($section_data['texts_languages'])) { ?>
 			
 				<div class="section-container" style="margin: 0px 0px 30px;<?=($section_data['section']->get_id_language_section() == $selected_section ? '' : ' display:none;')?>">
