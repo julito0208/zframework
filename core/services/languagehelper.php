@@ -195,24 +195,40 @@ class LanguageHelper  {
         $language = preg_replace('#[^a-zA-Z0-9]+#', '', $language);
 		
 		if(!array_key_exists($language, self::$_default_language_texts)) {
-			
-			$language_ini_file = ZPHP::get_zframework_dir()."/resources/languages/{$language}.ini";
-			$language_texts = array();
 
-			@ $language_ini_contents = file_get_contents($language_ini_file);
-			
-			foreach(explode("\n", $language_ini_contents) as $line)
+			$language_texts = array();
+			$ini_files = array();
+
+			foreach((array) ZPHP::get_config('multi_language.files_format') as $file_format)
 			{
-				$line = trim($line);
-				
-				if(!$line || strpos($line, '=') === false) continue;
-				
-				list($key, $value) = explode('=', $line, 2);
-				
-				$key = trim($key);
-				$value = trim($value);
-				
-				$language_texts[$key] = $value;
+				$filename = sprintf($file_format, $language);
+
+				if(file_exists($filename))
+				{
+					$ini_files[] = $filename;
+				}
+			}
+
+			$ini_files[] = ZPHP::get_zframework_dir()."/resources/languages/{$language}.ini";
+
+			foreach($ini_files as $ini_file)
+			{
+				@ $language_ini_contents = file_get_contents($ini_file);
+
+				foreach (explode("\n", $language_ini_contents) as $line)
+				{
+					$line = trim($line);
+
+					if (!$line || strpos($line, '=') === false)
+						continue;
+
+					list($key, $value) = explode('=', $line, 2);
+
+					$key = trim($key);
+					$value = trim($value);
+
+					$language_texts[$key] = $value;
+				}
 			}
 
 			self::$_default_language_texts[$language] = $language_texts;

@@ -167,6 +167,9 @@
 		<!-- Sección por defecto -->	
 		<default_section>main</default_section>
 
+        <!-- Formatos de archivos init -->
+        <files_format array="true">{BACKEND_DIR}/resources/languages/%s.ini</files_format>
+
 		<!-- Tablas para los idiomas -->
 		<tables>
 			<languages_table>zf_language</languages_table>
