@@ -544,6 +544,7 @@ cd "${site_dir}"
 mkdir -p "${backend_dir}"
 mkdir -p "${backend_dir}/migrations"
 mkdir -p "${www_dir}"
+mkdir -p "${www_dir}/static"
 
 auto_overwrite=""
 
