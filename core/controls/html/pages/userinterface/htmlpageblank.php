@@ -393,7 +393,7 @@ class HTMLPageBlank extends HTMLControl {
 		if(ZPHP::is_debug_mode())
 		{
 			$debug_data = ZPHP::get_debug_data();
-			$debug_block = new HTMLBlockDebugData($debug_data);
+			$debug_block = new HTMLBlockDebugData($debug_data, strlen($content));
 			$content = $debug_block->to_string().$content;
 		}
 
