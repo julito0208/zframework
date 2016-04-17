@@ -3553,7 +3553,7 @@ jQuery.fn.zmodal = function(options)
     }
 
     var modalBody = $this.find('.modal-body');
-    var modalDialog = $this.find('.modal-dialog').css({'min-width': '600px', 'margin': '30px auto'});
+    var modalDialog = $this.find('.modal-dialog').css({'min-width': '600px', 'margin': '10% auto 0'});
 
     this.on('show.bs.modal', function() {
 
@@ -3575,6 +3575,7 @@ jQuery.fn.zmodal = function(options)
         //}, options['firstFocusDelay']);
     });
 
+    options['title'] = 'hola';
 
     return $(this).modal(options);
 };
@@ -3713,7 +3714,7 @@ jQuery.zmodal.alert = function(msg, callback, title, options)
 {
     var dialog = $('<div />').addClass('modal fade').appendTo('body');
     var modalDialog = $('<div />').addClass('modal-dialog').appendTo(dialog);
-    var modalContent = $('<div />').addClass('modal-content').appendTo(modalDialog);
+    var modalContent = $('<div />').addClass('modal-content strong').appendTo(modalDialog);
 
     if(title)
     {

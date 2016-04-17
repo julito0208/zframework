@@ -23,6 +23,17 @@ body {
 }
 
 
+body.modal-open {
+    overflow: auto;
+}
+body.modal-open[style] {
+    padding-right: 0px !important;
+}
+
+.modal::-webkit-scrollbar {
+    width: 0 !important; /*removes the scrollbar but still scrollable*/
+    /* reference: http://stackoverflow.com/a/26500272/2259400 */
+}
 
 * { 
 	margin: 0;
@@ -479,4 +490,9 @@ table.dataTable thead th.date-column *
 {
     color: #000;
     font-family: sans-serif;
+}
+
+.modal-dialog .modal-body
+{
+    padding: 30px 20px;
 }
