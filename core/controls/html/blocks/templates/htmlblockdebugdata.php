@@ -27,7 +27,7 @@
 			<div style="overflow: auto; margin: 0 0px; box-shadow: 7px 7px 9px rgba(0,0,0,0.8); border: solid 1px #777; " id="debug-data-list-container">
 				<ul id="debug-data-list" style="display:none; margin: 0;">
 					<?php foreach ($debug_data as $index => $debug_item): ?>
-						<li style="border-top: solid 1px #888; background: <?($index % 2 == 0 ? '#F2F2F2' : '#FEFEFE')?>;">
+						<li style="border-top: solid 1px #888; background: <?=($index % 2 == 0 ? '#F2F2F2' : '#FEFEFE')?>;">
 							<div style="padding: 2px 5px;">
 								<div style="float:left; font-weight: bold;">
 									<?=$debug_item['title']?>
