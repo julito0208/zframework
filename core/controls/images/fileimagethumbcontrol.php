@@ -63,7 +63,11 @@ class FileImageThumbControl implements MIMEControl, RedirectURLPattern {
 		else
 		{
 			$image_file = ZfImageFile::get_by_id_image_file($image_str);
-			$this->_image = new Image($image_file->get_full_path());
+
+			if($image_file)
+			{
+				$this->_image = new Image($image_file->get_full_path());
+			}
 		}
 	}
 	
@@ -71,14 +75,25 @@ class FileImageThumbControl implements MIMEControl, RedirectURLPattern {
 	//------------------------------------------------------------------------------------------------------------------------------------
 	
 	public function out() {
-		$this->_image->out();
+
+		if($this->_image)
+		{
+			$this->_image->out();
+		}
+
 	}
 	
 	public function save_to($filename) {
-		$this->_image->save_to($filename);
+		if($this->_image)
+		{
+			$this->_image->save_to($filename);
+		}
 	}
 
 	public function out_attachment($filename=null) {
-		$this->_image->out_attachment($filename);
+		if($this->_image)
+		{
+			$this->_image->out_attachment($filename);
+		}
 	}
 }
