@@ -3575,8 +3575,6 @@ jQuery.fn.zmodal = function(options)
         //}, options['firstFocusDelay']);
     });
 
-    options['title'] = 'hola';
-
     return $(this).modal(options);
 };
 
