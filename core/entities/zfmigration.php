@@ -45,6 +45,8 @@ class ZfMigration extends ZfMigrationCache
 
 		if(touch($run_file) && touch($rollback_file))
 		{
+			@ chmod($run_file, 0777);
+			@ chmod($rollback_file, 0777);
 //			$migration = new ZfMigration();
 //			$migration->set_id_migration($id_migration);
 //			$migration->save();
