@@ -3553,7 +3553,7 @@ jQuery.fn.zmodal = function(options)
     }
 
     var modalBody = $this.find('.modal-body');
-    var modalDialog = $this.find('.modal-dialog').css({'min-width': '600px', 'margin': '10% auto 0'});
+    var modalDialog = $this.find('.modal-dialog').css({'min-width': '600px', 'margin': '2% auto 0'});
 
     this.on('show.bs.modal', function() {
 
