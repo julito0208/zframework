@@ -111,10 +111,9 @@ class ZfMigration extends ZfMigrationCache
 	public function migration_rollback()
 	{
 		$file = $this->get_rollback_file();
-		$sql = file_get_contents($file);
 
 		$connection = DBConnection::get_default_connection();
-		$connection->query($sql);
+		$connection->load_file($file);
 
 		self::delete_by_id_migration($this->id_migration);
 	}
@@ -122,10 +121,9 @@ class ZfMigration extends ZfMigrationCache
 	public function migration_run()
 	{
 		$file = $this->get_run_file();
-		$sql = file_get_contents($file);
 
 		$connection = DBConnection::get_default_connection();
-		$connection->query($sql);
+		$connection->load_file($file);
 	}
 
 
