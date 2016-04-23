@@ -438,7 +438,7 @@ table.sortable tbody tr td
 
 table.dataTable tbody td
 {
-    width: 100%;
+    /*width: 100%;*/
 }
 
 table.dataTable tbody td, table.dataTable tbody th
