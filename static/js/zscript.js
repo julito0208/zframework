@@ -3553,7 +3553,7 @@ jQuery.fn.zmodal = function(options)
     }
 
     var modalBody = $this.find('.modal-body');
-    var modalDialog = $this.find('.modal-dialog').css({'min-width': '600px', 'margin': '2% auto 0'});
+    var modalDialog = $this.find('.modal-dialog').css($.extend({}, {'min-width': '600px', 'margin': '2% auto 0'}, options['dialog-style']));
 
     this.on('show.bs.modal', function() {
 
@@ -3584,7 +3584,8 @@ jQuery.fn.zmodal.defaultOptions =
     'firstFocusDelay': 100,
     'backdrop': 'static',
     'closeAll': false,
-    'show': true
+    'show': true,
+    'dialog-style': {}
 
 };
 
