@@ -496,3 +496,25 @@ table.dataTable thead th.date-column *
 {
     padding: 30px 20px;
 }
+
+
+a.icon-link,
+a.icon-link:hover
+{
+    text-decoration: none;
+}
+
+a.icon-link:hover span.text
+{
+    text-decoration: underline;
+}
+
+a.icon-link span.icon
+{
+    margin-right: 5px;
+}
+
+label.max-width
+{
+    white-space: nowrap;
+}

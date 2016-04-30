@@ -4,7 +4,9 @@ class AjaxJSONFormResponse extends AjaxJSONResponse implements AjaxResponse {
 	
 	const RESPONSE_SUCCESS_VARNAME = 'success';
 	const RESPONSE_ERROR_VARNAME = 'error';
-	
+	const RESPONSE_MESSAGE_VARNAME = 'message';
+	const RESPONSE_REDIRECT_VARNAME = 'redirect_url';
+
 	public function __construct($data=array()) {
 		parent::__construct($data);
 		$this->set_success(false);
@@ -18,7 +20,23 @@ class AjaxJSONFormResponse extends AjaxJSONResponse implements AjaxResponse {
 	public function get_success() {
 		return $this->get_item_boolean(self::RESPONSE_SUCCESS_VARNAME);
 	}
-	
+
+	public function set_message($message) {
+		return $this->set_item(self::RESPONSE_MESSAGE_VARNAME, $message);
+	}
+
+	public function get_message() {
+		return $this->get_item(self::RESPONSE_MESSAGE_VARNAME);
+	}
+
+	public function set_redirect($redirect) {
+		return $this->set_item(self::RESPONSE_REDIRECT_VARNAME, $redirect);
+	}
+
+	public function get_redirect() {
+		return $this->get_item(self::RESPONSE_REDIRECT_VARNAME);
+	}
+
 	public function success($success=null)
 	{
 		return $this->set_success(func_num_args() > 0 ? $success : true);

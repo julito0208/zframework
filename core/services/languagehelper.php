@@ -4,6 +4,7 @@ class LanguageHelper  {
 
 	const SECTION_KEY_SEPARATOR = '.';
 	const DEFAULT_TEXT = '';
+	const LOG_FILE = 'language';
 
 	private static $_flag_classname_varname = 'flag_class';
 	
@@ -577,6 +578,7 @@ class LanguageHelper  {
 		if($language_text) {
 			return $language_text->get_text();
 		} else {
+			LogFile::log_error_file(self::LOG_FILE, "Text not found: '{$key}' [Language: {$language}] [Section: {$section}]");
 			return '';
 		}
 	}

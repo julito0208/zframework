@@ -225,7 +225,11 @@ class SQLHelper {
 								
 							} else if($compare_type == 'md5') {	
 								
-								$conditions_tokens[] = "MD5(`{$key}`) = ".self::quote(str_replace('  ', ' ', trim($condition)));	
+								$conditions_tokens[] = "MD5(`{$key}`) = ".self::quote(str_replace('  ', ' ', trim($condition)));
+
+							} else if($compare_type == 'sha1') {
+
+								$conditions_tokens[] = "SHA1(`{$key}`) = ".self::quote(str_replace('  ', ' ', trim($condition)));
 								
 							} else if($compare_type == 'not') {	
 								

@@ -1,6 +1,6 @@
 <?php
 
-class ZfUsers extends ZfUsersCache
+class ZfRole extends ZfRoleCache
 {
 
 	/* ZPHP Generated Code ------------------------------------------ */

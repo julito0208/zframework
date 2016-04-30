@@ -20,7 +20,7 @@ jQuery.KEY_ALT = 18;
 jQuery.KEY_TAB = 9;
 jQuery.KEY_INSERT = 45;
 jQuery.KEY_BLOQMAYUS = 20,
-    jQuery.KEY_PLUS = 107;
+jQuery.KEY_PLUS = 107;
 jQuery.KEY_MINUS = 109;
 
 jQuery.KEY_F1 = 112;
@@ -1218,26 +1218,64 @@ $.ajaxSetup({
     };
 
 
-    jQuery.fn.adjustMaxWidth = function() {
+    jQuery.fn.adjustMaxWidth = function(findChildren) {
 
-        var maxWidth = 0;
+        if(findChildren)
+        {
+            var nodes = this.find('[data-max-width]').add(this.filter('[data-max-width]'));
+            var maxWidthIds = [];
 
-        this.each(function() {
+            nodes.each(function() {
 
-            var $this = $(this);
+                var maxWidthId = $(this).attr('data-max-width');
 
-            var width = $this.css({'width': ''}).width();
+                if(maxWidthIds.indexOf(maxWidthId) == -1)
+                {
+                    maxWidthIds.push(maxWidthId);
+                }
 
-            if(width > maxWidth) maxWidth = width;
+            });
 
-        });
+            $.each(maxWidthIds, function(index, maxWidthId) {
+                nodes.filter('[data-max-width=' + maxWidthId + ']').adjustMaxWidth();
+            });
+        }
+        else
+        {
+
+            var maxWidth = 0;
+
+            this.each(function () {
+
+                var $this = $(this);
+
+                var width = $this.css({'width': ''}).width();
+
+                if (width > maxWidth) maxWidth = width;
+
+            });
 
 
-        this.width(maxWidth);
+            this.width(maxWidth);
+        }
+
         return this;
 
     };
 
+    jQuery.fn.adjustChildrenMaxWidth = function()
+    {
+        return this.adjustMaxWidth(true);
+    };
+
+    jQuery.adjustChildrenMaxWidth = function()
+    {
+        return $('body').adjustChildrenMaxWidth();
+    };
+
+    jQuery(document).ready(function() {
+        jQuery.adjustChildrenMaxWidth();
+    });
 
     jQuery.fn.hoverClass = function(classname) {
 
@@ -1461,6 +1499,10 @@ $.ajaxSetup({
         $(window).triggerHandler('resize');
         $('.first-focus').focus();
     });
+
+    /*-------------------------------------------------------------*/
+
+
 
 })(jQuery);
 
@@ -3515,7 +3557,7 @@ jQuery.modal.close = function(iter)
 
 jQuery.modal.closeAll = function()
 {
-    $('.modal.in').each(function(index, item){
+    $('.modal').each(function(index, item){
         $(item).modal('hide');
     });
 };
@@ -3553,9 +3595,19 @@ jQuery.fn.zmodal = function(options)
     }
 
     var modalBody = $this.find('.modal-body');
-    var modalDialog = $this.find('.modal-dialog').css($.extend({}, {'min-width': '600px', 'margin': '2% auto 0'}, options['dialog-style']));
+    var modalDialog = $this.find('.modal-dialog').css($.extend({}, {'min-width': '600px', 'margin': '6% auto 0'}, options['dialog-style']));
 
-    this.on('show.bs.modal', function() {
+    this.on('shown.bs.modal', function() {
+
+        var $this = $(this);
+
+        $this.find('button').eq(0).focus();
+        $this.find('[autofocus]').focus();
+        $this.adjustChildrenMaxWidth();
+
+        // setTimeout(function() {
+        //    $this.find('[autofocus]').focus();
+        // }, options['firstFocusDelay']);
 
         // setTimeout(function() {
         //     $('body').css({'padding-right': 0});
@@ -3726,17 +3778,14 @@ jQuery.zmodal.alert = function(msg, callback, title, options)
     options = $.extend({}, options);
     var button = $('<button type="button" />').addClass('btn btn-primary first-focus').html(options['button'] ? options['button'] : Strings.Get('accept')).appendTo(dialogFooter);
 
-    button.bind('click', function() {
-
-        if(callback)
-        {
-            callback.apply(this, arguments);
-        }
-        else
-        {
-            $.zmodal.closeAll();
-        }
-    });
+    if(callback)
+    {
+        button.bind('click', callback);
+    }
+    else
+    {
+        button.attr('data-dismiss', 'modal');
+    }
 
     return dialog.zmodal(options);
 };
@@ -3744,16 +3793,29 @@ jQuery.zmodal.alert = function(msg, callback, title, options)
 
 jQuery.zmodal.alertClose = function(msg, callback, title, options)
 {
-    return jQuery.zmodal.alert(msg, function() {
+    var dialog = $('<div />').addClass('modal fade').appendTo('body');
+    var modalDialog = $('<div />').addClass('modal-dialog').appendTo(dialog);
+    var modalContent = $('<div />').addClass('modal-content strong').appendTo(modalDialog);
 
-        $.zmodal.close();
+    if(title)
+    {
+        var modalTitle = $('<div />').addClass('modal-header').appendTo(modalContent).append('<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>').append($('<h4 />').html(title).css({'font-weight': 'bold'}));
+    }
 
-        if(callback)
-        {
-            callback.apply(this, arguments);
-        }
+    var dialogBody = $('<div />').addClass('modal-body').appendTo(modalContent).append(msg);
+    var dialogFooter = $('<div />').addClass('modal-footer').appendTo(modalContent);
 
-    }, title, options);
+    options = $.extend({}, options);
+    var button = $('<button type="button" />').addClass('btn btn-primary first-focus').html(options['button'] ? options['button'] : Strings.Get('accept')).appendTo(dialogFooter);
+
+    button.attr('data-dismiss', 'modal');
+
+    if(callback)
+    {
+        dialog.on('hidden.bs.modal', callback);
+    }
+
+    return dialog.zmodal(options);
 };
 
 jQuery.zmodal.alertCloseAll = function(msg, callback, title, options)
@@ -3993,6 +4055,7 @@ $(document).ready(function() {
             form.data('original_action', url);
         }
 
+        var isDialog = form.is('.form-dialog');
         var method = form.attr('method') ? form.attr('method') : 'post';
         var data = form.formData();
 
@@ -4015,19 +4078,54 @@ $(document).ready(function() {
                 },
                 'success': function (data) {
 
-                    $.zmodal.closeAll();
+                    $.zmodal.close();
 
                     if (data && data['success']) {
 
                         if(form.triggerHandler('success', data) !== false) {
 
-                            var backUrl = form.attr('data-back-url');
+                            var backUrl = data['redirect_url'];
+
+                            if(!backUrl)
+                            {
+                                backUrl = form.attr('data-back-url');
+                            }
 
                             if (!backUrl) {
-                                Navigation.reload();
+
+                                if(isDialog)
+                                {
+                                    if(data['message'])
+                                    {
+                                        $.zmodal.alertCloseAll(data['message']);
+                                    }
+                                    else
+                                    {
+                                        $.zmodal.closeAll();
+                                    }
+                                }
+                                else
+                                {
+                                    Navigation.reload();
+                                }
+
+
                             }
                             else {
-                                Navigation.go(backUrl);
+
+                                if(data['message'])
+                                {
+
+                                    $.zmodal.alertClose(data['message'], function() {
+                                        Navigation.go(backUrl);
+                                    });
+
+                                }
+                                else
+                                {
+                                    Navigation.go(backUrl);
+                                }
+
                             }
                         }
 
@@ -4039,14 +4137,22 @@ $(document).ready(function() {
                             error = data['error'];
                         }
                         else {
-                            error = 'OcurriÃ³ un error desconocido';
+                            error = 'Error';
                         }
 
                         var errorBlock = $('<div />');
                         errorBlock.addClass('form-error-block alert alert-danger');
                         errorBlock.text(error);
 
-                        form.prepend(errorBlock);
+                        if(isDialog)
+                        {
+                            form.find('.modal-body').prepend(errorBlock);
+                        }
+                        else
+                        {
+                            form.prepend(errorBlock);
+                        }
+
 
                         $('.admin-page-title').scrollWindowViewHeight();
 

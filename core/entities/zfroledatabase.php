@@ -1,29 +1,29 @@
 <?php
 
-class ZfRolesPermissionsDatabase extends DBEntity
+class ZfRoleDatabase extends DBEntity
 {
 
 	/* ZPHP Generated Code ------------------------------------------ */
 
-	const ENTITY_TABLE = '`zf_roles_permissions`';
+	const ENTITY_TABLE = '`zf_role`';
 
 	protected static $_table_sql = self::ENTITY_TABLE;
 
 	protected static $_entity_fields = array(
 		'id_role',
-		'id_permission',
+		'is_admin',
+		'name',
 	);
 
 	protected static $_primary_keys = array(
 		'id_role',
-		'id_permission',
 	);
 
 	//-----------------------------------------------------------------------
 
 	
 	/**
-	* @return ZfRolesPermissions[]
+	* @return ZfRole[]
 	*/	
 	protected static function _entity_collection_from_array($array_rows) {
 
@@ -36,13 +36,13 @@ class ZfRolesPermissionsDatabase extends DBEntity
 	}
 
 	/**
-	* @return ZfRolesPermissions
+	* @return ZfRole
 	*/
 	protected static function _entity_from_array($array) {
 
 		if($array && is_array($array))
 		{
-			$entity = new ZfRolesPermissions();
+			$entity = new ZfRole();
 			$entity->__fromDatabase = true;
 			$entity->update_fields($array);
 			$entity->__fromDatabase = false;
@@ -58,16 +58,16 @@ class ZfRolesPermissionsDatabase extends DBEntity
 
 	
 	/**
-	* @return ZfRolesPermissions
+	* @return ZfRole
 	*/
-	public static function get_by_id_role_id_permission($id_role, $id_permission, $column=null) {
+	public static function get_by_id_role($id_role, $column=null) {
 
-		return ZfRolesPermissions::get_row(array('id_role' => $id_role, 'id_permission' => $id_permission), $column);
+		return ZfRole::get_row(array('id_role' => $id_role), $column);
 
 	}
 	
 	/**
-	* @return ZfRolesPermissions
+	* @return ZfRole
 	*/
 	public static function get_row($conditions, $column=null) {
 
@@ -92,7 +92,7 @@ class ZfRolesPermissionsDatabase extends DBEntity
 
 	
 	/**
-	* @return ZfRolesPermissions[]
+	* @return ZfRole[]
 	*/	
 	public static function list_all($conditions=null, $order=null, $limit=null) {
 
@@ -133,52 +133,23 @@ class ZfRolesPermissionsDatabase extends DBEntity
 
 	}
 	
-	public static function list_by_id_role($id_role, $conditions=null, $order=null, $limit=null) {
-
-
-		return ZfRolesPermissions::list_all(array_merge(array('id_role' => $id_role), (array) $conditions), $order, $limit);
-
-	}
-	
-	public static function count_by_id_role($id_role, $conditions=null) {
-
-
-		return ZfRolesPermissions::count_all(array_merge(array('id_role' => $id_role), (array) $conditions));
-
-	}
-	
-	public static function list_by_id_permission($id_permission, $conditions=null, $order=null, $limit=null) {
-
-
-		return ZfRolesPermissions::list_all(array_merge(array('id_permission' => $id_permission), (array) $conditions), $order, $limit);
-
-	}
-	
-	public static function count_by_id_permission($id_permission, $conditions=null) {
-
-
-		return ZfRolesPermissions::count_all(array_merge(array('id_permission' => $id_permission), (array) $conditions));
-
-	}
-	
 	/**
-	* @return ZfRolesPermissions
+	* @return ZfRole
 	*/
-	public static function saveEntity(ZfRolesPermissions $entity) {
+	public static function saveEntity(ZfRole $entity) {
 
 		$entity_row = $entity->to_array(false);
 
 		$primary_keys_values = array();
 		$primary_keys_values['id_role'] = $entity_row['id_role'];
-		$primary_keys_values['id_permission'] = $entity_row['id_permission'];
 
 		if(DBConnection::get_default_connection()->select_value('SELECT COUNT(*) FROM '.self::ENTITY_TABLE.' '.SQLHelper::prepare_conditions($primary_keys_values, true)) == 1) {
 
-			DBConnection::get_default_connection()->query_update('zf_roles_permissions', $entity_row, $primary_keys_values);
+			DBConnection::get_default_connection()->query_update('zf_role', $entity_row, $primary_keys_values);
 
 		} else {
 
-			DBConnection::get_default_connection()->query_insert('zf_roles_permissions', $entity_row, true);
+			DBConnection::get_default_connection()->query_insert('zf_role', $entity_row, true);
 
 			$newEntity = self::_entity_from_array(DBConnection::get_default_connection()->select_row('SELECT * FROM '.self::ENTITY_TABLE.' '.SQLHelper::prepare_conditions($primary_keys_values, true)));
 		}  
@@ -189,7 +160,7 @@ class ZfRolesPermissionsDatabase extends DBEntity
 	{
 		if($method == 'save')
 		{
-			call_user_func_array(array('ZfRolesPermissions', 'saveEntity'), $args);
+			call_user_func_array(array('ZfRole', 'saveEntity'), $args);
 		}
 		else
 		{
@@ -200,17 +171,7 @@ class ZfRolesPermissionsDatabase extends DBEntity
 
 	public static function update_rows($values, $conditions=null) {
 
-		return DBConnection::get_default_connection()->query_update("zf_roles_permissions", $values, $conditions);
-	}
-	
-	
-	public static function delete_by_id_role_id_permission($id_role, $id_permission) {
-
-		$conditions = array();
-		$conditions['id_role'] = $id_role;
-		$conditions['id_permission'] = $id_permission;
-		return ZfRolesPermissions::delete_rows($conditions);
-
+		return DBConnection::get_default_connection()->query_update("zf_role", $values, $conditions);
 	}
 	
 	
@@ -218,16 +179,7 @@ class ZfRolesPermissionsDatabase extends DBEntity
 
 		$conditions = array();
 		$conditions['id_role'] = $id_role;
-		return ZfRolesPermissions::delete_rows($conditions);
-
-	}
-	
-	
-	public static function delete_by_id_permission($id_permission) {
-
-		$conditions = array();
-		$conditions['id_permission'] = $id_permission;
-		return ZfRolesPermissions::delete_rows($conditions);
+		return ZfRole::delete_rows($conditions);
 
 	}
 	
@@ -245,7 +197,8 @@ class ZfRolesPermissionsDatabase extends DBEntity
 
 
 	protected $_id_role;
-	protected $_id_permission;
+	protected $_is_admin;
+	protected $_name;
 
 
 	public function __construct($data = null) {
@@ -262,7 +215,7 @@ class ZfRolesPermissionsDatabase extends DBEntity
 
 				$args = func_get_args();
 				$conditions = array_combine(self::$_primary_keys, $args);
-				$entity = ZfRolesPermissions::get_row($conditions);
+				$entity = ZfRole::get_row($conditions);
 				$this->update_fields($entity);
 
 			}
@@ -288,7 +241,7 @@ class ZfRolesPermissionsDatabase extends DBEntity
 	{
 		if($method == 'save')
 		{
-			ZfRolesPermissions::saveEntity($this);
+			ZfRole::saveEntity($this);
 		}
 		else
 		{
@@ -306,7 +259,7 @@ class ZfRolesPermissionsDatabase extends DBEntity
 
 
 	/**
-	* @return ZfRolesPermissions
+	* @return ZfRole
 	*/
 	public function set_id_role($value) {
 		$this->_id_role = $value;
@@ -314,16 +267,30 @@ class ZfRolesPermissionsDatabase extends DBEntity
 	}
 
 
-	public function get_id_permission() {
-		return $this->_id_permission;
+	public function get_is_admin() {
+		return $this->_is_admin;
 	}
 
 
 	/**
-	* @return ZfRolesPermissions
+	* @return ZfRole
 	*/
-	public function set_id_permission($value) {
-		$this->_id_permission = $value;
+	public function set_is_admin($value) {
+		$this->_is_admin = $value;
+		return $this;
+	}
+
+
+	public function get_name() {
+		return $this->_name;
+	}
+
+
+	/**
+	* @return ZfRole
+	*/
+	public function set_name($value) {
+		$this->_name = $value;
 		return $this;
 	}
 
@@ -342,7 +309,7 @@ class ZfRolesPermissionsDatabase extends DBEntity
 				$conditions[$key] = $this->$key;
 			}
 
-			return ZfRolesPermissions::delete_rows($conditions);
+			return ZfRole::delete_rows($conditions);
 		}
 		else
 		{

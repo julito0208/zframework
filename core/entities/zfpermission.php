@@ -1,6 +1,6 @@
 <?php
 
-class ZfPermissions extends ZfPermissionsCache
+class ZfPermission extends ZfPermissionCache
 {
 
 	/* ZPHP Generated Code ------------------------------------------ */

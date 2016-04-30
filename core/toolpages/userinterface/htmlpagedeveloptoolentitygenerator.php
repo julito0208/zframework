@@ -118,7 +118,7 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 		
 		foreach($tables as $table)
 		{
-			if(!in_array($table, self::$_protected_tables) && strpos($table, 'zf') !== 0)
+			if($_GET['framework'] || (!in_array($table, self::$_protected_tables) && strpos($table, 'zf') !== 0))
 			{
 				$this->_tables[] = $table;
 			}

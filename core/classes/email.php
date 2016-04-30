@@ -253,10 +253,11 @@ abstract class Email extends MVParamsContentControl {
 			
 		$header = '';
 		
-		if($this->_reply_email) {
-			$header.= "Reply-To: ".($this->_reply_name ? HTMLHelper::escape($this->_reply_name).' ' : "")."<{$this->_reply_email}>\r\n";
-		}
+		$reply_name = $this->_reply_name ? $this->_reply_name : $this->_from_name; 
+		$reply_email = $this->_reply_email ? $this->_reply_email : $this->_from_email; 
 		
+		$header.= "Reply-To: ".($reply_name ? HTMLHelper::escape($reply_name).' ' : "")."<{$reply_email}>\r\n";
+
 //		$header.= "Return-Path: ".($this->_from_name ? HTMLHelper::escape($this->_from_name).' ' : "")."<{$this->_from_email}>\r\n";
 		$header.= "From: ".($this->_from_name ? HTMLHelper::escape($this->_from_name).' ' : "")."<{$this->_from_email}>\r\n";
 		$header.= "Organization: \"".ZPHP::get_site_name()."\"\r\n";	

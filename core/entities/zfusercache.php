@@ -1,16 +1,21 @@
 <?php
 
-class ZfPermissionsCache extends ZfPermissionsDatabase
+class ZfUserCache extends ZfUserDatabase
 {
 
 	/* ZPHP Generated Code ------------------------------------------ */
 
 
-	private static $_CACHE_MANAGER_KEY_GET_PREFIX = "cache_zfpermissionsentity_get_by_";
+	private static $_CACHE_MANAGER_KEY_GET_PREFIX = "cache_zfuserentity_get_by_";
 
-	private static function _generate_cache_key_get_by_id_permission($id_permission) {
+	private static function _generate_cache_key_get_by_id_user($id_user) {
 		$values = func_get_args();
-		return self::$_CACHE_MANAGER_KEY_GET_PREFIX.'id_permission_'.implode('_', $values);
+		return self::$_CACHE_MANAGER_KEY_GET_PREFIX.'id_user_'.implode('_', $values);
+	}
+
+	private static function _generate_cache_key_get_by_username($username) {
+		$values = func_get_args();
+		return self::$_CACHE_MANAGER_KEY_GET_PREFIX.'username_'.implode('_', $values);
 	}
 
 	private static function _generate_cache_key_list_all() {
@@ -19,7 +24,8 @@ class ZfPermissionsCache extends ZfPermissionsDatabase
 	
 	private static function _cache_save($entity) {
 		if($entity) {
-			CacheManager::save(self::_generate_cache_key_get_by_id_permission($entity->get_id_permission()), $entity);
+			CacheManager::save(self::_generate_cache_key_get_by_id_user($entity->get_id_user()), $entity);
+			CacheManager::save(self::_generate_cache_key_get_by_username($entity->get_username()), $entity);
 		}
 
 		if(isset(self::$_CACHE_SAVE_ENTITY_CALLBACKS))
@@ -33,7 +39,8 @@ class ZfPermissionsCache extends ZfPermissionsDatabase
 
 	private static function _cache_delete($entity) {
 		if($entity) {
-			CacheManager::delete(self::_generate_cache_key_get_by_id_permission($entity->get_id_permission()));
+			CacheManager::delete(self::_generate_cache_key_get_by_id_user($entity->get_id_user()));
+			CacheManager::delete(self::_generate_cache_key_get_by_username($entity->get_username()));
 		}
 
 		if(isset(self::$_CACHE_DELETE_ENTITY_CALLBACKS))
@@ -54,13 +61,27 @@ class ZfPermissionsCache extends ZfPermissionsDatabase
 	
 		
 	/**
-	* @return ZfPermissions
+	* @return ZfUser
 	*/
-	public static function get_by_id_permission($id_permission, $column=null) {
-		$entity = CacheManager::get(self::_generate_cache_key_get_by_id_permission($id_permission));
+	public static function get_by_id_user($id_user, $column=null) {
+		$entity = CacheManager::get(self::_generate_cache_key_get_by_id_user($id_user));
 
 		if(!$entity) {
-			$entity = parent::get_by_id_permission($id_permission);
+			$entity = parent::get_by_id_user($id_user);
+			if($entity) self::_cache_save($entity);
+		}
+
+		return ($entity && $column) ? $entity->$column : $entity;
+	}
+	
+	/**
+	* @return ZfUser
+	*/
+	public static function get_by_username($username, $column=null) {
+		$entity = CacheManager::get(self::_generate_cache_key_get_by_username($username));
+
+		if(!$entity) {
+			$entity = parent::get_by_username($username);
 			if($entity) self::_cache_save($entity);
 		}
 
@@ -71,7 +92,7 @@ class ZfPermissionsCache extends ZfPermissionsDatabase
 						
 	/**
 	*
-	* @return ZfPermissions[]
+	* @return ZfUser[]
 	*
 	*/
 	public static function list_all($conditions=null, $order=null, $limit=null)
@@ -98,7 +119,7 @@ class ZfPermissionsCache extends ZfPermissionsDatabase
 	
 	
 
-	public static function saveEntity(ZfPermissions $entity) {
+	public static function saveEntity(ZfUser $entity) {
 		parent::saveEntity($entity);
 		self::_cache_delete($entity);
 		self::_cache_save($entity);
@@ -106,11 +127,20 @@ class ZfPermissionsCache extends ZfPermissionsDatabase
 	}
 	
 	
-	public static function delete_by_id_permission($id_permission) {
+	public static function delete_by_id_user($id_user) {
 
 		$conditions = array();
-		$conditions['id_permission'] = $id_permission;
-		return ZfPermissions::delete_rows($conditions);
+		$conditions['id_user'] = $id_user;
+		return ZfUser::delete_rows($conditions);
+
+	}
+	
+	
+	public static function delete_by_username($username) {
+
+		$conditions = array();
+		$conditions['username'] = $username;
+		return ZfUser::delete_rows($conditions);
 
 	}
 	

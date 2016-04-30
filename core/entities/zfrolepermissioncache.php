@@ -1,21 +1,16 @@
 <?php
 
-class ZfUsersCache extends ZfUsersDatabase
+class ZfRolePermissionCache extends ZfRolePermissionDatabase
 {
 
 	/* ZPHP Generated Code ------------------------------------------ */
 
 
-	private static $_CACHE_MANAGER_KEY_GET_PREFIX = "cache_zfusersentity_get_by_";
+	private static $_CACHE_MANAGER_KEY_GET_PREFIX = "cache_zfrolepermissionentity_get_by_";
 
-	private static function _generate_cache_key_get_by_id_user($id_user) {
+	private static function _generate_cache_key_get_by_id_role_id_permission($id_role, $id_permission) {
 		$values = func_get_args();
-		return self::$_CACHE_MANAGER_KEY_GET_PREFIX.'id_user_'.implode('_', $values);
-	}
-
-	private static function _generate_cache_key_get_by_username($username) {
-		$values = func_get_args();
-		return self::$_CACHE_MANAGER_KEY_GET_PREFIX.'username_'.implode('_', $values);
+		return self::$_CACHE_MANAGER_KEY_GET_PREFIX.'id_role_id_permission_'.implode('_', $values);
 	}
 
 	private static function _generate_cache_key_list_all() {
@@ -24,8 +19,7 @@ class ZfUsersCache extends ZfUsersDatabase
 	
 	private static function _cache_save($entity) {
 		if($entity) {
-			CacheManager::save(self::_generate_cache_key_get_by_id_user($entity->get_id_user()), $entity);
-			CacheManager::save(self::_generate_cache_key_get_by_username($entity->get_username()), $entity);
+			CacheManager::save(self::_generate_cache_key_get_by_id_role_id_permission($entity->get_id_role(), $entity->get_id_permission()), $entity);
 		}
 
 		if(isset(self::$_CACHE_SAVE_ENTITY_CALLBACKS))
@@ -39,8 +33,7 @@ class ZfUsersCache extends ZfUsersDatabase
 
 	private static function _cache_delete($entity) {
 		if($entity) {
-			CacheManager::delete(self::_generate_cache_key_get_by_id_user($entity->get_id_user()));
-			CacheManager::delete(self::_generate_cache_key_get_by_username($entity->get_username()));
+			CacheManager::delete(self::_generate_cache_key_get_by_id_role_id_permission($entity->get_id_role(), $entity->get_id_permission()));
 		}
 
 		if(isset(self::$_CACHE_DELETE_ENTITY_CALLBACKS))
@@ -61,27 +54,13 @@ class ZfUsersCache extends ZfUsersDatabase
 	
 		
 	/**
-	* @return ZfUsers
+	* @return ZfRolePermission
 	*/
-	public static function get_by_id_user($id_user, $column=null) {
-		$entity = CacheManager::get(self::_generate_cache_key_get_by_id_user($id_user));
+	public static function get_by_id_role_id_permission($id_role, $id_permission, $column=null) {
+		$entity = CacheManager::get(self::_generate_cache_key_get_by_id_role_id_permission($id_role, $id_permission));
 
 		if(!$entity) {
-			$entity = parent::get_by_id_user($id_user);
-			if($entity) self::_cache_save($entity);
-		}
-
-		return ($entity && $column) ? $entity->$column : $entity;
-	}
-	
-	/**
-	* @return ZfUsers
-	*/
-	public static function get_by_username($username, $column=null) {
-		$entity = CacheManager::get(self::_generate_cache_key_get_by_username($username));
-
-		if(!$entity) {
-			$entity = parent::get_by_username($username);
+			$entity = parent::get_by_id_role_id_permission($id_role, $id_permission);
 			if($entity) self::_cache_save($entity);
 		}
 
@@ -92,7 +71,7 @@ class ZfUsersCache extends ZfUsersDatabase
 						
 	/**
 	*
-	* @return ZfUsers[]
+	* @return ZfRolePermission[]
 	*
 	*/
 	public static function list_all($conditions=null, $order=null, $limit=null)
@@ -119,7 +98,7 @@ class ZfUsersCache extends ZfUsersDatabase
 	
 	
 
-	public static function saveEntity(ZfUsers $entity) {
+	public static function saveEntity(ZfRolePermission $entity) {
 		parent::saveEntity($entity);
 		self::_cache_delete($entity);
 		self::_cache_save($entity);
@@ -127,20 +106,30 @@ class ZfUsersCache extends ZfUsersDatabase
 	}
 	
 	
-	public static function delete_by_id_user($id_user) {
+	public static function delete_by_id_role_id_permission($id_role, $id_permission) {
 
 		$conditions = array();
-		$conditions['id_user'] = $id_user;
-		return ZfUsers::delete_rows($conditions);
+		$conditions['id_role'] = $id_role;
+		$conditions['id_permission'] = $id_permission;
+		return ZfRolePermission::delete_rows($conditions);
 
 	}
 	
 	
-	public static function delete_by_username($username) {
+	public static function delete_by_id_role($id_role) {
 
 		$conditions = array();
-		$conditions['username'] = $username;
-		return ZfUsers::delete_rows($conditions);
+		$conditions['id_role'] = $id_role;
+		return ZfRolePermission::delete_rows($conditions);
+
+	}
+	
+	
+	public static function delete_by_id_permission($id_permission) {
+
+		$conditions = array();
+		$conditions['id_permission'] = $id_permission;
+		return ZfRolePermission::delete_rows($conditions);
 
 	}
 	

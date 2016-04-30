@@ -1,32 +1,28 @@
 <?php
 
-class ZfUsersDatabase extends DBEntity
+class ZfPermissionDatabase extends DBEntity
 {
 
 	/* ZPHP Generated Code ------------------------------------------ */
 
-	const ENTITY_TABLE = '`zf_users`';
+	const ENTITY_TABLE = '`zf_permission`';
 
 	protected static $_table_sql = self::ENTITY_TABLE;
 
 	protected static $_entity_fields = array(
-		'id_user',
-		'username',
-		'password',
-		'date_added',
-		'last_login',
-		'is_active',
+		'id_permission',
+		'name',
 	);
 
 	protected static $_primary_keys = array(
-		'id_user',
+		'id_permission',
 	);
 
 	//-----------------------------------------------------------------------
 
 	
 	/**
-	* @return ZfUsers[]
+	* @return ZfPermission[]
 	*/	
 	protected static function _entity_collection_from_array($array_rows) {
 
@@ -39,13 +35,13 @@ class ZfUsersDatabase extends DBEntity
 	}
 
 	/**
-	* @return ZfUsers
+	* @return ZfPermission
 	*/
 	protected static function _entity_from_array($array) {
 
 		if($array && is_array($array))
 		{
-			$entity = new ZfUsers();
+			$entity = new ZfPermission();
 			$entity->__fromDatabase = true;
 			$entity->update_fields($array);
 			$entity->__fromDatabase = false;
@@ -61,25 +57,16 @@ class ZfUsersDatabase extends DBEntity
 
 	
 	/**
-	* @return ZfUsers
+	* @return ZfPermission
 	*/
-	public static function get_by_id_user($id_user, $column=null) {
+	public static function get_by_id_permission($id_permission, $column=null) {
 
-		return ZfUsers::get_row(array('id_user' => $id_user), $column);
+		return ZfPermission::get_row(array('id_permission' => $id_permission), $column);
 
 	}
 	
 	/**
-	* @return ZfUsers
-	*/
-	public static function get_by_username($username, $column=null) {
-
-		return ZfUsers::get_row(array('username' => $username), $column);
-
-	}
-	
-	/**
-	* @return ZfUsers
+	* @return ZfPermission
 	*/
 	public static function get_row($conditions, $column=null) {
 
@@ -104,7 +91,7 @@ class ZfUsersDatabase extends DBEntity
 
 	
 	/**
-	* @return ZfUsers[]
+	* @return ZfPermission[]
 	*/	
 	public static function list_all($conditions=null, $order=null, $limit=null) {
 
@@ -146,38 +133,24 @@ class ZfUsersDatabase extends DBEntity
 	}
 	
 	/**
-	* @return ZfUsers
+	* @return ZfPermission
 	*/
-	public static function saveEntity(ZfUsers $entity) {
+	public static function saveEntity(ZfPermission $entity) {
 
 		$entity_row = $entity->to_array(false);
 
 		$primary_keys_values = array();
-		$primary_keys_values['id_user'] = $entity_row['id_user'];
+		$primary_keys_values['id_permission'] = $entity_row['id_permission'];
 
 		if(DBConnection::get_default_connection()->select_value('SELECT COUNT(*) FROM '.self::ENTITY_TABLE.' '.SQLHelper::prepare_conditions($primary_keys_values, true)) == 1) {
 
-			DBConnection::get_default_connection()->query_update('zf_users', $entity_row, $primary_keys_values);
+			DBConnection::get_default_connection()->query_update('zf_permission', $entity_row, $primary_keys_values);
 
 		} else {
 
-			DBConnection::get_default_connection()->query_insert('zf_users', $entity_row, true);
-			$primary_keys_values['id_user'] = DBConnection::get_default_connection()->get_insert_id();
-			$entity->id_user = $primary_keys_values['id_user'];
+			DBConnection::get_default_connection()->query_insert('zf_permission', $entity_row, true);
 
 			$newEntity = self::_entity_from_array(DBConnection::get_default_connection()->select_row('SELECT * FROM '.self::ENTITY_TABLE.' '.SQLHelper::prepare_conditions($primary_keys_values, true)));
-
-			if(is_null($entity->get_date_added())) {
-
-				$entity->set_date_added($newEntity->get_date_added());
-
-			}
-
-			if(is_null($entity->get_is_active())) {
-
-				$entity->set_is_active($newEntity->get_is_active());
-
-			}
 		}  
 
 	}
@@ -186,7 +159,7 @@ class ZfUsersDatabase extends DBEntity
 	{
 		if($method == 'save')
 		{
-			call_user_func_array(array('ZfUsers', 'saveEntity'), $args);
+			call_user_func_array(array('ZfPermission', 'saveEntity'), $args);
 		}
 		else
 		{
@@ -197,24 +170,15 @@ class ZfUsersDatabase extends DBEntity
 
 	public static function update_rows($values, $conditions=null) {
 
-		return DBConnection::get_default_connection()->query_update("zf_users", $values, $conditions);
+		return DBConnection::get_default_connection()->query_update("zf_permission", $values, $conditions);
 	}
 	
 	
-	public static function delete_by_id_user($id_user) {
+	public static function delete_by_id_permission($id_permission) {
 
 		$conditions = array();
-		$conditions['id_user'] = $id_user;
-		return ZfUsers::delete_rows($conditions);
-
-	}
-	
-	
-	public static function delete_by_username($username) {
-
-		$conditions = array();
-		$conditions['username'] = $username;
-		return ZfUsers::delete_rows($conditions);
+		$conditions['id_permission'] = $id_permission;
+		return ZfPermission::delete_rows($conditions);
 
 	}
 	
@@ -231,12 +195,8 @@ class ZfUsersDatabase extends DBEntity
 	//-----------------------------------------------------------------------
 
 
-	protected $_id_user;
-	protected $_username;
-	protected $_password;
-	protected $_date_added;
-	protected $_last_login;
-	protected $_is_active;
+	protected $_id_permission;
+	protected $_name;
 
 
 	public function __construct($data = null) {
@@ -253,7 +213,7 @@ class ZfUsersDatabase extends DBEntity
 
 				$args = func_get_args();
 				$conditions = array_combine(self::$_primary_keys, $args);
-				$entity = ZfUsers::get_row($conditions);
+				$entity = ZfPermission::get_row($conditions);
 				$this->update_fields($entity);
 
 			}
@@ -279,7 +239,7 @@ class ZfUsersDatabase extends DBEntity
 	{
 		if($method == 'save')
 		{
-			ZfUsers::saveEntity($this);
+			ZfPermission::saveEntity($this);
 		}
 		else
 		{
@@ -291,92 +251,30 @@ class ZfUsersDatabase extends DBEntity
 
 
 
-	public function get_id_user() {
-		return $this->_id_user;
+	public function get_id_permission() {
+		return $this->_id_permission;
 	}
 
 
 	/**
-	* @return ZfUsers
+	* @return ZfPermission
 	*/
-	public function set_id_user($value) {
-		$this->_id_user = $value;
+	public function set_id_permission($value) {
+		$this->_id_permission = $value;
 		return $this;
 	}
 
 
-	public function get_username() {
-		return $this->_username;
+	public function get_name() {
+		return $this->_name;
 	}
 
 
 	/**
-	* @return ZfUsers
+	* @return ZfPermission
 	*/
-	public function set_username($value) {
-		$this->_username = $value;
-		return $this;
-	}
-
-
-	public function get_password() {
-		return $this->_password;
-	}
-
-
-	/**
-	* @return ZfUsers
-	*/
-	public function set_password($value) {
-		$this->_password = $value;
-		return $this;
-	}
-
-
-	/**
-	* @return Date
-	*/
-	public function get_date_added() {
-		return $this->_date_added;
-	}
-
-
-	/**
-	* @return ZfUsers
-	*/
-	public function set_date_added($value) {
-		$this->_date_added = is_null($value) ? null : Date::parse($value);
-		return $this;
-	}
-
-
-	/**
-	* @return Date
-	*/
-	public function get_last_login() {
-		return $this->_last_login;
-	}
-
-
-	/**
-	* @return ZfUsers
-	*/
-	public function set_last_login($value) {
-		$this->_last_login = is_null($value) ? null : Date::parse($value);
-		return $this;
-	}
-
-
-	public function get_is_active() {
-		return $this->_is_active;
-	}
-
-
-	/**
-	* @return ZfUsers
-	*/
-	public function set_is_active($value) {
-		$this->_is_active = $value;
+	public function set_name($value) {
+		$this->_name = $value;
 		return $this;
 	}
 
@@ -395,7 +293,7 @@ class ZfUsersDatabase extends DBEntity
 				$conditions[$key] = $this->$key;
 			}
 
-			return ZfUsers::delete_rows($conditions);
+			return ZfPermission::delete_rows($conditions);
 		}
 		else
 		{
