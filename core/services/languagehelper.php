@@ -523,7 +523,7 @@ class LanguageHelper  {
 	public static function set_text($language, $key, $text, $javascript=false) {
 		
 		$language = self::parse_language_code($language);
-		$language = ZfLanguage::get_row(array('id_language_code' => $language))->get_id_language();
+		$language = ZfLanguage::get_by_id_language_code($language)->get_id_language();
 
 		list($section, $key) = self::_parse_section_text_key($key, $language);
 		
@@ -556,6 +556,13 @@ class LanguageHelper  {
 		$language = self::parse_language_code($language);
 
 		list($section, $key) = self::_parse_section_text_key($key, $language);
+
+		$text = self::_get_default_text($language, $key, $default);
+
+		if($text)
+		{
+			return $text;
+		}
 		
 		$entity = self::_get_language_text_entity();
 			
@@ -570,7 +577,7 @@ class LanguageHelper  {
 		if($language_text) {
 			return $language_text->get_text();
 		} else {
-			return self::_get_default_text($language, $key, $default);
+			return '';
 		}
 	}
 
@@ -799,7 +806,7 @@ class LanguageHelper  {
 
 			foreach($languages as $id_language) {
 
-				$languages_ids = ZfLanguage::list_all(array('id_language_code' => $id_language));
+				$languages_ids = ZfLanguage::get_by_id_language_code($id_language);
 
 				foreach($languages_ids as $language) {
 
@@ -831,7 +838,7 @@ class LanguageHelper  {
 
 			foreach($languages as $id_language)
 			{
-				$id_language = ZfLanguage::get_row(array('id_language_code' => $id_language))->get_id_language();
+				$id_language = ZfLanguage::get_by_id_language_code($id_language)->get_id_language();
 				eval($entity_text.'::delete_by_id_language_text_id_language_section_id_language($id_language_text, $id_language_section, $id_language);');
 			}
 

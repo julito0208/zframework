@@ -409,23 +409,29 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 				}
 
 
-//				if($this->_generate_data['overwrite'] || !file_exists($path)) {
-				if(!file_exists($path)) {
+				if($this->_generate_data['overwrite'] || !file_exists($path)) {
+//				if(!file_exists($path)) {
 
 					$code = "\n";
 
-					$code.= "\tprotected static \$_CACHE_MANAGER_KEY_GET_PREFIX = \"cache_".strtolower($classname).'entity_get_by_";';
+					$code.= "\tprivate static \$_CACHE_MANAGER_KEY_GET_PREFIX = \"cache_".strtolower($classname).'entity_get_by_";';
 					$code.= "\n\n";
 
 					foreach($get_fields_array as $get_field_array) {
-						$code.="\tprotected static function _generate_cache_key_get_by_".implode('_', $get_field_array)."(\$".  implode(', $', $get_field_array).") {\n";
+						$code.="\tprivate static function _generate_cache_key_get_by_".implode('_', $get_field_array)."(\$".  implode(', $', $get_field_array).") {\n";
 						$code.="\t\t\$values = func_get_args();\n";
 						$code.= "\t\treturn self::\$_CACHE_MANAGER_KEY_GET_PREFIX.'".implode('_', $get_field_array)."_'.implode('_', \$values);";
 						$code.= "\n\t}\n\n";
 					}
 
+					$code.= "	private static function _generate_cache_key_list_all() {
+		return self::\$_CACHE_MANAGER_KEY_GET_PREFIX.'_list_all';
+	}
+	
+";
 
-					$code.="\tprotected static function _cache_save(\$entity) {\n";
+
+					$code.="\tprivate static function _cache_save(\$entity) {\n";
 					$code.= "\t\tif(\$entity) {\n";
 
 					foreach($get_fields_array as $get_field_array) {
@@ -440,9 +446,20 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 					}
 
 					$code.= "\t\t}\n";
+
+					$code.= "
+		if(isset(self::\$_CACHE_SAVE_ENTITY_CALLBACKS))
+		{
+			foreach((array) self::\$_CACHE_SAVE_ENTITY_CALLBACKS as \$save_callback)
+			{
+				call_user_func(array(self, \$save_callback), \$entity);
+			}
+		}
+";
+
 					$code.= "\t}\n\n";
 
-					$code.="\tprotected static function _cache_delete(\$entity) {\n";
+					$code.="\tprivate static function _cache_delete(\$entity) {\n";
 					$code.= "\t\tif(\$entity) {\n";
 
 					foreach($get_fields_array as $get_field_array) {
@@ -457,8 +474,29 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 
 					}
 
+
 					$code.= "\t\t}\n";
+
+					$code.= "
+		if(isset(self::\$_CACHE_DELETE_ENTITY_CALLBACKS))
+		{
+			foreach((array) self::\$_CACHE_DELETE_ENTITY_CALLBACKS as \$delete_callback)
+			{
+				call_user_func(array(self, \$delete_callback), \$entity);
+			}
+		}
+";
+
 					$code.= "\t}\n\n";
+
+					$code.= "	private static function _cache_delete_list_all()
+	{
+		CacheManager::delete(self::_generate_cache_key_list_all());
+	}
+	
+	/*------------------------------------------------------------------------*/ 
+	
+	";
 
 					if($this->_generate_data['generate_services_get']) {
 
@@ -481,6 +519,38 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 							$code .= "\n\t}\n";
 
 						}
+						
+						$code.= "
+						
+						
+	/**
+	*
+	* @return {$classname}[]
+	*
+	*/
+	public static function list_all(\$conditions=null, \$order=null, \$limit=null)
+	{
+		if(is_null(\$conditions) && is_null(\$order) && is_null(\$limit))
+		{
+			\$cache_key = self::_generate_cache_key_list_all();
+
+			\$rows = CacheManager::get(\$cache_key);
+
+			if(is_null(\$rows))
+			{
+				\$rows = parent::list_all(\$conditions, \$order, \$limit);
+				CacheManager::save(\$cache_key, \$rows);
+			}
+
+			return \$rows;
+		}
+		else
+		{
+			return parent::list_all(\$conditions, \$order, \$limit);
+		}
+	}
+	
+	";
 					}
 
 
@@ -488,14 +558,16 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 
 						$code .= "\n\n\tpublic static function saveEntity({$entity_classname} \$entity) {\n";
 						$code .= "\t\tparent::saveEntity(\$entity);";
+						$code .= "\n\t\tself::_cache_delete(\$entity);";
 						$code .= "\n\t\tself::_cache_save(\$entity);";
+						$code .= "\n\t\tself::_cache_delete_list_all();";
 						$code .= "\n\t}\n";
 
 					}
 
 
 					if($this->_generate_data['generate_services_delete']) {
-						
+
 						$delete_fields_array = array();
 						$processed_fields = array();
 
@@ -538,8 +610,29 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 						$code .= "\t\tforeach(\$rows as \$row){\n";
 						$code .= "\t\t\tself::_cache_delete(\$row);";
 						$code .= "\n\t\t}";
+						$code .= "\n\t\tself::_cache_delete_list_all();";
 						$code .= "\n\t\tparent::delete_rows(\$conditions);";
 						$code .= "\n\t}\n";
+
+
+						$code .= "\t\n\t\n\tpublic static function update_rows(\$values, \$conditions=array()) {
+	
+		\$return = parent::update_rows(\$values, \$conditions);
+
+		\$rows = parent::list_all(\$conditions);
+
+		foreach(\$rows as \$row)
+		{
+			self::_cache_save(\$row);
+		}
+
+		self::_cache_delete_list_all();
+
+		return \$return; 
+		
+	}
+	
+	";
 
 					}
 					$this->save_service_file($path, $classname.'Cache', $classname.'Database', $code);

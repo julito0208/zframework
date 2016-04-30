@@ -1,16 +1,16 @@
 <?php
 
-class ZfImageThumbTypeCache extends ZfImageThumbTypeDatabase
+class ZfRolesCache extends ZfRolesDatabase
 {
 
 	/* ZPHP Generated Code ------------------------------------------ */
 
 
-	private static $_CACHE_MANAGER_KEY_GET_PREFIX = "cache_zfimagethumbtypeentity_get_by_";
+	private static $_CACHE_MANAGER_KEY_GET_PREFIX = "cache_zfrolesentity_get_by_";
 
-	private static function _generate_cache_key_get_by_id_image_thumb_type($id_image_thumb_type) {
+	private static function _generate_cache_key_get_by_id_role($id_role) {
 		$values = func_get_args();
-		return self::$_CACHE_MANAGER_KEY_GET_PREFIX.'id_image_thumb_type_'.implode('_', $values);
+		return self::$_CACHE_MANAGER_KEY_GET_PREFIX.'id_role_'.implode('_', $values);
 	}
 
 	private static function _generate_cache_key_list_all() {
@@ -19,7 +19,7 @@ class ZfImageThumbTypeCache extends ZfImageThumbTypeDatabase
 	
 	private static function _cache_save($entity) {
 		if($entity) {
-			CacheManager::save(self::_generate_cache_key_get_by_id_image_thumb_type($entity->get_id_image_thumb_type()), $entity);
+			CacheManager::save(self::_generate_cache_key_get_by_id_role($entity->get_id_role()), $entity);
 		}
 
 		if(isset(self::$_CACHE_SAVE_ENTITY_CALLBACKS))
@@ -33,7 +33,7 @@ class ZfImageThumbTypeCache extends ZfImageThumbTypeDatabase
 
 	private static function _cache_delete($entity) {
 		if($entity) {
-			CacheManager::delete(self::_generate_cache_key_get_by_id_image_thumb_type($entity->get_id_image_thumb_type()));
+			CacheManager::delete(self::_generate_cache_key_get_by_id_role($entity->get_id_role()));
 		}
 
 		if(isset(self::$_CACHE_DELETE_ENTITY_CALLBACKS))
@@ -54,13 +54,13 @@ class ZfImageThumbTypeCache extends ZfImageThumbTypeDatabase
 	
 		
 	/**
-	* @return ZfImageThumbType
+	* @return ZfRoles
 	*/
-	public static function get_by_id_image_thumb_type($id_image_thumb_type, $column=null) {
-		$entity = CacheManager::get(self::_generate_cache_key_get_by_id_image_thumb_type($id_image_thumb_type));
+	public static function get_by_id_role($id_role, $column=null) {
+		$entity = CacheManager::get(self::_generate_cache_key_get_by_id_role($id_role));
 
 		if(!$entity) {
-			$entity = parent::get_by_id_image_thumb_type($id_image_thumb_type);
+			$entity = parent::get_by_id_role($id_role);
 			if($entity) self::_cache_save($entity);
 		}
 
@@ -71,7 +71,7 @@ class ZfImageThumbTypeCache extends ZfImageThumbTypeDatabase
 						
 	/**
 	*
-	* @return ZfImageThumbType[]
+	* @return ZfRoles[]
 	*
 	*/
 	public static function list_all($conditions=null, $order=null, $limit=null)
@@ -98,7 +98,7 @@ class ZfImageThumbTypeCache extends ZfImageThumbTypeDatabase
 	
 	
 
-	public static function saveEntity(ZfImageThumbType $entity) {
+	public static function saveEntity(ZfRoles $entity) {
 		parent::saveEntity($entity);
 		self::_cache_delete($entity);
 		self::_cache_save($entity);
@@ -106,11 +106,11 @@ class ZfImageThumbTypeCache extends ZfImageThumbTypeDatabase
 	}
 	
 	
-	public static function delete_by_id_image_thumb_type($id_image_thumb_type) {
+	public static function delete_by_id_role($id_role) {
 
 		$conditions = array();
-		$conditions['id_image_thumb_type'] = $id_image_thumb_type;
-		return ZfImageThumbType::delete_rows($conditions);
+		$conditions['id_role'] = $id_role;
+		return ZfRoles::delete_rows($conditions);
 
 	}
 	

@@ -10,7 +10,14 @@ class CacheSystemFile implements CacheSystem {
 
 	private static function _variable_load_from_file($filename) {
 		$contents = @ file_get_contents($filename);
-		return unserialize($contents);
+		if($contents)
+		{
+			return unserialize($contents);
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 	//-------------------------------------------------------------------------------

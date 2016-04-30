@@ -257,7 +257,7 @@ span.radio label:hover
 		
 		<?php if($generate_data['generate_services'] || $generate_data['generate_services_cache'] || $generate_data['generate_services_database'] || $generate_data['generate_services_get'] || $generate_data['generate_services_list'] || $generate_data['generate_services_save'] || $generate_data['generate_services_delete']) { ?>
 
-			<div class="box">
+			<div class="box" style="">
 
 				<h4 class="box-title">Services</h4>
 
@@ -450,7 +450,7 @@ span.radio label:hover
 
 		<div id="generate-container" <?php if($method == HTMLPageDevelopToolEntityGenerator::METHOD_DELETE) echo " style='display: none'"; ?>>
 
-			<div class="box">
+			<div class="box" style="display: none">
 
 				<h4 class="box-title">Services</h4>
 
@@ -542,8 +542,6 @@ span.radio label:hover
 
 
 				</div>	
-
-
 
 			</div>
 

@@ -68,7 +68,8 @@ class CacheSystemMemcached implements CacheSystem {
 		if($this->_connected) {
 			
 			$key = self::_parse_key($key);
-			return $this->_memcached->get($key);
+			$value = $this->_memcached->get($key);
+			return (!is_null($value) && $value !== false) ? $value : null;
 			
 		} else {
 			
@@ -83,7 +84,8 @@ class CacheSystemMemcached implements CacheSystem {
 		if($this->_connected) {
 			
 			$key = self::_parse_key($key);
-			return !is_null($this->_memcached->get($key));
+			$value = $this->_memcached->get($key);
+			return !is_null($value) && $value !== false;
 			
 		} else {
 			
