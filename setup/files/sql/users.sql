@@ -56,6 +56,7 @@ CREATE TABLE `zf_user` (
   `is_active` tinyint(1) unsigned DEFAULT '1',
   `token_restore_pass` varchar(500) NULL,
   `token_activation` varchar(500) NULL,
+  `token_cookie` varchar(500) NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;

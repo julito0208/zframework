@@ -18,6 +18,7 @@ class ZfUserDatabase extends DBEntity
 		'is_active',
 		'token_restore_pass',
 		'token_activation',
+		'token_cookie',
 	);
 
 	protected static $_primary_keys = array(
@@ -241,6 +242,7 @@ class ZfUserDatabase extends DBEntity
 	protected $_is_active;
 	protected $_token_restore_pass;
 	protected $_token_activation;
+	protected $_token_cookie;
 
 
 	public function __construct($data = null) {
@@ -409,6 +411,20 @@ class ZfUserDatabase extends DBEntity
 	*/
 	public function set_token_activation($value) {
 		$this->_token_activation = $value;
+		return $this;
+	}
+
+
+	public function get_token_cookie() {
+		return $this->_token_cookie;
+	}
+
+
+	/**
+	* @return ZfUser
+	*/
+	public function set_token_cookie($value) {
+		$this->_token_cookie = $value;
 		return $this;
 	}
 
