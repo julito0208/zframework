@@ -64,6 +64,13 @@ abstract class Cron {
 		}
 
 	}
+
+	public static function get_args($offset=0, $length=null)
+	{
+		$args = CLIHelper::get_args(3);
+		return array_slice($args, $offset, $length);
+
+	}
 	
 	/*------------------------------------------------------------------------------*/
 	

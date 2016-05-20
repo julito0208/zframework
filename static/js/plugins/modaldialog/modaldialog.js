@@ -1921,7 +1921,7 @@
 
             var index = selectedIndex - 1;
 
-            if(index < 0) return;
+            // if(index < 0) return;
             if(index < 0) index = jQuery.modalDialog.imagesList.dataList.length - 1;
 
             setPosition(index);
@@ -1932,7 +1932,7 @@
 
             var index = selectedIndex + 1;
 
-            if(index >= jQuery.modalDialog.imagesList.dataList.length) index = jQuery.modalDialog.imagesList.dataList.length-1;
+            // if(index >= jQuery.modalDialog.imagesList.dataList.length) index = jQuery.modalDialog.imagesList.dataList.length-1;
             if(index >= jQuery.modalDialog.imagesList.dataList.length) index = 0;
 
             setPosition(index);
