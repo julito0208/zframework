@@ -615,5 +615,13 @@
         <sitekey>sitekey</sitekey>
         <privatekey>privatekey</privatekey>
     </recaptcha>
+
+    <mercadopago>
+        <clientid></clientid>
+        <clientsecret></clientsecret>
+        <currency_id>ARS</currency_id>
+        <callback_status_varname>mstatus</callback_status_varname>
+        <ipn_url>/mercadopago/ipn</ipn_url>
+    </mercadopago>
 		
 </zphp_config>
