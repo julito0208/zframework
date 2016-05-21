@@ -7,7 +7,8 @@ class ZfLocationCityDatabase extends DBEntity
 
 	const ENTITY_TABLE = '`zf_location_city`';
 
-	protected static $_table_sql = self::ENTITY_TABLE;
+//	protected static $_table_sql = self::ENTITY_TABLE;
+	protected static $_table_sql = "(SELECT zf_location_city.*, zf_location_state.name AS 'state_name' FROM zf_location_city LEFT JOIN zf_location_state ON zf_location_state.id_state = zf_location_city.id_state) rows";
 
 	protected static $_entity_fields = array(
 		'id_city',

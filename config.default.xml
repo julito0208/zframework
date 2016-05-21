@@ -499,7 +499,7 @@
 		<default_background>white</default_background>
 		<default_width>640</default_width>
 		<default_height>480</default_height>
-		<default_quality>90</default_quality>
+		<default_quality>100</default_quality>
 		<url_format>images/%s.%s</url_format>
 		<path_format>images/%s.%s</path_format>
 		<save_thumb>0</save_thumb>
