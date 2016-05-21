@@ -2125,6 +2125,55 @@
 
     };
 
+    jQuery.modalDialog.promptNumber = function(label, value, callback, title, dialogOptions, textStyle, textClass, errorStr) {
+
+        dialogOptions = $.extend({}, dialogOptions);
+
+        var textInput = $("<input type='number' />").val(value ? value : '').addClass('focus prompt-text dialog-prompt-text').css({'width': '270px'}).addClass(textClass).prop({'name': 'value'});
+
+        if(dialogOptions['min'])
+        {
+            textInput.attr('min', dialogOptions['min']);
+        }
+
+        if(dialogOptions['max'])
+        {
+            textInput.attr('max', dialogOptions['max']);
+        }
+
+
+        if(textStyle != null && (typeof textStyle == 'string' || $.isPlainObject(textStyle))) {
+            textInput.css(textStyle);
+        }
+
+        if(!title) title = label;
+
+        var errorRow = null;
+
+        if(errorStr != null) {
+
+            errorRow = $('<tr />').append($('<td />').attr({'colspan': '2'}).html(errorStr).addClass('error bold').css({'padding': '0 0 15px 0', 'font-size': '10pt'}));
+        }
+
+        $('<form />').append($('<table />').css({'margin': '10px 20px 0', 'text-align': 'left'}).
+            append(errorRow).
+            append($('<tr />').
+            append($('<th />').css({'padding-right': '30px'}).append($('<label />').addClass('area-color').css({'font-size': '10pt'}).html(String(label)).bind('click', function() { textInput.focus(); }))).
+            append($('<td />').append(textInput)))
+
+        ).append($.modalDialog.buttonsBlock('submit', 'cancel')).bind('submit', function() {
+
+            var value = String(textInput.val()).trim();
+
+            if(callback) {
+                callback.call(this, value)
+            }
+
+            return false;
+
+        }).modalDialog($.extend({}, {animation: 10, title: title, closeButton: true}, dialogOptions)).bind('load', function() { textInput.focus().select();  }).open();
+
+    };
 
     jQuery.modalDialog.promptTextarea = function(label, value, callback, title, dialogOptions, textStyle, textClass, errorStr) {
 
