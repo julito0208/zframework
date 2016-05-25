@@ -209,7 +209,12 @@ class ClassHelper {
 			$path = self::get_class_path($classname);
 
 		}
-		eval("\$inst = new {$classname}({$args_str});");
+
+		if($classname)
+		{
+			eval("\$inst = new {$classname}({$args_str});");
+		}
+
 		
 		return $inst;
 
