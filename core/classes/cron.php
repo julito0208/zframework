@@ -71,14 +71,39 @@ abstract class Cron {
 		return array_slice($args, $offset, $length);
 
 	}
-	
+
+	public static function running_crons($class=null)
+	{
+		$files = FilesHelper::dir_list(ZPHP::get_config('crons_dir'));
+		$crons = array();
+
+		foreach($files as $filename)
+		{
+			if(preg_match('#(?i)^(?P<cron>.+?)\.lock\-.+?$#', $filename, $match))
+			{
+				$crons[] = $match['cron'];
+			}
+		}
+
+		if($class)
+		{
+			return in_array($class, $crons);
+		}
+		else
+		{
+			return array_unique($crons);
+		}
+	}
+
 	/*------------------------------------------------------------------------------*/
 	
 	private $_name;
+	private $_lock_file;
 	
 	public function __construct($name=null) {
 		$name = get_class($this);
 		$this->_set_name($name);
+		$this->_lock_file = ZPHP::get_config('crons_dir').'/'.get_class($this).'.lock-'.uniqid();
 	}
 	
 	/*-------------------------------------------*/
@@ -118,14 +143,18 @@ abstract class Cron {
 	}
 	
 	/*-------------------------------------------*/
-	
+
 	public function run_cron() {
-		
+
+		touch($this->_lock_file);
+
+		var_export(self::running_crons());
 		NavigationHelper::header_content_text_plain('UTF-8');
 		
 		$this->_start_cron();
 		$this->_run_cron();
 		$this->_end_cron();
-		
+
+		@ unlink($this->_lock_file);
 	}
 }
