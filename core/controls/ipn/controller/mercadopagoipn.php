@@ -10,10 +10,23 @@ class MercadoPagoIPN extends HTMLPageBlank
 	/*-------------------------------------------------------------*/
 
 	protected static $_callbacks = array();
+	protected static $_category_callbacks = array();
 
-	public static function add_callback($function)
+	public static function add_callback($function, $category_id=null)
 	{
-		self::$_callbacks[] = $function;
+		if(!$category_id)
+		{
+			self::$_callbacks[] = $function;
+		}
+		else
+		{
+			if(!isset(self::$_category_callbacks[$category_id]))
+			{
+				self::$_category_callbacks[$category_id] = array();
+			}
+
+			self::$_category_callbacks[$category_id][] = $function;
+		}
 	}
 
 	/*-------------------------------------------------------------*/
@@ -75,7 +88,15 @@ class MercadoPagoIPN extends HTMLPageBlank
 
 		foreach(self::$_callbacks as $callback)
 		{
-			@ call_user_func($callback, $id, $payment_id);
+			@ call_user_func($callback, $id, $payment_id, $category_id);
+		}
+
+		if($category_id && isset(self::$_category_callbacks[$category_id]))
+		{
+			foreach(self::$_category_callbacks[$category_id] as $callback)
+			{
+				@ call_user_func($callback, $id, $payment_id, $category_id);
+			}
 		}
 	}
 
