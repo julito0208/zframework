@@ -154,7 +154,6 @@ abstract class Cron {
 
 		touch($this->_lock_file);
 
-		var_export(self::running_crons());
 		NavigationHelper::header_content_text_plain('UTF-8');
 		
 		$this->_start_cron();
