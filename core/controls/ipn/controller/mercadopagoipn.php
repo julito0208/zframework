@@ -22,7 +22,9 @@ class MercadoPagoIPN extends HTMLPageBlank
 	{
 		parent::__construct();
 
-		$ids = array();
+		$id = null;
+		$payment_id = null;
+
 		$mp = MercadoPagoHelper::create_instance();
 
 		// Get the payment and the corresponding merchant_order reported by the IPN.
@@ -34,9 +36,6 @@ class MercadoPagoIPN extends HTMLPageBlank
 			$merchant_order_info = $mp->get("/merchant_orders/" . $_GET["id"]);
 		}
 
-		file_put_contents(ZPHP::get_www_dir().'/test', var_export($payment_info, true), FILE_APPEND);
-		file_put_contents(ZPHP::get_www_dir().'/test', var_export($merchant_order_info, true), FILE_APPEND);
-
 		$vars = compact('payment_info', 'merchant_order_info');
 
 		if ($merchant_order_info["status"] == 200) {
@@ -46,6 +45,7 @@ class MercadoPagoIPN extends HTMLPageBlank
 			foreach ($merchant_order_info["response"]["payments"] as  $payment) {
 				if ($payment['status'] == 'approved'){
 					$paid_amount += $payment['transaction_amount'];
+					$payment_id = $payment['id'];
 				}
 			}
 
@@ -59,44 +59,19 @@ class MercadoPagoIPN extends HTMLPageBlank
 
 					foreach($merchant_order_info["response"]['items'] as $item)
 					{
-//						$quantity = $item['quantity'];
 						$id = $item['id'];
-//						list($id_carrito_pago_token, $id_producto_stock) = explode('-', $id);
-//
-//						$producto_stock = CmsCatalogoProductoStock::get_by_id_producto_stock($id_producto_stock);
-//						$producto_stock->move_stock(-$quantity);
-//						$producto_stock->save();
-						$ids[] = $id;
+//						$ids[] = $id;
 					}
 
-//					if($id_carrito_pago_token)
-//					{
-//						$carrito = CmsCarrito::get_row(['pago_token' => $id_carrito_pago_token]);
-//						$carrito->set_id_estado(CmsCarritoEstado::ESTADO_PAGADO);
-//						$carrito->set_descripcion_pago(json_encode($vars));
-//						$carrito->save();
-//
-//						$email = new AdminCompraEmail($carrito);
-//						$email->send();
-//
-//						$email = new UsuarioCompraEmail($carrito);
-//						$email->send();
-//					}
-//					print_r("Totally paid. Release your item.");
 				}
 			} else {
 				//print_r("Not paid yet. Do not release your item.");
 			}
 		}
 
-		$ids = array_unique($ids);
-
 		foreach(self::$_callbacks as $callback)
 		{
-			foreach($ids as $id)
-			{
-				@ call_user_func($callback, $id);
-			}
+			@ call_user_func($callback, $id, $payment_id);
 		}
 	}
 
