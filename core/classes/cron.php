@@ -78,6 +78,11 @@ abstract class Cron {
 		return CLIHelper::get_arg(self::$_ARGS_OFFSET+$index, $default);
 	}
 
+	public static function get_args_count() {
+		$args = self::get_args();
+		return count($args);
+	}
+
 	public static function running_crons($class=null)
 	{
 		$files = FilesHelper::dir_list(ZPHP::get_config('crons_locks_dir'));
