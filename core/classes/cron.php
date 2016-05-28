@@ -1,7 +1,9 @@
 <?php
 
 abstract class Cron {
-	
+
+	private static $_ARGS_OFFSET = 3;
+
 	/* @return Cron */
 	public static function load_cron($cron_name, $args=array()) {
 
@@ -67,9 +69,13 @@ abstract class Cron {
 
 	public static function get_args($offset=0, $length=null)
 	{
-		$args = CLIHelper::get_args(3);
+		$args = CLIHelper::get_args(self::$_ARGS_OFFSET);
 		return array_slice($args, $offset, $length);
+	}
 
+	public static function get_arg($index=0, $default=null)
+	{
+		return CLIHelper::get_arg(self::$_ARGS_OFFSET+$index, $default);
 	}
 
 	public static function running_crons($class=null)

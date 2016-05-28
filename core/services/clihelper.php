@@ -36,9 +36,9 @@ class CLIHelper {
 		return self::$_COMMAND_LINE_SCRIPT;
 	}
 	
-	public static function get_arg($index=0) {
+	public static function get_arg($index=0, $default=null) {
 		self::_test_argv();
-		return ArrayHelper::get_item(self::$_COMMAND_LINE_ARGV, $index);
+		return ArrayHelper::get_item(self::$_COMMAND_LINE_ARGV, $index, $default);
 	}
 	
 	public static function get_args($offset=0, $length=null) {
