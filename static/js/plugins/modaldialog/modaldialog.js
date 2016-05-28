@@ -1729,7 +1729,7 @@
 
                         if(newHeight > avalHeight )
                         {
-    º                        var newHeight = avalHeight;
+                            var newHeight = avalHeight;
                             var newWidth = imageAspect * newHeight;
                         }
 
