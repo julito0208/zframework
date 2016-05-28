@@ -323,6 +323,14 @@ class SQLHelper {
 
 		uksort($dict, array(self, '_full_text_search_dict_sort'));
 
+		$dict['á'] = 'a';
+		$dict['é'] = 'e';
+		$dict['í'] = 'i';
+		$dict['ó'] = 'o';
+		$dict['ú'] = 'u';
+		$dict['ñ'] = 'n';
+		$dict['ü'] = 'u';
+
 		return $dict;
 		
 	}

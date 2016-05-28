@@ -116,6 +116,11 @@ class HTMLPageDevelopToolMigrations extends HTMLPageDevelopTool  {
 				$pos = array_search($id_migration, $migrations);
 				$run_migrations = array_slice($migrations, $count_processed_migrations, $pos - $count_processed_migrations + 1);
 
+				if(empty($run_migrations))
+				{
+					$run_migrations[] = $id_migration;
+				}
+
 				foreach($run_migrations as $id_migration)
 				{
 					$migration = new ZfMigration();
