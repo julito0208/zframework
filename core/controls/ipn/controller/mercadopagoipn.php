@@ -29,6 +29,11 @@ class MercadoPagoIPN extends HTMLPageBlank
 		}
 	}
 
+	public static function add_category_callback($category_id, $function)
+	{
+		return self::add_callback($function, $category_id);
+	}
+
 	/*-------------------------------------------------------------*/
 
 	public function __construct()
