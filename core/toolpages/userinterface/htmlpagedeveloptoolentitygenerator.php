@@ -834,6 +834,14 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 
 
 						$code .= "\t\n\t/**\n\t* @return " . $classname . "\n\t*/\n\tpublic static function saveEntity(".$entity_classname ." \$entity) {\n\n";
+
+						$code .= "		if(\$entity instanceof FullTextSearch)
+		{
+			\$entity->update_full_text_search();
+		}
+		
+";
+
 						$code .= "\t\t\$entity_row = \$entity->to_array(false);\n\n";
 
 
