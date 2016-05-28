@@ -32,6 +32,8 @@ class MercadoPagoHelper
 			$notification_url = URLPattern::reverse(MercadoPagoIPN::get_url_pattern()->get_id());
 		}
 
+		return $notification_url;
+
 		$status_varname = ZPHP::get_config('mercadopago.callback_status_varname');
 
 		$preference_data = array(

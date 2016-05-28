@@ -34,6 +34,9 @@ class MercadoPagoIPN extends HTMLPageBlank
 			$merchant_order_info = $mp->get("/merchant_orders/" . $_GET["id"]);
 		}
 
+		file_put_contents(ZPHP::get_www_dir().'/test', var_export($payment_info, true), FILE_APPEND);
+		file_put_contents(ZPHP::get_www_dir().'/test', var_export($merchant_order_info, true), FILE_APPEND);
+
 		$vars = compact('payment_info', 'merchant_order_info');
 
 		if ($merchant_order_info["status"] == 200) {
