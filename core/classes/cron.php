@@ -104,6 +104,12 @@ abstract class Cron {
 		$name = get_class($this);
 		$this->_set_name($name);
 		$this->_lock_file = ZPHP::get_config('crons_dir').'/'.get_class($this).'.lock-'.uniqid();
+
+		$lock_file = $this->_lock_file;
+
+		register_shutdown_function(function() use ($lock_file) {
+			@ unlink($lock_file);
+		});
 	}
 	
 	/*-------------------------------------------*/
@@ -155,6 +161,5 @@ abstract class Cron {
 		$this->_run_cron();
 		$this->_end_cron();
 
-		@ unlink($this->_lock_file);
 	}
 }

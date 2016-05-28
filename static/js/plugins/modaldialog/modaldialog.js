@@ -1729,12 +1729,12 @@
 
                         if(newHeight > avalHeight )
                         {
-                            var newHeight = avalHeight;
+    º                        var newHeight = avalHeight;
                             var newWidth = imageAspect * newHeight;
                         }
 
                         // image.width(newWidth);
-                        image.height(newHeight);
+                        image.height(newHeight+60);
 
                         // dialogBlockContent.find('.image-title').width(newWidth);
                         dialogBlock.find('.images-list-buttons-block').css({ 'margin-top': (newHeight/2)});
