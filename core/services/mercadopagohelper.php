@@ -9,7 +9,7 @@ class MercadoPagoHelper
 	const STATUS_PENDING = 'pending';
 	const STATUS_FAILURE = 'failure';
 
-	public static function generate_url($id, $unit_price, $title='Pago', $callback_url=null, $notification_url=null, $quantity=1, $currency_id=null)
+	public static function generate_url($id, $unit_price, $title='Pago', $callback_url=null, $notification_url=null, $quantity=1, $currency_id=null, $category_id=null)
 	{
 		$mp = self::create_instance();
 		$mp_items = array();
@@ -17,6 +17,7 @@ class MercadoPagoHelper
 		$mp_items[] = [
 			'id' => "{$id}",
 			'title' => $title,
+			'category_id' => $category_id,
 			'quantity' => $quantity,
 			"currency_id" => $currency_id ? $currency_id : ZPHP::get_config('mercadopago.currency_id'),
 			'unit_price' => ZPHP::is_development_mode() ? 1 : $unit_price,
@@ -59,6 +60,11 @@ class MercadoPagoHelper
 
 		return $url;
 
+	}
+
+	public static function generate_category_url($category_id, $id, $unit_price, $title='Pago', $callback_url=null, $notification_url=null, $quantity=1, $currency_id=null)
+	{
+		return self::generate_url($id, $unit_price, $title, $callback_url, $notification_url, $quantity, $currency_id, $category_id);
 	}
 
 	public static function is_callback($status=null)

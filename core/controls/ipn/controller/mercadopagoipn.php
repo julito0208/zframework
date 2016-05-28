@@ -24,6 +24,7 @@ class MercadoPagoIPN extends HTMLPageBlank
 
 		$id = null;
 		$payment_id = null;
+		$category_id = null;
 
 		$mp = MercadoPagoHelper::create_instance();
 
@@ -60,6 +61,7 @@ class MercadoPagoIPN extends HTMLPageBlank
 					foreach($merchant_order_info["response"]['items'] as $item)
 					{
 						$id = $item['id'];
+						$category_id = $item['category_id'];
 //						$ids[] = $id;
 					}
 
@@ -68,6 +70,8 @@ class MercadoPagoIPN extends HTMLPageBlank
 				//print_r("Not paid yet. Do not release your item.");
 			}
 		}
+
+		file_put_contents(ZPHP::get_www_dir().'/test', $category_id);
 
 		foreach(self::$_callbacks as $callback)
 		{
