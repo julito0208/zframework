@@ -302,7 +302,7 @@
 			resolveJustify(null);
 
 			
-			$this.find('img').each(function(index, img) { 
+			$this.find('img').each(function(index, img) {
 
 				var $img = $(img);
 

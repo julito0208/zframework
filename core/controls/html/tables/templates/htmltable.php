@@ -27,6 +27,11 @@
 		(function() {
 
 			var table = $('#<?=$id?>');
+
+			<?php if($responsive) { ?>
+				table.css({'width': '100%'});
+			<?php } ?>
+
 			var dataTable = table.dataTable({
 				"data": <?=JSHelper::cast_array($prepared_rows)?>,
 				"columns": <?=JSHelper::cast_array($prepared_columns)?>,
@@ -34,6 +39,7 @@
 				"info": <?=JSHelper::cast_bool($show_info)?>,
 				"ordering": <?=JSHelper::cast_bool($reordering ? false : $ordering)?>,
 				"stateSave": <?=JSHelper::cast_bool($stateSave)?>,
+				"responsive": <?=($responsive ? 'true' : 'false')?>,
 				'searching': <?=JSHelper::cast_bool(!$reordering)?>
 			});
 

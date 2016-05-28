@@ -7,9 +7,10 @@ class HTMLControlStaticLibraryDataTables extends HTMLControlStaticLibrary {
 		return array(
 			URLHelper::get_zframework_static_url('js/zframework.php'),
 			URLHelper::get_zframework_static_url('thirdparty/datatables/media/js/jquery.dataTables.js'),
+			URLHelper::get_zframework_static_url('thirdparty/datatables/extensions/Responsive/js/dataTables.responsive.js'),
 			URLHelper::get_zframework_static_url('thirdparty/datatables/datatables-bootstrap/dataTables.bootstrap.js'),
 			URLHelper::get_zframework_static_url('thirdparty/datatables/custom/custom.js'),
-			URLHelper::get_zframework_static_url('thirdparty/datatables/yadcf/jquery.dataTables.yadcf.js'),
+
 		);
 	}
 	
@@ -17,7 +18,7 @@ class HTMLControlStaticLibraryDataTables extends HTMLControlStaticLibrary {
 		return array(
 			URLHelper::get_zframework_static_url('thirdparty/datatables/datatables-bootstrap/dataTables.bootstrap.css'),
 			URLHelper::get_zframework_static_url('thirdparty/datatables/custom/custom.css'),
-			URLHelper::get_zframework_static_url('thirdparty/datatables/yadcf/jquery.dataTables.yadcf.css'),
+			URLHelper::get_zframework_static_url('thirdparty/datatables/extensions/Responsive/css/dataTables.responsive.css'),
 		);
 	}
 

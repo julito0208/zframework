@@ -45,6 +45,7 @@ class HTMLTable extends HTMLTag
 	protected $_reordering = false;
 	protected $_reordering_callback = null;
 	protected $_clear_filters = true;
+	protected $_responsive = true;
 
 	public function __construct($id=null)
 	{
@@ -528,6 +529,23 @@ class HTMLTable extends HTMLTag
 		return $this->_clear_filters;
 	}
 
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_responsive($value)
+	{
+		$this->_responsive = $value;
+		return $this;
+	}
+
+	public function get_responsive()
+	{
+		return $this->_responsive;
+	}
+
+
 
 	/*-------------------------------------------------------------*/
 
@@ -602,5 +620,6 @@ class HTMLTable extends HTMLTag
 		$this->set_param('reordering', $this->_reordering);
 		$this->set_param('reordering_callback', $this->_reordering_callback);
 		$this->set_param('clear_filters', $this->_clear_filters);
+		$this->set_param('responsive', $this->_responsive); 
 	}
 }
