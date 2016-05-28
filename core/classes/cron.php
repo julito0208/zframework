@@ -80,12 +80,12 @@ abstract class Cron {
 
 	public static function running_crons($class=null)
 	{
-		$files = FilesHelper::dir_list(ZPHP::get_config('crons_dir'));
+		$files = FilesHelper::dir_list(ZPHP::get_config('crons_locks_dir'));
 		$crons = array();
 
 		foreach($files as $filename)
 		{
-			if(preg_match('#(?i)^(?P<cron>.+?)\.lock\-.+?$#', $filename, $match))
+			if(preg_match('#(?i)^(?P<cron>.+?)\.cron-lock\-.+?$#', $filename, $match))
 			{
 				$crons[] = $match['cron'];
 			}
@@ -109,7 +109,7 @@ abstract class Cron {
 	public function __construct($name=null) {
 		$name = get_class($this);
 		$this->_set_name($name);
-		$this->_lock_file = ZPHP::get_config('crons_dir').'/'.get_class($this).'.lock-'.uniqid();
+		$this->_lock_file = ZPHP::get_config('crons_locks_dir').'/'.get_class($this).'.cron-lock-'.uniqid();
 
 		$lock_file = $this->_lock_file;
 

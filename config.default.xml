@@ -432,8 +432,11 @@
 
 		<!--Comando que especifica que se debe ejecutar un cron-->
 		<command>cron</command>
-		
-	</crons>
+
+        <!--Directorio con los locks-->
+        <locks_dir>{www_dir}</locks_dir>
+
+    </crons>
 
 
 	<!-- Configuraciones de logs -->
