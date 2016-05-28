@@ -241,13 +241,26 @@ class SQLHelper {
 									
 									$conditions_tokens[] = "`{$key}` <> ".self::quote(str_replace('  ', ' ', trim($condition)));	
 								}
-								
-								
-								
+
 							} else if($compare_type == 'search_text' || $compare_type == 'searchtext' || $compare_type == 'search') {		
 								
 								$conditions_tokens[] = "`{$key}` LIKE '%".self::_escape_string(SQLHelper::prepare_full_text_search($condition))."%'";		
-								
+
+							} else if($compare_type == 'search_words' || $compare_type == 'searchwords' || $compare_type == 'words' || $compare_type == 'search_word' || $compare_type == 'searchword') {
+
+								$text = SQLHelper::prepare_full_text_search($condition);
+								$conditions_words = [];
+
+								foreach(explode(' ', $text) as $word)
+								{
+									$conditions_words[] = "`{$key}` LIKE '%".self::_escape_string($word)."%'";
+								}
+
+								if(!empty($conditions_words))
+								{
+									$conditions_tokens[] = '('.implode(' AND ', $conditions_words).')';
+								}
+
 							} else {
 								
 								if(is_null($condition)) {
@@ -353,6 +366,7 @@ class SQLHelper {
 		$text = str_ireplace(array_keys($dict), array_values($dict), $text);
 		
 		$text = preg_replace('#\s+#', ' ', trim($text));
+		$text = preg_replace('#[^\w\s]+#', '', $text);
 		
 		return $text;
 		
