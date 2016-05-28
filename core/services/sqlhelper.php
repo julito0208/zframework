@@ -261,6 +261,21 @@ class SQLHelper {
 									$conditions_tokens[] = '('.implode(' AND ', $conditions_words).')';
 								}
 
+							} else if($compare_type == 'search_words_all' || $compare_type == 'searchwordsall' || $compare_type == 'words_all' || $compare_type == 'search_word_all' || $compare_type == 'searchwordall') {
+
+								$text = SQLHelper::prepare_full_text_search($condition);
+								$conditions_words = [];
+
+								foreach(explode(' ', $text) as $word)
+								{
+									$conditions_words[] = "`{$key}` LIKE '%".self::_escape_string($word)."%'";
+								}
+
+								if(!empty($conditions_words))
+								{
+									$conditions_tokens[] = '('.implode(' OR ', $conditions_words).')';
+								}
+
 							} else {
 								
 								if(is_null($condition)) {
