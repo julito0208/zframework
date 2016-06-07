@@ -73,6 +73,7 @@ class ZfImageFile extends ZfImageFileCache
 		$image_file->set_title($title);
 		$image_file->set_id_image_file($id_image_file);
 		$image_file->set_path($path);
+		$image_file->set_date_added(time());
 		$image_file->save();
 
 		$image_thumb = new ZfImageFileThumb();

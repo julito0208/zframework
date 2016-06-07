@@ -20,7 +20,7 @@
             animation: 0,										/* Duracion de la animacion de abrir/cerrar */
             stack: true,										    /* Si el dialogo se puede guardar en la pila de dialogos */
             controlSize: false,
-            top: 0.3,
+            top: 0.2,
             left: 0.5,
             moveable: true,
             autoOpen: false
@@ -1752,7 +1752,16 @@
                 updateImageSize();
             };
 
-            dialogBlockContent.append($('<div />').addClass('dialog-image-container').css({'text-align': 'center'}).append(image));
+            var imageBlock = $('<a />').addClass('dialog-image-container').css({'text-align': 'center'}).attr({'href': 'javascript: void(0)'});
+
+            if(data['click'])
+            {
+                imageBlock.bind('click', data['click']);
+            }
+
+            imageBlock.append(image);
+
+            dialogBlockContent.append(imageBlock);
 
 
             $(window).bind('resize', windowResize);
