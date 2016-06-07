@@ -42,9 +42,9 @@ foreach($select2_options as $index => $option)
 <?=$label_html?>
 
 <select <?php foreach($tag_attrs as $name => $attr_value) echo " {$name}=".HTMLHelper::quote ($attr_value); ?>>
-	<? foreach($select2_options as $option) { ?>
+	<?php foreach($select2_options as $option) { ?>
 	<option label="<?=HTMLHelper::escape_quotes($option['text'])?>" value="<?=HTMLHelper::escape($option['id'])?>"<?=($option['selected'] ? " selected='selected'" : '')?>><?=HTMLHelper::escape_tags($option['text'])?></option>
-	<? } ?>
+	<?php } ?>
 </select>
 
 <script type="text/javascript">
