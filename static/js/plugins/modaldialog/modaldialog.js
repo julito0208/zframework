@@ -2411,6 +2411,214 @@
 
     };
 
+
+    jQuery.modalDialog.imagesSearch = function(selectCallback, initialSearch, options)
+    {
+        options = $.extend({}, options, jQuery.modalDialog.imagesSearch.defaultOptions);
+
+        jQuery.modalDialog.imagesSearch.options = options;
+
+        if(!jQuery.modalDialog.imagesSearch.created) {
+
+            jQuery.modalDialog.imagesSearch.created = true;
+
+            var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="display: none"><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td class="col-label">       <label>Buscar:</label>      </td>      <td>       <input type="text" id="isf-image-search" name="search" style="width: 300px" />      </td>      <td>       <button type="submit" class="btn btn-success"><span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; width: 700px; max-height: 500px; overflow: auto; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
+            var dialogHtml = ' <div id="isf-producto-search-image-dialog"><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td class="col-label">       <label>Buscar:</label>      </td>      <td>       <input type="text" id="isf-image-search" name="search" style="width: 300px" />      </td>      <td>       <button type="submit" class="btn btn-success"><span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; width: 700px; max-height: 500px; overflow: auto; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
+            // $('body').prepend($('<div />').html(dialogHtml));
+
+            var ProductoSearchImageDialog = new Object();
+
+            ProductoSearchImageDialog.search = '';
+            ProductoSearchImageDialog.loading = false;
+
+            ProductoSearchImageDialog.dialog = $('#ifs-producto-search-image-dialog').modalDialog({
+                'title': 'Buscar Imagen',
+                'top': 0.1,
+                'onload': function () {
+                    ProductoSearchImageDialog.dialog.body().find('#isf-image-search').focus();
+                }
+            });
+
+            ProductoSearchImageDialog.dialog.body().append(dialogHtml);
+            ProductoSearchImageDialog.dialog.open();
+
+            ProductoSearchImageDialog.dialog.emptyImagesBlock = function () {
+                ProductoSearchImageDialog.dialog.body().find('#ifs-images-result').show().html("<br /><br />Cargando<br /><br />");
+                ProductoSearchImageDialog.dialog.body().find('#ifs-images-result-count').html("&nbsp;");
+            };
+
+            ProductoSearchImageDialog.dialog.updateTotal = function () {
+                var countImages = ProductoSearchImageDialog.dialog.body().find('#ifs-images-result img').length;
+
+                if (countImages > 0) {
+                    ProductoSearchImageDialog.dialog.body().find('#ifs-images-result-count').html("Se encontraron " + String(countImages) + " imágenes");
+                    ProductoSearchImageDialog.dialog.body().find('#ifs-images-result').show();
+                }
+                else {
+                    ProductoSearchImageDialog.dialog.body().find('#ifs-images-result-count').html("No se encontraron imágenes");
+                    ProductoSearchImageDialog.dialog.body().find('#ifs-images-result').hide();
+                }
+
+            };
+
+            ProductoSearchImageDialog.dialog.bind('load', function () {
+                ProductoSearchImageDialog.dialog.emptyImagesBlock();
+                ProductoSearchImageDialog.dialog.body().find('#ifs-image-search').val(ProductoSearchImageDialog.search);
+                ProductoSearchImageDialog.dialog.body().find('form').submit();
+            });
+
+            ProductoSearchImageDialog.dialog.search = function () {
+                var search = ProductoSearchImageDialog.dialog.body().find('#ifs-image-search').val();
+
+                if (!ProductoSearchImageDialog.loading) {
+                    ProductoSearchImageDialog.loading = true;
+                    ProductoSearchImageDialog.dialog.emptyImagesBlock();
+                    $.ajax({
+                        'url': 'images/search/' + $.urlencode(search),
+                        'type': 'post',
+                        'success': function (data) {
+
+                            console.log(data);
+                            return;
+                            ProductoSearchImageDialog.loading = false;
+
+                            var block = ProductoSearchImageDialog.dialog.body().find('#images-result');
+
+                            if (data && data['images'] && data['images'].length > 0) {
+                                block.empty();
+
+                                $.each(data['images'], function (index, item) {
+
+                                    var link = $('<a />');
+                                    link.css({
+                                        'vertical-align': 'top',
+                                        'margin': '0 20px 20px 0',
+                                        'display': 'inline-block',
+                                        'border-radius': '5px',
+                                        'box-shadow': '1px 1px 1px rgba(0,0,0,0.4)',
+                                        'visibility': 'hidden'
+                                    });
+
+                                    var image = $('<img />');
+                                    image.attr({'src': item});
+                                    image.css({'display': 'inline-block'});
+                                    image.appendTo(link);
+                                    image.bind('load', function () {
+
+                                        var node = $(this);
+                                        var link = node.getParent('a');
+                                        var imageWidth = node.width();
+                                        var imageHeight = node.height();
+
+                                        if (imageWidth < 120 || imageHeight < 120) {
+                                            link.remove();
+                                        }
+                                        else {
+                                            node.width(190);
+                                            link.addClass('loaded');
+                                            link.css({'visibility': 'visible'});
+                                            link.css({'width': node.width(), 'height': node.height()});
+
+                                        }
+
+                                        ProductoSearchImageDialog.dialog.updateTotal();
+
+                                    });
+
+                                    image.bind('error', function () {
+                                        link.remove();
+                                    });
+
+                                    link.appendTo(block);
+
+                                    link.bind('click', function (evt) {
+
+                                        var imgSrc = $(this).find('img').attr('src');
+
+                                        if (evt.ctrlKey) {
+                                            Navigation.openWindow(imgSrc);
+                                        }
+                                        else {
+                                            $.modalDialog.image({
+
+                                                'src': imgSrc,
+                                                'css': {
+                                                    'max-width': '600px',
+                                                    'max-height': $(window).height() - 100
+                                                },
+                                                'click': function () {
+                                                    $.modalDialog.loading('Cargando...', function () {
+
+                                                        $.ajax({
+                                                            'url': '!AdminProductosPage(set_producto_image)',
+                                                            'type': 'post',
+                                                            'data': {
+                                                                'id_producto': ProductoSearchImageDialog.idProducto,
+                                                                'image': imgSrc
+                                                            },
+                                                            'success': function (data) {
+                                                                $.modalDialog.closeAll();
+                                                                $('#' + ProductoSearchImageDialog.idProducto + '_image').attr({'src': data['image']});
+                                                                $('#' + ProductoSearchImageDialog.idProducto + '_image_src').attr({'data-src': data['image_src']});
+                                                            }
+                                                        });
+                                                    });
+                                                }
+
+                                            });
+
+                                            return;
+
+                                            $.modalDialog.loading('Cargando...', function () {
+
+                                                $.ajax({
+                                                    'url': '!AdminProductosPage(set_producto_image)',
+                                                    'type': 'post',
+                                                    'data': {
+                                                        'id_producto': ProductoSearchImageDialog.idProducto,
+                                                        'image': imgSrc
+                                                    },
+                                                    'success': function (data) {
+                                                        $.modalDialog.closeAll();
+                                                        $('#' + ProductoSearchImageDialog.idProducto + '_image').attr({'src': data['image']});
+                                                        $('#' + ProductoSearchImageDialog.idProducto + '_image_src').attr({'data-src': data['image_src']});
+                                                    }
+                                                });
+                                            });
+                                        }
+                                    });
+
+                                });
+                            }
+                            else {
+                                block.html("<br /><br />No existen imagenes<br /><br />");
+                            }
+                        }
+                    });
+                }
+            };
+
+            ProductoSearchImageDialog.dialog.body().find('form').bind('submit', function () {
+                ProductoSearchImageDialog.dialog.search();
+            });
+
+            jQuery.modalDialog.imagesSearch.dialog = ProductoSearchImageDialog.dialog;
+
+        }
+
+        jQuery.modalDialog.imagesSearch.dialog.open();
+    };
+
+    jQuery.modalDialog.imagesSearch.created = false;
+
+    jQuery.modalDialog.imagesSearch.options = {};
+
+    jQuery.modalDialog.imagesSearch.dialog = null;
+
+    jQuery.modalDialog.imagesSearch.defaultOptions = {
+
+    };
+
     /* Funcion de jQuery para crear un modaldialog ------------------------------ */
 
     jQuery.fn.modalDialog = function(options) {

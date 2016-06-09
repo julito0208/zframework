@@ -11,6 +11,7 @@ class RedirectControl {
 		'HTMLDialogUploadFile',
 		'FileImageThumbControl',
 		'MercadoPagoIPN',
+		'ImagesSearch',
 	);
 
 	private static $_URL_PATTERN_AJAX_STATIC_CALL_METHODS = null;

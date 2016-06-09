@@ -510,6 +510,7 @@
         <crop_aspect>0</crop_aspect>
         <default_thumb_type>default</default_thumb_type>
         <default_type>png</default_type>
+        <search_url>image/search/%s</search_url>
 	</image>
 
 	<error_reporting>
