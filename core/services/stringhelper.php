@@ -172,7 +172,7 @@ class StringHelper {
 		
 		$str = strtolower($str);
 	
-		$str = str_replace(array('Á', 'É', 'Í', 'Ó', 'Ú', 'Ñ'), array('á', 'é', 'í', 'ó', 'ú', 'ñ'), $str);
+		$str = str_replace(array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'), array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'), $str);
 		
 		return $str;
 		
@@ -185,7 +185,7 @@ class StringHelper {
 		
 		$str = strtoupper($str);
 	
-		$str = str_replace(array('á', 'é', 'í', 'ó', 'ú', 'ñ'), array('Á', 'É', 'Í', 'Ó', 'Ú', 'Ñ'), $str);
+		$str = str_replace(array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'), array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'), $str);
 		
 		return $str;
 		
@@ -327,7 +327,7 @@ class StringHelper {
 	public static function escape_geo($str) {
 		
 		$str = strtolower($str);
-		$str = str_replace(array('á', 'e', 'í', 'ó', 'ú', 'ñ'), array('a','e','i','o','u','n'), $str);
+		$str = str_replace(array('ï¿½', 'e', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'), array('a','e','i','o','u','n'), $str);
 		$str = preg_replace('@[^\\w\\s]+@', '', $str);
 		$str = preg_replace('@\\s+@', '_', $str);
 		
@@ -338,7 +338,7 @@ class StringHelper {
 	
 	public static function remove_extended_chars($str) {
 	    
-	    $str = str_replace(array('Á', 'É', 'Í', 'Ó', 'Ú', 'Ñ', 'á', 'é', 'í', 'ó', 'ú', 'ñ'), array('A', 'E', 'I', 'O', 'U', 'N', 'a', 'e', 'i', 'o', 'u', 'ñ'), $str);
+	    $str = str_replace(array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'), array('A', 'E', 'I', 'O', 'U', 'N', 'a', 'e', 'i', 'o', 'u', 'ï¿½'), $str);
 	    $str = preg_replace('#[^\w\s]+#', '', $str);
 	    return $str;
 	    
@@ -379,6 +379,28 @@ class StringHelper {
 		return $parts;
 		
 	}
-	
+
+	/*-----------------------------------------------------------------------------------------*/
+
+	public static function friendly_url_str($string_array)
+	{
+		if(!is_array($string_array))
+		{
+			$string_array = [$string_array];
+		}
+
+		$prepared_strings = [];
+
+		foreach($string_array as $string)
+		{
+			$string = self::remove_extended_chars($string);
+			$prepared_strings[] = preg_replace('#[^A-Za-z0-9\-\s]+#', '', $string);
+		}
+
+		$prepared_string = implode('-', $prepared_strings);
+		$prepared_string = preg_replace('#\s#', '-', $prepared_string);
+		return strtolower($prepared_string);
+
+	}
 	
 }

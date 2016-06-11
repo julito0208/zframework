@@ -10,8 +10,9 @@ class RedirectControl {
 		'HTMLDialogCropImage',
 		'HTMLDialogUploadFile',
 		'FileImageThumbControl',
-		'MercadoPagoIPN',
-		'ImagesSearch',
+		'HTMLPageUserLogout',
+		'MercadoPagoIpn',
+		
 	);
 
 	private static $_URL_PATTERN_AJAX_STATIC_CALL_METHODS = null;
@@ -27,47 +28,22 @@ class RedirectControl {
 
 	protected static function _add_redirects(&$urls, $pattern=null, $redirect=null, $id=null) {
 
-		if(is_array($pattern))
-		{
-			foreach($pattern as $k => $v)
-			{
-				if(is_array($v))
-				{
-					self::_add_redirects($urls, $v[0], $v[1], $v[2] ? $v[2] : $v[1]);
-				}
-				else
-				{
-					self::_add_redirects($urls, $k, $v, $v);
-				}
+		$urls[] = new URLPattern($pattern, $id ? $id : $redirect, $redirect);
 
-			}
-		}
-		else
-		{
-			if (func_num_args() > 3)
-			{
-				return $urls[] = new URLPattern($pattern, $id, $redirect);
-			} else
-			{
-
-				return $urls[] = new URLPattern($pattern, null, $redirect);
-			}
-		}
 	}
-
-
+	
 	protected static function _add_redirects_urls($pattern=null, $redirect=null, $id=null) {
 
 		self::_add_redirects(self::$_URLS, $pattern, $redirect, $id);
 
 	}
-
+	
 	protected static function _add_redirects_mobile($pattern=null, $redirect=null, $id=null) {
-
+		
 		self::_add_redirects(self::$_URLS_MOBILE, $pattern, $redirect, $id);
-
+		
 	}
-
+	
 	protected static function _access_control($classname)
 	{
 
@@ -93,12 +69,12 @@ class RedirectControl {
 		{
 			return self::_access_control(get_class($classname));
 		}
-
+		
 		if(!is_subclass_of($classname, 'AccessControl'))
 		{
 			return true;
 		}
-
+		
 		$users = array();
 
 		if(is_subclass_of($classname, 'AccessControlDevelopment'))
@@ -144,7 +120,7 @@ class RedirectControl {
 		if($users)
 		{
 			$auth_users = array();
-
+			
 			foreach($users as $user)
 			{
 				if($user && $user->user)
@@ -176,7 +152,7 @@ class RedirectControl {
 			return true;
 		}
 	}
-
+	
 	protected static function _test_redirect_urls($uri, $urls)
 	{
 		if(($match = self::$_URL_PATTERN_ZFRAMEWORK_STATIC->match_url($uri))) {
@@ -192,18 +168,19 @@ class RedirectControl {
 			} else {
 				NavigationHelper::header_cache_revalidate();
 			}
-
+ 			
 			if(preg_match('#(?i).*?\.php$#', $fullpath)) {
 				@ include($fullpath);
 				die();
 			} else {
-				NavigationHelper::content_file_out($fullpath);
+				NavigationHelper::content_file_out($fullpath);					
 				die();
 			}
 
 		}
 
-		foreach(array_reverse($urls) as $url) {
+		foreach(array_reverse($urls) as $index => $url) {
+
 			if(($match = $url->match_url($uri))) {
 
 				$redirect = $url->get_redirect();
@@ -212,8 +189,10 @@ class RedirectControl {
 				foreach($match as $key => $value) {
 					if(is_numeric($key) && $key != '0') {
 						$vars[] = $value;
-					}
+					} 
 				}
+
+
 
 				self::$_IS_AJAX_CALL = $obj && is_subclass_of($redirect, 'AjaxResponse');
 
@@ -229,17 +208,17 @@ class RedirectControl {
 
 			}
 		}
-
+		
 		self::$_IS_AJAX_CALL = false;
-
+		
 		return false;
-
+		
 	}
-
+	
 	protected static function _redirect_process_uri($uri) {
 
 		self::$_IS_AJAX_CALL = false;
-
+		
 		$urls = array_merge(self::$_URLS, array());
 
 		foreach(self::$_DEFAULT_REDIRECT_URL_PATTERN_CLASSES as $classname)
@@ -259,11 +238,11 @@ class RedirectControl {
 		$urls = array_merge($urls, HTMLPageDevelopTool::get_tools_urls());
 		return self::_test_redirect_urls($uri, $urls);
 	}
-
+	
 	protected static function _redirect_process_uri_mobile($uri) {
-
-		self::$_IS_AJAX_CALL = false;
-
+		
+		self::$_IS_AJAX_CALL = false; 
+		
 		$urls = array_merge(self::$_URLS_MOBILE, array());
 
 		foreach(self::$_DEFAULT_REDIRECT_URL_PATTERN_CLASSES as $classname)
@@ -283,12 +262,12 @@ class RedirectControl {
 		return self::_test_redirect_urls($uri, $urls);
 	}
 
-
+	
 	protected static function _redirect_process() {
 
-		try
+		try 
 		{
-
+					
 			if(is_null(self::$_URL_PATTERN_AJAX_STATIC_CALL_METHODS)) {
 				self::$_URL_PATTERN_AJAX_STATIC_CALL_METHODS = AjaxHandler::get_static_method_url_pattern();
 			}
@@ -301,12 +280,7 @@ class RedirectControl {
 				self::$_URL_PATTERN_ZFRAMEWORK_STATIC = new URLPattern(preg_quote(rtrim(ZPHP::get_config('zframework_static_url'), '/')).'/(?P<path>.+)');
 			}
 
-//			$uri_complete = $_SERVER['REQUEST_URI'];
 			$uri_complete = ZPHP::get_actual_uri();
-//			var_export(ZPHP::get_actual_uri());
-//			echo "<br />";
-//			var_export(ZPHP::get_actual_uri(true));
-//			die();
 
 			if(strpos($uri_complete, '?') !== false) {
 				list($uri, $query_string) = explode('?', $uri_complete);
@@ -334,7 +308,7 @@ class RedirectControl {
 				}
 				else
 				{
-					NavigationHelper::location_error_not_found();
+					NavigationHelper::location_error_not_found();	
 				}
 			}
 
@@ -342,7 +316,7 @@ class RedirectControl {
 
 				$classname = $match[1];
 				$method = $match[2];
-
+				
 				self::$_IS_AJAX_CALL = true;
 
 				if(is_subclass_of($classname, 'AjaxHandler')) {
@@ -356,7 +330,7 @@ class RedirectControl {
 
 					$obj->out();
 					die();
-				}
+				}	
 				else
 				{
 					NavigationHelper::location_error_not_found();
@@ -395,7 +369,7 @@ class RedirectControl {
 
 			if(ZPHP::is_mobile())
 			{
-
+				
 				self::_redirect_process_uri_mobile($uri);
 
 				if(LanguageHelper::is_enabled()) {
@@ -406,7 +380,7 @@ class RedirectControl {
 					self::_redirect_process_uri_mobile($uri);
 				}
 			}
-
+			
 			self::_redirect_process_uri($uri);
 
 			if(LanguageHelper::is_enabled()) {
@@ -417,36 +391,37 @@ class RedirectControl {
 				self::_redirect_process_uri($uri);
 			}
 
+			LogFile::log_error_file('redirect', "Uri <{$uri}> not found");
 			NavigationHelper::location_error_not_found();
 
 		} catch (Exception $ex) {
 			zphp_error_handler($ex);
 		}
 	}
-
-
+	
+	
 	//----------------------------------------------------------------------------------
-
+	
 	public static function is_ajax_call()
 	{
 		return self::$_IS_AJAX_CALL;
 	}
-
+	
 	/* Tambien se pueden pasar arrays */
 	public static function add_redirects($pattern=null, $redirect=null, $id=null) {
-
+	
 		$args = func_get_args();
 		call_user_func_array(array(self, '_add_redirects_urls'), $args);
 	}
-
+	
 	/* Tambien se pueden pasar arrays */
 	public static function add_redirects_mobile($pattern=null, $redirect=null, $id=null) {
-
+	
 		$args = func_get_args();
 		call_user_func_array(array(self, '_add_redirects_mobile'), $args);
-
+		
 	}
-
+	
 	public static function redirect_process() {
 
 		self::_redirect_process();

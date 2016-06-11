@@ -103,7 +103,6 @@ class MercadoPagoHelper
 	 * @return MP
 	 *
 	 */
-
 	public static function create_instance()
 	{
 		$mp_client_id = ZPHP::get_config('mercadopago.clientid');

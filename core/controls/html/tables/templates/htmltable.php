@@ -94,11 +94,11 @@
 				dataTablePaginationList.hide();
 			}
 
+			$.each(table.data('rowsId'), function(index, rowId) {
+				table.find('tbody tr').eq(index).attr('data-row-id', rowId);
+			});
+			
 			<?php if($reordering) { ?>
-
-				$.each(table.data('rowsId'), function(index, rowId) {
-					table.find('tbody tr').eq(index).attr('data-row-id', rowId);
-				});
 
 				table.addClass('sortable');
 
