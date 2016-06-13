@@ -5,7 +5,7 @@ class ImagesSearch implements MIMEControl
 	public static function get_url_pattern() {
 		$url_format = ZPHP::get_config('image_search_url');
 		$url_pattern = preg_quote($url_format);
-		$url_pattern = str_replace(preg_quote('%s'), '(.+)', $url_pattern);
+		$url_pattern = str_replace(preg_quote('%s'), '(.*)', $url_pattern);
 		return new URLPattern($url_pattern, 'ImagesSearch', 'ImagesSearch');
 	}
 
@@ -121,6 +121,7 @@ class ImagesSearch implements MIMEControl
 
 	public function out()
 	{
+		@ header('Content-Type: application/json; charset="iso-8859-15');
 		$this->get_json()->out();
 	}
 

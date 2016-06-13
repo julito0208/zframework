@@ -410,7 +410,7 @@ class Date {
 			$this->set_year($now->get_year(), false);
 			$month = $now->get_month();
 			$day = $now->get_day();		
-			
+
 		}
 		
 		if(!is_null($month)) $this->set_month ($month, false);
@@ -515,6 +515,11 @@ class Date {
 			
 			case 'A': 
 				return $this->get_hour() >= 12 ? 'pm' : 'am'; 
+			break;
+
+			case 'c':
+				$time = mktime($this->get_hour(), $this->get_minutes(), $this->get_seconds(), $this->get_month(), $this->get_day(), $this->get_year());
+				return date('c', $time);
 			break;
 			
 			case 'K': 
@@ -1252,6 +1257,11 @@ class Date {
 	
 	public function format_default_datetime($secs=true) {
 		return $this->to_string($secs ? self::FORMAT_DEFAULT_DATETIME_SECS : self::FORMAT_DEFAULT_DATETIME);
+	}
+
+	public function format_iso()
+	{
+		return $this->to_string('%c');
 	}
 
 	/*-----------------------------------------------------------*/

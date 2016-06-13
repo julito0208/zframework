@@ -4,6 +4,7 @@ class RedirectControl {
 
 	private static $_URLS = array();
 	private static $_URLS_MOBILE = array();
+	private static $_PROCESS_CALLBACKS = array();
 
 	private static $_DEFAULT_REDIRECT_URL_PATTERN_CLASSES = array(
 		'ImageCaptchaControl',
@@ -12,7 +13,8 @@ class RedirectControl {
 		'FileImageThumbControl',
 		'HTMLPageUserLogout',
 		'MercadoPagoIpn',
-		
+		'ImagesSearch',
+
 	);
 
 	private static $_URL_PATTERN_AJAX_STATIC_CALL_METHODS = null;
@@ -23,6 +25,8 @@ class RedirectControl {
 	private static $_ZFRAMEWORK_STATIC_CACHE_DEFAULT_DAYS = 90;
 
 	protected static $_IS_AJAX_CALL = false;
+
+	protected static $_SAVE_URL_HISTORY = null;
 
 	/*--------------------------------------------------------------------------------*/
 
@@ -170,10 +174,12 @@ class RedirectControl {
 			}
  			
 			if(preg_match('#(?i).*?\.php$#', $fullpath)) {
+				self::_process_handler($uri);
 				@ include($fullpath);
 				die();
 			} else {
-				NavigationHelper::content_file_out($fullpath);					
+				self::_process_handler($uri);
+				NavigationHelper::content_file_out($fullpath);
 				die();
 			}
 
@@ -192,8 +198,6 @@ class RedirectControl {
 					} 
 				}
 
-
-
 				self::$_IS_AJAX_CALL = $obj && is_subclass_of($redirect, 'AjaxResponse');
 
 				$obj = ClassHelper::create_instance_array($redirect, $vars);
@@ -201,14 +205,13 @@ class RedirectControl {
 				if($obj) {
 
 					if($obj instanceof MIMEControl && self::_access_control($obj)) {
-						$obj->out();
-						die();
+						self::_out_mimecontrol($obj, $uri);
 					}
 				}
 
 			}
 		}
-		
+
 		self::$_IS_AJAX_CALL = false;
 		
 		return false;
@@ -303,6 +306,7 @@ class RedirectControl {
 				$class_method = $method_prefix.$method;
 
 				if(is_callable(array($classname, $class_method))  && self::_access_control($classname)) {
+					self::_process_handler($uri);
 					call_user_func_array(array($classname, $class_method), array());
 					die();
 				}
@@ -321,6 +325,7 @@ class RedirectControl {
 
 				if(is_subclass_of($classname, 'AjaxHandler')) {
 
+					self::_process_handler($uri);
 					$obj = ClassHelper::create_instance_array($classname);
 
 					if(is_callable(array($obj, $method)) && self::_access_control(get_class($obj))) {
@@ -337,6 +342,7 @@ class RedirectControl {
 				}
 			}
 
+
 			if(ZPHP::get_config('under_construction'))
 			{
 				$page_control = ZPHP::get_config('redirect_control_special_pages_under_construction_page_control');
@@ -346,8 +352,7 @@ class RedirectControl {
 				if($obj) {
 
 					if($obj instanceof MIMEControl && self::_access_control(get_class($obj))) {
-						$obj->out();
-						die();
+						self::_out_mimecontrol($obj, $uri);
 					}
 				}
 			}
@@ -361,8 +366,7 @@ class RedirectControl {
 				if($obj) {
 
 					if($obj instanceof MIMEControl && self::_access_control(get_class($obj))) {
-						$obj->out();
-						die();
+						self::_out_mimecontrol($obj, $uri);
 					}
 				}
 			}
@@ -380,7 +384,7 @@ class RedirectControl {
 					self::_redirect_process_uri_mobile($uri);
 				}
 			}
-			
+
 			self::_redirect_process_uri($uri);
 
 			if(LanguageHelper::is_enabled()) {
@@ -391,6 +395,7 @@ class RedirectControl {
 				self::_redirect_process_uri($uri);
 			}
 
+			self::_process_handler($uri);
 			LogFile::log_error_file('redirect', "Uri <{$uri}> not found");
 			NavigationHelper::location_error_not_found();
 
@@ -398,15 +403,56 @@ class RedirectControl {
 			zphp_error_handler($ex);
 		}
 	}
-	
-	
+
+	protected static function _out_mimecontrol(MIMEControl $obj, $uri)
+	{
+		self::_process_handler($uri);
+
+		if(ClassHelper::is_instance_of($obj, 'AvoidURLHistory') && is_null(self::$_SAVE_URL_HISTORY))
+		{
+			self::$_SAVE_URL_HISTORY = false;
+		}
+
+		if(is_null(self::$_SAVE_URL_HISTORY))
+		{
+//			self::$_SAVE_URL_HISTORY = ZPHP::get_config('redirect_control.save_url_history');
+			self::$_SAVE_URL_HISTORY = ClassHelper::is_instance_of($obj, 'HTMLPageBlank');
+		}
+
+		if(self::$_SAVE_URL_HISTORY && !self::$_IS_AJAX_CALL)
+		{
+			NavigationHelper::navigation_history_register_url();
+		}
+
+		$obj->out();
+		die();
+	}
+
+	protected static function _process_handler($url)
+	{
+		foreach(self::$_PROCESS_CALLBACKS as $callback)
+		{
+			@ call_user_func($callback, $url);
+		}
+	}
+
 	//----------------------------------------------------------------------------------
 	
 	public static function is_ajax_call()
 	{
 		return self::$_IS_AJAX_CALL;
 	}
-	
+
+	public static function add_process_callback($function)
+	{
+		self::$_PROCESS_CALLBACKS[] = $function;
+	}
+
+	public static function set_save_url_history($value)
+	{
+		self::$_SAVE_URL_HISTORY = $value;
+	}
+
 	/* Tambien se pueden pasar arrays */
 	public static function add_redirects($pattern=null, $redirect=null, $id=null) {
 	

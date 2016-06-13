@@ -1,6 +1,6 @@
 <?php
 
-class HTMLPageErrorException extends HTMLPageBlank 
+class HTMLPageErrorException extends HTMLPageBlank implements AvoidURLHistory
 {
 	protected $_exception;
 	protected $_block_error_exception;

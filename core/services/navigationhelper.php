@@ -1,7 +1,11 @@
 <?php 
 
 class NavigationHelper {
-	
+
+
+
+	/*-------------------------------------------------------------*/
+
 	public static function get_current_url() {
 		return $_SERVER['REQUEST_URI'];
 	}
@@ -388,7 +392,7 @@ class NavigationHelper {
 	
 	
 	protected static $_NAVIGATION_HISTORY_DEFINED = false;
-	protected static $_NAVIGATION_HISTORY_SESSION_VARNAME = false;
+	protected static $_NAVIGATION_HISTORY_SESSION_VARNAME = 'navigation_history';
 	
 	const NAVIGATION_HISTORY_DEFAULT_URL = '';
 	const NAVIGATION_HISTORY_BACK_URL = '_goback';
@@ -396,7 +400,7 @@ class NavigationHelper {
 
 	public static function navigation_history_register_url($mantain_query=null, $url=null) {
 			
-			SessioinHelper::init();
+		SessionHelper::init();
 		
 		if(self::$_NAVIGATION_HISTORY_DEFINED) return;
 		
@@ -417,8 +421,7 @@ class NavigationHelper {
 		$url_key = $url_base.($query_data ? '?' : '').$query_data;
 		
 		$url_data = array('url' => $url, 'mantain_query' => $mantain_query, 'key' => $url_key);
-		
-		
+
 		$history = array_filter((array) $_SESSION[self::$_NAVIGATION_HISTORY_SESSION_VARNAME]);
 			
 		if(count($history) > 0) {
@@ -436,43 +439,37 @@ class NavigationHelper {
 				
 		} else array_unshift($history, $url_data);
 		
-		
-		$_SESSION[self::$_NAVIGATION_HISTORY_SESSION_VARNAME] = $history;
+
+		$_SESSION[self::$_NAVIGATION_HISTORY_SESSION_VARNAME] = array_slice($history, 0, 15);
 		
 		self::$_NAVIGATION_HISTORY_DEFINED = true;
 	}
 	
 	
-	public static function navigation_history_get_back_url_href() {
-		
-		SessioinHelper::init();
-		
-		$history = array_filter((array) $_SESSION[self::$_NAVIGATION_HISTORY_SESSION_VARNAME]);
-		
-		$index = self::$_NAVIGATION_HISTORY_DEFINED ? 1 : 0;
-		
-		return NavigationHelper::make_url_query(array(self::NAVIGATION_HISTORY_BACK_URL_VARNAME => $history[$index] ? $history[$index]['url'] : self::NAVIGATION_HISTORY_DEFAULT_URL), self::NAVIGATION_HISTORY_BACK_URL);
-		
-	}
-	
-	
-	
-	public static function navigation_history_get_back_url() {
-		
-		SessioinHelper::init();
+	public static function navigation_history_get_back_url($for_href=false) {
+
+		SessionHelper::init();
 		
 		$history = array_filter((array) $_SESSION[self::$_NAVIGATION_HISTORY_SESSION_VARNAME]);
 		
 		$index = self::$_NAVIGATION_HISTORY_DEFINED ? 1 : 0;
-		
-		return $history[$index] ? $history[$index]['url'] : self::NAVIGATION_HISTORY_DEFAULT_URL;
+
+		if($for_href)
+		{
+			return NavigationHelper::make_url_query(array(self::NAVIGATION_HISTORY_BACK_URL_VARNAME => $history[$index] ? $history[$index]['url'] : self::NAVIGATION_HISTORY_DEFAULT_URL), self::NAVIGATION_HISTORY_BACK_URL);
+		}
+		else
+		{
+			return $history[$index] ? $history[$index]['url'] : self::NAVIGATION_HISTORY_DEFAULT_URL;
+		}
+
 		
 	}
 	
 	
 	public static function navigation_history_go_back($url=null) {
-		
-		SessioinHelper::init();
+
+		SessionHelper::init();
 		
 		$history = array_filter((array) $_SESSION[self::$_NAVIGATION_HISTORY_SESSION_VARNAME]);
 		

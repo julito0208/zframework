@@ -9,76 +9,26 @@ class MercadoPagoHelper
 	const STATUS_PENDING = 'pending';
 	const STATUS_FAILURE = 'failure';
 
-	public static function generate_url($id, $unit_price, $title='Pago', $callback_url=null, $notification_url=null, $quantity=1, $currency_id=null, $category_id=null)
-	{
-		$mp = self::create_instance();
-		$mp_items = array();
+	const SHIPMENT_CUSTOM = 'custom';
+	const SHIPMENT_MERCADO_ENVIOS = 'me2';
+	const SHIPMENT_NOT_SPECIFIED = 'not_specified';
 
-		$mp_items[] = [
-			'id' => "{$id}",
-			'title' => $title,
-			'category_id' => $category_id,
-			'quantity' => $quantity,
-			"currency_id" => $currency_id ? $currency_id : ZPHP::get_config('mercadopago.currency_id'),
-			'unit_price' => ZPHP::is_development_mode() ? 1 : $unit_price,
-		];
-
-		if(!$callback_url)
-		{
-			$callback_url = ZPHP::get_absolute_actual_uri();
-		}
-
-		if(!$notification_url)
-		{
-			$notification_url = URLPattern::reverse(MercadoPagoIPN::get_url_pattern()->get_id());
-		}
-
-		$status_varname = ZPHP::get_config('mercadopago.callback_status_varname');
-
-		$preference_data = array(
-			"items" => $mp_items,
-			"id" => $id,
-			"notification_url" => $notification_url,
-			'back_urls' => [
-				'success' => NavigationHelper::make_url_query(array($status_varname => self::STATUS_SUCCESS), $callback_url),
-				'pending' => NavigationHelper::make_url_query(array($status_varname => self::STATUS_PENDING), $callback_url),
-				'failure' => NavigationHelper::make_url_query(array($status_varname => self::STATUS_FAILURE), $callback_url),
-			]
-		);
-
-		$preference = $mp->create_preference($preference_data);
-
-
-		if(false && ZPHP::is_development_mode())
-		{
-			$url = $preference['response']['sandbox_init_point'];
-		}
-		else
-		{
-			$url = $preference['response']['init_point'];
-		}
-
-		return $url;
-
-	}
-
-	public static function generate_category_url($category_id, $id, $unit_price, $title='Pago', $callback_url=null, $notification_url=null, $quantity=1, $currency_id=null)
-	{
-		return self::generate_url($id, $unit_price, $title, $callback_url, $notification_url, $quantity, $currency_id, $category_id);
-	}
+	/*-------------------------------------------------------------*/
 
 	public static function is_callback($status=null)
 	{
-		$varname = ZPHP::get_config('mercadopago.callback_status_varname');
+		$varname_status = ZPHP::get_config('mercadopago.callback_status_varname');
+		$varname_preference = ZPHP::get_config('mercadopago.preference_id_varname');
 
-		if(!$status)
+		$is_callback = isset($_GET[$varname_status]) && isset($_GET[$varname_preference]);
+
+		if(!$status || !$is_callback)
 		{
-			return isset($_GET[$varname]);
+			return $is_callback;
 		}
-		else
-		{
-			return isset($_GET[$varname]) && $_GET[$varname] == $status;
-		}
+
+		return $is_callback && $_GET[$varname_status] == $status;
+
 	}
 
 	public static function is_callback_success()
@@ -98,6 +48,8 @@ class MercadoPagoHelper
 	}
 
 
+	/*-------------------------------------------------------------*/
+
 	/**
 	 *
 	 * @return MP
@@ -112,5 +64,6 @@ class MercadoPagoHelper
 
 		return $mp;
 	}
+
 
 }

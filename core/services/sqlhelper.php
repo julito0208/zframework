@@ -53,6 +53,7 @@ class SQLHelper {
 				} else {
 					
 					if(preg_match('#^((\-?[1-9]+[0-9]{0,15})|0)$#', $string)) return $string;
+					if(preg_match('#^((\-?[1-9]+(\d+|\.)*\,[0-9]{0,15})|0)$#', $string)) return str_replace(',', '.', str_replace('.', '', $string));
 					elseif($string == self::VALUE_NULL) return 'NULL';
 					else if($string == self::VALUE_DEFAULT) return 'default';
 					else if(is_object($string) && CastHelper::is_instance_of($string, 'Date')) $quoted = $string->format(Date::FORMAT_SQL_DATETIME_SECS);

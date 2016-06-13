@@ -233,6 +233,8 @@
 			<dirname>ztools</dirname>
 		</dev_tools>
 
+        <save_url_history>1</save_url_history>
+
 	</redirect_control>
 
 	<!-- URL relativa al BASE URL de la carpeta statica (para que pueda accederse desde afuera) de zframework -->
@@ -511,6 +513,7 @@
         <default_thumb_type>default</default_thumb_type>
         <default_type>png</default_type>
         <search_url>image/search/%s</search_url>
+        <search_pages>3</search_pages>
 	</image>
 
 	<error_reporting>
@@ -625,7 +628,10 @@
         <clientsecret></clientsecret>
         <currency_id>ARS</currency_id>
         <callback_status_varname>mstatus</callback_status_varname>
+        <preference_id_varname>preference_id</preference_id_varname>
         <ipn_url>/mercadopago/ipn</ipn_url>
+        <enable_sandbox>0</enable_sandbox>
+        <override_price>0</override_price>
     </mercadopago>
 		
 </zphp_config>
