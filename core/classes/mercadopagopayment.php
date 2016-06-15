@@ -141,7 +141,7 @@ class MercadoPagoPayment
 
 	/*-------------------------------------------------------------*/
 
-	public function __construct($title='Pago')
+	public function __construct($title=null)
 	{
 		if(RedirectControl::is_ajax_call())
 		{
@@ -154,7 +154,7 @@ class MercadoPagoPayment
 
 		$this->set_callback_url($callback_url);
 		$this->set_notification_url(URLPattern::reverse(MercadoPagoIPN::get_url_pattern()->get_id()));
-		$this->set_title($title);
+		$this->set_title($title ? $title : ZPHP::get_config('mercadopago.default_title'));
 	}
 
 	/*-------------------------------------------------------------*/
@@ -807,7 +807,8 @@ class MercadoPagoPayment
 	*/
 	public function set_shipment_dimensions($arg1, $arg2=null)
 	{
-		if(func_num_args() > 1)
+
+		if(func_num_args() > 1 && $arg1)
 		{
 			$args = func_get_args();
 			$this->_shipment_dimensions = $args;
@@ -816,7 +817,7 @@ class MercadoPagoPayment
 		{
 			$this->_shipment_dimensions = (array) $arg1;
 		}
-
+		
 		return $this;
 	}
 
@@ -828,6 +829,7 @@ class MercadoPagoPayment
 	/**
 	*
 	* @return $this
+	 * alto x ancho x largo x peso (cms, grs)
 	*
 	*/
 	public function shipment_dimensions($arg1=null, $arg2=null)
@@ -1136,16 +1138,16 @@ class MercadoPagoPayment
 			'date_created' => '',
 		);
 
-		if(!$this->_expires_from || !$this->_expires_to)
+		if($this->_expires_from || $this->_expires_to)
 		{
 			$preference_data['expires'] = true;
 
-			if(!$this->_expires_from)
+			if($this->_expires_from)
 			{
 				$preference_data['expiration_date_from'] = self::_format_expire_date($this->_expires_from);
 			}
 
-			if(!$this->_expires_to)
+			if($this->_expires_to)
 			{
 				$preference_data['expiration_date_to'] = self::_format_expire_date($this->_expires_to);
 			}
@@ -1156,7 +1158,27 @@ class MercadoPagoPayment
 		{
 			$preference_data['shipments'] = array(
 
-				'mode' => $this->_shipment_mode, 'local_pickup' => $this->_shipment_local_pickup, 'dimensions' => $this->_shipment_dimensions[0] . ' x ' . $this->_shipment_dimensions[1] . ' x ' . $this->_shipment_dimensions[2] . ', ' . $this->_shipment_dimensions[3], 'receiver_address' => array('zip_code' => $this->_shipment_receiver_address_zip_code ? $this->_shipment_receiver_address_zip_code : $this->_payer_address_zip_code, 'street_name' => $this->_shipment_receiver_address_street_name ? $this->_shipment_receiver_address_street_name : $this->_payer_address_street_name, 'street_number' => $this->_shipment_receiver_address_street_number ? $this->_shipment_receiver_address_street_number : $this->_payer_address_street_number, 'floor' => $this->_shipment_receiver_address_floor, 'apartment' => $this->_shipment_receiver_address_apartment,),);
+				'mode' => $this->_shipment_mode,
+				'local_pickup' => $this->_shipment_local_pickup,
+				'receiver_address' => array(
+					'zip_code' => $this->_shipment_receiver_address_zip_code ? $this->_shipment_receiver_address_zip_code : $this->_payer_address_zip_code,
+					'street_name' => $this->_shipment_receiver_address_street_name ? $this->_shipment_receiver_address_street_name : $this->_payer_address_street_name, 'street_number' => $this->_shipment_receiver_address_street_number ? $this->_shipment_receiver_address_street_number : $this->_payer_address_street_number,
+					'floor' => $this->_shipment_receiver_address_floor,
+					'apartment' => $this->_shipment_receiver_address_apartment,
+					),
+				);
+
+
+			if($this->_shipment_dimensions)
+			{
+
+				$preference_data['shipments']['dimensions'] =
+					$this->_shipment_dimensions[0] . 'x' .
+					$this->_shipment_dimensions[1] . 'x' .
+					$this->_shipment_dimensions[2] . ',' .
+					$this->_shipment_dimensions[3];
+			}
+			
 		}
 
 		return $preference_data;
@@ -1180,7 +1202,7 @@ class MercadoPagoPayment
 
 			if (ZPHP::is_development_mode() && ZPHP::get_config('mercadopago.enable_sandbox'))
 			{
-				$url = $preference['response']['sandbox_init_point'];
+				$url = $preference['response']['sanbox_init_point'];
 			} else
 			{
 				$url = $preference['response']['init_point'];

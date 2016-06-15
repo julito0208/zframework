@@ -632,6 +632,7 @@
         <ipn_url>/mercadopago/ipn</ipn_url>
         <enable_sandbox>0</enable_sandbox>
         <override_price>0</override_price>
+        <default_title>Compra {site_name}</default_title>
     </mercadopago>
 		
 </zphp_config>

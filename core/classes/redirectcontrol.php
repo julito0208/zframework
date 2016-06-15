@@ -198,7 +198,7 @@ class RedirectControl {
 					} 
 				}
 
-				self::$_IS_AJAX_CALL = $obj && is_subclass_of($redirect, 'AjaxResponse');
+				self::$_IS_AJAX_CALL = is_subclass_of($redirect, 'AjaxResponse');
 
 				$obj = ClassHelper::create_instance_array($redirect, $vars);
 
