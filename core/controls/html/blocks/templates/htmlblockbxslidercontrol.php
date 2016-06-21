@@ -18,8 +18,9 @@
 			auto: true
 		});
 
-		$('#<?=$id?> .bx-viewport').height(<?=$height?>);
-		$('#<?=$id?> .bx-viewport a img').css({'width': '100%', 'height': <?=$height?>});
+		$('#<?=$id?> .bx-viewport').height(500);
+//		$('#<?//=$id?>// .bx-viewport a img').css({'width': '100%', 'height': <?//=$height?>//});
+		$('#<?=$id?> .bx-viewport a img').css({'width': '100%'});
 
 		$(window).bind('resize', function() {
 			$('#<?=$id?> .bx-viewport').height(<?=$height?>);
