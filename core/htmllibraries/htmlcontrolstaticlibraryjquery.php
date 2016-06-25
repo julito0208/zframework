@@ -4,7 +4,7 @@ class HTMLControlStaticLibraryJQuery extends HTMLControlStaticLibrary {
 	
 	public function get_library_js_files() {
 
-		$jquery_files = array(URLHelper::get_zframework_static_url('thirdparty/jquery/jquery.js'));
+		$jquery_files = array(URLHelper::get_zframework_static_url('thirdparty/jquery/jquery.min.js'));
 
 		if(ZPHP::is_mobile())
 		{

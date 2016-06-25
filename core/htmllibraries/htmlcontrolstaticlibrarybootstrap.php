@@ -3,12 +3,12 @@
 class HTMLControlStaticLibraryBootStrap extends HTMLControlStaticLibrary {
 	
 	public function get_library_js_end_files() {
-		return array(URLHelper::get_zframework_static_url('thirdparty/bootstrap/js/bootstrap.js'));
+		return array(URLHelper::get_zframework_static_url('thirdparty/bootstrap/js/bootstrap.min.js'));
 	}
 	
 	public function get_library_css_files() {
 		return array(
-			URLHelper::get_zframework_static_url('thirdparty/bootstrap/css/bootstrap.css (media:screen)'),
+			URLHelper::get_zframework_static_url('thirdparty/bootstrap/css/bootstrap.min.css (media:screen)'),
 			URLHelper::get_zframework_static_url('thirdparty/bootstrap/css/bootstrap-theme.css'),
 		);
 	}

@@ -25,7 +25,6 @@ class HTMLControlStaticLibraryDataTables extends HTMLControlStaticLibrary {
 	public function get_dependence_libraries() {
 		return array(
 			self::STATIC_LIBRARY_JQUERY,
-			self::STATIC_LIBRARY_JQUERYUI,
 			self::STATIC_LIBRARY_BOOTSTRAP,
 			self::STATIC_LIBRARY_FONTS_AWESOME,
 		);
