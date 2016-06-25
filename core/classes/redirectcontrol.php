@@ -32,10 +32,35 @@ class RedirectControl {
 
 	protected static function _add_redirects(&$urls, $pattern=null, $redirect=null, $id=null) {
 
-		$urls[] = new URLPattern($pattern, $id ? $id : $redirect, $redirect);
+		if(is_array($pattern))
+		{
+			foreach($pattern as $k => $v)
+			{
+				if(is_array($v))
+				{
+					self::_add_redirects($urls, $v[0], $v[1], $v[2] ? $v[2] : $v[1]);
+				}
+				else
+				{
+					self::_add_redirects($urls, $k, $v, $v);
+				}
 
+			}
+		}
+		else
+		{
+			if (func_num_args() > 3)
+			{
+				return $urls[] = new URLPattern($pattern, $id, $redirect);
+			} else
+			{
+
+				return $urls[] = new URLPattern($pattern, null, $redirect);
+			}
+		}
 	}
-	
+
+
 	protected static function _add_redirects_urls($pattern=null, $redirect=null, $id=null) {
 
 		self::_add_redirects(self::$_URLS, $pattern, $redirect, $id);
