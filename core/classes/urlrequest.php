@@ -14,7 +14,7 @@ class URLRequest extends Dict {
 	const METHOD_POST = 'post';
 	const METHOD_GET = 'get';
 
-	const DEFAULT_METHOD = 'POST';
+	const DEFAULT_METHOD = 'get';
 
 	const HEADER_URL = 'url';
 	const HEADER_CONTENT_TYPE = 'content_type';
@@ -30,6 +30,7 @@ class URLRequest extends Dict {
 	protected $_url;
 	protected $_read_only_headers = false;
 	protected $_response_headers = array();
+	protected $_void_ssl_certificate = true;
 
 	public function __construct($url, $method=self::DEFAULT_METHOD, $data=array())
 	{
@@ -87,6 +88,20 @@ class URLRequest extends Dict {
 		return $this->_read_only_headers;
 	}
 
+	/*
+	 * @return $this
+	 */
+	protected function set_void_ssl_certificate($value)
+	{
+		$this->_void_ssl_certificate = $value;
+		return $this;
+	}
+
+	protected function get_void_ssl_certificate()
+	{
+		return $this->_void_ssl_certificate;
+	}
+
 
 	/*-------------------------------------------------------------*/
 
@@ -120,9 +135,23 @@ class URLRequest extends Dict {
 			CURLOPT_NOBODY => !$read_body,
 		);
 
+		if($this->_void_ssl_certificate)
+		{
+			$curl_options[CURLOPT_SSL_VERIFYPEER] = false;
+		}
+
 		curl_setopt_array($curl, $curl_options);
 
-		$response = curl_exec($curl);
+		if($read_body)
+		{
+			ob_start();
+			curl_exec($curl);
+			$response = ob_get_clean();
+		}
+		else
+		{
+			$response = curl_exec($url);
+		}
 
 		$this->_response_headers = curl_getinfo($curl);
 
