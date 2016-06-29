@@ -1,0 +1,33 @@
+Options Multiviews FollowSymLinks
+
+<FilesMatch "\.xml$|\.json$|backend/.*|apache\.conf|logs.*|zframework/.*\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+
+RewriteEngine On # Turn on the rewriting engine 
+
+# Redireccion de la pagina notfound (debe coincidir con el valor redirect_control -> special_pages -> not_found -> url). 
+# La url no debe existir para que tire el error 404 por defecto de apache, o bien no poner este direccionamiento y poner una pagina personalizada en el index
+RewriteRule ^\/?_404\.html$ _404.html  [NC,L]
+
+# Si el archivo existe
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule (.*) - [L]
+
+# Todo lo demas pasa por index
+RewriteRule ^(.+)$ index.php  [NC,L]
+
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
+php_value memory_limit 256M
+php_value max_execution_time 0
+php_value max_input_time 200
+php_value register_globals off
+php_value auto_detect_line_endings On
+
+#Si se usa zframework desde dentro de la carpeta del sitio "sitio/zframework", se puede obviar
+SetEnv ZFRAMEWORK_APP_DIR "/home/julio/Proyectos/web/distriuruguay"
+php_value auto_prepend_file "/home/julio/Proyectos/web/distriuruguay/zframework/init.php"
