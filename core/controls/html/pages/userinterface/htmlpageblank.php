@@ -72,6 +72,7 @@ class HTMLPageBlank extends HTMLControl {
 	protected $_ogp_url;
 	protected $_ogp_type;
 	protected $_meta_tags = array();
+	protected $_use_debug_bar = false;
 	
 	public function __construct($params=null) {
 		parent::__construct($params);
@@ -96,6 +97,9 @@ class HTMLPageBlank extends HTMLControl {
 		$this->_set_parse_all_parents_templates(true);
 
 		$this->_update_page_uri_historial();
+
+		$this->_use_debug_bar = ZPHP::is_debug_mode();
+		$this->_include_global_static = true;
 	}
 
 	/*-------------------------------------------------------------*/
@@ -312,10 +316,10 @@ class HTMLPageBlank extends HTMLControl {
 					{
 						$used_js_files[] = $js_file;
 
-						if(StringHelper::ends_with($js_file, 'zframework.php'))
-						{
-							$js_file.= ".aaaa";
-						}
+//						if(StringHelper::ends_with($js_file, 'zframework.php'))
+//						{
+//							$js_file.= ".aaaa";
+//						}
 
 						$html.= "<script type='text/javascript' src='".HTMLHelper::escape($js_file)."'></script>\n";
 					}
@@ -390,7 +394,7 @@ class HTMLPageBlank extends HTMLControl {
 		
 		$content = self::_prepare_html_content($content);
 
-		if(ZPHP::is_debug_mode())
+		if($this->_use_debug_bar)
 		{
 			$debug_data = ZPHP::get_debug_data();
 			$debug_block = new HTMLBlockDebugData($debug_data, strlen($content));

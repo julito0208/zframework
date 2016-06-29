@@ -7,6 +7,8 @@ class HTMLBlockBXSliderControl extends HTMLControl
 	protected $_height;
 	protected $_images = array();
 	protected $_thumb_type;
+	protected $_auto_slide = true;
+	protected $_json_params = array();
 
 	public function __construct($thumb_type=null, $id=null, $images=array())
 	{
@@ -15,6 +17,32 @@ class HTMLBlockBXSliderControl extends HTMLControl
 		$this->set_id($id ? $id : uniqid('slider'));
 		$this->set_thumb_type($thumb_type);
 		$this->add_images($images);
+	}
+
+	protected function _update_json_params()
+	{
+		$this->_json_params = array();
+
+		if(!is_null($this->_width))
+		{
+			$this->_json_params['width'] = $this->_width;
+		}
+
+		if(!is_null($this->_height))
+		{
+			$this->_json_params['height'] = $this->_height;
+		}
+
+		$this->_json_params['auto'] = (bool) $this->_auto_slide;
+
+		/*$('.bxslider').bxSlider({
+		mode: 'fade',
+		captions: true,
+		autoStart: true,
+		auto: true,
+		autoDelay: 500,
+		speed: 2000
+	});*/
 	}
 
 	/**
@@ -65,6 +93,23 @@ class HTMLBlockBXSliderControl extends HTMLControl
 	public function get_id()
 	{
 		return $this->_id;
+	}
+
+
+	/**
+	 *
+	 * @return $this
+	 * 
+	 */
+	public function set_auto_slide($value)
+	{
+		$this->_auto_slide = $value;
+		return $this;
+	}
+
+	public function get_auto_slide()
+	{
+		return $this->_auto_slide;
 	}
 
 	/**
@@ -131,7 +176,11 @@ class HTMLBlockBXSliderControl extends HTMLControl
 		$this->set_param('id', $this->_id); 
 		$this->set_param('width', $this->_width); 
 		$this->set_param('height', $this->_height); 
-		$this->set_param('thumb_size', $this->_thumb_size);
-		$this->set_param('images', $this->_images); 
+		$this->set_param('auto_slide', $this->_auto_slide);
+		$this->set_param('thumb_type', $this->_thumb_type);
+		$this->set_param('images', $this->_images);
+
+		$this->_update_json_params();
+		$this->set_param('json_params', $this->_json_params);
 	}
 }

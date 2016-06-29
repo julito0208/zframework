@@ -49,14 +49,7 @@ class RedirectControl {
 		}
 		else
 		{
-			if (func_num_args() > 3)
-			{
-				return $urls[] = new URLPattern($pattern, $id, $redirect);
-			} else
-			{
-
-				return $urls[] = new URLPattern($pattern, null, $redirect);
-			}
+			return $urls[] = new URLPattern($pattern, $id ? $id : $redirect, $redirect);
 		}
 	}
 
@@ -66,13 +59,13 @@ class RedirectControl {
 		self::_add_redirects(self::$_URLS, $pattern, $redirect, $id);
 
 	}
-	
+
 	protected static function _add_redirects_mobile($pattern=null, $redirect=null, $id=null) {
-		
+
 		self::_add_redirects(self::$_URLS_MOBILE, $pattern, $redirect, $id);
-		
+
 	}
-	
+
 	protected static function _access_control($classname)
 	{
 

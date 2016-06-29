@@ -64,6 +64,7 @@ class HTMLPageDevelopTool extends HTMLPage  implements AccessControlDevelopment,
 		self::add_global_static_library(self::STATIC_LIBRARY_ZSCRIPT);
 		self::add_global_static_library(self::STATIC_LIBRARY_MODAL_DIALOG);
 		self::add_global_static_library(self::STATIC_LIBRARY_FONTS_AWESOME);
+		$this->_use_debug_bar = false;
 	}
 	
 	public function prepare_params()

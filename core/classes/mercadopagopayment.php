@@ -137,7 +137,6 @@ class MercadoPagoPayment
 	protected $_shipment_receiver_address_floor = null;
 	protected $_shipment_receiver_address_apartment = null;
 	protected $_items = array();
-	protected $_items_dimensions = array(0,0,0,0);
 	protected $_url;
 
 	/*-------------------------------------------------------------*/
@@ -155,16 +154,7 @@ class MercadoPagoPayment
 
 		$this->set_callback_url($callback_url);
 		$this->set_notification_url(URLPattern::reverse(MercadoPagoIPN::get_url_pattern()->get_id()));
-
-		if($title && ClassHelper::is_instance_of($title, 'MercadoPagoPaymentInterface'))
-		{
-			$this->set_payment($title);
-		}
-		else
-		{
-			$this->set_title($title ? $title : ZPHP::get_config('mercadopago.default_title'));
-		}
-
+		$this->set_title($title ? $title : ZPHP::get_config('mercadopago.default_title'));
 	}
 
 	/*-------------------------------------------------------------*/
@@ -597,24 +587,9 @@ class MercadoPagoPayment
 	*/
 	public function set_payer($email, $name=null, $surname)
 	{
-		if(ClassHelper::is_instance_of($email, 'MercadoPagoPayer'))
-		{
-			$this->set_payer_phone($email->get_mp_phone());
-			$this->set_payer_address_zip_code($email->get_mp_address_zip_code());
-			$this->set_payer_address_street_name($email->get_mp_address_street_name());
-			$this->set_payer_address_street_number($email->get_mp_address_street_number());
-			$this->set_payer_email($email->get_mp_email());
-			$this->set_payer_identification($email->get_mp_identification());
-			$this->set_payer_name($email->get_mp_name());
-			$this->set_payer_surname($email->get_mp_surname());
-		}
-		else
-		{
-			$this->set_payer_email($email);
-			$this->set_payer_name($name);
-			$this->set_payer_surname($surname);
-		}
-
+		$this->set_payer_email($email);
+		$this->set_payer_name($name);
+		$this->set_payer_surname($surname);
 		return $this;
 	}
 
@@ -1059,62 +1034,29 @@ class MercadoPagoPayment
 	* @return $this
 	*
 	*/
-	public function add_item($unit_price, $quantity=1, $title=null, $id=null, $category_id=null, $currency_id=null)
+	public function add_item($id, $unit_price, $quantity=1, $title=null, $category_id=null, $currency_id=null)
 	{
-		if(is_array($unit_price))
+		if(!$currency_id)
 		{
-			foreach($unit_price as $a)
-			{
-				$this->add_item($a);
-			}
-
-			return $this;
+			$currency_id = ZPHP::get_config('mercadopago.currency_id');
 		}
-		else if (ClassHelper::is_instance_of($unit_price, 'MercadoPagoItem'))
+
+		if(ZPHP::is_development_mode() && ZPHP::get_config('mercadopago.override_price'))
 		{
-			if (!$currency_id)
-			{
-				$currency_id = ZPHP::get_config('mercadopago.currency_id');
-			}
-
-
-			$this->_items[] = array(
-				'id' => $unit_price->get_mp_item_id(),
-				'title' => $unit_price->get_mp_item_title(),
-				'category_id' => $unit_price->get_mp_item_category_id(),
-				'quantity' => (integer) $unit_price->get_mp_item_quantity(),
-				"currency_id" => $currency_id,
-				'unit_price' => (int) $unit_price->get_mp_item_unit_price(),
-			);
-
-			if (ClassHelper::is_instance_of($unit_price, 'MercadoPagoItemDimension'))
-			{
-				$this->_items_dimensions[0]+=$unit_price->get_mp_dimension_ancho();
-				$this->_items_dimensions[1]+=$unit_price->get_mp_dimension_alto();
-				$this->_items_dimensions[2]+=$unit_price->get_mp_dimension_largo();
-				$this->_items_dimensions[3]+=$unit_price->get_mp_dimension_peso();
-			}
-
-			return $this;
+			$unit_price = 1;
+			$quantity = 1;
 		}
-		else
-		{
-			if (!$currency_id)
-			{
-				$currency_id = ZPHP::get_config('mercadopago.currency_id');
-			}
 
-			$this->_items[] = array(
-				'id' => "{$id}",
-				'title' => $title,
-				'category_id' => $category_id,
-				'quantity' => (integer)$quantity,
-				"currency_id" => $currency_id,
-				'unit_price' => $unit_price,
-			);
+		$this->_items[] = array(
+			'id' => "{$id}",
+			'title' => $title,
+			'category_id' => $category_id,
+			'quantity' => (integer) $quantity,
+			"currency_id" => $currency_id,
+			'unit_price' => $unit_price,
+		);
 
-			return $this;
-		}
+		return $this;
 	}
 
 	/**
@@ -1124,7 +1066,7 @@ class MercadoPagoPayment
 	*/
 	public function add_category_item($category_id, $id, $unit_price, $quantity=1, $title=null, $currency_id=null)
 	{
-		return $this->add_item($unit_price, $quantity, $title, $id, $category_id, $currency_id);
+		return $this->add_item($id, $unit_price, $quantity, $title, $category_id, $currency_id);
 	}
 
 	/*-------------------------------------------------------------*/
@@ -1227,39 +1169,19 @@ class MercadoPagoPayment
 				);
 
 
-			if(!$this->_shipment_dimensions)
+			if($this->_shipment_dimensions)
 			{
-				$shipments_dimensions = $this->_items_dimensions;
-			}
-			else
-			{
-				$shipments_dimensions = $this->_shipment_dimensions;
-			}
 
-			$preference_data['shipments']['dimensions'] =
-				$shipments_dimensions[0] . 'x' .
-				$shipments_dimensions[1] . 'x' .
-				$shipments_dimensions[2] . ',' .
-				$shipments_dimensions[3];
-
+				$preference_data['shipments']['dimensions'] =
+					$this->_shipment_dimensions[0] . 'x' .
+					$this->_shipment_dimensions[1] . 'x' .
+					$this->_shipment_dimensions[2] . ',' .
+					$this->_shipment_dimensions[3];
+			}
+			
 		}
 
 		return $preference_data;
-	}
-	
-	/**
-	*
-	* @return $this
-	*
-	*/
-	public function set_payment(MercadoPagoPaymentInterface $payment)
-	{
-
-		$this->set_payer($payment->get_mp_payer());
-		$this->add_item($payment->get_mp_items());
-		$this->set_title($payment->get_mp_title());
-		$this->set_external_reference($payment->get_mp_token());
-		return $this;
 	}
 
 	/*-------------------------------------------------------------*/

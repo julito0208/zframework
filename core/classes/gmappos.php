@@ -10,6 +10,24 @@ class GMapPos implements GMapPoint {
 	public static function get_default_pos() {
 		return new GMapPos(self::$_default_pos_lat, self::$_default_pos_lng, self::$_default_pos_zoom);
 	}
+
+	/**
+	*
+	* @return GMapPos
+	*
+	*/
+	public static function parse_pos($str)
+	{
+		if(preg_match('#^(?i)(.*\@)?(?P<lat>\-?.+?)\,(?P<lng>\-?.+?)\,(?P<zoom>\d+)(z)?(\?.*?)?$#', $str, $match))
+		{
+			return new GMapPos($match['lat'], $match['lng'], $match['zoom']);
+		}
+		else
+		{
+			return new GMapPos();
+		}
+
+	}
 	
 	
 	/*--------------------------------------------------------*/

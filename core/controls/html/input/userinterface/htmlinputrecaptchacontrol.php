@@ -20,10 +20,8 @@ class HTMLInputRecaptchaControl extends HTMLInputControl {
 		$request_data['response'] = $_POST['g-recaptcha-response'];
 		$request_data['remoteip'] = $_SERVER['REMOTE_ADDR'];
 
-		$request = new URLRequest('https://www.google.com/recaptcha/api/siteverify', $request_data);
-		$request->set_method('post');
-
-		$response = $request->request_url();
+		$request = new URLRequest('https://www.google.com/recaptcha/api/siteverify', 'post', $request_data);
+		$response = $request->request();
 
 		$json = JSONMap::parse($response);
 

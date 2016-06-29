@@ -11,7 +11,6 @@ abstract class HTMLControl extends MVParamsContentControl implements MIMEControl
 	protected static $_css_file_pattern = '/^(?i)\s*(?P<file>\S+)(?:\s+\(\s*media\s*\:\s*(?P<media>\S+)\s*\))?\s*$/';
 	
 	protected static $_include_css_files_js_function = "function(e){var t=[];var n=document.getElementsByTagName('link');var r=document.getElementsByTagName('head')[0];for(var i=0;i<n.length;i++){var s=n[i];var o=s.getAttribute('rel');if(o&&o=='stylesheet'){t.push(s.getAttribute('href'))}}for(var i=0;i<e.length;i++){var u=e[i];if(!(t.indexOf(u['file'])>=0)){var a=document.createElement('link');a.setAttribute('type','text/css');a.setAttribute('rel','stylesheet');a.setAttribute('href',u['file']);a.setAttribute('media',u['media']);r.appendChild(a);t.push(u['file'])}}}";
-
 	protected static $_include_js_files_js_function = "function(e,t){var n=document.getElementsByTagName('script');for(var r=0;r<e.length;r++){var i=e[r];var s=false;for(var o=0;o<n.length;o++){var u=n[o];if(u&&u.getAttribute('type')=='text/javascript'&&u.getAttribute('src')==i){s=true;break}}if(!s){var u=document.createElement('script');u.setAttribute('type','text/javascript');u.setAttribute('src',i);if(t){document.getElementsByTagName('body')[0].appendChild(u)}else{document.getElementsByTagName('head')[0].appendChild(u)}}}}";
 	
 	//------------------------------------------------------------------------------------------------------------------------------------
@@ -373,7 +372,8 @@ abstract class HTMLControl extends MVParamsContentControl implements MIMEControl
 	protected $_end_js_files = array();
 	protected $_ajax_js_files = array();
 	protected $_css_files = array();
-	
+	protected $_include_global_static = false;
+
 	public function __construct($params=null) {
 		parent::__construct($params);
 		$this->set_charset(ZPHP::get_config('html_charset'));
@@ -405,7 +405,7 @@ abstract class HTMLControl extends MVParamsContentControl implements MIMEControl
 		$js_files = array_merge($this->_js_files, array());
 		$css_files = array_merge($this->_css_files, array());
 		
-		if($this->_is_main_parsing_control) {
+		if($this->_include_global_static && $this->_is_main_parsing_control) {
 			$js_files = array_merge($js_files, self::$_global_js_files);
 			$css_files = array_merge($css_files, self::$_global_css_files);
 		}
@@ -421,7 +421,7 @@ abstract class HTMLControl extends MVParamsContentControl implements MIMEControl
 			$html.= $this->_prepare_js_files_html($js_files);
 		}
 		
-		if($this->_is_main_parsing_control) {
+		if($this->_include_global_static && $this->_is_main_parsing_control) {
 			self::$_global_js_files = array();
 			self::$_global_css_files = array();
 		}
@@ -432,7 +432,7 @@ abstract class HTMLControl extends MVParamsContentControl implements MIMEControl
 		
 		$js_files = array_merge($this->_end_js_files, array());
 		
-		if($this->_is_main_parsing_control) {
+		if($this->_include_global_static && $this->_is_main_parsing_control) {
 			$js_files = array_merge($js_files, self::$_global_end_js_files);
 		}
 
@@ -446,7 +446,7 @@ abstract class HTMLControl extends MVParamsContentControl implements MIMEControl
 			$html.= "\n--></script>";
 		}
 
-		
+
 		return $html;
 	}
 	
@@ -624,7 +624,7 @@ abstract class HTMLControl extends MVParamsContentControl implements MIMEControl
 	
 	
 	//------------------------------------------------------------------------------------------------------------------------------------
-	
+
 	public function out() {
 
 		if(!self::$_is_parsing) {

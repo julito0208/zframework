@@ -1,6 +1,6 @@
 <?php
 
-class ZfImageFile extends ZfImageFileCache
+class ZfImageFile extends ZfImageFileCache implements Imageable
 {
 	const DEFAULT_ID_IMAGE_FILE = 'default';
 

@@ -112,7 +112,7 @@
 		moveY: -20,
 		alignX: 'center',
 		alignY: 'top',
-		timeout: 200,
+		timeout: 100,
 		animation: 100
 		
 	};

@@ -580,11 +580,13 @@ class ZPHP {
 			{
 				$path = ZPHP::get_zframework_dir().'/core/thirdparty/mobile_detect/Mobile_Detect.php';
 				@ require_once($path);
-			
-				$detect = new Mobile_Detect();
-			
-				self::$_IS_MOBILE = $detect->isMobile();
-				self::$_IS_TABLET = $detect->isTablet();
+
+				self::$_IS_MOBILE = false;
+				self::$_IS_TABLET = false;
+//				$detect = new Mobile_Detect();
+//
+//				self::$_IS_MOBILE = $detect->isMobile();
+//				self::$_IS_TABLET = $detect->isTablet();
 			}
 			
 		}
@@ -712,7 +714,7 @@ foreach(array_filter((array) ZPHP::get_config('auto_include_files')) as $path) {
 
 unset($path);
 
-/* Funci�n de error general ----- --------------------------------------------------------*/
+/* Funcion de error general ----- --------------------------------------------------------*/
 
 function zphp_error_handler(Exception $ex) {
 

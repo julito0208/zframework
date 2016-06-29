@@ -442,11 +442,7 @@ var GMapWrapper = function(node, options) {
 			
 		}
 		
-		
-		
-		
 		var marker = {};
-		
 		markers[markerKey] = marker;
 		
 		marker['position'] = positionZoom['latLng'];
@@ -474,8 +470,6 @@ var GMapWrapper = function(node, options) {
 		if(options['float_html']) {
 			$this.setMarkerFloatHTML(markerKey, options['float_html'], {classname: options['float_html_classname']});
 		}
-		
-		
 		
 		if(options['onclick']) {
 			

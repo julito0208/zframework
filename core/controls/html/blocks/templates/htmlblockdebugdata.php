@@ -18,7 +18,7 @@
 
 </style>
 
-<div id="zphp-debug-block" style="width: 100%; margin: 0 0 30px 0; font-family: sans; position: absolute; opacity: 0.7; font-size: 9pt;" onmouseenter="$(this).css({'opacity': 1})" onmouseleave="$(this).css({'opacity': '0.7'})">
+<div id="zphp-debug-block" style="width: 100%; margin: 0 0 30px 0; font-family: sans; position: absolute; opacity: 0.7; font-size: 9pt;top: 0 !important;" onmouseenter="$(this).css({'opacity': 1})" onmouseleave="$(this).css({'opacity': '0.7'});">
 
 	<div id="zphp-debug-block" style="width: 100%; border: solid 1px #000; position: absolute; margin: 0 0 30px 0; top: 0; left: 0; z-index: 9999">
 
@@ -46,9 +46,9 @@
 		<div style="padding: 0 30px; position: absolute; width: 100%">
 
 			<div style="overflow: auto; margin: 0 0px; box-shadow: 7px 7px 9px rgba(0,0,0,0.8);  " id="debug-data-list-container">
-				<ul id="debug-data-list" style="display:none; margin: 0;border: solid 1px #777;">
+				<ul id="debug-data-list" style="display:none; margin: 0;border: solid 1px #777; list-style: none; margin: 0 !important; padding: 0 !important;">
 					<?php foreach ($debug_data as $index => $debug_item): ?>
-						<li style="border-top: solid 1px #888; background: <?=($index % 2 == 0 ? '#F2F2F2' : '#FEFEFE')?>;">
+						<li style="list-style: none; border-top: solid 1px #888; background: <?=($index % 2 == 0 ? '#F2F2F2' : '#FEFEFE')?>;">
 							<div style="padding: 2px 5px;">
 								<div style="float:left; font-weight: bold;">
 									<?=$debug_item['title']?>
@@ -139,14 +139,14 @@
 						var containerLeft = $('<div />').
 						appendTo(containerDiv).
 						css({'float': 'left', 'font-weight': 'bold'}).
-						html(url);
+						html($('<a />').html(url).attr({'href': url, 'target': '_blank'}));
 
 						var containerRight = $('<div />').
 						appendTo(containerDiv).
 						css({'float': 'right', 'font-weight': 'bold'}).
 						html(formattedSize);
 
-						listItem.append("<div class='clear-both'></div>");
+						listItem.append("<div style='clear:both'></div>");
 
 					});
 

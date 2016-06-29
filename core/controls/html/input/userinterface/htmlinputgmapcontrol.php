@@ -2,7 +2,7 @@
 
 class HTMLInputGmapControl extends HTMLInputControl {
 	
-	const GMAPS_JS_URL = "http://maps.google.com/maps/api/js?sensor=false";
+	const GMAPS_JS_URL = "http://maps.googleapis.com/maps/api/js?key=%s";
 	
 	const GMAP_TYPE_HYBRID = 'HYBRID';
 	const GMAP_TYPE_ROADMAP = 'ROADMAP';
@@ -39,7 +39,10 @@ class HTMLInputGmapControl extends HTMLInputControl {
 
 		HTMLControl::add_global_js_files_zframework('/zframework/static/js/controls/gmapcontrol.js');
 		HTMLControl::add_global_css_files_zframework('/zframework/static/css/controls/gmapcontrol.css');
-		self::add_global_js_files(self::GMAPS_JS_URL);
+		HTMLControl::add_global_static_library(self::STATIC_LIBRARY_FOLLOW_MOUSE_TITLE);
+
+		$gmap_js = sprintf(self::GMAPS_JS_URL, ZPHP::get_config('gmap.key'));
+		self::add_global_js_files($gmap_js);
 		
 		$this->set_init_pos($init_pos ? $init_pos : GMapPos::get_default_pos());
 		$this->set_varname($varname ? $varname : (self::$_DEFAULT_VARNAME.uniqid()));

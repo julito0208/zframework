@@ -5,7 +5,7 @@
 		<?php foreach($images as $image) { ?>
 
 			<li>
-				<a href="<?=($image['href'] ? HTMLHelper::escape($image['href']) : 'javascript:void(0)')?>" title="<?=$image['title']?>"><img alt="<?=$image['title']?>" src="<?=HTMLHelper::escape(ZfImageFile::get_image_url($image['image'], $thumb_size))?>" /></a>
+				<a href="<?=($image['href'] ? HTMLHelper::escape($image['href']) : 'javascript:void(0)')?>" title="<?=$image['title']?>"><img alt="<?=$image['title']?>" src="<?=HTMLHelper::escape(ZfImageFile::get_image_url($image['image'], $thumb_type))?>" /></a>
 			</li>
 
 		<?php } ?>
@@ -14,18 +14,9 @@
 
 	<script type="text/javascript">
 
-		$('#<?=$id?>').bxSlider({
-			auto: true
+		$(document).ready(function() {
+			$('#<?=$id?>').bxSlider(<?=JSONMap::serialize($json_params)?>);
 		});
-
-		$('#<?=$id?> .bx-viewport').height(500);
-//		$('#<?//=$id?>// .bx-viewport a img').css({'width': '100%', 'height': <?//=$height?>//});
-		$('#<?=$id?> .bx-viewport a img').css({'width': '100%'});
-
-		$(window).bind('resize', function() {
-			$('#<?=$id?> .bx-viewport').height(<?=$height?>);
-		});
-
 
 	</script>
 

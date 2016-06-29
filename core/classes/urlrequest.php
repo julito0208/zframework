@@ -40,21 +40,6 @@ class URLRequest extends Dict {
 		$this->update($data);
 	}
 
-	/**
-	*
-	* @return $this
-	*
-	*/
-	public function set_method($value)
-	{
-		$this->_method = strtolower($value) == self::METHOD_POST ? self::METHOD_POST : self::METHOD_GET;
-		return $this;
-	}
-
-	public function get_method()
-	{
-		return $this->_method;
-	}
 
 	/**
 	*
@@ -88,7 +73,7 @@ class URLRequest extends Dict {
 		return $this->_read_only_headers;
 	}
 
-	/*
+	/**
 	 * @return $this
 	 */
 	protected function set_void_ssl_certificate($value)
@@ -101,6 +86,24 @@ class URLRequest extends Dict {
 	{
 		return $this->_void_ssl_certificate;
 	}
+
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_method($value)
+	{
+		$this->_method = $value;
+		return $this;
+	}
+
+	public function get_method()
+	{
+		return $this->_method;
+	}
+
+
 
 
 	/*-------------------------------------------------------------*/
@@ -150,7 +153,7 @@ class URLRequest extends Dict {
 		}
 		else
 		{
-			$response = curl_exec($url);
+			$response = curl_exec($curl);
 		}
 
 		$this->_response_headers = curl_getinfo($curl);

@@ -634,5 +634,9 @@
         <override_price>0</override_price>
         <default_title>Compra {site_name}</default_title>
     </mercadopago>
+
+    <gmap>
+        <key>AIzaSyADhmnaKgUVP0l63UFkiKcYYYXssvFZDJI</key>
+    </gmap>
 		
 </zphp_config>

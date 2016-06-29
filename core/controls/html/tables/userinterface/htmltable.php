@@ -57,6 +57,20 @@ class HTMLTable extends HTMLTag
 	}
 
 
+	public function __call($method, $args)
+	{
+		switch($method)
+		{
+			case 'get_num_columns':
+				return $this->get_columns_count();
+			break;
+
+			case 'get_num_rows':
+				return $this->get_rows_count();
+			break;
+		}
+	}
+
 	protected function _set_table_id($id=null)
 	{
 		if($id)

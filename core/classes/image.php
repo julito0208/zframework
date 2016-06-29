@@ -93,8 +93,6 @@ class Image extends Graphic implements MIMEControl {
 	
 	
 	
-	
-	
 	protected static $_types_aliases = array(
 											'jpg' => 'jpeg',
 											'default' => ZPHP_IMAGE_TYPE);
@@ -226,13 +224,9 @@ class Image extends Graphic implements MIMEControl {
 			$x_pos[] = $point[0];
 			$y_pos[] = $point[1];
 		}
-		
 		return array(abs(max($x_pos)-min($x_pos)), abs(max($y_pos)-min($y_pos)));
-		
 	}
-	
-	
-	
+
 	protected static function _normalize_polygon_points(&$points) {
 		
 		$pos_x = array();
