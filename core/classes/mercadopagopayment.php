@@ -755,16 +755,16 @@ class MercadoPagoPayment
 
 	}
 
-	/**
-	*
-	* @return $this
-	*
-	*/
-	public function set_shipment_mode($value)
-	{
-		$this->_shipment_mode = $value;
-		return $this;
-	}
+//	/**
+//	*
+//	* @return $this
+//	*
+//	*/
+//	public function set_shipment_mode($value)
+//	{
+//		$this->_shipment_mode = $value;
+//		return $this;
+//	}
 
 	public function get_shipment_mode()
 	{
@@ -778,14 +778,16 @@ class MercadoPagoPayment
 	*/
 	public function shipment_mode($value=null)
 	{
-	    if(func_num_args())
-	    {
-	        return $this->set_shipment_mode($value);
-	    }
-	    else
-	    {
-	        return $this->get_shipment_mode();
-	    }
+//	    if(func_num_args())
+//	    {
+//	        return $this->set_shipment_mode($value);
+//	    }
+//	    else
+//	    {
+//	        return $this->get_shipment_mode();
+//	    }
+
+		return $this->get_shipment_mode();
 
 	}
 
@@ -820,6 +822,39 @@ class MercadoPagoPayment
 	    else
 	    {
 	        return $this->get_shipment_local_pickup();
+	    }
+
+	}
+
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_shipment_enabled($value)
+	{
+		return $this->set_shipment_local_pickup(!$value);
+	}
+
+	public function get_shipment_enabled()
+	{
+		return !$this->_shipment_local_pickup;
+	}
+
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function shipment_enabled($value=null)
+	{
+	    if(func_num_args())
+	    {
+	        return $this->set_shipment_enabled($value);
+	    }
+	    else
+	    {
+	        return $this->get_shipment_en();
 	    }
 
 	}
@@ -1170,6 +1205,11 @@ class MercadoPagoPayment
 
 			$preference_data['items'][$index] = $item;
 		}
+
+		if(!empty($preference_data['items']))
+		{
+			$preference_data['items'][0]['title'] = $this->_title;
+		}
 		
 		$preference_data['payer'] = $this->_payer;
 
@@ -1212,11 +1252,13 @@ class MercadoPagoPayment
 
 		}
 
-		if(!$this->_shipment_local_pickup && $this->_shipment_mode && $this->_shipment_mode == MercadoPagoHelper::SHIPMENT_MERCADO_ENVIOS)
+//		if(!$this->_shipment_local_pickup && $this->_shipment_mode && $this->_shipment_mode == MercadoPagoHelper::SHIPMENT_MERCADO_ENVIOS)
+		if(!$this->_shipment_local_pickup)
 		{
 			$preference_data['shipments'] = array(
 
-				'mode' => $this->_shipment_mode,
+//				'mode' => $this->_shipment_mode,
+				'mode' => MercadoPagoHelper::SHIPMENT_MERCADO_ENVIOS,
 				//'local_pickup' => $this->_shipment_local_pickup,
 				'receiver_address' => array(
 					'zip_code' => $this->_shipment_receiver_address_zip_code ? $this->_shipment_receiver_address_zip_code : $this->_payer_address_zip_code,
@@ -1234,6 +1276,16 @@ class MercadoPagoPayment
 			else
 			{
 				$shipments_dimensions = $this->_shipment_dimensions;
+			}
+
+			foreach($shipments_dimensions as $index => $dimension)
+			{
+				if(!$dimension)
+				{
+					$dimension = 1;
+				}
+
+				$shipments_dimensions[$index] = $dimension;
 			}
 
 			$preference_data['shipments']['dimensions'] =

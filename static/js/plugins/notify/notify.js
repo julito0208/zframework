@@ -17,6 +17,7 @@ $.notify = function(options)
         css({'float': 'right'});
 
         var closeButton = $('<a />').
+        addClass('close-button').
         html('<span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-close fa-stack-1x fa-inverse"></i></span>').
         attr({'href': 'javascript:void(0)'}).
         bind('click', function() { block.fadeOut(); }).
@@ -24,6 +25,7 @@ $.notify = function(options)
     }
 
     block.append(messageBlock);
+    block.addClass('notify-block');
     block.addClass('alert');
     block.addClass('alert-'+options['type']);
     block.css(options['css']);
