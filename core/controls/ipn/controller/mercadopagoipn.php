@@ -38,6 +38,7 @@ class MercadoPagoIPN extends HTMLPageBlank
 
 	public function __construct()
 	{
+
 		parent::__construct();
 
 		if($_GET['topic'] == 'merchant_order')
@@ -78,8 +79,6 @@ class MercadoPagoIPN extends HTMLPageBlank
 					}
 				}
 
-				$payment = MercadoPagoPayment::get_from_preference_id($merchant_order_info["response"]['preference_id']);
-
 				if ($paid_amount >= $merchant_order_info["response"]["total_amount"])
 				{
 
@@ -110,6 +109,7 @@ class MercadoPagoIPN extends HTMLPageBlank
 
 				if ($paid)
 				{
+					$payment = MercadoPagoPayment::get_from_merchant_order($merchant_order_info);
 
 					foreach (self::$_callbacks as $callback)
 					{

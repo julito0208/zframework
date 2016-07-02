@@ -110,6 +110,66 @@ class MercadoPagoPayment
 		return $obj->get_mercadopago_payment();
 	}
 
+
+
+
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public static function get_from_merchant_order($merchant_order)
+	{
+		
+		$payment = new MercadoPagoPayment();
+
+		$payment->_preference_id = $merchant_order['response']['preference_id'];
+		$payment->_additional_info = $merchant_order['response']['additional_info'];
+		$payment->_external_reference = $merchant_order['response']['external_reference'];
+		$payment->_notification_url = $merchant_order['response']['notification_url'];
+		$payment->_payer_phone = $merchant_order['response']['payer']['phone']['number'];
+		$payment->_payer_address_zip_code = $merchant_order['response']['payer']['address']['zip_code'];
+		$payment->_payer_address_street_name = $merchant_order['response']['payer']['address']['street_name'];
+		$payment->_payer_address_street_number = $merchant_order['response']['payer']['address']['street_number'];
+		$payment->_payer_email = $merchant_order['response']['payer']['email'];
+		$payment->_payer_identification = $merchant_order['response']['payer']['identification']['number'];
+		$payment->_payer_name = $merchant_order['response']['payer']['name'];
+		$payment->_payer_surname = $merchant_order['response']['payer']['surname'];
+		//$payment->_expires_from = $preference_data['response']['expiration_date_from'];
+		//$payment->_expires_to = $preference_data['response']['expiration_date_to'];
+
+		if(is_array($merchant_order['response']['shipments']) && !empty($merchant_order['response']['shipments']))
+		{
+			$payment->set_shipment_enabled(true);
+
+			$payment->_shipment_mode = MercadoPagoHelper::SHIPMENT_MERCADO_ENVIOS;
+			$payment->_shipment_local_pickup = false;
+			// $payment->_shipment_dimensions = $preference_data['response']['shipments'][0]['dimensions'];
+			$payment->_shipment_receiver_address_zip_code = $merchant_order['response']['shipments'][0]['receiver_address']['zip_code'];
+			$payment->_shipment_receiver_address_street_name = $merchant_order['response']['shipments'][0]['receiver_address']['street_name'];
+			$payment->_shipment_receiver_address_street_number = $merchant_order['response']['shipments'][0]['receiver_address']['street_number'];
+			$payment->_shipment_receiver_address_floor = $merchant_order['response']['shipments'][0]['receiver_address']['floor'];
+			$payment->_shipment_receiver_address_apartment = $merchant_order['response']['shipments'][0]['receiver_address']['apartment'];	
+		}
+		else
+		{
+			$payment->set_shipment_enabled(false);			
+		}
+
+		foreach((array) $merchant_order['response']['items'] as $item)
+		{
+			$payment->add_item($item['id'], $item['unit_price'], $item['quantity'], $item['title'], $item['category_id'], $item['currency_id']);
+
+			if(!$payment->get_title())
+			{
+				$payment->set_title($item['title']);
+			}
+		}
+
+		return $payment;
+
+	}
+
 	/*-------------------------------------------------------------*/
 
 	protected $_preference_id;

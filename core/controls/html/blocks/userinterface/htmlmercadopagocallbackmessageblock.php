@@ -28,12 +28,12 @@ class HTMLMercadoPagoCallbackMessageBlock extends HTMLControl
 		{
 			if(MercadoPagoHelper::is_callback_success())
 			{
-				$this->_message = 'Su pago ha sido realizado con éxito';
+				$this->_message = 'Su pago ha sido realizado con &eacute;xito';
 				$this->_message_type = 'success';
 			}
 			else if(MercadoPagoHelper::is_callback_pending())
 			{
-				$this->_message = 'Su pago está pendiente';
+				$this->_message = 'Su pago est&aacute; pendiente';
 				$this->_message_type = 'info';
 			}
 			if(MercadoPagoHelper::is_callback_failure())
