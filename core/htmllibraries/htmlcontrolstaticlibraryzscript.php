@@ -8,6 +8,7 @@ class HTMLControlStaticLibraryZScript extends HTMLControlStaticLibrary {
 
 	public function get_dependence_libraries() {
 		return array(self::STATIC_LIBRARY_JQUERY);
+		return array(self::STATIC_LIBRARY_MASONRY);
 	}
 
 

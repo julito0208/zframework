@@ -65,6 +65,26 @@ class ZfImageType extends ZfImageTypeCache
 		return self::get_by_path($name);
 	}
 
+
+	/**
+	 *
+	 * @return ZfImageType
+	 *
+	 */
+	public static function get_by_base64($text)
+	{
+		if(preg_match('#(?i)^data\:image\/png\;base64\,#', $text))
+		{
+			return self::get_by_id_image_type(self::TYPE_PNG);
+		}
+		else if(preg_match('#(?i)^data\:image\/jpeg\;base64\,#', $text))
+		{
+			return self::get_by_id_image_type(self::TYPE_JPG);
+		}
+
+		return null;
+	}
+
 	/* ZPHP Generated Code ------------------------------------------ */
 	/* /ZPHP Generated Code ------------------------------------------ */
 

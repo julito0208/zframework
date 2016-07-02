@@ -93,6 +93,8 @@ class Image extends Graphic implements MIMEControl {
 	
 	
 	
+	
+	
 	protected static $_types_aliases = array(
 											'jpg' => 'jpeg',
 											'default' => ZPHP_IMAGE_TYPE);
@@ -224,9 +226,13 @@ class Image extends Graphic implements MIMEControl {
 			$x_pos[] = $point[0];
 			$y_pos[] = $point[1];
 		}
+		
 		return array(abs(max($x_pos)-min($x_pos)), abs(max($y_pos)-min($y_pos)));
+		
 	}
-
+	
+	
+	
 	protected static function _normalize_polygon_points(&$points) {
 		
 		$pos_x = array();
@@ -454,9 +460,33 @@ class Image extends Graphic implements MIMEControl {
 	 * 
 	 * @return Image
 	 */
-	public static function from_uploaded_file( $fileName, $index = null ) { 
-		$tmp_name = $index === null ? $_FILES[ $fileName ]['tmp_name'] : $_FILES[ $fileName ]['tmp_name'][ $index ];
-		if(is_uploaded_file( $tmp_name )) return new Image( $tmp_name );
+	public static function from_uploaded_file( $fileName, $index = null ) {
+
+		if($_FILES[$fileName])
+		{
+			$tmp_name = $index === null ? $_FILES[ $fileName ]['tmp_name'] : $_FILES[ $fileName ]['tmp_name'][ $index ];
+			if(is_uploaded_file( $tmp_name )) return new Image( $tmp_name );
+		}
+		else if($_POST[$fileName])
+		{
+			if(is_null($index))
+			{
+				$text = $_POST[$fileName];
+			}
+			else
+			{
+				$text = $_POST[$fileName][$index];
+			}
+
+			$text = preg_replace('#(?i)^data\:image\/.+?\;base64\,#', '', $text);
+			$text = base64_decode($text);
+
+			$image = new Image($text);
+			return $image;
+
+		}
+
+
 		return false;
 	}
 	
@@ -2207,15 +2237,22 @@ class Image extends Graphic implements MIMEControl {
 	}
 
 	
-	public function get_base64_contents() {
-		
-		ob_start();
-		
-		$this->_out(null, $this->_type);
-		
-		$contents = ob_get_clean();
-		
-		return base64_encode($contents);
+	public function get_base64_contents($src=false) {
+
+		if(!$src)
+		{
+			ob_start();
+
+			$this->_out(null, $this->_type);
+
+			$contents = ob_get_clean();
+
+			return base64_encode($contents);
+		}
+		else
+		{
+			return 'data:image/'.$this->get_type().';base64,'.$this->get_base64_contents();
+		}
 		
 	}
 

@@ -580,13 +580,11 @@ class ZPHP {
 			{
 				$path = ZPHP::get_zframework_dir().'/core/thirdparty/mobile_detect/Mobile_Detect.php';
 				@ require_once($path);
-
-				self::$_IS_MOBILE = false;
-				self::$_IS_TABLET = false;
-//				$detect = new Mobile_Detect();
-//
-//				self::$_IS_MOBILE = $detect->isMobile();
-//				self::$_IS_TABLET = $detect->isTablet();
+			
+				$detect = new Mobile_Detect();
+			
+				self::$_IS_MOBILE = $detect->isMobile();
+				self::$_IS_TABLET = $detect->isTablet();
 			}
 			
 		}

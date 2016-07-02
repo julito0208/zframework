@@ -18,7 +18,7 @@
 
 </style>
 
-<div id="zphp-debug-block" style="width: 100%; margin: 0 0 30px 0; font-family: sans; position: absolute; opacity: 0.7; font-size: 9pt;top: 0 !important;" onmouseenter="$(this).css({'opacity': 1})" onmouseleave="$(this).css({'opacity': '0.7'});">
+<div id="zphp-debug-block" style="width: 100%; margin: 0 0 30px 0; font-family: sans; position: absolute; opacity: 0.7; font-size: 9pt;z-index: 999999999999999; top: 0;" onmouseenter="$(this).css({'opacity': 1})" onmouseleave="$(this).css({'opacity': '0.7'})">
 
 	<div id="zphp-debug-block" style="width: 100%; border: solid 1px #000; position: absolute; margin: 0 0 30px 0; top: 0; left: 0; z-index: 9999">
 

@@ -7,7 +7,13 @@ class Dict extends DictRead implements Params{
 		parent::__construct();
 		$this->update($array);
 	}
-	
+
+	public function __set($name, $value)
+	{
+		$this->set_item($name, $value);
+	}
+
+	/*-------------------------------------------------------------*/
 	
 	public function set_item($key, $value=null) {
 		return $this->_set_item($key, $value);

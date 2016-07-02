@@ -40,6 +40,21 @@ class URLRequest extends Dict {
 		$this->update($data);
 	}
 
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_method($value)
+	{
+		$this->_method = strtolower($value) == self::METHOD_POST ? self::METHOD_POST : self::METHOD_GET;
+		return $this;
+	}
+
+	public function get_method()
+	{
+		return $this->_method;
+	}
 
 	/**
 	*

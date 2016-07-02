@@ -98,7 +98,17 @@ abstract class Cron {
 
 		if($class)
 		{
-			return in_array($class, $crons);
+			$count = 0;
+
+			foreach($crons as $cron)
+			{
+				if($cron == $class)
+				{
+					$count++;
+				}
+			}
+
+			return $count;
 		}
 		else
 		{
@@ -117,10 +127,8 @@ abstract class Cron {
 		$this->_lock_file = ZPHP::get_config('crons_locks_dir').'/'.get_class($this).'.cron-lock-'.uniqid();
 
 		$lock_file = $this->_lock_file;
+		touch($lock_file);
 
-		register_shutdown_function(function() use ($lock_file) {
-			@ unlink($lock_file);
-		});
 	}
 	
 	/*-------------------------------------------*/
@@ -171,5 +179,6 @@ abstract class Cron {
 		$this->_run_cron();
 		$this->_end_cron();
 
+		@ unlink($this->_lock_file);
 	}
 }

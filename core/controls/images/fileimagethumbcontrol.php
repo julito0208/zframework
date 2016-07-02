@@ -44,9 +44,7 @@ class FileImageThumbControl implements MIMEControl, RedirectURLPattern {
 
 			if(!file_exists($path))
 			{
-
 				$this->_image = new Image($image_file->get_full_path());
-
 				$image_thumb_type->resize_image($this->_image, $image_file);
 
 				if(ZPHP::get_config('image_save_thumb'))

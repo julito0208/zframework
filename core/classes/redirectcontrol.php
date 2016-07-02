@@ -59,13 +59,13 @@ class RedirectControl {
 		self::_add_redirects(self::$_URLS, $pattern, $redirect, $id);
 
 	}
-
+	
 	protected static function _add_redirects_mobile($pattern=null, $redirect=null, $id=null) {
-
+		
 		self::_add_redirects(self::$_URLS_MOBILE, $pattern, $redirect, $id);
-
+		
 	}
-
+	
 	protected static function _access_control($classname)
 	{
 

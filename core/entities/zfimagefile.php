@@ -97,7 +97,7 @@ class ZfImageFile extends ZfImageFileCache implements Imageable
 	{
 		$image = Image::from_uploaded_file($name, $index);
 
-		if(is_null($title))
+		if(is_null($title) && $_FILES[$name])
 		{
 			if(is_null($index))
 			{
@@ -109,6 +109,10 @@ class ZfImageFile extends ZfImageFileCache implements Imageable
 			}
 
 			$title = preg_replace('#\.\w+$#', '', $title);
+		}
+		else if(is_null($title))
+		{
+			$title = 'imagen';
 		}
 
 		return self::create_from_image($image, $prefix, $pos, $title, $id_group);

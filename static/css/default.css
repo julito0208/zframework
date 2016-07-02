@@ -517,3 +517,9 @@ label.max-width
 {
     white-space: nowrap;
 }
+
+
+.find-link-image.load:hover img {
+    border: 1px solid #03004e;
+    box-shadow: 1px 1px 4px 3px rgba(0, 0, 255, 0.49);
+}
