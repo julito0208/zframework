@@ -40,4 +40,5 @@ interface HTMLControlLibraryInterface
     const STATIC_LIBRARY_LIST_MENU = 'HTMLControlStaticLibraryListMenu';
     const STATIC_LIBRARY_SCREW_DEFAULT_BUTTONS = 'HTMLControlStaticLibraryScrewDefaultButtons';
     const STATIC_LIBRARY_BX_SLIDER = 'HTMLControlStaticLibraryBXSlider';
+    const STATIC_LIBRARY_NOTIFY = 'HTMLControlStaticLibraryNotify';
 }

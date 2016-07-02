@@ -43,6 +43,6 @@ jQuery.fn.listMenu = function() {
         $this.find('.menu-submenu-link li.active').getParent('li.menu-item').find('a .icon').removeClass('fa-plus-square').addClass('fa-minus-square');
     }
 
-    $this.find('.menu-sublink.active').parents().show();
+    $this.find('.menu-sublink.active').parents().not($this).show();
 
 };

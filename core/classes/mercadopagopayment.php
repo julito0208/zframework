@@ -128,7 +128,7 @@ class MercadoPagoPayment
 	protected $_payer_surname;
 	protected $_expires_from;
 	protected $_expires_to;
-	protected $_shipment_mode;
+	protected $_shipment_mode = MercadoPagoHelper::SHIPMENT_MERCADO_ENVIOS;
 	protected $_shipment_local_pickup = true;
 	protected $_shipment_dimensions = null;
 	protected $_shipment_receiver_address_zip_code = null;
@@ -1212,12 +1212,12 @@ class MercadoPagoPayment
 
 		}
 
-		if($this->_shipment_mode)
+		if(!$this->_shipment_local_pickup && $this->_shipment_mode && $this->_shipment_mode == MercadoPagoHelper::SHIPMENT_MERCADO_ENVIOS)
 		{
 			$preference_data['shipments'] = array(
 
 				'mode' => $this->_shipment_mode,
-				'local_pickup' => $this->_shipment_local_pickup,
+				//'local_pickup' => $this->_shipment_local_pickup,
 				'receiver_address' => array(
 					'zip_code' => $this->_shipment_receiver_address_zip_code ? $this->_shipment_receiver_address_zip_code : $this->_payer_address_zip_code,
 					'street_name' => $this->_shipment_receiver_address_street_name ? $this->_shipment_receiver_address_street_name : $this->_payer_address_street_name, 'street_number' => $this->_shipment_receiver_address_street_number ? $this->_shipment_receiver_address_street_number : $this->_payer_address_street_number,
