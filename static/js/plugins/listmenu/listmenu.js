@@ -4,6 +4,45 @@ jQuery.fn.listMenu = function() {
 
     var $this = $(this);
 
+    $this.triggerHandler('listMenu.init');
+
+    $this.bind('listMenu.clickItem', function() {
+
+        var closed = true;
+
+        $(this).find('.menu-submenu-link > a').each(function(index, item) {
+
+            var link = $(item);
+            var ul = link.next();
+
+            if(ul.hasClass('visible'))
+            {
+                closed = false;
+                return false;
+            }
+        });
+
+        $this.triggerHandler('listMenu.closeAll', closed);
+    });
+
+    $this.bind('listMenu.hideAll', function() {
+
+        $this.find('.menu-submenu-link > a').each(function(index, item) {
+
+            var link = $(item);
+            var ul = link.next();
+
+            if(ul.is(':visible'))
+            {
+                ul.removeClass('visible').slideUp();
+                link.find('.icon').removeClass('fa-minus-square').addClass('fa-plus-square');
+                $this.triggerHandler('listMenu.hideItem', ul);
+            }
+        });
+
+        $this.triggerHandler('listMenu.clickItem');
+    });
+
     $this.find('.menu-submenu-link ul').hide();
 
     $this.find('.menu-submenu-link > a').bind('click', function() {
@@ -13,15 +52,18 @@ jQuery.fn.listMenu = function() {
 
         if(ul.is(':visible'))
         {
-            ul.slideUp();
+            ul.removeClass('visible').slideUp();
             link.find('.icon').removeClass('fa-minus-square').addClass('fa-plus-square');
+            $this.triggerHandler('listMenu.hideItem', ul);
         }
         else
         {
-            ul.slideDown();
+            ul.addClass('visible').slideDown();
             link.find('.icon').removeClass('fa-plus-square').addClass('fa-minus-square');
+            $this.triggerHandler('listMenu.showItem', ul);
         }
 
+        $this.triggerHandler('listMenu.clickItem');
     });
 
     if($this.hasClass('horizontal') || $this.hasClass('menu-horizontal'))

@@ -13,12 +13,17 @@ class YahooImagesSearch extends ImagesSearch
 			$url = "https://ar.images.search.yahoo.com/search/images;_ylt=AwrBTzCQv1ZXVrgA59er9Qt.;_ylu=X3oDMTB0N2Noc21lBGNvbG8DYmYxBHBvcwMxBHZ0aWQDBHNlYwNwaXZz?p={$search_encoded}&fr=yfp-t-726&fr2=piv-web&vm=p&b=".($i*60);
 			$contents = file_get_contents($url);
 
-			preg_match_all('#imgurl\=(?P<url>.*?)\&#', $contents, $matches);
-
+			preg_match_all("#(?i)data\\-src\\=\\'(?P<url>.+?)\\'#", $contents, $matches);
 			foreach((array) $matches['url'] as $url)
 			{
-				$urls[] = 'http://'.urldecode($url);
+				$urls[] = str_replace('w=300&h=300', 'w=600&h=600', $url);
 			}
+
+//			preg_match_all('#imgurl\=(?P<url>.*?)\&#', $contents, $matches);
+//			foreach((array) $matches['url'] as $url)
+//			{
+//				$urls[] = 'http://'.urldecode($url);
+//			}
 
 		}
 

@@ -184,7 +184,7 @@
             'default': {classname: 'btn btn-default', defaultLabel: Strings.Get('accept'), defaultAction: 'close', defaultType: 'button' },
 
             //'close': {classname: 'button-close btn btn-default', defaultLabel: Strings.Get('close'), defaultAction: 'close', defaultType: 'button' },
-            'close': {classname: 'btn btn-default', defaultLabel: Strings.Get('close'), defaultAction: 'close', defaultType: 'button' },
+            'close': {classname: 'btn btn-info', defaultLabel: Strings.Get('close'), defaultAction: 'close', defaultType: 'button' },
 
             //'submit': {classname: 'button-submit btn btn-success', defaultLabel: Strings.Get('accept'), defaultAction: 'submit', defaultType: 'submit' },
             'submit': {classname: 'btn btn-success', defaultLabel: Strings.Get('accept'), defaultAction: 'submit', defaultType: 'submit' },
@@ -1703,7 +1703,7 @@
 
             if(data.options)
             {
-                imageOptions = $.extend({}, {'fill-window': false, 'height-space': 100}, data.options);
+                imageOptions = $.extend({}, {'fill-window': true, 'height-space': -170}, data.options);
             }
 
             var updateImageSize = function()
@@ -1715,7 +1715,7 @@
                     image.css('height', '');
 
                     var avalWidth = $(window).width() - 50;
-                    var avalHeight = $(window).outerHeight() - 20;
+                    var avalHeight = $(window).outerHeight() - imageOptions['height-space'];
 
                     var imageWidth = image.width();
                     var imageHeight = image.height();
@@ -1733,7 +1733,7 @@
                             var newWidth = imageAspect * newHeight;
                         }
 
-                        // image.width(newWidth);
+                         image.width(newWidth);
                         image.height(newHeight+0);
 
                         // dialogBlockContent.find('.image-title').width(newWidth);
@@ -1889,7 +1889,7 @@
             selectedIndex = index;
             jQuery.modalDialog.imagesList.selectedIndex = selectedIndex;
 
-            //jQuery(window).unbind('keydown', keyListener);
+            jQuery(window).unbind('keydown', keyListener);
 
             $('.dialog-image-container .dialog-image').css({'visibility': 'hidden'});
             $('.dialog-image-container .dialog-image').attr('src', jQuery.modalDialog.imagesList.dataList[index]['src']);
@@ -2031,7 +2031,7 @@
             var imageWidth = this.find('.dialog-image').width();
             var imageHeight = this.find('.dialog-image').height();
 
-            var listButtonsBlock = $('<div />').addClass('images-list-buttons-block').css({'width': '100%', 'margin-top': (imageHeight/2), 'white-space': 'nowrap'}).prependTo(dialogImageContainter);
+            var listButtonsBlock = $('<div />').addClass('images-list-buttons-block visible').css({'width': '100%', 'margin-top': (imageHeight/2), 'white-space': 'nowrap'}).prependTo(dialogImageContainter);
             var prevButton = $('<a />').addClass('prev-button button').attr({'href': 'javascript: void(0)', 'title': 'Anterior'}).html('&nbsp;').appendTo(listButtonsBlock);
             var nextButton = $('<a />').addClass('next-button button').attr({'href': 'javascript: void(0)', 'title': 'Siguiente'}).html('&nbsp;').appendTo(listButtonsBlock);
 
@@ -2067,8 +2067,8 @@
                 listButtonsBlock.css({'visibility':'visible'});
             }
 
-            jQuery(window).bind('DOMMouseScroll', wheelListener);
-            jQuery(window).bind('keydown', keyListener);
+            jQuery(document).bind('DOMMouseScroll', wheelListener);
+            jQuery(document).bind('keydown', keyListener);
 
             onloadWrapper.apply(this, arguments);
 
@@ -2091,8 +2091,8 @@
                 jQuery(window).unbind('swipedown', $.modalDialog.closeAll);
             }
 
-            jQuery(window).unbind('keydown', keyListener);
-            jQuery(window).unbind('DOMMouseScroll', wheelListener);
+            jQuery(document).unbind('keydown', keyListener);
+            jQuery(document).unbind('DOMMouseScroll', wheelListener);
             onunloadWrapper.apply(this, arguments);
 
         };
@@ -2103,7 +2103,7 @@
             nextFunction();
         };
 
-        jQuery.modalDialog.image(jQuery.modalDialog.imagesList.dataList[selectedIndex], dialogOptions);
+        jQuery.modalDialog.image({'src': jQuery.modalDialog.imagesList.dataList[selectedIndex], 'options': {'height-space': 30}}, dialogOptions);
 
     };
 
@@ -2437,7 +2437,7 @@
             jQuery.modalDialog.imagesSearch.created = true;
 
             var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="display: none; width: 900px"><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td class="col-label">       <label>Buscar:</label>      </td>      <td>       <input type="text" id="isf-image-search" name="search" style="width: 300px" />      </td>      <td>       <button type="submit" class="btn btn-success"><span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; width: 700px; max-height: 500px; overflow: auto; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
-            var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="width: 900px"><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td class="col-label" style="padding: 2px 10px 0 0;">       <label>Buscar:</label>      </td>      <td style="padding: 0 30px 0 0;">       <input type="text" id="isf-image-search" name="search" style="width: 300px" />      </td>      <td>       <button type="submit" class="btn btn-success"><span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; max-height: 450px; overflow: auto; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
+            var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="width: 900px"><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td class="col-label" style="padding: 2px 10px 0 0;">       <label>Buscar:</label>      </td>      <td style="padding: 0 30px 0 0;">       <input type="text" id="isf-image-search" name="search" style="width: 300px" class="first-focus" />      </td>      <td>       <button type="submit" class="btn btn-success"><span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; max-height: 450px; overflow: auto; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
             $('body').prepend($('<div />').html(dialogHtml));
 
             var ProductoSearchImageDialog = new Object();
@@ -2448,7 +2448,7 @@
             ProductoSearchImageDialog.dialog = $('#isf-producto-search-image-dialog').modalDialog($.extend({}, options, {
                 'title': 'Buscar Imagen',
                 'top': 0.1,
-                'width': 900
+                'width': 1024
             }));
 
             ProductoSearchImageDialog.dialog.body().find('#isf-images-result').css({'background': '#EAEAEA'});
@@ -2465,14 +2465,14 @@
                 }
                 else
                 {
-                    ProductoSearchImageDialog.dialog.body().find('#isf-images-result').show().html("<br /><br /><i class='fa fa-circle-o-notch fa-spin fa-fw'></i>&nbsp;&nbsp;Cargando<br /><br />");
+                    ProductoSearchImageDialog.dialog.body().find('#isf-images-result').show().html("<div class='empty'><br /><br /><i class='fa fa-circle-o-notch fa-spin fa-fw'></i>&nbsp;&nbsp;Cargando<br /><br /></div>");
                     ProductoSearchImageDialog.dialog.body().find('#isf-images-result-count').html("&nbsp;");
                 }
 
             };
 
             ProductoSearchImageDialog.dialog.updateTotal = function () {
-                var countImages = ProductoSearchImageDialog.dialog.body().find('#isf-images-result img').length;
+                var countImages = ProductoSearchImageDialog.dialog.body().find('#isf-images-result a').length;
 
                 if (countImages > 0) {
                     ProductoSearchImageDialog.dialog.body().find('#isf-images-result-count').html("Se encontraron " + String(countImages) + " imágenes");
@@ -2515,14 +2515,38 @@
 
                             block.masonryUpdate = function()
                             {
-                                block.masonry({
+                                block.find('.container').masonry({
                                     gutter: 25,
                                     itemSelector: '.find-link-image'
                                 });
                             };
 
                             if (data && data['urls'] && data['urls'].length > 0) {
-                                block.empty();
+
+                                // block.empty();
+
+                                var countUrls = data['urls'].length;
+                                var loadedUrls = 0;
+                                var errorUrls = 0;
+
+                                function updateImagesCount()
+                                {
+                                    if(loadedUrls+errorUrls >= countUrls)
+                                    {
+
+                                        ProductoSearchImageDialog.dialog.updateTotal();
+                                        block.find('.empty').remove();
+                                        blockContainer.css({'visibility': 'visible', 'position': 'relative', 'width': '870', 'height': ''});
+                                        // block.find('a.find-link-image').css({'display': 'inline-block'});
+                                        block.masonryUpdate();
+                                    }
+
+                                }
+
+                                var blockContainer = $('<div />').
+                                    appendTo(block).
+                                    addClass('container').
+                                    css({'visibility': 'hidden', 'position': 'absolute', 'width': '0', 'height': '0'});
 
                                 $.each(data['urls'], function (index, item) {
 
@@ -2535,7 +2559,7 @@
 
                                     var image = $('<img />');
                                     image.attr({'src': item});
-                                    image.css({'display': 'block', 'max-width': '190px', 'max-height': '300px', 'vertical-align': 'top', 'border': 'solid 1px #555'});
+                                    image.css({'display': 'block', 'max-width': '250px', 'max-height': '300px', 'vertical-align': 'top', 'border': 'solid 1px #555', 'visibility': 'visible'});
                                     image.appendTo(link);
                                     image.bind('load', function () {
 
@@ -2546,36 +2570,56 @@
 
                                         if (imageWidth < 120 || imageHeight < 120) {
                                             link.remove();
+                                            errorUrls++;
+                                            updateImagesCount();
                                         }
-                                        else {
-                                            node.width(190);
+                                        else
+                                        {
+                                            node.width(250);
                                             link.addClass('loaded');
-                                            link.css({'visibility': 'visible'});
-                                            link.css({'width': node.width(), 'height': node.height()});
+                                            // link.css({'visibility': 'visible'});
+                                            // link.css({'width': node.width(), 'height': node.height()});
 
+                                            // link.css({
+                                            //     'position': 'relative',
+                                            //     'visibility': 'visible',
+                                            //     'display': 'none'
+                                            // });
+
+
+                                            loadedUrls++;
+                                            updateImagesCount();
                                         }
 
-                                        ProductoSearchImageDialog.dialog.updateTotal();
 
-                                         block.masonryUpdate();
+                                        // ProductoSearchImageDialog.dialog.updateTotal();
+
+                                         // block.masonryUpdate();
                                     });
 
                                     image.bind('error', function () {
+
+                                        var node = $(this).data('loaded', true);
+                                        var link = node.getParent('a').addClass('load');
+
                                         link.remove();
-                                        block.masonryUpdate();
+                                        errorUrls++;
+                                        updateImagesCount();
+
+                                        // block.masonryUpdate();
                                     });
 
-                                    setTimeout(function() {
+                                    // setTimeout(function() {
+                                    //
+                                    //     if(!image.data('loaded'))
+                                    //     {
+                                    //         image.getParent('a').remove();
+                                    //         block.masonryUpdate();
+                                    //     }
+                                    //
+                                    // }, 10000);
 
-                                        if(!image.data('loaded'))
-                                        {
-                                            image.getParent('a').remove();
-                                            block.masonryUpdate();
-                                        }
-
-                                    }, 10000);
-
-                                    link.appendTo(block);
+                                    link.appendTo(blockContainer);
 
                                     link.bind('click', function (evt) {
 

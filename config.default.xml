@@ -513,7 +513,7 @@
         <default_thumb_type>default</default_thumb_type>
         <default_type>png</default_type>
         <search_url>image/search/%s</search_url>
-        <search_pages>3</search_pages>
+        <search_pages>2</search_pages>
 	</image>
 
 	<error_reporting>

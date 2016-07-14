@@ -231,8 +231,9 @@ class ZfImageFile extends ZfImageFileCache implements Imageable
 			return null;
 		}
 
-		if(ClassHelper::is_instance_of($object, 'Imageable'))
+		if(is_object($object) && ClassHelper::is_instance_of($object, 'Imageable'))
 		{
+
 			$id_image_file = $object->get_id_image_file();
 
 			if(!$id_image_file)
@@ -258,7 +259,6 @@ class ZfImageFile extends ZfImageFileCache implements Imageable
 		}
 		else
 		{
-
 			return self::get_image_url(ZfImageFile::get_by_id_image_file($object), $image_thumb_type, $use_default);
 		}
 	}
