@@ -2,8 +2,9 @@
 
 class HTMLInputHTMLControl extends HTMLInputControl {
 
-	const UPLOAD_IMAGE_MAX_WIDTH = 500;
-	const UPLOAD_IMAGE_MAX_HEIGHT = 500;
+	const UPLOAD_IMAGE_MAX_WIDTH = 1500;
+	const UPLOAD_IMAGE_MAX_HEIGHT = 1500;
+
 
 	public static function ajax_get_image_html() {
 		
@@ -26,14 +27,8 @@ class HTMLInputHTMLControl extends HTMLInputControl {
 				}
 
 
-				$html = new HTMLBlockImageBase64($image);
-				
-				if($image->get_width() >= self::IMAGE_MAX_INIT_WIDTH) {
-					$html->set_width(self::IMAGE_MAX_INIT_WIDTH);
-				}
-				
+				$json->set_item('src', $image->get_base64_contents(true));
 				$json->set_success(true);
-				$json->set_item('html', $html->to_string());
 			}
 		}
 		
@@ -140,6 +135,10 @@ class HTMLInputHTMLControl extends HTMLInputControl {
 	protected static $_default_toolbar_items = array(
 		
 		array(
+			self::TOOLBAR_ITEM_PASTE,
+			self::TOOLBAR_ITEM_COPY,
+			self::TOOLBAR_ITEM_CUT,
+			self::TOOLBAR_ITEM_SEPARATOR,
 			self::TOOLBAR_ITEM_FONT_FORMAT,
 			self::TOOLBAR_ITEM_FONT_SIZE,
 			self::TOOLBAR_ITEM_SEPARATOR,
@@ -159,10 +158,16 @@ class HTMLInputHTMLControl extends HTMLInputControl {
 			self::TOOLBAR_ITEM_OUTDENT,
 			self::TOOLBAR_ITEM_INDENT,
 			self::TOOLBAR_ITEM_SEPARATOR,
+			self::TOOLBAR_ITEM_UNORDERED_LIST,
+			self::TOOLBAR_ITEM_ORDERED_LIST,
+			self::TOOLBAR_ITEM_SEPARATOR,
+			self::TOOLBAR_ITEM_HR,
 			self::TOOLBAR_ITEM_TABLE,
 			self::TOOLBAR_ITEM_LINK,
 			self::TOOLBAR_ITEM_IMAGE,
-			'youtube'
+			self::TOOLBAR_ITEM_MEDIA,
+			self::TOOLBAR_ITEM_SEPARATOR,
+			self::TOOLBAR_ITEM_CODE,
 		),
 		
 	);
@@ -191,6 +196,7 @@ class HTMLInputHTMLControl extends HTMLInputControl {
 	protected $_use_toolbar = true;
 	protected $_shuffle_id;
 	protected $_paste_clear_font = true;
+	protected $_show_menu = false;
 	
 	public function __construct($id=null) {
 		
@@ -334,6 +340,24 @@ class HTMLInputHTMLControl extends HTMLInputControl {
 		$this->_use_toolbar = $value;
 	}
 
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_show_menu($value)
+	{
+		$this->_show_menu = $value;
+		return $this;
+	}
+
+	public function get_show_menu()
+	{
+		return $this->_show_menu;
+	}
+
+
+
 	
 	public function prepare_params() {
 		
@@ -348,6 +372,14 @@ class HTMLInputHTMLControl extends HTMLInputControl {
 		$this->set_param('language', self::$_language_values[$this->_language]);
 		$this->set_param('toolbar', $this->_use_toolbar ? self::_prepare_toolbar($this->_use_default_toolbar ? self::$_default_toolbar_items : $this->_toolbar) : false);
 		$this->set_param('paste_clear_font', $this->_paste_clear_font);
+		$this->set_param('show_menu', $this->_show_menu);
+
+		$imageInput = new HTMLInputImageControl(($this->_id ? $this->_id : $this->_name).'_image_input');
+		$imageInput->set_enable_delete(false);
+		$imageInput->set_for_modaldialog(true);
+		$imageInput->set_enable_title_edit(false);
+		$this->set_param('image_input', $imageInput);
+
 	}
 	
 }

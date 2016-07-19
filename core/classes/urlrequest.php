@@ -102,25 +102,7 @@ class URLRequest extends Dict {
 		return $this->_void_ssl_certificate;
 	}
 
-	/**
-	*
-	* @return $this
-	*
-	*/
-	public function set_method($value)
-	{
-		$this->_method = $value;
-		return $this;
-	}
-
-	public function get_method()
-	{
-		return $this->_method;
-	}
-
-
-
-
+	
 	/*-------------------------------------------------------------*/
 
 	public function request($read_body=null)

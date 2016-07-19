@@ -505,4 +505,22 @@ class HTMLPageBlank extends HTMLControl {
 		$this->_language = $value;
 	}
 
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_use_debug_bar($value)
+	{
+		$this->_use_debug_bar = $value;
+		return $this;
+	}
+
+	public function get_use_debug_bar()
+	{
+		return $this->_use_debug_bar;
+	}
+
+
+
 }

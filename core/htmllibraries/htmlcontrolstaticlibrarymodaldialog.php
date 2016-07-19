@@ -12,6 +12,6 @@ class HTMLControlStaticLibraryModalDialog extends HTMLControlStaticLibrary {
 	}
 
 	public function get_dependence_libraries() {
-		return array(self::STATIC_LIBRARY_ZSCRIPT, self::STATIC_LIBRARY_BOOTSTRAP, self::STATIC_LIBRARY_MASONRY);
+		return array(self::STATIC_LIBRARY_ZSCRIPT, self::STATIC_LIBRARY_BOOTSTRAP, self::STATIC_LIBRARY_MASONRY, self::STATIC_LIBRARY_FONTS_AWESOME);
 	}
 }

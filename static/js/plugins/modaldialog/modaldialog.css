@@ -233,6 +233,8 @@ div.modaldialog div.header span.close-button {
 	border-right: 0;
 	border-top: 0;
 	vertical-align: middle;
+    font-size: 14pt !important;
+    margin-right: 5px;
 	/*background-color: #EEE;*/
 }
 
@@ -618,4 +620,20 @@ div#modaldialog-container div#modaldialog-body .buttons-left button {
 
 div#modaldialog-container div#modaldialog-body .buttons {
 	padding-bottom: 10px !important;
+}
+
+div#modaldialog-container table th
+{
+    background: transparent !important;
+    color: inherit !important;
+}
+
+.find-link-image img
+{
+    width: 290px;
+    display: block;
+    /*max-height: 300px;*/
+    vertical-align: top;
+    border: solid 1px #555;
+    visibility: hidden;
 }

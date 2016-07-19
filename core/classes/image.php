@@ -2237,9 +2237,9 @@ class Image extends Graphic implements MIMEControl {
 	}
 
 	
-	public function get_base64_contents($src=false) {
+	public function get_base64_contents($img_src=false) {
 
-		if(!$src)
+		if(!$img_src)
 		{
 			ob_start();
 

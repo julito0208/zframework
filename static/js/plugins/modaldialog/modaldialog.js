@@ -59,7 +59,7 @@
         _bodySize = {width: 0, height: 0},
         _windowSize = {width: 0, height: 0},
 
-        _overlayZIndex = 100000,
+        _overlayZIndex = 100,
 
         /* Estilo del overlay */
         _overlayStyle = {
@@ -1729,12 +1729,12 @@
 
                         if(newHeight > avalHeight )
                         {
-                            var newHeight = avalHeight;
+                            var newHeight = avalHeight - 350;
                             var newWidth = imageAspect * newHeight;
                         }
 
                          image.width(newWidth);
-                        image.height(newHeight+0);
+                        image.height(newHeight);
 
                         // dialogBlockContent.find('.image-title').width(newWidth);
                         dialogBlock.find('.images-list-buttons-block').css({ 'margin-top': (newHeight/2)});
@@ -2437,8 +2437,15 @@
             jQuery.modalDialog.imagesSearch.created = true;
 
             var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="display: none; width: 900px"><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td class="col-label">       <label>Buscar:</label>      </td>      <td>       <input type="text" id="isf-image-search" name="search" style="width: 300px" />      </td>      <td>       <button type="submit" class="btn btn-success"><span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; width: 700px; max-height: 500px; overflow: auto; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
-            var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="width: 900px"><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td class="col-label" style="padding: 2px 10px 0 0;">       <label>Buscar:</label>      </td>      <td style="padding: 0 30px 0 0;">       <input type="text" id="isf-image-search" name="search" style="width: 300px" class="first-focus" />      </td>      <td>       <button type="submit" class="btn btn-success"><span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; max-height: 450px; overflow: auto; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
+            var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="width: 900px"><h4 style="margin: 0 0 20px; text-decoration: underline;">Buscar Imágenes</h4><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td class="col-label" style="padding: 2px 10px 0 0;">       <label>Buscar:</label>      </td>      <td style="padding: 0 30px 0 0;">       <input type="text" id="isf-image-search" name="search" style="width: 300px" class="first-focus" />      </td>      <td>       <button type="submit" class="btn btn-success"><span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; max-height: 450px; overflow-y: auto; overflow-x: hidden;  border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
+            var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="width: 600px"><h4 style="margin: 0 0 20px; text-decoration: underline;">Buscar Imágenes</h4><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td style="padding: 0 20px 0 0;">       <input type="text" id="isf-image-search" name="search" placeholder="Buscar" style="width: 300px" class="first-focus" />      </td>      <td>       <button type="submit" class="btn btn-default search-button" style="font-weight: normal; padding: 4px 20px; background: #333 none repeat scroll 0 0;border: 1px solid #999;color: #fff;padding: 4px 20px;box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.075)"><span class="fa fa-search"></span>&nbsp;&nbsp;<span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; max-height: 350px; overflow-y: auto; overflow-x: hidden; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" style="padding: 5px 20px; font-weight: bold;" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
+            var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="width: 1024px"><h4 style="margin: 0 0 20px; text-decoration: underline;">Buscar Imágenes</h4><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table class="fill-width">     <tr id="isf-producto-imagen-actual-row">      <td style="padding: 0 20px 0 0; width:340px;">       <input type="text" id="isf-image-search" name="search" placeholder="Buscar" style="width: 300px" class="first-focus" />      </td>      <td>       <button type="submit" class="btn btn-success" style="padding: 4px 15px;"><span class="fa fa-search"></span>&nbsp;&nbsp;<span>Buscar</span></button>     <div class="pull-right" id="isf-images-result-count">&nbsp;</div> </td>     </tr>    </table>   </div>   </form>   <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; max-height: '+String($(window).height()-350)+'px; overflow-y: auto; overflow-x: hidden; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" style="padding: 5px 20px; font-weight: bold;" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
             $('body').prepend($('<div />').html(dialogHtml));
+
+            $('#isf-image-search').bind('keydown keyup keypress', function(evt) {
+                evt.stopPropagation();
+                // return false;
+            });
 
             var ProductoSearchImageDialog = new Object();
 
@@ -2446,9 +2453,9 @@
             ProductoSearchImageDialog.loading = false;
 
             ProductoSearchImageDialog.dialog = $('#isf-producto-search-image-dialog').modalDialog($.extend({}, options, {
-                'title': 'Buscar Imagen',
+                // 'title': 'Buscar Imagen',
                 'top': 0.1,
-                'width': 1024
+                'width': $(document).width()
             }));
 
             ProductoSearchImageDialog.dialog.body().find('#isf-images-result').css({'background': '#EAEAEA'});
@@ -2465,7 +2472,7 @@
                 }
                 else
                 {
-                    ProductoSearchImageDialog.dialog.body().find('#isf-images-result').show().html("<div class='empty'><br /><br /><i class='fa fa-circle-o-notch fa-spin fa-fw'></i>&nbsp;&nbsp;Cargando<br /><br /></div>");
+                    ProductoSearchImageDialog.dialog.body().find('#isf-images-result').show().html("<div class='empty' style='padding-left: 0px'><br /><div class='' style='display: inline-block;'><span class='fa fa-spinner fa-spin fa-fw fa-1x'></span></span></div>&nbsp;&nbsp;Cargando<br /><br /></div>");
                     ProductoSearchImageDialog.dialog.body().find('#isf-images-result-count').html("&nbsp;");
                 }
 
@@ -2495,18 +2502,27 @@
             ProductoSearchImageDialog.dialog.search = function () {
 
                 var search = ProductoSearchImageDialog.dialog.body().find('#isf-image-search').val().trim();
+                ProductoSearchImageDialog.dialog.body().find('#isf-image-search').attr('disabled', true);
+                ProductoSearchImageDialog.dialog.body().find('.search-button').attr('disabled', true);
 
                 if(search.length < options['minLength'])
                 {
                     ProductoSearchImageDialog.dialog.emptyImagesBlock();
+                    ProductoSearchImageDialog.dialog.body().find('#isf-image-search').attr('disabled', false);
+                    ProductoSearchImageDialog.dialog.body().find('.search-button').attr('disabled', false);
                 }
                 else if (!ProductoSearchImageDialog.loading) {
 
                     ProductoSearchImageDialog.loading = true;
                     ProductoSearchImageDialog.dialog.emptyImagesBlock();
+
+                    ProductoSearchImageDialog.dialog.body().find('#isf-image-search').attr('disabled', true);
+                    ProductoSearchImageDialog.dialog.body().find('.search-button').attr('disabled', true);
+
                     $.ajax({
                         'url': '/image/search/' + $.urlencode(search ? search : ''),
                         'type': 'post',
+                        'data': {'pages': options['pages']},
                         'success': function (data) {
 
                             ProductoSearchImageDialog.loading = false;
@@ -2516,7 +2532,7 @@
                             block.masonryUpdate = function()
                             {
                                 block.find('.container').masonry({
-                                    gutter: 25,
+                                    gutter: 30,
                                     itemSelector: '.find-link-image'
                                 });
                             };
@@ -2525,20 +2541,27 @@
 
                                 // block.empty();
 
+                                data['urls'] = data['urls'].slice(0, data['urls'].length-8);
+
                                 var countUrls = data['urls'].length;
                                 var loadedUrls = 0;
                                 var errorUrls = 0;
 
                                 function updateImagesCount()
                                 {
-                                    if(loadedUrls+errorUrls >= countUrls)
+                                    if(loadedUrls+errorUrls >= countUrls || loadedUrls+errorUrls > options['limit'] || loadedUrls+errorUrls > 10)
                                     {
 
                                         ProductoSearchImageDialog.dialog.updateTotal();
                                         block.find('.empty').remove();
-                                        blockContainer.css({'visibility': 'visible', 'position': 'relative', 'width': '870', 'height': ''});
+                                        blockContainer.css({'visibility': 'visible', 'position': 'relative', 'width': '1024', 'height': ''});
+                                        block.find('.container a img').css({'visibility': 'visible'});
+                                        block.find('.container a').css({'visibility': 'visible'});
                                         // block.find('a.find-link-image').css({'display': 'inline-block'});
                                         block.masonryUpdate();
+
+                                        ProductoSearchImageDialog.dialog.body().find('#isf-image-search').attr('disabled', false);
+                                        ProductoSearchImageDialog.dialog.body().find('.search-button').attr('disabled', false);
                                     }
 
                                 }
@@ -2550,16 +2573,20 @@
 
                                 $.each(data['urls'], function (index, item) {
 
+                                    if(loadedUrls+errorUrls > options['limit'])
+                                    {
+                                        return false;
+                                    }
+
                                     if(jQuery.modalDialog.imagesSearch.options['avoidUrls'].indexOf(item) !== -1)
                                     {
                                         return;
                                     }
 
-                                    var link = $('<a />').addClass('find-link-image').css({'margin': '0 0px 20px 0', 'display': 'inline-block', 'vertical-align': 'top'});
+                                    var link = $('<a />').addClass('find-link-image').css({'margin': '0 0px 30px 0', 'display': 'inline-block', 'vertical-align': 'top'});
 
                                     var image = $('<img />');
                                     image.attr({'src': item});
-                                    image.css({'display': 'block', 'max-width': '250px', 'max-height': '300px', 'vertical-align': 'top', 'border': 'solid 1px #555', 'visibility': 'visible'});
                                     image.appendTo(link);
                                     image.bind('load', function () {
 
@@ -2568,25 +2595,14 @@
                                         var imageWidth = node.width();
                                         var imageHeight = node.height();
 
-                                        if (imageWidth < 120 || imageHeight < 120) {
+                                        if (imageWidth < 200 || imageHeight < 120) {
                                             link.remove();
                                             errorUrls++;
                                             updateImagesCount();
                                         }
                                         else
                                         {
-                                            node.width(250);
                                             link.addClass('loaded');
-                                            // link.css({'visibility': 'visible'});
-                                            // link.css({'width': node.width(), 'height': node.height()});
-
-                                            // link.css({
-                                            //     'position': 'relative',
-                                            //     'visibility': 'visible',
-                                            //     'display': 'none'
-                                            // });
-
-
                                             loadedUrls++;
                                             updateImagesCount();
                                         }
@@ -2594,7 +2610,7 @@
 
                                         // ProductoSearchImageDialog.dialog.updateTotal();
 
-                                         // block.masonryUpdate();
+                                         block.masonryUpdate();
                                     });
 
                                     image.bind('error', function () {
@@ -2606,7 +2622,7 @@
                                         errorUrls++;
                                         updateImagesCount();
 
-                                        // block.masonryUpdate();
+                                        block.masonryUpdate();
                                     });
 
                                     // setTimeout(function() {
@@ -2687,20 +2703,22 @@
     jQuery.modalDialog.imagesSearch.defaultOptions = {
         'minLength': 2,
         'showThumb': false,
-        'avoidUrls': []
+        'avoidUrls': [],
+        'pages': 2,
+        'limit': 100
     };
 
     /* Funcion de jQuery para crear un modaldialog ------------------------------ */
 
     jQuery.fn.modalDialog = function(options) {
 
-        if(this.data('__modaldialog__')) {
-            var modaldialog = this.data('__modaldialog__');
+        if(this.data('__modalDialog__')) {
+            var modaldialog = this.data('__modalDialog__');
             modaldialog.attr(options);
             return modaldialog;
         } else {
             var modaldialog = jQuery.modalDialog.apply(this, jQuery.merge([this], arguments));
-            this.data('__modaldialog__', modaldialog);
+            this.data('__modalDialog__', modaldialog);
             return modaldialog;
         }
     };

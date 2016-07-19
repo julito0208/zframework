@@ -222,6 +222,14 @@ class ZfImageFile extends ZfImageFileCache implements Imageable
 		}
 	}
 
+	public function get_base64_contents($img_src=false)
+	{
+
+		$path = $this->get_thumb_path();
+		$image = new Image($path);
+		return $image->get_base64_contents($img_src);
+	}
+
 	/*-------------------------------------------------------------*/
 
 	public static function get_image_url($object, $image_thumb_type=null, $use_default=true)

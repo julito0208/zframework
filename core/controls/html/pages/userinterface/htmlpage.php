@@ -6,6 +6,7 @@ class HTMLPage extends HTMLPageBlank {
 	public function __construct()
 	{
 		parent::__construct();
+		self::add_global_static_library(self::STATIC_LIBRARY_ZSCRIPT);
 		self::add_global_css_files_zframework('css/default.css');
 		self::add_global_js_files_zframework('js/zframework.php');
 

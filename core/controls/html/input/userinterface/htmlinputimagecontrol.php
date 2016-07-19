@@ -28,6 +28,13 @@ class HTMLInputImageControl extends HTMLInputControl {
 		}
 
 		$image_file = ZfImageFile::create_from_image($image, $prefix);
+
+		if(isset($_POST["{$varname}_title"]))
+		{
+			$image_file->set_title($_POST["{$varname}_title"]);
+			$image_file->save();
+		}
+
 		return $image_file;
 
 	}
@@ -37,16 +44,31 @@ class HTMLInputImageControl extends HTMLInputControl {
 
 	public static function ajax_url_base64()
 	{
-		$json = new AjaxJSONResponse();
+		set_time_limit(0);
+
+		$json = new AjaxJSONFormResponse();
 		
 		$url = $_POST['url'];
 		$temp_file = tempnam(null, 'img');
 
-		file_put_contents($temp_file, file_get_contents($url));
+		$contents = file_get_contents($url);
 
-		$image = new Image($temp_file);
+		if(!$contents)
+		{
+			$json->set_success(false);
+		}
+		else
+		{
+			$json->set_success(true);
 
-		$json->set_item('content', $image->get_base64_contents(true));
+			file_put_contents($temp_file, $contents);
+
+			$image = new Image($temp_file);
+
+			$json->set_item('content', $image->get_base64_contents(true));
+		}
+
+
 		$json->out();
 	}
 	
@@ -58,11 +80,80 @@ class HTMLInputImageControl extends HTMLInputControl {
 	protected $_enable_delete = false;
 	protected $_delete_selected = false;
 
+	protected $_enable_select_local = true;
+	protected $_enable_image_search = true;
+	protected $_enable_select_url = true;
+	
+	protected $_for_modaldialog = false;
+	
+	protected $_enable_title = true;
+	protected $_enable_title_edit = true;
+
 	public function __construct($id=null, $name=null) {
+
 		parent::__construct();
+
+		self::add_global_static_library(self::STATIC_LIBRARY_MODAL_DIALOG);
+		self::add_global_static_library(self::STATIC_LIBRARY_BOOTSTRAP);
+		self::add_global_static_library(self::STATIC_LIBRARY_MASONRY);
+
 		$this->set_id($id);
 		$this->set_name($name);
 	}
+
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_enable_select_url($value)
+	{
+		$this->_enable_select_url = $value;
+		return $this;
+	}
+
+	public function get_enable_select_url()
+	{
+		return $this->_enable_select_url;
+	}
+
+
+
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_enable_image_search($value)
+	{
+		$this->_enable_image_search = $value;
+		return $this;
+	}
+
+	public function get_enable_image_search()
+	{
+		return $this->_enable_image_search;
+	}
+
+
+
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_enable_select_local($value)
+	{
+		$this->_enable_select_local = $value;
+		return $this;
+	}
+
+	public function get_enable_select_local()
+	{
+		return $this->_enable_select_local;
+	}
+
+
 
 	/**
 	*
@@ -155,6 +246,57 @@ class HTMLInputImageControl extends HTMLInputControl {
 		return $this->_delete_selected;
 	}
 	
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_for_modaldialog($value)
+	{
+		$this->_for_modaldialog = $value;
+		return $this;
+	}
+	
+	public function get_for_modaldialog()
+	{
+		return $this->_for_modaldialog;
+	}
+
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_enable_title($value)
+	{
+		$this->_enable_title = $value;
+		return $this;
+	}
+
+	public function get_enable_title()
+	{
+		return $this->_enable_title;
+	}
+
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_enable_title_edit($value)
+	{
+		$this->_enable_title_edit = $value;
+		return $this;
+	}
+
+	public function get_enable_title_edit()
+	{
+		return $this->_enable_title_edit;
+	}
+
+
+	
+	
 	
 	public function prepare_params() {
 
@@ -166,6 +308,13 @@ class HTMLInputImageControl extends HTMLInputControl {
 		$this->set_param('enable_delete', $this->_enable_delete); 
 		$this->set_param('delete_selected', $this->_delete_selected);
 		$this->set_param('id_image_file', $this->_id_image_file);
+		$this->set_param('image_file', $this->_id_image_file ? ZfImageFile::get_by_id_image_file($this->_id_image_file) : null);
+		$this->set_param('enable_select_url', $this->_enable_select_url);
+		$this->set_param('enable_select_local', $this->_enable_select_local);
+		$this->set_param('enable_image_search', $this->_enable_image_search);
+		$this->set_param('for_modaldialog', $this->_for_modaldialog);
+		$this->set_param('enable_title', $this->_enable_title);
+		$this->set_param('enable_title_edit', $this->_enable_title_edit); 
 	}
 
 }

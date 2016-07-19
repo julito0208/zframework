@@ -168,7 +168,7 @@ tinymce.addI18n('es_MX',{
 "Custom...": "Personalizar",
 "Custom color": "Perzonalizar color",
 "No color": "Sin color",
-"Text color": "Color de  fondo",
+"Text color": "Color de  texto",
 "Show blocks": "Mostrar bloques",
 "Show invisible characters": "Mostrar caracteres invisibles",
 "Words: {0}": "Palabras:{0}",
@@ -179,5 +179,10 @@ tinymce.addI18n('es_MX',{
 "Tools": "Herramientas",
 "View": "Vistas",
 "Table": "Tabla",
-"Format": "Formato"
+"Format": "Formato",
+"Insert\/edit image": "Insertar Imagen",
+"Insert image": "Insertar imagen",
+"Insert video": "Insertar vídeo",
+"Insert\/edit video": "Insertar Vídeo"
+
 });
