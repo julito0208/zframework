@@ -119,5 +119,10 @@ class ZfFile extends ZfFileCache
 	{
 		return ZPHP::get_www_dir().$this->get_path();
 	}
+
+	public function get_url()
+	{
+		return $this->get_path();
+	}
 }
 

@@ -5,9 +5,7 @@
 <div id="<?=HTMLHelper::escape($id_container)?>_image_dialog" class="image-dialog">
 
 	<div>
-	<form id="<?=$id_container?>_image_form" method="post" action="javascript:void(0)" style="width: 400px" enctype="multipart/form-data">
-
-		<div style="width: 600px;">
+		<div style="width: 600px;" id="<?=HTMLHelper::escape($id_container)?>_main_block">
 			<h4 style="text-decoration: underline; margin: 0 0 30px 0;">Agregar Imagen</h4>
 
 			<div class="form-fieldset">
@@ -20,7 +18,6 @@
 				<button type="button" class="btn btn-default" onclick="$.modalDialog.closeAll();">Cancelar</button>
 			</div>
 		</div>
-	</form>
 	</div>
 </div>
 
@@ -61,6 +58,13 @@
 		}
 	}));
 
+	$(<?=JSHelper::cast_str('#'.$id_container)?>).
+		data('image_dialog').
+		body().
+		find('#<?=HTMLHelper::escape($id_container)?>_main_block').
+		wrap("<form id='<?=$id_container?>_image_form' method='post' action='javascript:void(0)' style='width: 600px' enctype='multipart/form-data'></form>");
+
+
 	<? if($toolbar && stripos($toolbar, HTMLInputHTMLControl::TOOLBAR_ITEM_IMAGE) !== false) { ?>
 
 		$(<?=JSHelper::cast_str('#'.$id_container)?>).data('html_load_function', function() {
@@ -79,84 +83,9 @@
 					button.bind('click', function(evt) {
 
 						$(<?=JSHelper::cast_str('#'.$id_container)?>).data('image_dialog').open();
-//						tinymce.get(<?//=JSHelper::cast_str($id)?>//).windowManager.open({
-//							title: tinymce.get(<?//=JSHelper::cast_str($id)?>//).editorManager.i18n.data['Insert image'],
-//							file: '!HTMLInputHTMLControl(get_image_upload_html)',
-//							width: width,
-//							height: height
-//						}, {
-//							width: width,
-//							height: height
-//						});
-
-
 						evt.stopPropagation();
 						return false;
 					});
-
-//					button.bind('click11', function(evt) {
-//
-//						var dialogBlock = $('<div />');
-//
-//						var form = $('<form />').css({}).attr({'enctype': 'multipart/form-data', 'method': 'post', 'action': '!HTMLInputHTMLControl(get_image_html)'}).appendTo(dialogBlock);
-//
-//						var row = $('<div />').css({'padding': '10px'}).appendTo(form);
-//
-//						var uniqId = $.uniqID();
-//
-//						var label = $('<label />').attr({'to': 'file-' + uniqId}).css({'display': 'inline-block'}).html('File: ').appendTo(row);
-//
-//						var inputFile = $('<input type="file" />').attr({'id': 'file-' + uniqId, 'name': 'file'}).css({'display': 'inline', 'margin': '0 0 0 20px', 'width': 500, 'border': 'solid 1px #999', 'padding': '5px 10px', 'background': '#FFF'}).appendTo(row);
-//
-//						inputFile.bind('change', function() { $(this).parents('form').submit(); });
-//
-//						form.append($.modalDialog.buttonsBlock('submit', 'cancel'));
-//
-//						dialogBlock.modalDialog({
-//							'title': 'Select file',
-//							'onload': function() {
-//
-//								var formOptions = {};
-//
-//								formOptions['beforeSend'] = function() {
-//
-//									$.modalDialog.loading('Loading...', function() {});
-//
-//								};
-//
-//								formOptions['success'] = function(data) {
-//
-//									if(data && data['success']) {
-//
-//										var imageHtml = "<img src='" + data['base64'] + "' alt='Image' />";
-//										tinymce.get(<?//=JSHelper::cast_str($id)?>//).insertContent(imageHtml);
-//										$.modalDialog.closeAll();
-//
-//									} else {
-//
-//										var error = null;
-//
-//										if(data && data['error']) error = data['error'];
-//										else error = 'Error';
-//
-//										$.modalDialog.alert(error, {'mode': $.modalDialog.modeReplace, 'theme': 'error'});
-//
-//									}
-//								};
-//
-//								var form = $.modalDialog.body().find('form');
-//
-//								form.ajaxForm(formOptions);
-//
-//
-//							}
-//						}).open();
-//
-//
-//						evt.stopPropagation();
-//						return false;
-//					});
-
 				}
 
 			} else {

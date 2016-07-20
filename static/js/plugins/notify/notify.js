@@ -18,7 +18,7 @@ $.notify = function(options)
 
         var closeButton = $('<a />').
         addClass('close-button').
-        html('<span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-close fa-stack-1x fa-inverse"></i></span>').
+        html('<span class=""><i class="fa fa-close"></i></span>').
         attr({'href': 'javascript:void(0)'}).
         bind('click', function() { block.fadeOut(); }).
         appendTo(closeButtonBlock);
@@ -29,8 +29,9 @@ $.notify = function(options)
     block.addClass('alert');
     block.addClass('alert-'+options['type']);
     block.css(options['css']);
-
+    block.css('opacity', 0);
     block.prependTo('body');
+    block.animate({'opacity': 1});
 
     if(options['closeTimeout'])
     {
@@ -46,10 +47,11 @@ $.notify.defaultOptions = {
     'message': '',
     'type': 'info',
     'closeButton': true,
-    'closeTimeout': 10000,
+    'closeTimeout': 5000,
     'css': {
-        'position': 'absolute',
+        'position': 'fixed',
         'box-shadow': '3px 3px 3px rgba(0, 0, 0, 0.8)',
+        'font-weight': 'bold',
         'font-weight': 'bold',
         'margin': '20px 20px 0 0',
         'padding': '10px',

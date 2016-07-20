@@ -59,7 +59,7 @@
         _bodySize = {width: 0, height: 0},
         _windowSize = {width: 0, height: 0},
 
-        _overlayZIndex = 100,
+        _overlayZIndex = 1050,
 
         /* Estilo del overlay */
         _overlayStyle = {

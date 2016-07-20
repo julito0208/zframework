@@ -543,11 +543,30 @@ class Image extends Graphic implements MIMEControl {
 		} else if(is_string($image) && !is_numeric($image)) {
 			
 			if(is_file($image)) {
-				
-				@ $this->_image = imagecreatefromstring(file_get_contents($image)); 
+
+				$this->_image = imagecreatefrompng($image);
+				//@ $this->_image = imagecreatefromstring(file_get_contents($image));
 				$image_info = getimagesize($image);
 				$attrs['file'] = $image;
 				$attrs['type'] = self::_parse_image_type($image_info['mime']);
+
+
+				$w = imagesx($this->_image);
+				$h = imagesy($this->_image);
+				$newImage = imagecreatetruecolor($w,$h);
+
+				// preserve transparency
+				if($attrs['type'] == "gif" || $attrs['type'] == "png"){
+					imagecolortransparent($newImage, imagecolorallocatealpha($newImage, 0, 0, 0, 127));
+					imagealphablending($newImage, false);
+					imagesavealpha($newImage, true);
+				}
+
+				imagecopyresampled($newImage,$this->_image,0,0,0,0,$w,$h,$w,$h);
+
+				imagedestroy($this->_image);
+				$this->_image = $newImage;
+
 				
 			} else {
 				
