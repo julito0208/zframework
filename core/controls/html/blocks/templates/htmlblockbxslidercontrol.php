@@ -1,11 +1,13 @@
 <?php if(!empty($images)) { ?>
 
-	<ul id="<?=$id?>">
+	<ul id="<?=$id?>" class="bxslider zbxslider">
 
 		<?php foreach($images as $image) { ?>
 
-			<li>
-				<a href="<?=($image['href'] ? HTMLHelper::escape($image['href']) : 'javascript:void(0)')?>" title="<?=$image['title']?>"><img alt="<?=$image['title']?>" src="<?=HTMLHelper::escape(ZfImageFile::get_image_url($image['image'], $thumb_type))?>" /></a>
+			<li style="">
+				<a href="<?=($image['href'] ? HTMLHelper::escape($image['href']) : 'javascript:void(0)')?>" title="<?=$image['title']?>">
+					<img alt="<?=$image['title']?>" src="<?=HTMLHelper::escape(ZfImageFile::get_image_url($image['image'], $thumb_type))?>" />
+				</a>
 			</li>
 
 		<?php } ?>
@@ -21,7 +23,7 @@
 				{
 					'onSliderLoad': function()
 					{
-						var slider = $('#<?=$id?>');
+						var slider = $('#<?=$id?>').addClass('loaded');
 						var sliderParent = slider.getParent();
 						var sliderImages = slider.find('li img');
 
@@ -52,6 +54,8 @@
 							{
 								$image.css({'height': sliderHeight});
 							}
+
+
 
 						});
 					}

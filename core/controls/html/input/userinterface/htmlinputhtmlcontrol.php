@@ -205,7 +205,7 @@ class HTMLInputHTMLControl extends HTMLInputControl {
 		self::add_global_static_library(self::STATIC_LIBRARY_TINY_MCE);
 		self::add_global_static_library(self::STATIC_LIBRARY_MODAL_DIALOG);
 		self::add_global_static_library(self::STATIC_LIBRARY_AJAX_FORM);
-		
+
 		$this->set_shuffle_id(self::DEFAULT_SHUFFLE_ID);
 		$this->set_id($id);
 		$this->set_height(self::DEFAULT_HEIGHT);

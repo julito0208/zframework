@@ -2,6 +2,17 @@
 
 class HTMLBlockDebugData extends HTMLControl
 {
+	public static function ajax_set_remember_debug()
+	{
+		$remember = (bool) $_POST['remember'];
+		ZPHP::set_debug_data_remember($remember);
+	}
+
+	public static function ajax_clear_debug()
+	{
+		ZPHP::clear_debug_data();
+	}
+
 
 	public static function ajax_get_resource_size()
 	{

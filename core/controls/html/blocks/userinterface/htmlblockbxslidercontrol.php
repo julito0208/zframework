@@ -8,6 +8,8 @@ class HTMLBlockBXSliderControl extends HTMLControl
 	protected $_images = array();
 	protected $_thumb_type;
 	protected $_auto_slide = true;
+	protected $_pager = true;
+	protected $_captions = true;
 	protected $_json_params = array();
 
 	public function __construct($thumb_type=null, $id=null, $images=array())
@@ -34,15 +36,9 @@ class HTMLBlockBXSliderControl extends HTMLControl
 		}
 
 		$this->_json_params['auto'] = (bool) $this->_auto_slide;
+		$this->_json_params['pager'] = (bool) $this->_pager;
 
-		/*$('.bxslider').bxSlider({
-		mode: 'fade',
-		captions: true,
-		autoStart: true,
-		auto: true,
-		autoDelay: 500,
-		speed: 2000
-	});*/
+
 	}
 
 	/**
@@ -70,9 +66,13 @@ class HTMLBlockBXSliderControl extends HTMLControl
 	*/
 	public function add_image(Imageable $image, $title=null, $link=null)
 	{
+
+		$id_image_file = $image->get_id_image_file();
+		$image_file = ZfImageFile::get_by_id_image_file($id_image_file);
+
 		$this->_images[] = array(
-			'image' => $image,
-			'title' => $title,
+			'image' => $image_file,
+			'title' => $title ? $title : $image_file->get_title(),
 			'href' => $link
 		);
 		
@@ -170,6 +170,40 @@ class HTMLBlockBXSliderControl extends HTMLControl
 		return count($this->_images);
 	}
 
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_pager($value)
+	{
+		$this->_pager = $value;
+		return $this;
+	}
+
+	public function get_pager()
+	{
+		return $this->_pager;
+	}
+
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_captions($value)
+	{
+		$this->_captions = $value;
+		return $this;
+	}
+
+	public function get_captions()
+	{
+		return $this->_captions;
+	}
+
+
+
 	public function prepare_params()
 	{
 		parent::prepare_params();
@@ -179,6 +213,7 @@ class HTMLBlockBXSliderControl extends HTMLControl
 		$this->set_param('auto_slide', $this->_auto_slide);
 		$this->set_param('thumb_type', $this->_thumb_type);
 		$this->set_param('images', $this->_images);
+		$this->set_param('pager', $this->_pager);
 
 		$this->_update_json_params();
 		$this->set_param('json_params', $this->_json_params);

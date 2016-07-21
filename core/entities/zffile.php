@@ -112,6 +112,25 @@ class ZfFile extends ZfFileCache
 	}
 
 
+	/**
+	*
+	* @return ZfFile[]
+	*
+	*/
+	public static function create_multiple_from_post($varname)
+	{
+		$files = array();
+
+		foreach((array) $_FILES[$varname]['tmp_name'] as $index => $tmp_name)
+		{
+			$files[] = ZfFile::create_from_post($varname, $index);
+		}
+
+		return $files;
+	}
+
+
+
 	/*------------------------------------------------------------------------------------------------------------*/
 
 

@@ -77,7 +77,7 @@ class HTMLInputImageControl extends HTMLInputControl {
 	protected $_id_image_file = null;
 	protected $_image_width = self::DEFAULT_IMAGE_WIDTH;
 	protected $_image_height = self::DEFAULT_IMAGE_HEIGHT;
-	protected $_enable_delete = false;
+	protected $_enable_delete = true;
 	protected $_delete_selected = false;
 
 	protected $_enable_select_local = true;
@@ -88,6 +88,7 @@ class HTMLInputImageControl extends HTMLInputControl {
 	
 	protected $_enable_title = true;
 	protected $_enable_title_edit = true;
+	protected $_enable_crop = true;
 
 	public function __construct($id=null, $name=null) {
 
@@ -176,6 +177,11 @@ class HTMLInputImageControl extends HTMLInputControl {
 		{
 			$this->_id_image_file = $value->get_id_image_file();
 			return parent::set_value($this->_id_image_file);
+		}
+		else
+		{
+			$this->_id_image_file = $value;
+			parent::set_value($value);
 		}
 
 		return $this;
@@ -295,7 +301,23 @@ class HTMLInputImageControl extends HTMLInputControl {
 	}
 
 
-	
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_enable_crop($value)
+	{
+		$this->_enable_crop = $value;
+		return $this;
+	}
+
+	public function get_enable_crop()
+	{
+		return $this->_enable_crop;
+	}
+
+
 	
 	
 	public function prepare_params() {
@@ -314,7 +336,8 @@ class HTMLInputImageControl extends HTMLInputControl {
 		$this->set_param('enable_image_search', $this->_enable_image_search);
 		$this->set_param('for_modaldialog', $this->_for_modaldialog);
 		$this->set_param('enable_title', $this->_enable_title);
-		$this->set_param('enable_title_edit', $this->_enable_title_edit); 
+		$this->set_param('enable_title_edit', $this->_enable_title_edit);
+		$this->set_param('enable_crop', $this->_enable_crop); 
 	}
 
 }

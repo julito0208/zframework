@@ -4,7 +4,7 @@
 
 <div id="<?=HTMLHelper::escape($id_container)?>_image_dialog" class="image-dialog">
 
-	<div>
+	<div id="<?=HTMLHelper::escape($id_container)?>_image_dialog_body">
 		<div style="width: 600px;" id="<?=HTMLHelper::escape($id_container)?>_main_block">
 			<h4 style="text-decoration: underline; margin: 0 0 30px 0;">Agregar Imagen</h4>
 
@@ -21,6 +21,9 @@
 	</div>
 </div>
 
+<div id="prueba" style="display: none">
+	asas
+</div>
 <script type="text/javascript">
 
 	$(<?=JSHelper::cast_str('#'.$id_container)?>).data('clear_image_dialog', true);

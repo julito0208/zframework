@@ -40,7 +40,11 @@ class ZPHP {
 	private static $_DEVELOPMENT_MODE = null;
 	private static $_LIVE_MODE = null;
 
-	private static $_DEBUG_DATA = array();
+	private static $_DEBUG_DATA = null;
+	private static $_DEBUG_DATA_SESSION_REMEMBER_VARNAME = '__zframework_remember_debug_data__';
+	private static $_DEBUG_DATA_SESSION_VARNAME = '__zframework_debug_data__';
+
+	private static $_REQUEST_ID = null;
 
 	/*---------------------------------------------------------*/
 	
@@ -326,17 +330,112 @@ class ZPHP {
 
 	/*-------------------------------------------------------------*/
 
-	public static function add_debug_data($type, $title, $data, $time=null)
+	public static function get_request_id()
 	{
-		if(self::is_debug_mode())
+		if(!self::$_REQUEST_ID)
 		{
-			self::$_DEBUG_DATA[] = ['type' => $type, 'title' => $title, 'data' => $data, 'time' => is_null($time) ? time() : $time,];
+			self::$_REQUEST_ID = uniqid('request');
+		}
+
+		return self::$_REQUEST_ID;
+	}
+
+	/*-------------------------------------------------------------*/
+
+	public static function get_debug_data_remember()
+	{
+		return SessionHelper::get_var(self::$_DEBUG_DATA_SESSION_REMEMBER_VARNAME);
+	}
+
+	public static function set_debug_data_remember($remember)
+	{
+		return SessionHelper::add_var(self::$_DEBUG_DATA_SESSION_REMEMBER_VARNAME, $remember);
+	}
+
+	private static function _prepare_debug_data($request_id=null, $url=null)
+	{
+		if(is_null(self::$_DEBUG_DATA))
+		{
+			if(self::get_debug_data_remember())
+			{
+				self::$_DEBUG_DATA = (array) SessionHelper::get_var(self::$_DEBUG_DATA_SESSION_VARNAME);
+			}
+			else
+			{
+				self::$_DEBUG_DATA = array();
+			}
+
+		}
+
+		if(!$request_id)
+		{
+			$request_id = self::get_request_id();
+			$url = self::get_actual_uri();
+		}
+
+
+		if(!isset(self::$_DEBUG_DATA[$request_id]))
+		{
+			self::$_DEBUG_DATA[$request_id] = array(
+				'url' => $url,
+				'request' => $request_id,
+				'items' => array(),
+			);
+		}
+
+		self::_update_debug_data();
+	}
+
+
+	protected static function _update_debug_data()
+	{
+		if(self::get_debug_data_remember())
+		{
+			SessionHelper::add_var(self::$_DEBUG_DATA_SESSION_VARNAME, self::$_DEBUG_DATA);
 		}
 	}
 
-	public static function get_debug_data()
+	protected static function _can_add_debug_data()
 	{
-		return array_merge(self::$_DEBUG_DATA, array());
+		return self::is_debug_mode();
+	}
+
+	public static function clear_debug_data()
+	{
+		if(self::_can_add_debug_data())
+		{
+			self::$_DEBUG_DATA = array();
+			self::_update_debug_data();
+		}
+	}
+
+	public static function add_debug_data($type, $title, $data, $time=null)
+	{
+
+		if(self::_can_add_debug_data())
+		{
+			self::_prepare_debug_data();
+			$request_id = self::get_request_id();
+
+			self::$_DEBUG_DATA[$request_id]['items'][] = ['type' => $type, 'title' => $title, 'data' => $data, 'time' => is_null($time) ? time() : $time,];
+
+			self::_update_debug_data();
+		}
+	}
+
+	public static function get_debug_data($request_id=null)
+	{
+		self::_prepare_debug_data($request_id);
+
+		if($request_id)
+		{
+			return array_merge(self::$_DEBUG_DATA[$request_id]['items'], array());
+		}
+		else
+		{
+			return array_reverse(array_filter(array_merge(self::$_DEBUG_DATA, array())));
+		}
+
 	}
 
 	

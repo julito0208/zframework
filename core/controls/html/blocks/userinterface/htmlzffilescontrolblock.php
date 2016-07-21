@@ -7,20 +7,6 @@ class HTMLZFFilesControlBlock extends HTMLInputControl {
 	
 	/*-------------------------------------------------------------*/
 
-	public static function handle_remove_files($entity=null)
-	{
-		$id_files = explode(',', $_REQUEST[self::REQUEST_DELETE_VARNAME]);
-
-		if($entity)
-		{
-			call_user_func(array($entity, 'delete_rows'), array('id_file' => $id_files));
-		}
-
-		ZfFile::delete_rows(array('id_file' => $id_files));
-	}
-
-	/*-------------------------------------------------------------*/
-
 	protected $_files = array();
 	protected $_enable_input = true;
 	protected $_enable_delete = false;
