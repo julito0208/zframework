@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `zf_image_file` (
   `crop_height` int(10) unsigned default null,
   `width` int(10) unsigned DEFAULT NULL,
   `height` int(10) unsigned DEFAULT NULL,
+  `temporal` tinyint(1) unsigned default 0,
   FOREIGN KEY (id_group)
     REFERENCES zf_image_group(id_group)
     ON UPDATE CASCADE ON DELETE CASCADE

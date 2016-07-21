@@ -2,6 +2,7 @@
 
 class ZfImageFile extends ZfImageFileCache implements Imageable
 {
+
 	const DEFAULT_ID_IMAGE_FILE = 'default';
 
 	/*------------------------------------------------------------------------------------------------------------*/
@@ -270,6 +271,7 @@ class ZfImageFile extends ZfImageFileCache implements Imageable
 			return self::get_image_url(ZfImageFile::get_by_id_image_file($object), $image_thumb_type, $use_default);
 		}
 	}
+
 
 	/* ZPHP Generated Code ------------------------------------------ */
 	/* /ZPHP Generated Code ------------------------------------------ */

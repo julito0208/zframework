@@ -22,6 +22,7 @@ class ZfImageFileDatabase extends DBEntity
 		'crop_height',
 		'width',
 		'height',
+		'temporal',
 	);
 
 	protected static $_primary_keys = array(
@@ -161,6 +162,11 @@ class ZfImageFileDatabase extends DBEntity
 	*/
 	public static function saveEntity(ZfImageFile $entity) {
 
+		if($entity instanceof FullTextSearch)
+		{
+			$entity->update_full_text_search();
+		}
+		
 		$entity_row = $entity->to_array(false);
 
 		$primary_keys_values = array();
@@ -197,6 +203,11 @@ class ZfImageFileDatabase extends DBEntity
 		}
 	}
 
+
+	public static function update_rows($values, $conditions=null) {
+
+		return DBConnection::get_default_connection()->query_update("zf_image_file", $values, $conditions);
+	}
 	
 	
 	public static function delete_by_id_image_file($id_image_file) {
@@ -232,6 +243,7 @@ class ZfImageFileDatabase extends DBEntity
 	protected $_crop_height;
 	protected $_width;
 	protected $_height;
+	protected $_temporal;
 
 
 	public function __construct($data = null) {
@@ -453,6 +465,20 @@ class ZfImageFileDatabase extends DBEntity
 	*/
 	public function set_height($value) {
 		$this->_height = $value;
+		return $this;
+	}
+
+
+	public function get_temporal() {
+		return $this->_temporal;
+	}
+
+
+	/**
+	* @return ZfImageFile
+	*/
+	public function set_temporal($value) {
+		$this->_temporal = $value;
 		return $this;
 	}
 

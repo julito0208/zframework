@@ -24,6 +24,7 @@ abstract class Cron {
 
 		$search_dirs = array();
 		$search_dirs[] = ZPHP::get_config('crons_dir');
+		$search_dirs[] = ZPHP::get_zframework_dir().'/core/crons';
 
 		$test_files = array();
 

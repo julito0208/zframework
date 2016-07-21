@@ -34,6 +34,7 @@ class ClassHelper {
 		'core/toolpages/controllers',
 		'core/toolpages/userinterface',
 		'core/htmllibraries',
+		'core/crons',
 	);
 	
 	/*----------------------------------------------------------------------------*/
