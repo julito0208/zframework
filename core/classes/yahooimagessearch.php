@@ -28,14 +28,23 @@ class YahooImagesSearch extends ImagesSearch
 				//			continue;
 
 //				preg_match_all("#(?i)data\\-src\\=\\'(?P<url>.+?)\\'#", $contents, $matches);
-				preg_match_all("#(?i)href\\=\\'.*?\\&imgurl\\=(?P<url>.+?)\\&#", $contents, $matches);
+//				preg_match_all("#(?i)href\\=\\'.*?\\&imgurl\\=(?P<url>.+?)\\&#", $contents, $matches);
+
+				preg_match_all("#(?i)\\<a.+?href\\=\\'.*?\\&imgurl\\=(?P<url>.+?)\\&.+?'.*?\\<img.+?data\\-src\\=\\'(?P<thumb_url>.+?)\\'#", $contents, $matches);
 
 				$match_urls = (array)$matches['url'];
 
 				foreach ($match_urls as $index => $url)
 				{
+					$url = StringHelper::put_prefix(urldecode($url), 'http://', true);
+					$thumb = str_replace('w=300&h=300', 'w=600&h=600', $matches['thumb_url'][$index]);
+
+					$urls[] = array(
+						'url' => $url,
+						'thumb' => $thumb,
+					);
 //					$urls[] = str_replace('w=300&h=300', 'w=600&h=600', $url);
-					$urls[] = StringHelper::put_prefix(urldecode($url), 'http://', true);
+//					$urls[] = StringHelper::put_prefix(urldecode($url), 'http://', true);
 				}
 
 				//			preg_match_all('#imgurl\=(?P<url>.*?)\&#', $contents, $matches);
@@ -47,7 +56,7 @@ class YahooImagesSearch extends ImagesSearch
 
 		}
 //		die();
-		$urls = array_unique($urls);
+//		$urls = array_unique($urls);
 		return $urls;
 	}
 

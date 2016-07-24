@@ -17,15 +17,27 @@ class ImagesSearch implements MIMEControl
 	{
 		set_time_limit(0);
 
+		$single_urls = array();
 		$urls = array();
 
 		$pages = $pages ? $pages : ZPHP::get_config('image.search_pages');
 
 		$engine = new YahooImagesSearch();
 		$urls = array_merge($urls, $engine->search($search, $pages));
-		$urls = array_diff((array) $urls, self::$_void_urls);
+//		$urls = array_diff((array) $urls, self::$_void_urls);
 
-		return $urls;
+		$filtered_urls = array();
+
+		foreach($urls as $url_data)
+		{
+			if(!in_array($url_data['url'], $single_urls))
+			{
+				$single_urls[] = $url_data['url'];
+				$filtered_urls[] = $url_data;
+			}
+		}
+
+		return $filtered_urls;
 	}
 
 	/*-------------------------------------------------------------*/
@@ -145,8 +157,21 @@ class ImagesSearch implements MIMEControl
 	public function get_json()
 	{
 		$json = new JSONMap();
-		$urls = $this->search();
+
+		$images_data = $this->search();
+
+		$urls = array();
+		$thumbs = array();
+
+		foreach($images_data as $index => $data)
+		{
+			$urls[] = $data['url'];
+			$thumbs[] = $data['thumb'];
+		}
+
 		$json->set_item('urls', $urls);
+		$json->set_item('thumbs', $thumbs);
+		$json->set_item('images', $images_data);
 		return $json;
 	}
 

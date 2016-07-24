@@ -2537,13 +2537,13 @@
                                 });
                             };
 
-                            if (data && data['urls'] && data['urls'].length > 0) {
+                            if (data && data['thumbs'] && data['thumbs'].length > 0) {
 
                                 // block.empty();
 
-                                data['urls'] = data['urls'].slice(0, data['urls'].length-8);
+                                data['thumbs'] = data['thumbs'].slice(0, data['thumbs'].length);
 
-                                var countUrls = data['urls'].length;
+                                var countUrls = data['thumbs'].length;
                                 var loadedUrls = 0;
                                 var errorUrls = 0;
 
@@ -2571,7 +2571,7 @@
                                     addClass('container').
                                     css({'visibility': 'hidden', 'position': 'absolute', 'width': '0', 'height': '0'});
 
-                                $.each(data['urls'], function (index, item) {
+                                $.each(data['thumbs'], function (index, item) {
 
                                     if(loadedUrls+errorUrls > options['limit'])
                                     {
@@ -2587,6 +2587,7 @@
 
                                     var image = $('<img />');
                                     image.attr({'src': item});
+                                    image.attr({'data-url': data['urls'][index]});
                                     image.appendTo(link);
                                     image.bind('load', function () {
 
@@ -2639,7 +2640,8 @@
 
                                     link.bind('click', function (evt) {
 
-                                        var imgSrc = $(this).find('img').attr('src');
+                                        // var imgSrc = $(this).find('img').attr('src');
+                                        var imgSrc = $(this).find('img').attr('data-url');
 
                                         if (evt.ctrlKey) {
                                             Navigation.openWindow(imgSrc);
@@ -2653,7 +2655,7 @@
                                                     'src': imgSrc,
                                                     'css': {
                                                         'max-width': '600px',
-                                                        'max-height': $(window).height() - 100
+                                                        'max-height': $(window).height() - 200
                                                     },
                                                     'click': function () {
                                                         selectCallback.call(image.get(0), imgSrc);
