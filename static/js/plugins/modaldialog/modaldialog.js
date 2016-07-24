@@ -2520,9 +2520,9 @@
                     ProductoSearchImageDialog.dialog.body().find('.search-button').attr('disabled', true);
 
                     $.ajax({
-                        'url': '/image/search/' + $.urlencode(search ? search : ''),
+                        'url': '/images/search',
                         'type': 'post',
-                        'data': {'pages': options['pages']},
+                        'data': {'pages': options['pages'], 'search': search ? search : ''},
                         'success': function (data) {
 
                             ProductoSearchImageDialog.loading = false;
@@ -2675,6 +2675,8 @@
                             }
                             else {
                                 block.html("<br /><br />No existen imagenes<br /><br />");
+                                ProductoSearchImageDialog.dialog.body().find('#isf-image-search').attr('disabled', false);
+                                ProductoSearchImageDialog.dialog.body().find('.search-button').attr('disabled', false);
                             }
 
                             block.masonryUpdate();

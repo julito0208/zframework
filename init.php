@@ -11,6 +11,7 @@
 class ZPHP {
 
 	const DEBUG_TYPE_DB = 'db';
+	const DEBUG_TYPE_CUSTOM = 'custom';
 
 	/*-------------------------------------------------------------*/
 
@@ -351,7 +352,7 @@ class ZPHP {
 	{
 		return SessionHelper::add_var(self::$_DEBUG_DATA_SESSION_REMEMBER_VARNAME, $remember);
 	}
-
+	
 	private static function _prepare_debug_data($request_id=null, $url=null)
 	{
 		if(is_null(self::$_DEBUG_DATA))
@@ -397,19 +398,19 @@ class ZPHP {
 
 	protected static function _can_add_debug_data()
 	{
-		return self::is_debug_mode();
+		return self::is_debug_mode() && preg_match('#(?i)zframework\.php#', self::get_actual_uri());
 	}
 
 	public static function clear_debug_data()
 	{
-		if(self::_can_add_debug_data())
+		if(self::_can_add_debug_data() && preg_match('#(?i)zframework\.php#', $debug_data_request['url']))
 		{
 			self::$_DEBUG_DATA = array();
 			self::_update_debug_data();
 		}
 	}
 
-	public static function add_debug_data($type, $title, $data, $time=null)
+	public static function add_debug_data($data, $title=null, $type=null, $time=null)
 	{
 
 		if(self::_can_add_debug_data())
@@ -417,7 +418,17 @@ class ZPHP {
 			self::_prepare_debug_data();
 			$request_id = self::get_request_id();
 
-			self::$_DEBUG_DATA[$request_id]['items'][] = ['type' => $type, 'title' => $title, 'data' => $data, 'time' => is_null($time) ? time() : $time,];
+			if(!$title)
+			{
+				$title = 'Debug';
+			}
+
+			if(!$type)
+			{
+				$type = self::DEBUG_TYPE_CUSTOM;
+			}
+
+			self::$_DEBUG_DATA[$request_id]['items'][] = ['type' => $type, 'title' => $title, 'data' => (string) $data, 'time' => is_null($time) ? time() : $time,];
 
 			self::_update_debug_data();
 		}
@@ -433,7 +444,18 @@ class ZPHP {
 		}
 		else
 		{
-			return array_reverse(array_filter(array_merge(self::$_DEBUG_DATA, array())));
+			$debug_data = array_reverse(array_filter(array_merge(self::$_DEBUG_DATA, array())));
+			$filtered_debug_data = array();
+
+			foreach($debug_data as $key => $debug_data)
+			{
+				if(!empty($debug_data['items']))
+				{
+					$filtered_debug_data[$key] = $debug_data;
+				}
+			}
+
+			return $filtered_debug_data;
 		}
 
 	}

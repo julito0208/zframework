@@ -93,5 +93,18 @@ class HTMLBlockDebugData extends HTMLControl
 		parent::prepare_params();
 		$this->set_param('debug_data', $this->_debug_data);
 		$this->set_param('content_len', $this->_content_len);
+
+		if(count($this->_debug_data) == 1)
+		{
+			$keys = array_keys($this->_debug_data);
+			$key = array_pop($keys);
+			$count_debug_data = count($this->_debug_data[$key]['items']);
+		}
+		else
+		{
+			$count_debug_data = count($this->_debug_data);
+		}
+
+		$this->set_param('count_debug_data', $count_debug_data);
 	}
 }

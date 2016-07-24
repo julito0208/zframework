@@ -343,9 +343,9 @@ abstract class DBConnection {
 			LogFile::log_file($this->_get_log_name(), $sql);
 		}
 
-		if(ZPHP::is_debug_mode())
+		if(ZPHP::is_debug_mode() && ZPHP::get_config('db.debug'))
 		{
-			ZPHP::add_debug_data(ZPHP::DEBUG_TYPE_DB, $this->_get_log_name(), $sql);
+			ZPHP::add_debug_data($sql, $this->_get_log_name(), ZPHP::DEBUG_TYPE_DB);
 		}
 
 		return $this->_execute_single_query($sql);

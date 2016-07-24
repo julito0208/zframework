@@ -30,7 +30,7 @@
 				&nbsp;&nbsp;
 			</div>
 
-			<a data-list-target='debug-data-list' class="data-debug-button loaded" style="display: block; text-decoration: underline; font-weight: bold; float:left; margin-left: 15px;" onclick1="$('#debug-data-list-container').css({'max-height': $(window).height() - 100}); $('#debug-data-list').slideToggle(); $(this).toggleClass('opened'); " id="debug-data-sql-button">Debug Data (<span class="count"><?=(count($debug_data) == 1 ? count($debug_data[ZPHP::get_request_id()]['items']) : count($debug_data))?></span>)</a>
+			<a data-list-target='debug-data-list' class="data-debug-button loaded" style="display: block; text-decoration: underline; font-weight: bold; float:left; margin-left: 15px;" onclick1="$('#debug-data-list-container').css({'max-height': $(window).height() - 100}); $('#debug-data-list').slideToggle(); $(this).toggleClass('opened'); " id="debug-data-sql-button">Debug Data (<span class="count"><?=$count_debug_data?></span>)</a>
 
 			<span class="checkbox" style="display: inline; padding-left: 20px;">
 				<input type="checkbox" id="debug-data-remember-checkbox" value="1" <?=(ZPHP::get_debug_data_remember() ? ' checked="checked"' : '')?> style="margin: 0; vertical-align: middle; position: static; " />
@@ -61,7 +61,7 @@
 
 					<?php foreach ($debug_data as $index => $debug_data_request): ?>
 
-						<?php if(preg_match('#(?i)zframework\.php#', $debug_data_request['url']) || empty($debug_data_request['items'])) continue; ?>
+						<?php if(empty($debug_data_request['items'])) continue; ?>
 
 						<li class="debug-request-title" data-request-id="<?=$debug_data_request['request']?>" style="list-style: none; border-top: solid 1px #888; font-weight: bold; ">
 							<a href="javascript:void(0)" style="display: block; padding: 5px 10px;"  onmouseover="$(this).css({'background': '#CCC'}); $(this).find('.url').css({'text-decoration': 'underline'});" onmouseout="$(this).css({'background': ''}); $(this).find('.url').css({'text-decoration': 'none'});">
