@@ -918,5 +918,17 @@ if(!function_exists('js'))
 }
 
 
+if(!function_exists('url_html'))
+{
+	function url_html($id, $arg1=null, $arg2=null) {
+
+		$args = func_get_args();
+		$url = call_user_func_array(array('URLPattern', 'reverse'), $args);
+		return HTMLHelper::escape($url);
+	}
+}
+
+
+
 /* Set locale */
 setlocale(LC_ALL, str_replace('-', '_', LanguageHelper::get_default_language()).'.'.strtoupper(ZPHP::get_config('charset')));
