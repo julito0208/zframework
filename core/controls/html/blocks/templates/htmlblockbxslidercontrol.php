@@ -1,18 +1,21 @@
 <?php if(!empty($images)) { ?>
 
-	<ul id="<?=$id?>" class="bxslider zbxslider">
+	<div class="bxslider-container">
 
-		<?php foreach($images as $image) { ?>
+		<ul id="<?=$id?>" class="bxslider zbxslider">
 
-			<li style="">
-				<a href="<?=($image['href'] ? HTMLHelper::escape($image['href']) : 'javascript:void(0)')?>" title="<?=$image['title']?>">
-					<img alt="<?=$image['title']?>" src="<?=HTMLHelper::escape(ZfImageFile::get_image_url($image['image'], $thumb_type))?>" />
-				</a>
-			</li>
+			<?php foreach($images as $image) { ?>
 
-		<?php } ?>
+				<li style="">
+					<a href="<?=($image['href'] ? HTMLHelper::escape($image['href']) : 'javascript:void(0)')?>" title="<?=$image['title']?>">
+						<img alt="<?=$image['title']?>" src="<?=HTMLHelper::escape(ZfImageFile::get_image_url($image['image'], $thumb_type))?>" />
+					</a>
+				</li>
 
-	</ul>
+			<?php } ?>
+
+		</ul>
+	</div>
 
 	<script type="text/javascript">
 
@@ -58,6 +61,8 @@
 
 
 						});
+
+						$('#<?=$id?>').triggerHandler('bxslider-load');
 					}
 				}
 			));
