@@ -882,11 +882,38 @@ if(LanguageHelper::is_enabled()) {
 
 }
 
+/* Atajos de funciones */
+
 if(!function_exists('text'))
 {
 	function text($key, $language=null) {
 
 		return LanguageHelper::get_text($key, $language);
+	}
+}
+
+if(!function_exists('url'))
+{
+	function url($id, $arg1=null, $arg2=null) {
+
+		$args = func_get_args();
+		return call_user_func_array(array('URLPattern', 'reverse'), $args);
+	}
+}
+
+if(!function_exists('html'))
+{
+	function html($string) {
+
+		return HTMLHelper::escape($string);
+	}
+}
+
+if(!function_exists('js'))
+{
+	function js($string) {
+
+		return JSHelper::escape($string);
 	}
 }
 
