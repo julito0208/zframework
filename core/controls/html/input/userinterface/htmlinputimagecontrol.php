@@ -48,9 +48,7 @@ class HTMLInputImageControl extends HTMLInputControl {
 
 		$json = new AjaxJSONFormResponse();
 		
-		$url = $_POST['url'];
-		$temp_file = tempnam(null, 'img');
-
+		$url = $_REQUEST['url'];
 		$contents = file_get_contents($url);
 
 		if(!$contents)
@@ -61,10 +59,7 @@ class HTMLInputImageControl extends HTMLInputControl {
 		{
 			$json->set_success(true);
 
-			file_put_contents($temp_file, $contents);
-
-			$image = new Image($temp_file);
-
+			$image = new Image($contents);
 			$json->set_item('content', $image->get_base64_contents(true));
 		}
 
