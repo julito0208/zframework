@@ -167,12 +167,22 @@ abstract class Cron {
 	protected function _echo_line($str='') {
 		return $this->_echo("{$str}\n");
 	}
+
+	protected function _touch_lock_file()
+	{
+		touch($this->_lock_file);
+	}
+
+	protected function _unlink_lock_file()
+	{
+		@ unlink($this->_lock_file);
+	}
 	
 	/*-------------------------------------------*/
 
 	public function run_cron() {
 
-		touch($this->_lock_file);
+		$this->_touch_lock_file();
 
 		NavigationHelper::header_content_text_plain('UTF-8');
 		
@@ -180,6 +190,6 @@ abstract class Cron {
 		$this->_run_cron();
 		$this->_end_cron();
 
-		@ unlink($this->_lock_file);
+		$this->_unlink_lock_file();
 	}
 }
