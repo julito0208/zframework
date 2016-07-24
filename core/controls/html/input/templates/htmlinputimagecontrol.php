@@ -260,7 +260,7 @@
 						}
 						else
 						{
-							$.zmodal.alert('No se pudo leer la imagen', function() {
+							$.modalDialog.alert('No se pudo leer la imagen', function() {
 								$.zmodal.closeAll();
 								$.modalDialog.close();
 							});
