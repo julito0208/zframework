@@ -172,7 +172,14 @@ class URLPattern {
 			else $vars[] = $arg;
 		}
 
-		$url = preg_replace('#\(\?\:.+?\)(?:\?|\+\??|\*\??|(?:\[.*?\]))?#', '', $url);				
+		$url = StringHelper::remove_prefix($url, '\/?');
+		$url = StringHelper::remove_prefix($url, '/?');
+		$url = StringHelper::remove_prefix($url, '\/');
+		$url = StringHelper::remove_prefix($url, '/');
+		$url = "/".$url;
+
+		$url = preg_replace('#(?i)\(([^\?].*?)\)\?#', '(?:${1})?', $url);
+		$url = preg_replace('#\(\?\:.+?\)(?:\?|\+\??|\*\??|(?:\[.*?\]))?#', '', $url);
 		$url = preg_replace('#\(\?[a-zA-Z]\)#', '', $url);				
 		
 		foreach(self::$_format_prepare_replaces as $format_prepare_replace)
