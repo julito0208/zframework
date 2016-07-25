@@ -128,8 +128,6 @@ abstract class Cron {
 		$this->_lock_file = ZPHP::get_config('crons_locks_dir').'/'.get_class($this).'.cron-lock-'.uniqid();
 
 		$lock_file = $this->_lock_file;
-		touch($lock_file);
-
 	}
 	
 	/*-------------------------------------------*/
@@ -170,12 +168,20 @@ abstract class Cron {
 
 	protected function _touch_lock_file()
 	{
-		touch($this->_lock_file);
+		if(ZPHP::get_config('crons.create_locks_files'))
+		{
+			touch($this->_lock_file);
+		}
+
 	}
 
 	protected function _unlink_lock_file()
 	{
-		@ unlink($this->_lock_file);
+		if(ZPHP::get_config('crons.create_locks_files'))
+		{
+			@ unlink($this->_lock_file);
+		}
+
 	}
 	
 	/*-------------------------------------------*/

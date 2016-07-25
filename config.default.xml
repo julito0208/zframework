@@ -436,6 +436,9 @@
 		<command>cron</command>
 
         <!--Directorio con los locks-->
+        <create_locks_files>1</create_locks_files>
+
+        <!--Directorio con los locks-->
         <locks_dir>{www_dir}</locks_dir>
 
     </crons>
