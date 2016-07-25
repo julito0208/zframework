@@ -2119,8 +2119,6 @@
             textInput.css(textStyle);
         }
 
-        if(!title) title = label;
-
         var errorRow = null;
 
         if(errorStr != null) {
