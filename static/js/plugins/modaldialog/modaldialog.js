@@ -2110,7 +2110,7 @@
 
     jQuery.modalDialog.imagesList.selectedIndex = -1;
     jQuery.modalDialog.imagesList.dataList = [];
-
+ 
     jQuery.modalDialog.prompt = function(label, value, callback, title, dialogOptions, textStyle, textClass, errorStr) {
 
         var textInput = $("<input type='text' />").val(value ? value : '').addClass('focus prompt-text dialog-prompt-text').css({'width': '270px'}).addClass(textClass).prop({'name': 'value'});
