@@ -931,11 +931,35 @@ if(!function_exists('html'))
 	}
 }
 
+if(!function_exists('html_quote'))
+{
+	function html_quote($string) {
+
+		return HTMLHelper::quote($string);
+	}
+}
+
 if(!function_exists('js'))
 {
 	function js($string) {
 
 		return JSHelper::escape($string);
+	}
+}
+
+if(!function_exists('js'))
+{
+	function js($string) {
+
+		return JSHelper::escape($string);
+	}
+}
+
+if(!function_exists('js_quote'))
+{
+	function js_quote($string) {
+
+		return JSHelper::quote($string);
 	}
 }
 
