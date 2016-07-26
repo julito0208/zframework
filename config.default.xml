@@ -631,9 +631,10 @@
         <privatekey>privatekey</privatekey>
     </recaptcha>
 
+    <!-- URL credenciales https://www.mercadopago.com/mla/herramientas/aplicaciones -->
     <mercadopago>
-        <clientid></clientid>
-        <clientsecret></clientsecret>
+        <clientid>6125829582924131</clientid>
+        <clientsecret>tex0Jj7CozcSJ0ES0pUfZPazULZbE7gv</clientsecret>
         <currency_id>ARS</currency_id>
         <callback_status_varname>mstatus</callback_status_varname>
         <preference_id_varname>preference_id</preference_id_varname>
