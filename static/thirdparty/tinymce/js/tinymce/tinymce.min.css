@@ -2,10 +2,12 @@
 	padding: 5px 8px !important;
 }
 .mce-container.mce-btn-group {
-	margin-left: 10px !important;
+	margin-left: 5px !important;
+    margin-right: 5px !important;
+    margin: 5px !important;
 }
 .mce-container.mce-first.mce-btn-group {
-	margin-left: 0px !important;
+	/*margin-left: 0px !important;*/
 }
 .mce-btn-group .mce-btn {
 	border-color: #999 !important;
@@ -27,4 +29,8 @@
 }
 .mce-widget.mce-btn .mce-open {
 	border-left: solid 1px #BBB !important;
+}
+.mce-ico
+{
+    font-size: 8pt;
 }

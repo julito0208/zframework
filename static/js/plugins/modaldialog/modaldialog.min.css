@@ -167,7 +167,6 @@ div#modaldialog-container.modaldialog-question div#modaldialog-body {
 	background-image: url(./images/modaldialog-theme-background-question.gif);
 }
 
-
 div.modaldialog div.header div.title {
     background: #222;
 	color: #FFF;
@@ -191,6 +190,8 @@ div.modaldialog div.header span.close-button {
 	border-right: 0;
 	border-top: 0;
 	vertical-align: middle;
+    font-size: 14pt !important;
+    margin-right: 5px;
 	/*background-color: #EEE;*/
 }
 
@@ -496,4 +497,25 @@ div#modaldialog-container div#modaldialog-body .buttons-left button {
 }
 div#modaldialog-container div#modaldialog-body .buttons {
 	padding-bottom: 10px !important;
+}
+div#modaldialog-container table th
+{
+    background: transparent !important;
+    color: inherit !important;
+}
+.find-link-image img
+{
+    width: 290px;
+    display: block;
+    /*max-height: 300px;*/
+    vertical-align: top;
+    border: solid 1px #555;
+    visibility: hidden;
+}
+
+div#modaldialog-container.modaldialog.transparent
+{
+    background: transparent;
+    border: 0;
+    box-shadow: 0 0 0 0;
 }

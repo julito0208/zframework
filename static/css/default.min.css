@@ -18,6 +18,16 @@ body {
 	font-size: 11pt;
 }
 
+body.modal-open {
+    overflow: auto;
+}
+body.modal-open[style] {
+    padding-right: 0px !important;
+}
+.modal::-webkit-scrollbar {
+    width: 0 !important; /*removes the scrollbar but still scrollable*/
+    /* reference: http://stackoverflow.com/a/26500272/2259400 */
+}
 * { 
 	margin: 0;
 	background-repeat: no-repeat; 
@@ -286,4 +296,97 @@ table.sortable tbody tr td
 .half-opacity
 {
     opacity: 0.5;
+}
+.modal-dialog table.dataTable
+{
+    width: 100% !important;
+}
+table.dataTable tbody td
+{
+    /*width: 100%;*/
+}
+table.dataTable tbody td, table.dataTable tbody th
+{
+    padding: 7px 11px !important;
+}
+table.dataTable thead th.numeric-column
+{
+    text-align: center;
+}
+table.dataTable tbody td.numeric-column
+{
+    text-align: right;
+    font-family: mono;
+}
+
+table.dataTable thead th.date-column,
+table.dataTable tbody td.date-column
+{
+    text-align: center;
+}
+table.dataTable tbody td.date-column
+{
+    letter-spacing: 1px;
+}
+table.dataTable tbody td.image-column
+{
+    width: 100px;
+}
+table.dataTable tbody td.numeric-column,
+table.dataTable tbody td.numeric-column *,
+table.dataTable tbody td.date-column,
+table.dataTable tbody td.date-column *,
+table.dataTable thead th.numeric-column,
+table.dataTable thead th.numeric-column *,
+table.dataTable thead th.date-column,
+table.dataTable thead th.date-column *
+{
+    white-space: nowrap;
+}
+#zphp-debug-block a
+{
+    font-family: sans-serif;
+}
+.modal-dialog .modal-body
+{
+    padding: 30px 20px;
+}
+
+a.icon-link,
+a.icon-link:hover
+{
+    text-decoration: none;
+}
+a.icon-link:hover span.text
+{
+    text-decoration: underline;
+}
+a.icon-link span.icon
+{
+    margin-right: 5px;
+}
+label.max-width
+{
+    white-space: nowrap;
+}
+
+.find-link-image.load:hover img {
+    border: 1px solid #03004e;
+    box-shadow: 1px 1px 4px 3px rgba(0, 0, 255, 0.49);
+}
+
+.zbxslider
+{
+    position: absolute;
+    visibility: hidden;
+}
+.zbxslider.loaded
+{
+    position: inline-block;
+    visibility: visible;
+}
+
+.select2-container .select2-choice abbr
+{
+    top: 6px !important;
 }
