@@ -23,9 +23,8 @@
             top: 0.2,
             left: 0.5,
             moveable: true,
-            autoOpen: false
-
-
+            autoOpen: false,
+            transparent: false
         },
 
         _openDialogEventName = 'modaldialog-open';
@@ -538,6 +537,11 @@
             _options = options;
 
             _dialogContainer.addClass(_options.classname);
+
+            if(options.transparent)
+            {
+                _dialogContainer.addClass('transparent');
+            }
 
             if(_options.theme && _themesClasses[_options.theme])
                 _dialogContainer.addClass(_themesClasses[_options.theme]);
@@ -1160,6 +1164,11 @@
         });
 
         /*-----------------------------------------------------------------------------------------------*/
+
+        this.container = function()
+        {
+            return this.body().getParent().getParent();
+        }
 
         /* Agrega una funcion para ejecutarse en un evento */
         this.bind = function(event, handler) {
@@ -2110,7 +2119,7 @@
 
     jQuery.modalDialog.imagesList.selectedIndex = -1;
     jQuery.modalDialog.imagesList.dataList = [];
- 
+
     jQuery.modalDialog.prompt = function(label, value, callback, title, dialogOptions, textStyle, textClass, errorStr) {
 
         var textInput = $("<input type='text' />").val(value ? value : '').addClass('focus prompt-text dialog-prompt-text').css({'width': '270px'}).addClass(textClass).prop({'name': 'value'});

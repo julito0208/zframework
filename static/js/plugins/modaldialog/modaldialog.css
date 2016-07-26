@@ -207,7 +207,6 @@ div#modaldialog-container.modaldialog-question div#modaldialog-body {
 
 
 
-
 div.modaldialog div.header div.title {
     background: #222;
 	color: #FFF;
@@ -636,4 +635,12 @@ div#modaldialog-container table th
     vertical-align: top;
     border: solid 1px #555;
     visibility: hidden;
+}
+
+
+div#modaldialog-container.modaldialog.transparent
+{
+    background: transparent;
+    border: 0;
+    box-shadow: 0 0 0 0;
 }
