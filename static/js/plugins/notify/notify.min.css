@@ -1,0 +1,29 @@
+.znotify-block.alert .close-button
+{
+    color: #C00000;
+}
+.znotify-block.alert.alert-primary
+{
+    background: rgba(51,122,183, 0.9);
+    color: #FFF;
+}
+.znotify-block.alert.alert-success
+{
+    background: rgba(139, 184, 113, 0.9) none repeat scroll 0 0;
+    color: #111;
+}
+.znotify-block.alert.alert-info
+{
+    background: rgba(159, 196, 215, 0.9) none repeat scroll 0 0;
+    color: #111;
+}
+.znotify-block.alert.alert-warning
+{
+    background: rgba(224, 214, 168, 0.9) none repeat scroll 0 0;
+    color: #111;
+}
+.znotify-block.alert.alert-danger
+{
+    background: rgba(220, 172, 172, 0.9) none repeat scroll 0 0;
+    color: #111;
+}
