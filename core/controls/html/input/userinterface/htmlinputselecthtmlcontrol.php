@@ -38,6 +38,7 @@ class HTMLInputSelectHTMLControl extends HTMLInputSelectControl {
 	protected $_container_class;
 	protected $_allow_search = true;
 	protected $_multiple = false;
+	protected $_allow_clear = true;
 	
 	public function __construct($id=null, $name=null, array $options=array()) {
 				
@@ -167,6 +168,24 @@ class HTMLInputSelectHTMLControl extends HTMLInputSelectControl {
 	{
 		return $this->_multiple;
 	}
+	
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_allow_clear($value)
+	{
+		$this->_allow_clear = $value;
+		return $this;
+	}
+	
+	public function get_allow_clear()
+	{
+		return $this->_allow_clear;
+	}
+	
+	
 
 	public function prepare_params() {
 		
@@ -190,6 +209,7 @@ class HTMLInputSelectHTMLControl extends HTMLInputSelectControl {
 		$this->set_param('placeholder', $this->_placeholder);
 		$this->set_param('container_class', $this->_container_class);
 		$this->set_param('allow_search', $this->_allow_search);
+		$this->set_param('allow_clear', $this->_allow_clear);
 
 		$parsed_values = array();
 

@@ -536,3 +536,9 @@ label.max-width
     position: inline-block;
     visibility: visible;
 }
+
+
+.select2-container .select2-choice abbr
+{
+    top: 6px !important;
+}

@@ -96,7 +96,7 @@
 									</div>
 								</div>
 								<div style="clear:both"></div>
-								<div style="padding: 2px 8px;"><?=$debug_item['data']?></div>
+								<div style="padding: 2px 8px;"><?=HTMLHelper::escape($debug_item['data'])?></div>
 							</li>
 
 						<?php } ?>

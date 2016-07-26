@@ -128,24 +128,33 @@ class HTMLTableColumnActions extends HTMLTableColumn
 
 			$tag_html = self::_replace_tag_expressions($tag_html);
 
+
 			if(preg_match(self::$_row_json_pattern, $tag_html, $match))
 			{
 				$tag_html = preg_replace(self::$_row_json_pattern, $json, $tag_html);
 			}
 
-			if(preg_match(self::$_row_field_pattern, $tag_html, $match))
+			if(preg_match_all(self::$_row_field_pattern, $tag_html, $matches))
 			{
-				if($match['field'] == self::ROW_ID_FIELD)
+				foreach($matches['0'] as $index => $match)
 				{
-					$field = $table->get_row_id($row);
-				}
-				else
-				{
-					$field = $row->get_param($match['field']);
+					$field_name = $matches['field'][$index];
+
+					if($field_name == self::ROW_ID_FIELD)
+					{
+						$field = $table->get_row_id($row);
+					}
+					else
+					{
+						$field = $row->get_param($field_name);
+					}
+
+					$tag_html = str_replace($match, $field, $tag_html);
 				}
 
-				$tag_html = preg_replace(self::$_row_field_pattern, $field, $tag_html);
 			}
+
+
 
 			$html.= $tag_html;
 		}

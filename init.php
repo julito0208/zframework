@@ -398,7 +398,19 @@ class ZPHP {
 
 	protected static function _can_add_debug_data()
 	{
-		return self::is_debug_mode() && preg_match('#(?i)zframework\.php#', self::get_actual_uri());
+		return self::is_debug_mode() && !preg_match('#(?i)zframework\.php#', self::get_actual_uri());
+	}
+
+	protected static function _prepare_debug_data_string($var)
+	{
+		if(is_string($var) || is_numeric($var))
+		{
+			return $var;
+		}
+		else
+		{
+			return var_export($var, true);
+		}
 	}
 
 	public static function clear_debug_data()
@@ -412,9 +424,9 @@ class ZPHP {
 
 	public static function add_debug_data($data, $title=null, $type=null, $time=null)
 	{
-
 		if(self::_can_add_debug_data())
 		{
+
 			self::_prepare_debug_data();
 			$request_id = self::get_request_id();
 
@@ -428,7 +440,7 @@ class ZPHP {
 				$type = self::DEBUG_TYPE_CUSTOM;
 			}
 
-			self::$_DEBUG_DATA[$request_id]['items'][] = ['type' => $type, 'title' => $title, 'data' => (string) $data, 'time' => is_null($time) ? time() : $time,];
+			self::$_DEBUG_DATA[$request_id]['items'][] = ['type' => $type, 'title' => $title, 'data' => self::_prepare_debug_data_string($data), 'time' => is_null($time) ? time() : $time,];
 
 			self::_update_debug_data();
 		}

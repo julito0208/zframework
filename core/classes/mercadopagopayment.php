@@ -1205,7 +1205,7 @@ class MercadoPagoPayment
 				'category_id' => $category_id,
 				'quantity' => (integer)$quantity,
 				"currency_id" => $currency_id,
-				'unit_price' => $unit_price,
+				'unit_price' => (integer) $unit_price,
 			);
 
 			return $this;

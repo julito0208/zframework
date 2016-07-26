@@ -65,7 +65,8 @@ foreach($select2_options as $index => $option)
 				dropdownAutoWidth: true,
 				minimumResultsForSearch: <?=($allow_search ? 3 : -1)?>,
 				escapeMarkup: function(s) { return s; },
-				placeholder: <?=JSHelper::cast_str($placeholder)?>
+				placeholder: <?=JSHelper::cast_str($placeholder)?>,
+				allowClear: <?=JSHelper::cast_bool($allow_clear)?>
 			});
 
 			<? if($tag_attrs['onchange']) { ?>
