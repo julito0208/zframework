@@ -436,7 +436,7 @@
 		<command>cron</command>
 
         <!--Directorio con los locks-->
-        <create_locks_files>1</create_locks_files>
+        <create_locks_files>0</create_locks_files>
 
         <!--Directorio con los locks-->
         <locks_dir>{www_dir}</locks_dir>
@@ -517,7 +517,7 @@
 		<path_format>images/%s.%s</path_format>
 		<save_thumb>0</save_thumb>
         <default_id_image_file>default</default_id_image_file>
-        <crop_aspect>0</crop_aspect>
+        <crop_aspect>1.33</crop_aspect>
         <default_thumb_type>default</default_thumb_type>
         <default_type>png</default_type>
         <search_url>images/search</search_url>
