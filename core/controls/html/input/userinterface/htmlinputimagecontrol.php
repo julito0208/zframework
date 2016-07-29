@@ -66,6 +66,22 @@ class HTMLInputImageControl extends HTMLInputControl {
 
 		$json->out();
 	}
+
+	public static function ajax_load_image()
+	{
+		$json = new AjaxJSONFormResponse();
+
+		$image_varname = $_REQUEST['image_value_name'];
+		$image_file = ZfImageFile::create_from_request_file($image_varname);
+		$image_file->set_temporal(1);
+		$image_file->save();
+
+		$json->set_item('url', '/'.$image_file->get_thumb_url());
+		$json->set_item('id_image_file', $image_file->get_id_image_file());
+		$json->set_success(true);
+
+		$json->out();
+	}
 	
 	/*-------------------------------------------------------------*/
 	
@@ -84,6 +100,7 @@ class HTMLInputImageControl extends HTMLInputControl {
 	protected $_enable_title = true;
 	protected $_enable_title_edit = true;
 	protected $_enable_crop = true;
+	protected $_crop_aspect = null;
 
 	public function __construct($id=null, $name=null) {
 
@@ -92,9 +109,11 @@ class HTMLInputImageControl extends HTMLInputControl {
 		self::add_global_static_library(self::STATIC_LIBRARY_MODAL_DIALOG);
 		self::add_global_static_library(self::STATIC_LIBRARY_BOOTSTRAP);
 		self::add_global_static_library(self::STATIC_LIBRARY_MASONRY);
+		self::add_global_static_library(self::STATIC_LIBRARY_NOTIFY);
 
 		$this->set_id($id);
 		$this->set_name($name);
+		$this->set_crop_aspect(ZPHP::get_config('image.crop_aspect'));
 	}
 
 	/**
@@ -312,7 +331,21 @@ class HTMLInputImageControl extends HTMLInputControl {
 		return $this->_enable_crop;
 	}
 
-
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_crop_aspect($value)
+	{
+		$this->_crop_aspect = $value;
+		return $this;
+	}
+	
+	public function get_crop_aspect()
+	{
+		return $this->_crop_aspect;
+	}
 	
 	
 	public function prepare_params() {
@@ -332,7 +365,8 @@ class HTMLInputImageControl extends HTMLInputControl {
 		$this->set_param('for_modaldialog', $this->_for_modaldialog);
 		$this->set_param('enable_title', $this->_enable_title);
 		$this->set_param('enable_title_edit', $this->_enable_title_edit);
-		$this->set_param('enable_crop', $this->_enable_crop); 
+		$this->set_param('enable_crop', $this->_enable_crop);
+		$this->set_param('crop_aspect', $this->_crop_aspect);
 	}
 
 }

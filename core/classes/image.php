@@ -567,9 +567,9 @@ class Image extends Graphic implements MIMEControl {
 				imagedestroy($this->_image);
 				$this->_image = $newImage;
 
-				
+
 			} else {
-				
+
 				@ $this->_image = imagecreatefromstring($image);
 								
 				$tmp_file = tempnam(sys_get_temp_dir(), 'image');

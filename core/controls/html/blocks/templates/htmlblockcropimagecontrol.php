@@ -217,6 +217,7 @@
 	
 	$('#<?=$id?>_img').bind('load', <?=$init_function_name?>);
 
+
 </script>
 
 	

@@ -108,6 +108,7 @@ abstract class DBEntity implements Params, OptionRow {
 
 	protected $__fromDatabase = false;
 	protected $__othersFields = array();
+	protected $_data_key;
 
 	public function __construct() {}
 	
@@ -174,6 +175,27 @@ abstract class DBEntity implements Params, OptionRow {
 		return $this->_setAttribute($name, $value);
 	}
 
+
+	/*-------------------------------------------------------------*/
+
+	protected function _is_modified()
+	{
+		$original_data_key = $this->_data_key;
+		$data_key = $this->_generate_data_key();
+		return $original_data_key != $data_key;
+	}
+
+	protected function _generate_data_key()
+	{
+		$data = $this->to_array(false);
+		return serialize($data);
+	}
+
+	protected function _update_data_key()
+	{
+		$data_key = $this->_generate_data_key();
+		$this->_data_key = $data_key;
+	}
 
 	//-----------------------------------------------------------------------
 

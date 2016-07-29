@@ -1,7 +1,33 @@
 <?php
 
 class HTMLBlockCropImageControl extends HTMLControl {
-	
+
+	public static function ajax_image_crop_dialog()
+	{
+		$id_image_file = $_REQUEST['id_image_file'];
+		$image_file = ZfImageFile::get_by_id_image_file($id_image_file);
+		$aspect = $_REQUEST['crop_aspect'];
+		
+		$html = new HTMLDialog();
+
+		$crop_block = new HTMLBlockCropImageControl();
+		$crop_block->set_image_url($image_file->get_thumb_url());
+		$crop_block->set_aspect($aspect);
+		$crop_block->set_select_x($image_file->get_crop_x());
+		$crop_block->set_select_y($image_file->get_crop_y());
+		$crop_block->set_select_width($image_file->get_crop_width());
+		$crop_block->set_select_height($image_file->get_crop_height());
+		$crop_block->set_id($image_file->get_id_image_file());
+		$crop_block->set_original_width($image_file->get_width());
+		$crop_block->set_original_height($image_file->get_height());
+
+		$html->add_content($crop_block);
+
+		$html->out();
+	}
+
+	/*-------------------------------------------------------------*/
+
 	protected $_image_url;
 	protected $_name;
 	protected $_aspect;
@@ -29,9 +55,9 @@ class HTMLBlockCropImageControl extends HTMLControl {
 		$this->set_image_url($image_url);
 		$this->set_id($id ? $id : uniqid('crop'));
 		$this->set_name($name);
-		
-		self::add_global_js_files_zframework('thirdparty/jquery-jcrop/jquery.jcrop.js');
-		self::add_global_js_files_zframework('thirdparty/jquery-jcrop/jquery.color.js');
+
+		self::add_global_js_files(URLHelper::get_zframework_static_url('thirdparty/jquery-jcrop/jquery.jcrop.js'));
+		self::add_global_js_files(URLHelper::get_zframework_static_url('thirdparty/jquery-jcrop/jquery.color.js'));
 
 		self::add_global_css_files_zframework('thirdparty/jquery-jcrop/jquery.jcrop.css');
 		self::add_global_css_files_zframework('css/controls/imagecropcontrol.css');

@@ -315,6 +315,8 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 			$fields_datetime = array();
 			$fields_time = array();
 			$fields_default = array();
+			$fields_integer = array();
+			$fields_decimal = array();
 
 			$field_autoincrement = null;
 
@@ -364,9 +366,14 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 
 					$fields_time[] = $field['Field'];
 
+				} else if(preg_match('#^(?i).*int.*$#', $field['Type'])) {
+
+					$fields_integer[] = $field['Field'];
+
+				} else if(preg_match('#^(?i).*(decimal|float|double).*$#', $field['Type'])) {
+
+					$fields_decimal[] = $field['Field'];
 				}
-
-
 			}
 
 			$entity_classname = $classname;
@@ -716,6 +723,7 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 			\$entity = new {$classname}();
 			\$entity->__fromDatabase = true;
 			\$entity->update_fields(\$array);
+			\$entity->_update_data_key();
 			\$entity->__fromDatabase = false;
 			return \$entity;
 		}
@@ -840,6 +848,11 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 			\$entity->update_full_text_search();
 		}
 		
+		if(!\$entity->_is_modified())
+		{
+			return false;
+		}
+		
 ";
 
 						$code .= "\t\t\$entity_row = \$entity->to_array(false);\n\n";
@@ -884,6 +897,7 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 
 						}
 
+						$code .= "\n\t\treturn true;\n";
 						$code .= "\n\t}\n";
 
 						$code .= "\n\tpublic static function __callStatic(\$method, \$args)
@@ -968,6 +982,7 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 					$code .= "\t\t\t\t\$this->update_fields(\$entity);\n\n";
 					$code .= "\t\t\t}\n\n";
 					$code .= "\t\t}\n";
+					$code .= "\n\t\t\$this->_update_data_key();\n";
 					$code .= "\t}\n";
 
 					$code .= "\n\tpublic function __toString() {\n";
@@ -999,8 +1014,21 @@ class HTMLPageDevelopToolEntityGenerator extends HTMLPageDevelopTool  {
 
 					foreach($fields as $field)  {
 
+						$cast_str = '';
+
+						if(in_array($field['name'], $fields_integer))
+						{
+							$cast_str = '(integer)';
+						}
+
+						if(in_array($field['name'], $fields_decimal))
+						{
+							$cast_str = '(double)';
+						}
+
+
 						$code .= "\n\t".(in_array($field["name"], $fields_datetime) ? "/**\n\t* @return Date\n\t*/\n\t" : (in_array($field["name"], $fields_time) ? "/**\n\t* @return Time\n\t*/\n\t" : ""))."public function " . $field["get_method"] . "() {\n\t\treturn \$this->_" . $field["attrname"] . ";\n\t}\n\n";
-						$code .= "\n\t/**\n\t* @return " . $classname . "\n\t*/\n\tpublic function " . $field["set_method"]  . "(\$value) {\n\t\t\$this->_" . $field["attrname"] . " = ".(in_array($field["name"], $fields_datetime) ? "is_null(\$value) ? null : Date::parse(\$value)" : (in_array($field["name"], $fields_time) ? "is_null(\$value) ? null : Time::parse(\$value)" : "\$value")).";\n\t\treturn \$this;\n\t}\n\n";
+						$code .= "\n\t/**\n\t* @return " . $classname . "\n\t*/\n\tpublic function " . $field["set_method"]  . "(\$value) {\n\t\t\$this->_" . $field["attrname"] . " = {$cast_str} ".(in_array($field["name"], $fields_datetime) ? "is_null(\$value) ? null : Date::parse(\$value)" : (in_array($field["name"], $fields_time) ? "is_null(\$value) ? null : Time::parse(\$value)" : "\$value")).";\n\t\treturn \$this;\n\t}\n\n";
 					}
 
 
