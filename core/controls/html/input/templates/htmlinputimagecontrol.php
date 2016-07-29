@@ -1,31 +1,21 @@
 <div class="image-input<?=($for_modaldialog ? ' for-modaldialog' : '')?>" style="vertical-align: top; margin: 10px 0 0 10px;" id="<?=$id_uniq?>_container">
 
 	<input class="image_contents_value" type="hidden" name="<?=HTMLHelper::escape($name)?>" id="<?=HTMLHelper::escape($id_uniq.'_value')?>" value="<?=($image_file ? $image_file->get_base64_contents(true) : '')?>" />
-	<input type="hidden" name="id_image_file" id="<?=HTMLHelper::escape($id_uniq.'_id_image_file')?>" value="<?=($image_file ? $image_file->get_id_image_file(true) : '')?>" />
+
 
 	<div class="image-container" style="display: inline-block; margin: 0 30px 0 0;">
 
-		<div style="background: #CCC; min-width: 200px; max-width: 200px;">
+		<div style="background: #CCC; min-width: 200px; max-width: 200px; max-height: 200px; overflow: auto">
 			<img alt="Image" class="main-img" id="<?=HTMLHelper::escape($id_uniq.'_img')?>" src="<?=HTMLHelper::escape(ZfImageFile::get_image_url($id_image_file))?>" style="width: 100%; border: solid 1px #777; border-radius: 5px; box-shadow: 1px 1px 1px rgba(0,0,0,0.4); visibility: hidden; cursor: pointer;" onmouseover="$(this).css({'border-color': '#00F'})" onmouseout="$(this).css({'border-color': ''})" />
 		</div>
 
-		<input type="hidden" name="<?=HTMLHelper::escape($name)?>_title" id="<?=HTMLHelper::escape($id_uniq.'_title')?>" value="<?=HTMLHelper::escape($image_file ? $image_file->get_title() : '')?>" />
+		<input class="image_title" type="hidden" name="<?=HTMLHelper::escape($name)?>_title" id="<?=HTMLHelper::escape($id_uniq.'_title')?>" value="<?=HTMLHelper::escape($image_file ? $image_file->get_title() : '')?>" />
 
 		<?php if($enable_title) { ?>
 
 			<div style="margin: 20px 0 0 0; font-weight: bold; " id="<?=HTMLHelper::escape($id_uniq.'_title_html')?>">
 				<?=HTMLHelper::escape($image_file ? $image_file->get_title() : '')?>
 			</div>
-
-			<?php if($enable_title && $enable_title_edit) { ?>
-
-				<div style="font-weight: bold; margin-top: 10px">
-					<a href="javascript:void(0)" class="icon-link" id="<?=$id_uniq?>_edit_title_link">
-						<span class="text">Cambiar T&iacute;tulo</span>
-					</a>
-				</div>
-
-			<?php } ?>
 
 		<?php } ?>
 
@@ -61,21 +51,31 @@
 			</div>
 		<?php } ?>
 
-		<?php if($enable_delete || $enable_crop) { ?>
+		<?php if($enable_delete || ($enable_title && $enable_title_edit) || $enable_crop) { ?>
 
-			<div style="margin: 30px 0 0 0; border-top: solid 1px #888; padding: 10px 0 0 0; display: none;" id="<?=$id_uniq?>_actions">
+			<div style="margin: 20px 0 0 0; border-top: solid 1px #888; padding: 10px 0 0 0; display: none;" id="<?=$id_uniq?>_actions">
+
+				<?php if($enable_title && $enable_title_edit) { ?>
+
+					<div style="font-weight: bold; margin-top: 0px">
+						<a href="javascript:void(0)" class="icon-link" id="<?=$id_uniq?>_edit_title_link">
+							<span class="icon fa fa-info"></span>
+							<span class="text">Cambiar T&iacute;tulo</span>
+						</a>
+					</div>
+
+				<?php } ?>
 
 				<?php if($enable_crop) { ?>
 
-					<div style="font-weight: bold; margin: 10px 0 0 0;">
-						<a href="javascript:void(0)" class="icon-link" id="<?=$id?>_crop_link">
+					<div style="font-weight: bold; margin-top: 0px">
+						<a href="javascript:void(0)" class="icon-link" id="<?=$id_uniq?>_crop_link">
 							<span class="icon fa fa-crop"></span>
 							<span class="text">Recortar Imagen</span>
 						</a>
 					</div>
 
 				<?php } ?>
-
 
 				<?php if($enable_delete) { ?>
 
@@ -99,6 +99,8 @@
 
 <script type="text/javascript">
 
+
+	$('#<?=$id_uniq?>_container a').css({'color': '#183956'});
 	$('.image-button').css({'color': '#183956'});
 
 	$('#<?=HTMLHelper::escape($id_uniq.'_title')?>').bind('change', function() {
@@ -137,7 +139,7 @@
 		$('#<?=$id_uniq . '_value'?>').val('');
 	});
 
-	$('#<?=$id?>').data('set_title', function(title) {
+	$('#<?=$id?>').data('set_title', function(parent, title) {
 
 		if(title)
 		{
@@ -151,7 +153,7 @@
 			title = '';
 		}
 
-		$('body').find('#<?=$id_uniq?>_title_html').html(title).triggerHandler('change');
+		$(parent).find('#<?=$id_uniq?>_title').val(title).triggerHandler('change');
 
 	});
 
@@ -163,7 +165,7 @@
 
 		if(newTitle)
 		{
-			$('#<?=$id?>').data('set_title').call(this, newTitle);
+			$('#<?=$id?>').data('set_title').call(this, 'body', newTitle);
 		}
 	});
 
@@ -172,66 +174,24 @@
 		var $this = $(this);
 		var parent = $('body');
 
-		$.modalDialog.loading('Cargando...', function () {
-			if ($this.data('image_dialog')) {
-				parent = $.modalDialog($this.data('image_dialog')).body();
-			}
-
-			var img = $('#<?=$id_uniq . '_img'?>').get(0);
-			var file = $this.get(0).files[0];
-			var reader = new FileReader();
-
-
-			reader.addEventListener("load", function () {
-				$('#<?=$id_uniq.'_img'?>').trigger('loadBase64', [reader.result, file.name]);
-//				img.src = reader.result;
-//				$('#<?//=$id_uniq . '_value'?>//').val(reader.result);
-//				$('#<?//=$id?>//').data('set_title').call(this, parent, file.name);
-			}, false);
-
-			if (file) {
-				reader.readAsDataURL(file);
-			}
-		});
-
-	});
-
-
-	$('#<?=$id_uniq.'_img'?>').bind('loadBase64', function(evt, contents, title) {
-
-		$('#<?=$id_uniq . '_value'?>').val(contents);
-
-		if($('#<?=$id_uniq . '_value'?>').parents('form').length == 0)
+		if($(this).data('image_dialog'))
 		{
-			$('#<?=$id_uniq . '_value'?>').wrap('<form method="post" enctype="multipart/form-data"></form>');
+			parent = $.modalDialog($(this).data('image_dialog')).body();
 		}
 
-		var form = $('#<?=$id_uniq . '_value'?>').parents('form');
+		var img = $('#<?=$id_uniq.'_img'?>').get(0);
+		var file = $(this).get(0).files[0];
+		var reader  = new FileReader();
 
-		form.append($('<input type="hidden" />').addClass('image-value-name').attr({'name': 'image_value_name'}).val($('#<?=$id_uniq . '_value'?>').attr('name')));
-		var data = $('#<?=$id_uniq . '_value'?>').parents('form').formData();
-		form.find('.image-value-name').remove();
+		reader.addEventListener("load", function () {
+			img.src = reader.result;
+			$('#<?=$id_uniq.'_value'?>').val(reader.result);
+			$('#<?=$id?>').data('set_title').call(this, parent, file.name);
+		}, false);
 
-		$.ajax({
-			'url': '!HTMLInputImageControl(load_image)',
-			'processData': false,
-			'cache': false,
-			'contentType': false,
-			'type': 'post',
-			'data': data,
-			'success': function (data) {
-
-				$('#<?=$id_uniq.'_img'?>').attr({'src': data['url']});
-				$('#<?=$id_uniq.'_id_image_file'?>').attr({'src': data['id_image_file']});
-				$('#<?=$id_uniq . '_value'?>').val(contents);
-				$('#<?=$id?>').data('set_title').call(this, title);
-
-				$.modalDialog.close();
-				$.modalDialog.close();
-			}
-		});
-
-
+		if (file) {
+			reader.readAsDataURL(file);
+		}
 	});
 
 	$('#<?=$id_uniq?>_search_link').bind('click', function() {
@@ -262,7 +222,12 @@
 
 						if(data && data['success'])
 						{
-							$('#<?=$id_uniq.'_img'?>').trigger('loadBase64', [data['content'], url]);
+							parent.find('#<?=$id_uniq . '_img'?>').attr('src', data['content']);
+							parent.find('#<?=$id_uniq . '_value'?>').val(data['content']);
+							parent.find('#<?=$id?>').data('set_title').call($this, parent, url);
+							$.modalDialog.close();
+							$.modalDialog.close();
+
 						}
 
 					}
@@ -301,14 +266,16 @@
 					{
 						if(data && data['success'])
 						{
-							$('#<?=$id_uniq.'_img'?>').trigger('loadBase64', [data['content'], value]);
+							parent.find('#<?=$id_uniq . '_img'?>').attr('src', data['content']);
+							parent.find('#<?=$id_uniq . '_value'?>').val(data['content']);
+							parent.find('#<?=$id?>').data('set_title').call($this, parent, value);
 							$.modalDialog.close();
 						}
 						else
 						{
-							$.modalDialog.alert('No se pudo leer la imagen', function() {
+							$.zmodal.alert('No se pudo leer la imagen', function() {
 								$.zmodal.closeAll();
-//								$.modalDialog.close();
+								$.modalDialog.close();
 							});
 						}
 
@@ -363,16 +330,6 @@
 		$.modalDialog.image({'src': src, 'options': {'fill-window': true}});
 	});
 
-	$('#<?=$id?>_crop_link').bind('click', function() {
-
-		$.modalDialog.ajax({
-			'url': '!HTMLBlockCropImageControl(image_crop_dialog)',
-			'data': {'id_image_file': $('#<?=$id_uniq.'_id_image_file'?>').val(), 'crop_aspect': <?=JSHelper::quote($crop_aspect)?>},
-			'type': 'post'
-		});
-		
-	});
-
-	$('#<?=$id?>_crop_link').trigger('click');
+	//$('#<?=$id_uniq?>_url_link').triggerHandler('click');
 
 </script>
