@@ -17,6 +17,8 @@ class RedirectControl {
 
 	);
 
+	private static $_URL_STATIC_METHOD_CALL = 'StaticMethodCall';
+	private static $_URL_PATTERN_STATIC_CALL_METHODS = null;
 	private static $_URL_PATTERN_AJAX_STATIC_CALL_METHODS = null;
 	private static $_URL_PATTERN_AJAX_HANDLERS_CALL = null;
 	private static $_URL_PATTERN_ZFRAMEWORK_STATIC = null;
@@ -288,7 +290,10 @@ class RedirectControl {
 
 		try 
 		{
-					
+			if(is_null(self::$_URL_PATTERN_STATIC_CALL_METHODS)) {
+				self::$_URL_PATTERN_STATIC_CALL_METHODS = new URLPattern(ZPHP::get_config('redirect_control_static_methods_call_pattern'), self::$_URL_STATIC_METHOD_CALL);
+			}
+
 			if(is_null(self::$_URL_PATTERN_AJAX_STATIC_CALL_METHODS)) {
 				self::$_URL_PATTERN_AJAX_STATIC_CALL_METHODS = AjaxHandler::get_static_method_url_pattern();
 			}
@@ -312,6 +317,21 @@ class RedirectControl {
 
 
 			$uri = str_replace('..', '', $uri);
+
+			if(($match = self::$_URL_PATTERN_STATIC_CALL_METHODS->match_url($uri))) {
+
+				$classname = $match[1];
+				$method = $match[2];
+
+				$method_prefix = ZPHP::get_config('redirect_control_static_methods_prefix');
+				$class_method = $method_prefix.$method;
+
+				if(is_callable(array($classname, $class_method))  && self::_access_control($classname)) {
+					self::_process_handler($uri);
+					call_user_func_array(array($classname, $class_method), array());
+					die();
+				}
+			}
 
 			if(($match = self::$_URL_PATTERN_AJAX_STATIC_CALL_METHODS->match_url($uri))) {
 

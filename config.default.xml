@@ -184,6 +184,12 @@
 	<!--Opciones para el redireccionamiento (usado en conjunto con el mod rewrite de apache --> 
 	<redirect_control>
 
+        <!-- Prefijo para los métodos estáticos que pueden ser llamados por ajax -->
+        <static_methods_prefix>call_</static_methods_prefix>
+
+        <!-- Expresión regular para las urls que llaman métodos estáticos. El grupo 1 es la clase y el grupo 2 es el metodo -->
+        <static_methods_call_pattern>\$(.+)\((.+)\)</static_methods_call_pattern>
+
 		<!--Configuraciones de expresiones de URLS-->
 		<url_pattern>
 			<!--Si debe ser case sensitive-->
