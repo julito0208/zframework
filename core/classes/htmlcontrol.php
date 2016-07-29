@@ -625,6 +625,18 @@ abstract class HTMLControl extends MVParamsContentControl implements MIMEControl
 	
 	//------------------------------------------------------------------------------------------------------------------------------------
 
+	/**
+	*
+	* @return PDF
+	*
+	*/
+	public function convert_pdf($orientation = 'P', $marges = array(5, 5, 5, 8), $format = 'A4', $encoding='UTF-8', $unicode=true)
+	{
+		return PDF::from_html($this, $orientation, $marges, $format, $encoding, $unicode);
+	}
+
+	/*-------------------------------------------------------------*/
+
 	public function out() {
 
 		if(!self::$_is_parsing) {
