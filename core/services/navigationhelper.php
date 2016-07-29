@@ -642,6 +642,11 @@ class NavigationHelper {
 
 	public static function test_logged_http_basic_auth_admin($test_development=true)
 	{
+		if(ZPHP::is_development_mode())
+		{
+			return true;
+		}
+
 		if($test_development && self::test_logged_http_basic_auth_development(true))
 		{
 			return true;
@@ -652,6 +657,11 @@ class NavigationHelper {
 
 	public static function test_logged_http_basic_auth_development($test_master=true)
 	{
+		if(ZPHP::is_development_mode())
+		{
+			return true;
+		}
+
 		if($test_master && self::test_logged_http_basic_auth_master())
 		{
 			return true;
@@ -662,6 +672,12 @@ class NavigationHelper {
 
 	public static function test_logged_http_basic_auth_master()
 	{
+
+		if(ZPHP::is_development_mode())
+		{
+			return true;
+		}
+
 		return self::test_logged_http_basic_auth_users(ZPHP::get_config('access_control.master.user'));
 	}
 
