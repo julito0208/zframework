@@ -621,7 +621,25 @@ class NavigationHelper {
 	
 	
 	//-------------------------------------------------------------------------
-	
+
+	public static function test_logged_http_basic_auth_users($users)
+	{
+		if(is_array($users))
+		{
+			foreach($users as $user)
+			{
+				if(self::test_logged_http_basic_auth_users($user))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		return isset($_SERVER['PHP_AUTH_USER']) && $_SERVER['PHP_AUTH_USER'] == $users;
+	}
+
 	
 	public static function test_http_basic_auth_users(array $users) {
 		
