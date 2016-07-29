@@ -1179,7 +1179,7 @@ class MercadoPagoPayment
 				'category_id' => $unit_price->get_mp_item_category_id(),
 				'quantity' => (integer) $unit_price->get_mp_item_quantity(),
 				"currency_id" => $currency_id,
-				'unit_price' => (int) $unit_price->get_mp_item_unit_price(),
+				'unit_price' => (float) $unit_price->get_mp_item_unit_price(),
 			);
 
 			if (ClassHelper::is_instance_of($unit_price, 'MercadoPagoItemDimension'))
