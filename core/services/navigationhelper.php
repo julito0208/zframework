@@ -640,6 +640,31 @@ class NavigationHelper {
 		return isset($_SERVER['PHP_AUTH_USER']) && $_SERVER['PHP_AUTH_USER'] == $users;
 	}
 
+	public static function test_logged_http_basic_auth_admin($test_development=true)
+	{
+		if($test_development && self::test_logged_http_basic_auth_development(true))
+		{
+			return true;
+		}
+
+		return self::test_logged_http_basic_auth_users(ZPHP::get_config('access_control.admin.user'));
+	}
+
+	public static function test_logged_http_basic_auth_development($test_master=true)
+	{
+		if($test_master && self::test_logged_http_basic_auth_master())
+		{
+			return true;
+		}
+
+		return self::test_logged_http_basic_auth_users(ZPHP::get_config('access_control.development.user'));
+	}
+
+	public static function test_logged_http_basic_auth_master()
+	{
+		return self::test_logged_http_basic_auth_users(ZPHP::get_config('access_control.master.user'));
+	}
+
 	
 	public static function test_http_basic_auth_users(array $users) {
 		
