@@ -266,10 +266,13 @@
 					{
 						if(data && data['success'])
 						{
-							parent.find('#<?=$id_uniq . '_img'?>').attr('src', data['content']);
-							parent.find('#<?=$id_uniq . '_value'?>').val(data['content']);
-							parent.find('#<?=$id?>').data('set_title').call($this, parent, value);
 							$.modalDialog.close();
+
+							setTimeout(function() {
+								parent.find('#<?=$id_uniq . '_img'?>').attr('src', data['content']);
+								parent.find('#<?=$id_uniq . '_value'?>').val(data['content']);
+								parent.find('#<?=$id?>').data('set_title').call($this, parent, value);
+							}, 500);
 						}
 						else
 						{
