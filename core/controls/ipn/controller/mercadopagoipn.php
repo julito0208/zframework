@@ -34,6 +34,14 @@ class MercadoPagoIPN extends HTMLPageBlank
 		return self::add_callback($function, $category_id);
 	}
 
+	public static function check_paid($callback, $category_id=null)
+	{
+		self::add_callback($callback, $category_id);
+
+		$page = new MercadoPagoIPN();
+
+	}
+
 	/*-------------------------------------------------------------*/
 
 	public function __construct()
