@@ -1738,7 +1738,7 @@
 
                         if(newHeight > avalHeight )
                         {
-                            var newHeight = avalHeight - 350;
+                            var newHeight = avalHeight - 50;
                             var newWidth = imageAspect * newHeight;
                         }
 
@@ -1746,7 +1746,7 @@
                         image.height(newHeight);
 
                         // dialogBlockContent.find('.image-title').width(newWidth);
-                        dialogBlock.find('.images-list-buttons-block').css({ 'margin-top': (newHeight/2)});
+                        dialogBlock.find('.images-list-buttons-block').css({ 'margin-top': 50});
                         //dialogBlock.find('.images-list-buttons-block .play-pause-button').css({'margin-top': (newHeight/2)-0});
                     }
 
@@ -2112,7 +2112,7 @@
             nextFunction();
         };
 
-        jQuery.modalDialog.image({'src': jQuery.modalDialog.imagesList.dataList[selectedIndex], 'options': {'height-space': 30}}, dialogOptions);
+        jQuery.modalDialog.image({'src': jQuery.modalDialog.imagesList.dataList[selectedIndex]['src'], 'options': {'height-space': 30}}, dialogOptions);
 
     };
 
@@ -2446,7 +2446,7 @@
             var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="display: none; width: 900px"><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td class="col-label">       <label>Buscar:</label>      </td>      <td>       <input type="text" id="isf-image-search" name="search" style="width: 300px" />      </td>      <td>       <button type="submit" class="btn btn-success"><span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; width: 700px; max-height: 500px; overflow: auto; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
             var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="width: 900px"><h4 style="margin: 0 0 20px; text-decoration: underline;">Buscar Imágenes</h4><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td class="col-label" style="padding: 2px 10px 0 0;">       <label>Buscar:</label>      </td>      <td style="padding: 0 30px 0 0;">       <input type="text" id="isf-image-search" name="search" style="width: 300px" class="first-focus" />      </td>      <td>       <button type="submit" class="btn btn-success"><span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; max-height: 450px; overflow-y: auto; overflow-x: hidden;  border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
             var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="width: 600px"><h4 style="margin: 0 0 20px; text-decoration: underline;">Buscar Imágenes</h4><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table>     <tr id="isf-producto-imagen-actual-row">      <td style="padding: 0 20px 0 0;">       <input type="text" id="isf-image-search" name="search" placeholder="Buscar" style="width: 300px" class="first-focus" />      </td>      <td>       <button type="submit" class="btn btn-default search-button" style="font-weight: normal; padding: 4px 20px; background: #333 none repeat scroll 0 0;border: 1px solid #999;color: #fff;padding: 4px 20px;box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.075)"><span class="fa fa-search"></span>&nbsp;&nbsp;<span>Buscar</span></button>      </td>     </tr>    </table>   </div>   </form>   <br />    <div id="isf-images-result-count">&nbsp;</div>  <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; max-height: 350px; overflow-y: auto; overflow-x: hidden; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" style="padding: 5px 20px; font-weight: bold;" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
-            var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="width: 1024px"><h4 style="margin: 0 0 20px; text-decoration: underline;">Buscar Imágenes</h4><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table class="fill-width">     <tr id="isf-producto-imagen-actual-row">      <td style="padding: 0 20px 0 0; width:340px;">       <input type="text" id="isf-image-search" name="search" placeholder="Buscar" style="width: 300px" class="first-focus" />      </td>      <td>       <button type="submit" class="btn btn-success" style="padding: 4px 15px;"><span class="fa fa-search"></span>&nbsp;&nbsp;<span>Buscar</span></button>     <div class="pull-right" id="isf-images-result-count">&nbsp;</div> </td>     </tr>    </table>   </div>   </form>   <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; max-height: '+String($(window).height()-350)+'px; overflow-y: auto; overflow-x: hidden; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" style="padding: 5px 20px; font-weight: bold;" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
+            var dialogHtml = ' <div id="isf-producto-search-image-dialog" style="width: 1300px"><h4 style="margin: 0 0 20px; text-decoration: underline;">Buscar Imágenes</h4><form id="isf-producto-image-form" method="post" action="javascript:void(0)"><div class="fieldset">    <div class="error hidden"></div>    <table class="fill-width">     <tr id="isf-producto-imagen-actual-row">      <td style="padding: 0 20px 0 0; width:340px;">       <input type="text" id="isf-image-search" name="search" placeholder="Buscar" style="width: 300px" class="first-focus" />      </td>      <td>       <button type="submit" class="btn btn-success" style="padding: 4px 15px;"><span class="fa fa-search"></span>&nbsp;&nbsp;<span>Buscar</span></button>     <div class="pull-right" id="isf-images-result-count">&nbsp;</div> </td>     </tr>    </table>   </div>   </form>   <div id="isf-images-result" style="border-top: solid 1px #CCC; margin-top: 30px; padding: 20px; max-height: '+String($(window).height()-300)+'px; overflow-y: auto; overflow-x: hidden; border: solid 1px #CCC;"></div>   <div class="buttons"><button type="button" class="btn btn-default" style="padding: 5px 20px; font-weight: bold;" onclick="$.modalDialog.close()"><span>Cerrar</span></button></div></div>';
             $('body').prepend($('<div />').html(dialogHtml));
 
             $('#isf-image-search').bind('keydown keyup keypress', function(evt) {
@@ -2539,7 +2539,7 @@
                             block.masonryUpdate = function()
                             {
                                 block.find('.container').masonry({
-                                    gutter: 30,
+                                    gutter: 20,
                                     itemSelector: '.find-link-image'
                                 });
                             };
@@ -2561,7 +2561,7 @@
 
                                         ProductoSearchImageDialog.dialog.updateTotal();
                                         block.find('.empty').remove();
-                                        blockContainer.css({'visibility': 'visible', 'position': 'relative', 'width': '1024', 'height': ''});
+                                        blockContainer.css({'visibility': 'visible', 'position': 'relative', 'width': '1300', 'height': ''});
                                         block.find('.container a img').css({'visibility': 'visible'});
                                         block.find('.container a').css({'visibility': 'visible'});
                                         // block.find('a.find-link-image').css({'display': 'inline-block'});

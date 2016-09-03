@@ -1,5 +1,7 @@
 Options Multiviews FollowSymLinks
 
+SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
+
 <FilesMatch "\.xml$|\.json$|backend/.*|apache\.conf|logs.*|zframework/.*\.php$">
     Order allow,deny
     Deny from all
