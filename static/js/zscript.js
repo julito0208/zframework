@@ -2287,11 +2287,34 @@ Number.getOptimalSizeUnit = function(bytes) {
     return sizeUnit;
 };
 
+Number.getUnitPow = function(sizeUnit)
+{
+    if(!sizeUnit)
+    {
+        return 0;
+    }
+
+    var returnPow = 0;
+
+    $.each(Number.sizeUnits, function(index, unit) {
+
+        if(String(unit).toLowerCase() == String(sizeUnit).toLowerCase())
+        {
+            returnPow = index;
+            return false;
+        }
+
+    });
+
+    return returnPow;
+}
+
 
 Number.formatSize = function(bytes, numDecimals, sizeUnit) {
 
     if(sizeUnit == null) sizeUnit = Number.getOptimalSizeUnit(bytes);
-    return Number.format(Number.round(bytes/Math.pow(1024, sizeUnit), numDecimals), numDecimals == null ? 0 : numDecimals) + ' ' + Number.sizeUnits[sizeUnit];
+    var unitPow = Number.getUnitPow(sizeUnit);
+    return Number.format(Number.round(bytes/Math.pow(1024, unitPow), numDecimals), numDecimals == null ? 0 : numDecimals) + ' ' + Number.sizeUnits[unitPow];
 };
 
 

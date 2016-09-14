@@ -390,7 +390,7 @@ class HTMLPageBlank extends HTMLControl {
 			}
 		}
 		
-		$html.= "</head>\n<body>";
+		$html.= "</head>\n<body ng-app='web-app'>";
 		
 		$content = self::_prepare_html_content($content);
 

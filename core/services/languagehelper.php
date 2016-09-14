@@ -553,33 +553,53 @@ class LanguageHelper  {
 	
 	
 	public static function get_text($key=null, $language=null, $default=self::DEFAULT_TEXT) {
-		
-		$language = self::parse_language_code($language);
 
-		list($section, $key) = self::_parse_section_text_key($key, $language);
-
-		$text = self::_get_default_text($language, $key, $default);
-
-		if($text)
+		if(is_array($key))
 		{
-			return $text;
+			$texts = array();
+
+			foreach($key as $key_text)
+			{
+				$texts[$key_text] = self::get_text($key_text, $language, $default);
+			}
+
+			return $texts;
 		}
-		
-		$entity = self::_get_language_text_entity();
-			
-		$language_text = null;
+		else
+		{
 
-		try {
-//			eval('$language_text = '.$entity.'::get_by_id_language_text_id_language_section_id_language($key, $section, array($language, ZfLanguage::get_by_id_language_code($language)->get_id_language()));');
-			eval('$language_text = '.$entity.'::get_by_id_language_text_id_language_section_id_language($key, $section, ZfLanguage::get_by_id_language_code($language)->get_id_language());');
+			$language = self::parse_language_code($language);
 
-		} catch(Exception $ex) {}
+			list($section, $key) = self::_parse_section_text_key($key, $language);
 
-		if($language_text) {
-			return $language_text->get_text();
-		} else {
-			LogFile::log_error_file(self::LOG_FILE, "Text not found: '{$key}' [Language: {$language}] [Section: {$section}]");
-			return '';
+			$text = self::_get_default_text($language, $key, $default);
+
+			if ($text)
+			{
+				return $text;
+			}
+
+			$entity = self::_get_language_text_entity();
+
+			$language_text = null;
+
+			try
+			{
+				//			eval('$language_text = '.$entity.'::get_by_id_language_text_id_language_section_id_language($key, $section, array($language, ZfLanguage::get_by_id_language_code($language)->get_id_language()));');
+				eval('$language_text = ' . $entity . '::get_by_id_language_text_id_language_section_id_language($key, $section, ZfLanguage::get_by_id_language_code($language)->get_id_language());');
+
+			} catch (Exception $ex)
+			{
+			}
+
+			if ($language_text)
+			{
+				return $language_text->get_text();
+			} else
+			{
+				LogFile::log_error_file(self::LOG_FILE, "Text not found: '{$key}' [Language: {$language}] [Section: {$section}]");
+				return '';
+			}
 		}
 	}
 
