@@ -22,7 +22,16 @@ class FileImageThumbControl implements MIMEControl, RedirectURLPattern {
 
 			$image_file = ZfImageFile::get_by_id_image_file($id_image_file);
 			$image_thumb_type = ZfImageThumbType::get_by_id_image_thumb_type($id_image_thumb_type);
-			$image_type = ZfImageType::get_by_id_image_type($image_thumb_type->get_id_image_type());
+
+			if($image_thumb_type)
+			{
+				$image_type = ZfImageType::get_by_id_image_type($image_thumb_type->get_id_image_type());	
+			}
+			else
+			{
+				$image_type = null;
+			}
+			
 
 			if(!$image_file || !$image_thumb_type)
 			{
