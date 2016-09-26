@@ -218,17 +218,42 @@ class RedirectControl {
 					} 
 				}
 
-				self::$_IS_AJAX_CALL = is_subclass_of($redirect, 'AjaxResponse');
+				if(($match = self::$_URL_PATTERN_STATIC_CALL_METHODS->match_url($redirect))) {
 
-				$obj = ClassHelper::create_instance_array($redirect, $vars);
+					$classname = $match[1];
+					$method = $match[2];
+					$method_prefix = ZPHP::get_config('redirect_control_static_methods_prefix');
 
-				if($obj) {
+					//self::$_IS_AJAX_CALL = true;
 
-					if($obj instanceof MIMEControl && self::_access_control($obj)) {
-						self::_out_mimecontrol($obj, $uri);
+					$class_method = $method_prefix.$method;
+
+					if(is_callable(array($classname, $class_method))  && self::_access_control($classname)) {
+						self::_process_handler($uri);
+						call_user_func_array(array($classname, $class_method), array());
+						die();
+					}
+					else
+					{
+						NavigationHelper::location_error_not_found();
 					}
 				}
+				else
+				{
 
+					self::$_IS_AJAX_CALL = is_subclass_of($redirect, 'AjaxResponse');
+
+					$obj = ClassHelper::create_instance_array($redirect, $vars);
+
+					if ($obj)
+					{
+
+						if ($obj instanceof MIMEControl && self::_access_control($obj))
+						{
+							self::_out_mimecontrol($obj, $uri);
+						}
+					}
+				}
 			}
 		}
 
