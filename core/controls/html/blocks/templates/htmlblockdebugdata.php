@@ -92,7 +92,7 @@
 										<?=$debug_item['title']?>
 									</div>
 									<div style="float:right; font-weight: bold;">
-										<?=strftime('%d/%m/%Y %H-%M-%S', $debug_item['time'])?>
+										<?=strftime('%d/%m/%Y %H:%M:%S', $debug_item['time'])?>
 									</div>
 								</div>
 								<div style="clear:both"></div>
