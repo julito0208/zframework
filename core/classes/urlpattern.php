@@ -119,7 +119,7 @@ class URLPattern {
 	}
 
 	public function match_url($url) {
-		
+
 		if(is_null(self::$_match_url_case_sensitive))
 			self::$_match_url_case_sensitive = ZPHP::get_config('redirect_control_url_pattern_case_sensitive');
 		

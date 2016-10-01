@@ -40,6 +40,7 @@ $tag_attrs = array_filter($tag_attrs);
 			escapeMarkup: function(s) { return s; },
 			ajax: { 
 			   url: <?=JSHelper::cast_str($search_url)?>,
+				type: <?=JSHelper::cast_str($search_method)?>,
 			   dataType: 'json',
 			   data: function (term, page) {
 
