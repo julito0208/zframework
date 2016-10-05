@@ -13,6 +13,11 @@ class Dict extends DictRead implements Params{
 		$this->set_item($name, $value);
 	}
 
+	public function __toArray()
+	{
+		return array_merge($this->_array, array());
+	}
+
 	/*-------------------------------------------------------------*/
 	
 	public function set_item($key, $value=null) {

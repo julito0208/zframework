@@ -28,9 +28,9 @@ $tag_attrs = array_filter($tag_attrs);
 		$(<?=JSHelper::cast_str('#'.$hidden_input_id)?>).select2({
 			width: <?=JSHelper::cast($width)?>,
 			multiple: false,
-			formatSearching: function() {
-				return 'Buscando...';
-			},
+//			formatSearching: function() {
+//				return 'Buscando...';
+//			},
 			minimumInputLength: <?=JSHelper::cast_number($min_length)?>,
 
 			<? if(!$value || !is_array($value)) { ?>
@@ -49,17 +49,22 @@ $tag_attrs = array_filter($tag_attrs);
 				   var itemData = $(<?=JSHelper::cast_str('#'.$hidden_input_id)?>).data('autocompletionSearchData');
 				   if(!itemData) itemData = {};
 
-					return $.extend({<?=JSHelper::cast_str(HTMLInputAutoCompleteControl::SEARCH_VARNAME)?>: term}, searchData, itemData);
+					return $.extend({<?=JSHelper::cast_str(HTMLInputAutoCompleteControl::SEARCH_VARNAME)?>: term, <?=JSHelper::cast_str(HTMLInputAutoCompleteControl::ENABLE_HTML_VARNAME)?>: <?=JSHelper::cast_number($enable_html)?>}, searchData, itemData);
 			   },
-			   results: function (data, page) { 
-				   return {results: data['rows']};
+			   results: function (data, page) {
+
+				   var results = data[<?=JSHelper::cast_str(HTMLInputAutoCompleteControl::AJAX_RESULTS_VARNAME)?>];
+
+				   for(var i=0; i<results.length; i++)
+				   {
+					   results[i]['id'] = results[i][<?=JSHelper::cast_str(OptionItem::VALUE_NAME)?>];
+				   }
+
+				   return {results: results};
 			   }
 			},
 			formatNoMatches: function(term) {
 				return <?=JSHelper::cast_str($nomatches)?>;
-			},
-			formatInputTooShort: function() {
-				return '';
 			},
 			<? if($value && is_array($value) && $value['id'] && $value['text']) { ?>
 				initSelection : function (element, callback) {

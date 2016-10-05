@@ -20,4 +20,11 @@ class URLHelper {
 	public static function get_zframework_static_url($filename) {
 		return rtrim(ZPHP::get_config('zframework_static_url'), '/').'/'.ltrim($filename, '/');
 	}
+
+	public static function escape_url_string($string)
+	{
+		$string = strtolower($string);
+		$string = preg_replace('#[^\w+]+#', '', $string);
+		return $string;
+	}
 }

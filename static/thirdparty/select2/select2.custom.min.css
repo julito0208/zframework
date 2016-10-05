@@ -1,0 +1,4 @@
+.select2-results .select2-highlighted, .select2-results .select2-result:hover {
+    background: #3875d7;
+    color: #fff;
+}

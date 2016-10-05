@@ -25,40 +25,8 @@ class HTMLInputRadioListControl extends HTMLInputControl {
 	
 	/* @return HTMLInputSelectControl */
 	public function add_option($option_label, $value='') {
-		
-		if(func_num_args() == 2) {
-			
-			$this->_options[] = array('label' => $option_label, 'value' => $value, 'checked' => false);
-			
-		} else {
-			
-			if($option_label && $option_label instanceof OptionItem) {
-				
-				$this->_options[] = array('label' => $option_label->get_option_item_label(), 'value' => $option_label->get_option_item_value(), 'checked' => false);
-				
-			} else {
-				
-				$option = CastHelper::to_array($option_label);
-				
-				$option_value = $option['value'];
-				$option_label = '';
 
-				foreach(array('text', 'label', 'title', 'html') as $key) {
-
-					if($option[$key]) {
-
-						$option_label = $option[$key];
-						break;
-					}
-
-				}
-
-				$this->_options[] = array('label' => $option_label, 'value' => $option_value, 'checked' => false);
-				
-			}
-			
-		}
-
+		$this->_options[] = JSONOptionItem::parse_option_array($option_label, $value);
 		return $this;
 		
 	}

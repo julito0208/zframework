@@ -70,60 +70,9 @@ class HTMLInputSelectHTMLControl extends HTMLInputSelectControl {
 
 
 	/* @return HTMLInputSelectControl */
-	public function add_option($option_label, $value='') {
-		
-		if(func_num_args() == 2) {
-			
-			$this->_options[] = array('text' => $option_label, 'value' => $value);
-			
-		} else {
-			
-			if($option_label && $option_label instanceof OptionItem) {
-				
-				$option = array('text' => $option_label->get_option_item_label(), 'value' => $option_label->get_option_item_value());
-				
-				if($option_label instanceof OptionItemHTML) $option['html'] = $option_label->get_option_item_html();
-				
-				$this->_options[] = $option;
-				
-			} else {
-				
-				if($option_label instanceof DBEntity) {
-					
-					$primary_keys = $option_label->primary_keys;
-					$fields = $option_label->fields;
-					
-					if(count($primary_keys) == 1 && in_array('nombre', $fields)) {
-						
-						$option = array('text' => $option_label->nombre, 'value' => $option_label->$primary_keys[0]);
-						$this->_options[] = $option;
-						
-						return $this;
-					}
-					
-				}
-				
-				$option = CastHelper::to_array($option_label);
-				
-				$option_value = $option['value'];
-				$option_label = '';
+	public function add_option($option_label, $value=null, $html=null) {
 
-				foreach(array('text', 'label', 'title', 'html') as $key) {
-
-					if($option[$key]) {
-
-						$option_label = $option[$key];
-						break;
-					}
-
-				}
-
-				$this->_options[] = array('text' => $option_label, 'value' => $option_value);
-				
-			}
-			
-		}
-
+		$this->_options[] = JSONOptionItemHTML::parse_option_array($option_label, $value, $html);
 		return $this;
 		
 	}

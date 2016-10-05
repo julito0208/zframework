@@ -3,15 +3,42 @@
 class HTMLInputAutoCompleteControl extends HTMLInputTextControl {
 
 	
-	const DEFAULT_MIN_LENGTH = 2;
-	const DEFAULT_DELAY = 200;
+	const DEFAULT_MIN_LENGTH = 3;
+	const DEFAULT_DELAY = 100;
 	const DEFAULT_AUTO_FOCUS = true;
 	const DEFAULT_AUTO_SELECT = true;
 	const DEFAULT_STRICT = true;
 	const DEFAULT_SEARCH_METHOD = 'post';
 
 	const SEARCH_VARNAME = 'q';
-	
+	const ENABLE_HTML_VARNAME = '__enable_html';
+	const AJAX_RESULTS_VARNAME = 'rows';
+
+	/*-------------------------------------------------------------*/
+
+	public static function ajax_results_out($options=array())
+	{
+		$enable_html = $_REQUEST[self::ENABLE_HTML_VARNAME];
+
+		if($enable_html)
+		{
+			$options_items = JSONOptionItemHTML::parse_option_array_list($options);
+
+			foreach($options_items as $index => $option_item)
+			{
+				$options_items[$index]['text'] = $option_item['html'];
+			}
+		}
+		else
+		{
+			$options_items = JSONOptionItem::parse_option_array_list($options);
+		}
+
+		$json = new AjaxJSONResponse();
+		$json->set_item(self::AJAX_RESULTS_VARNAME, $options_items);
+		$json->out();
+	}
+
 	/*--------------------------------------------------------------*/
 
 //	protected static $_init_timeout = 300;
@@ -39,6 +66,7 @@ class HTMLInputAutoCompleteControl extends HTMLInputTextControl {
 	protected $_search_data = array();
 	protected $_width;
 	protected $_nomatches = '';
+	protected $_enable_html = true;
 
 	public function __construct($id=null, $name=null, $selected_item=null) {
 		
@@ -70,6 +98,22 @@ class HTMLInputAutoCompleteControl extends HTMLInputTextControl {
 		return $this;
 	}
 
+	/**
+	*
+	* @return $this
+	*
+	*/
+	public function set_enable_html($value)
+	{
+		$this->_enable_html = $value;
+		return $this;
+	}
+	
+	public function get_enable_html()
+	{
+		return $this->_enable_html;
+	}
+	
 	
 
 	public function get_min_length() {
@@ -241,6 +285,7 @@ class HTMLInputAutoCompleteControl extends HTMLInputTextControl {
 		$this->set_param('search_data', $this->_search_data);
 		$this->set_param('width', $this->_width ? $this->_width : self::$_default_width);
 		$this->set_param('nomatches', $this->_nomatches);
+		$this->set_param('enable_html', $this->_enable_html);
 		
 		parent::prepare_params();
 		

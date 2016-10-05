@@ -3,7 +3,7 @@
 	<input class="image_contents_value" type="hidden" name="<?=HTMLHelper::escape($name)?>" id="<?=HTMLHelper::escape($id_uniq.'_value')?>" value="<?=($image_file ? $image_file->get_base64_contents(true) : '')?>" />
 
 
-	<div class="image-container" style="display: inline-block; margin: 0 30px 0 0;">
+	<div class="image-container" style="display: inline-block; margin: 0 30px 0 0; max-width: 210px;">
 
 		<div style="background: #CCC; min-width: 200px; max-width: 200px; max-height: 200px; overflow: auto">
 			<img alt="Image" class="main-img" id="<?=HTMLHelper::escape($id_uniq.'_img')?>" src="<?=HTMLHelper::escape(ZfImageFile::get_image_url($id_image_file))?>" style="width: 100%; border: solid 1px #777; border-radius: 5px; box-shadow: 1px 1px 1px rgba(0,0,0,0.4); visibility: hidden; cursor: pointer;" onmouseover="$(this).css({'border-color': '#00F'})" onmouseout="$(this).css({'border-color': ''})" />
