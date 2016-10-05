@@ -542,6 +542,11 @@ abstract class Email extends MVParamsContentControl {
 			}
 		}
 	}
+
+	public function get_to()
+	{
+		return $this->_to;
+	}
 	
 	public function clear_to() {
 		$this->_to = array();
@@ -572,6 +577,11 @@ abstract class Email extends MVParamsContentControl {
 			}
 		}
 	}
+
+	public function get_cc()
+	{
+		return $this->_cc;
+	}
 	
 	public function clear_cc() {
 		$this->_cc = array();
@@ -601,6 +611,11 @@ abstract class Email extends MVParamsContentControl {
 				}
 			}
 		}
+	}
+
+	public function get_cco()
+	{
+		return $this->_cco;
 	}
 	
 	public function clear_cco() {

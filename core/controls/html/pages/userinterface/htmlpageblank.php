@@ -415,8 +415,7 @@ class HTMLPageBlank extends HTMLControl {
 			}
 		}
 
-
-		if($this->_title || $this->_description)
+		if(ClassHelper::is_instance_of('HTMLPage') && ($this->_title || $this->_description))
 		{
 			$html.= "\n<div style='display:none'>";
 			
