@@ -307,7 +307,7 @@ function echo_dir_list($item, $checked_files, $opened_dirs, $first=false) {
 	function toggleDir(node) {
 		
 		node = $(node);
-		
+
 		var nextLi = node.parent().next();
 		
 		var list = nextLi.children('ul');
@@ -357,7 +357,7 @@ function echo_dir_list($item, $checked_files, $opened_dirs, $first=false) {
 		
 		form.find('#css-files-list input').each(function() {
 			var checkBox = $(this);
-			if(checkBox.attr('checked')) {
+			if(checkBox.is(':checked')) {
 				minFiles.push($(this).val());
 				selectedCSSFiles.push($(this).val());
 			}
@@ -366,13 +366,13 @@ function echo_dir_list($item, $checked_files, $opened_dirs, $first=false) {
 
 		if(minFiles.length == 0) {
 			
-			$.modalDialog.alert('No seleccionó ningún archivo', 'error');
+			$.modalDialog.alert('No seleccionï¿½ ningï¿½n archivo', 'error');
 			
 		} else {
 		
 			if(confirmDialog) {
 				
-				$.modalDialog.confirm(action == 'delete' ? '¿Está seguro que desea eliminar los mimificados de estos archivos?' : '¿Está seguro que desea mimificar estos archivos?', function() {
+				$.modalDialog.confirm(action == 'delete' ? 'ï¿½Estï¿½ seguro que desea eliminar los mimificados de estos archivos?' : 'ï¿½Estï¿½ seguro que desea mimificar estos archivos?', function() {
 					submitMinForm(action, false);					
 				});
 			
@@ -429,15 +429,13 @@ function echo_dir_list($item, $checked_files, $opened_dirs, $first=false) {
 	
 	function toggleDirCheck(check)
 	{
-		
 		var node = $(check);
-		var checked = node.attr('checked');
+		var checked = node.is(':checked');
 		
 		var nextLi = node.parent().next();
 		
 		var list = nextLi.children('ul');
 		list.find('input[type=checkbox]').attr({'checked': checked ? true : false});
-		
 	}
 		
 </script>

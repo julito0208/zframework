@@ -24,7 +24,7 @@ class PDF implements MIMEControl
 		$pdf = new PDF();
 		$pdf->_html2pdf = new HTML2PDF($orientation, $format, 'es', $unicode, $encoding, $marges);
 		$pdf->_html2pdf->writeHTML($html);
-
+		
 		return $pdf;
 	}
 

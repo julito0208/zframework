@@ -1774,7 +1774,17 @@
 
 
             $(window).bind('resize', windowResize);
-            image.bind('load', function() { updateImageSize(); });
+
+            image.bind('load', function() {
+
+                updateImageSize();
+
+                if(dialogOptions['load'])
+                {
+                    dialogOptions['load'].call(this);
+                }
+            });
+
             image.bind('error', function() {
                 if(dialogOptions['onerror'])
                 {
@@ -1885,7 +1895,7 @@
             }
         };
 
-        var setPosition = function(index) {
+        var setPosition = function(index, sign) {
 
             //if(index == selectedIndex) return;
 
@@ -1941,7 +1951,7 @@
             // if(index < 0) return;
             if(index < 0) index = jQuery.modalDialog.imagesList.dataList.length - 1;
 
-            setPosition(index);
+            setPosition(index, -1);
         };
 
 
@@ -1952,7 +1962,7 @@
             // if(index >= jQuery.modalDialog.imagesList.dataList.length) index = jQuery.modalDialog.imagesList.dataList.length-1;
             if(index >= jQuery.modalDialog.imagesList.dataList.length) index = 0;
 
-            setPosition(index);
+            setPosition(index, 1);
         };
 
         var playPauseFunction = function()
@@ -2112,6 +2122,21 @@
             nextFunction();
         };
 
+        if(!$('.dialog-image-container .dialog-image').data('modaldialog_imagelist_callbacks'))
+        {
+            $('.dialog-image-container .dialog-image').bind('error', function(evt) {
+
+                nextFunction();
+
+                if(dialogOptions['errorCallback'])
+                {
+                    dialogOptions['errorCallback'].call(this, evt);
+                }
+            });
+
+            $('.dialog-image-container .dialog-image').data('modaldialog_imagelist_callbacks', true);
+        }
+
         jQuery.modalDialog.image({'src': jQuery.modalDialog.imagesList.dataList[selectedIndex]['src'], 'options': {'height-space': 30}}, dialogOptions);
 
     };
@@ -2119,6 +2144,9 @@
 
     jQuery.modalDialog.imagesList.selectedIndex = -1;
     jQuery.modalDialog.imagesList.dataList = [];
+    jQuery.modalDialog.imagesList.onLoad = null;
+    jQuery.modalDialog.imagesList.onError = null;
+    jQuery.modalDialog.imagesList.onChangeSign = 0;
 
     jQuery.modalDialog.prompt = function(label, value, callback, title, dialogOptions, textStyle, textClass, errorStr) {
 
