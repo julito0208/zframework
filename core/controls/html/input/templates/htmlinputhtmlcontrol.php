@@ -32,17 +32,17 @@
 	$(<?=JSHelper::cast_str('#'.$id_container.'_image_dialog')?>).find('.search-link').data('image_dialog', <?=JSHelper::cast_str('#'.$id_container.'_image_dialog')?>);
 	$(<?=JSHelper::cast_str('#'.$id_container.'_image_dialog')?>).find('.local-link').data('image_dialog', <?=JSHelper::cast_str('#'.$id_container.'_image_dialog')?>);
 
-	$(<?=JSHelper::cast_str('#'.$id_container.'_image_dialog')?>).find('button[type=submit]').bind('click', function() {
-
-		var base64Contents = $(<?=JSHelper::cast_str('#'.$id_container)?>).data('image_dialog').body().find('.image_contents_value').val();
-
-		if(base64Contents)
-		{
-			var imageHtml = "<img src='" + base64Contents + "' alt='Image' />";
-			tinymce.get(<?=JSHelper::cast_str($id)?>).insertContent(imageHtml);
-			$.modalDialog.closeAll();
-		}
-	});
+//	$(<?//=JSHelper::cast_str('#'.$id_container.'_image_dialog')?>//).find('button[type=submit]').bind('click', function() {
+//
+//		var base64Contents = $(<?//=JSHelper::cast_str('#'.$id_container)?>//).data('image_dialog').body().find('.image_contents_value').val();
+//
+//		if(base64Contents)
+//		{
+//			var imageHtml = "<img src='" + base64Contents + "' alt='Image' />";
+//			tinymce.get(<?//=JSHelper::cast_str($id)?>//).insertContent(imageHtml);
+//			$.modalDialog.closeAll();
+//		}
+//	});
 
 	$(<?=JSHelper::cast_str('#'.$id_container)?>).data('image_dialog', $('#<?=HTMLHelper::escape($id_container)?>_image_dialog').modalDialog({
 		'onload': function()
@@ -65,8 +65,18 @@
 		data('image_dialog').
 		body().
 		find('#<?=HTMLHelper::escape($id_container)?>_main_block').
-		wrap("<form id='<?=$id_container?>_image_form' method='post' action='javascript:void(0)' style='width: 600px' enctype='multipart/form-data'></form>");
+		wrap("<form class='form-ajax' id='<?=$id_container?>_image_form' method='post' action='!HTMLInputHTMLControl(get_image_html)' style='width: 600px' enctype='multipart/form-data'></form>");
 
+	$('body').on('form.success', '#<?=$id_container?>_image_form', function(evt, data) {
+
+		if(data && data['success'] && data['src']) {
+
+			var imageHtml = "<img src='" + data['src'] + "' alt='Image' />";
+			tinymce.get(<?=JSHelper::cast_str($id)?>).insertContent(imageHtml);
+		}
+
+		return false;
+	});
 
 	<? if($toolbar && stripos($toolbar, HTMLInputHTMLControl::TOOLBAR_ITEM_IMAGE) !== false) { ?>
 

@@ -4,34 +4,33 @@ class HTMLInputHTMLControl extends HTMLInputControl {
 
 	const UPLOAD_IMAGE_MAX_WIDTH = 1500;
 	const UPLOAD_IMAGE_MAX_HEIGHT = 1500;
+	const UPLOAD_IMAGE_QUALITY = 70;
 
 
 	public static function ajax_get_image_html() {
 		
 		$json = new AjaxJSONFormResponse();
-		
-		if($_FILES && $_FILES['file'] && $_FILES['file']['error'] == 0) {
-			
-			$image = Image::from_uploaded_file('file');
 
-			if($image) {
+		$image = Image::from_uploaded_file('page_input_image_input');
 
-				if($image->get_width() > self::UPLOAD_IMAGE_MAX_WIDTH)
-				{
-					$image->set_width(self::UPLOAD_IMAGE_MAX_WIDTH, true);
-				}
+		if($image) {
 
-				if($image->get_height() > self::UPLOAD_IMAGE_MAX_HEIGHT)
-				{
-					$image->set_height(self::UPLOAD_IMAGE_MAX_HEIGHT, true);
-				}
-
-
-				$json->set_item('src', $image->get_base64_contents(true));
-				$json->set_success(true);
+			if($image->get_width() > self::UPLOAD_IMAGE_MAX_WIDTH)
+			{
+				$image->set_width(self::UPLOAD_IMAGE_MAX_WIDTH, true);
 			}
+
+			if($image->get_height() > self::UPLOAD_IMAGE_MAX_HEIGHT)
+			{
+				$image->set_height(self::UPLOAD_IMAGE_MAX_HEIGHT, true);
+			}
+
+			$image->set_quality(self::UPLOAD_IMAGE_QUALITY);
+
+			$json->set_item('src', $image->get_base64_contents(true));
+			$json->set_success(true);
 		}
-		
+
 		$json->out();
 		
 	}
@@ -119,7 +118,7 @@ class HTMLInputHTMLControl extends HTMLInputControl {
 	const LANGUAGE_EN = 'en';
 	const LANGUAGE_FR = 'fr';
 	
-	const DEFAULT_HEIGHT = 300;
+	const DEFAULT_HEIGHT = 500;
 	const DEFAULT_WIDTH = '100%';
 	const DEFAULT_LANGUAGE = self::LANGUAGE_ES;
 	const DEFAULT_USE_TOOLBAR = true;

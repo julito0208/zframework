@@ -4066,6 +4066,7 @@ $.fn.formData = function()
 $(document).ready(function() {
 
     $('body').on('submit', '.form-ajax', function (evt) {
+
         var form = $(this);
         var url;
 
@@ -4078,7 +4079,9 @@ $(document).ready(function() {
             form.data('original_action', url);
         }
 
-        var isDialog = form.is('.form-dialog');
+        var isModalDialog = form.getParent('#modaldialog-container').length > 0;
+        var isBootstrapModalDialog = form.getParent('.modal-dialog').length > 0;
+        var isDialog = form.is('.form-dialog') || isBootstrapModalDialog || isModalDialog;
         var method = form.attr('method') ? form.attr('method') : 'post';
         var data = form.formData();
 
@@ -4101,11 +4104,22 @@ $(document).ready(function() {
                 },
                 'success': function (data) {
 
-                    $.zmodal.close();
+                    if(isBootstrapModalDialog)
+                    {
+                        $.zmodal.close();
+                    }
+                    else
+                    {
+                        $.modalDialog.close();
+                    }
+
 
                     if (data && data['success']) {
 
-                        if(form.triggerHandler('success', data) !== false) {
+                        var successHandlerReturn = form.trigger('success', data);
+                        var formSuccessHandlerReturn = form.trigger('form.success', data);
+                        
+                        if(formSuccessHandlerReturn !== false && successHandlerReturn !== false) {
 
                             var backUrl = data['redirect_url'];
 
@@ -4120,11 +4134,26 @@ $(document).ready(function() {
                                 {
                                     if(data['message'])
                                     {
-                                        $.zmodal.alertCloseAll(data['message']);
+                                        if(isBootstrapModalDialog)
+                                        {
+                                            $.zmodal.alertCloseAll(data['message']);
+                                        }
+                                        else
+                                        {
+                                            $.modalDialog.alert(data['message']);
+                                        }
+
                                     }
                                     else
                                     {
-                                        $.zmodal.closeAll();
+                                        if(isBootstrapModalDialog)
+                                        {
+                                            $.zmodal.closeAll();
+                                        }
+                                        else
+                                        {
+                                            $.modalDialog.closeAll();
+                                        }
                                     }
                                 }
                                 else
@@ -4139,9 +4168,20 @@ $(document).ready(function() {
                                 if(data['message'])
                                 {
 
-                                    $.zmodal.alertClose(data['message'], function() {
-                                        Navigation.go(backUrl);
-                                    });
+                                    if(isBootstrapModalDialog)
+                                    {
+                                        $.zmodal.alertClose(data['message'], function() {
+                                            Navigation.go(backUrl);
+                                        });
+                                    }
+                                    else
+                                    {
+                                        $.modalDialog.alert(data['message'], {
+                                            'onclose': function() {
+                                                Navigation.go(backUrl);
+                                            }
+                                        });
+                                    }
 
                                 }
                                 else
@@ -4187,10 +4227,21 @@ $(document).ready(function() {
 
         if(showLoadingDialog)
         {
-            $.zmodal.loading(function () {
 
-                setTimeout(ajaxFunction, 500);
-            });
+            if(isBootstrapModalDialog)
+            {
+                $.zmodal.loading(function () {
+
+                    setTimeout(ajaxFunction, 500);
+                });
+            }
+            else
+            {
+                $.modalDialog.loading(Strings.Get('loading') + '...', function() {
+                    setTimeout(ajaxFunction, 500);
+                });
+            }
+
         }
         else
         {
