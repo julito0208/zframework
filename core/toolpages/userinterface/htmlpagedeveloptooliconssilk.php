@@ -20,6 +20,7 @@ class HTMLPageDevelopToolIconsSilk extends HTMLPageDevelopToolIcons  {
 		
 	public function __construct() {
 		parent::__construct(self::THEME);
+		$this->add_css_files('/zframework/static/css/icons/silk/style.css');
 	}
 	
 	public function prepare_params() {

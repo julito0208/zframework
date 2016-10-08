@@ -23,6 +23,7 @@ class HTMLPageDevelopToolIconsTango extends HTMLPageDevelopToolIcons  {
 		
 	public function __construct() {
 		parent::__construct(self::THEME);
+		$this->add_css_files('/zframework/static/css/icons/tango/style.css');
 	}
 	
 	public function prepare_params() {

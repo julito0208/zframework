@@ -27,6 +27,8 @@ class HTMLPageDevelopToolIconsSimple extends HTMLPageDevelopToolIcons  {
 		
 	public function __construct() {
 		parent::__construct(self::THEME);
+
+		$this->add_css_files('/zframework/static/css/icons/simple/style.css');
 		
 		
 		$this->_selected_color = $_GET[self::COLOR_GET_VARNAME];

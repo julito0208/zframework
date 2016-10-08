@@ -63,8 +63,6 @@ class HTMLPageDevelopToolIcons extends HTMLPageDevelopTool  {
 		
 		parent::__construct();
 
-		self::add_global_css_files_zframework('/css/icons/all.css');
-		
 		$this->_selected_theme = $theme;
 
 		if(HTTPGet::exists('block'))

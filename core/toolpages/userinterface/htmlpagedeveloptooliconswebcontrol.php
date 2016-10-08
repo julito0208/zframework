@@ -28,6 +28,7 @@ class HTMLPageDevelopToolIconsWebControl extends HTMLPageDevelopToolIcons  {
 	public function __construct() {
 		
 		parent::__construct(self::THEME);
+		$this->add_css_files('/zframework/static/css/icons/webcontrol/style.css');
 		
 		$this->_selected_color = $_GET[self::COLOR_GET_VARNAME];
 		
