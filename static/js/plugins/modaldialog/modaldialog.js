@@ -1756,7 +1756,6 @@
                 }
                 else
                 {
-
                     image.css('max-width', avalWidth);
                     image.css('max-height', avalHeight);
                 }
