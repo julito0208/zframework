@@ -1717,14 +1717,14 @@
 
             var updateImageSize = function()
             {
+                var avalWidth = $(window).width() - 50;
+                var avalHeight = $(window).outerHeight() - imageOptions['height-space'];
+
                 if(imageOptions['fill-window'])
                 {
 
                     image.css('width', '');
                     image.css('height', '');
-
-                    var avalWidth = $(window).width() - 50;
-                    var avalHeight = $(window).outerHeight() - imageOptions['height-space'];
 
                     var imageWidth = image.width();
                     var imageHeight = image.height();
@@ -1753,6 +1753,12 @@
                     image.css({'visibility': 'visible'});
                     $.modalDialog.resize();
 
+                }
+                else
+                {
+
+                    image.css('max-width', avalWidth);
+                    image.css('max-height', avalHeight);
                 }
             };
 

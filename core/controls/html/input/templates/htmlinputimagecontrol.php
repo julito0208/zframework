@@ -330,7 +330,7 @@
 	$('#<?=$id_uniq?>_img').bind('click', function() {
 
 		var src = $(this).attr('src');
-		$.modalDialog.image({'src': src, 'options': {'fill-window': true}});
+		$.modalDialog.image({'src': src, 'options': {'fill-window': false}});
 	});
 
 	//$('#<?=$id_uniq?>_url_link').triggerHandler('click');
