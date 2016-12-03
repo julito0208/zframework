@@ -1,5 +1,9 @@
 #!/bin/bash
 
+function abs_path() {
+  # $1 : relative filename
+  echo "$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
+}
 
 function echo_help_exit {
 

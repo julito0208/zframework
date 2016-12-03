@@ -1712,7 +1712,7 @@
 
             if(data.options)
             {
-                imageOptions = $.extend({}, {'fill-window': true, 'height-space': -170}, data.options);
+                imageOptions = $.extend({}, {'fill-window': true, 'height-space': -0}, data.options);
             }
 
             var updateImageSize = function()
@@ -1738,7 +1738,7 @@
 
                         if(newHeight > avalHeight )
                         {
-                            var newHeight = avalHeight - 50;
+                            var newHeight = avalHeight - 0;
                             var newWidth = imageAspect * newHeight;
                         }
 
@@ -1746,7 +1746,7 @@
                         image.height(newHeight);
 
                         // dialogBlockContent.find('.image-title').width(newWidth);
-                        dialogBlock.find('.images-list-buttons-block').css({ 'margin-top': 50});
+                        dialogBlock.find('.images-list-buttons-block').css({ 'margin-top': 0});
                         //dialogBlock.find('.images-list-buttons-block .play-pause-button').css({'margin-top': (newHeight/2)-0});
                     }
 
