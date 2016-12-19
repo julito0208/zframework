@@ -34,6 +34,7 @@ class HTMLPageDevelopTool extends HTMLPage  implements AccessControlDevelopment,
 		$urls[] = self::_get_zdevpage_urlpattern('HTMLPageDevelopToolIcons');
 		$urls[] = self::_get_zdevpage_urlpattern('HTMLPageDevelopToolLanguageTexts');
 		$urls[] = self::_get_zdevpage_urlpattern('HTMLPageDevelopToolMigrations');
+		$urls[] = self::_get_zdevpage_urlpattern('HTMLPageDevelopToolImages');
 		$urls[] = self::_get_zdevpage_urlpattern('HTMLPageDevelopToolIndexPage');
 		
 		foreach(HTMLPageDevelopToolIcons::get_theme_pages_controls() as $classname) {

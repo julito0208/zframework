@@ -4116,8 +4116,8 @@ $(document).ready(function() {
 
                     if (data && data['success']) {
 
-                        var successHandlerReturn = form.trigger('success', data);
-                        var formSuccessHandlerReturn = form.trigger('form.success', data);
+                        var successHandlerReturn = form.triggerHandler('success', data);
+                        var formSuccessHandlerReturn = form.triggerHandler('form.success', data);
                         
                         if(formSuccessHandlerReturn !== false && successHandlerReturn !== false) {
 
