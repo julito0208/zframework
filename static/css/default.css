@@ -542,3 +542,8 @@ label.max-width
 {
     top: 6px !important;
 }
+
+#personal-area
+{
+    width: 250px;
+}

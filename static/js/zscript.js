@@ -4251,3 +4251,91 @@ $(document).ready(function() {
 
 
 });
+
+
+/*-------------------------------------------------------------*/
+
+$.blockUIDataEnabled = 'blockUIEnabled';
+$.blockUIDataNode = 'blockUIBlock';
+
+$.fn.blockUI = function() {
+
+    var $this = $(this);
+    var blockCount = $this.data($.blockUIDataEnabled) == null ? 0 : parseInt($this.data($.blockUIDataEnabled));
+
+    if(blockCount > 0)
+    {
+        blockCount++;
+        $this.data($.blockUIDataEnabled, blockCount);
+        return $this;
+    }
+
+    $this.data($.blockUIDataEnabled, 1);
+
+    var position;
+    var size;
+
+    if($this.is('window') || $this.is(document))
+    {
+        position = {top: 0, left: 0};
+
+        size = {
+            width: Math.max(window.innerWidth, document.body.clientWidth),
+            height: Math.max(window.innerHeight, document.body.clientHeight)
+        };
+
+    }
+    else
+    {
+        position = $this.offset();
+        size = {width: $this.width(), height: $this.height()};
+    }
+
+    var block = $('<div />').appendTo('body').addClass('loading-center-32');
+    block.attr('id', $this.attr('id') + '-block');
+
+    block.css({
+        'background-color': 'rgba(0,0,0,0.2)',
+        'position': 'absolute',
+        'top': position.top,
+        'left': position.left,
+        'width': size.width,
+        'height': size.height
+    });
+
+    $this.data($.blockUIDataNode, block);
+
+    return $this;
+};
+
+$.fn.unblockUI = function() {
+
+    var $this = $(this);
+    var blockCount = $this.data($.blockUIDataEnabled) == null ? 0 : parseInt($this.data($.blockUIDataEnabled));
+
+    if(blockCount > 1)
+    {
+        blockCount--;
+        $this.data($.blockUIDataEnabled, blockCount);
+        return $this;
+    }
+
+    $this.data($.blockUIDataEnabled, 0);
+
+    setTimeout(function() {
+        $('#' + $this.attr('id') + '-block').remove();
+    }, 1000);
+
+    return $this;
+
+};
+
+$.blockUI = function() {
+
+    return $(document).blockUI();
+};
+
+$.unblockUI = function() {
+
+    return $(document).unblockUI();
+};
