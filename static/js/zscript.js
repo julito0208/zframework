@@ -4291,16 +4291,17 @@ $.fn.blockUI = function() {
         size = {width: $this.width(), height: $this.height()};
     }
 
-    var block = $('<div />').appendTo('body').addClass('loading-center-32');
+    var block = $('<div />').appendTo('body').addClass('loading-center-32 page-loading');
     block.attr('id', $this.attr('id') + '-block');
 
     block.css({
         'background-color': 'rgba(0,0,0,0.2)',
-        'position': 'absolute',
+        'position': 'fixed',
         'top': position.top,
         'left': position.left,
         'width': size.width,
-        'height': size.height
+        'height': size.height,
+        'z-index': 9999999999
     });
 
     $this.data($.blockUIDataNode, block);

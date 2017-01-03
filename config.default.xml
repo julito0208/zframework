@@ -315,6 +315,15 @@
 
 		<!-- Si al estar en develop, forzar la recarga de js y css mediante un ?_id=random -->
 		<force_reload_css_js>0</force_reload_css_js>
+
+        <!-- Configuración del body -->
+        <body_class>
+            <!-- Clase cuando es mobile -->
+            <mobile>mobile-version</mobile>
+
+            <!-- Clase cuando no es mobile -->
+            <full>full-version</full>
+        </body_class>
 	</html>
 	
 	<!--Configuraciones de Textos-->

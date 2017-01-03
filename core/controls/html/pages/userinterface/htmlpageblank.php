@@ -389,9 +389,20 @@ class HTMLPageBlank extends HTMLControl {
 				$html.= "<link rel='stylesheet' type='text/css' href='".HTMLHelper::escape(self::_convert_resource_url(self::_get_resource_link($css_file['file'])))."' media='".HTMLHelper::escape($css_file['media'])."' />\n";
 			}
 		}
-		
-		$html.= "</head>\n<body ng-app='web-app'>";
-		
+
+		$body_class = array();
+
+		if(ZPHP::is_mobile())
+		{
+			$body_class[] = ZPHP::get_config('html.body_class.mobile');
+		}
+		else
+		{
+			$body_class[] = ZPHP::get_config('html.body_class.full');
+		}
+
+		$html.= "</head>\n<body class='".implode(' ', $body_class)."'>";
+
 		$content = self::_prepare_html_content($content);
 
 		if($this->_use_debug_bar)

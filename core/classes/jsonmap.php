@@ -86,7 +86,7 @@ class JSONMap extends Dict implements MimeControl {
 
 	/*----------------------------------------------------------------------------------*/
 
-	protected static $_CHARSET = 'iso-8859-15';
+	protected static $_CHARSET = 'utf-8';
 
 	public static function get_default_charset() {
 
