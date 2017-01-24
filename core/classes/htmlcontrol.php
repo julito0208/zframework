@@ -376,6 +376,7 @@ abstract class HTMLControl extends MVParamsContentControl implements MIMEControl
 
 	public function __construct($params=null) {
 		parent::__construct($params);
+
 		$this->set_charset(ZPHP::get_config('html_charset'));
 		$this->set_mimetype(ZPHP::get_config('html_mimetype'));
 	}

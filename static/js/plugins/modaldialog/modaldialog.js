@@ -1679,7 +1679,7 @@
         if(!$.isPlainObject(data)) data = {src: data};
 
         if(!$.isPlainObject(dialogOptions)) dialogOptions = {title: dialogOptions};
-        dialogOptions = $.extend({}, {closeButton: true, easyClose: true, showLoading: true}, dialogOptions);
+        dialogOptions = $.extend({}, {closeButton: true, easyClose: true, showLoading: true, buttons: false, description: true}, dialogOptions);
 
         if(dialogOptions['showLoading']) {
             jQuery.modalDialog.loading('Cargando...', function () {
@@ -1718,7 +1718,7 @@
             var updateImageSize = function()
             {
                 var avalWidth = $(window).width() - 50;
-                var avalHeight = $(window).outerHeight() - imageOptions['height-space'];
+                var avalHeight = $(window).outerHeight() - imageOptions['height-space'] - (dialogOptions.buttons ? 170 : 30);
 
                 if(imageOptions['fill-window'])
                 {
@@ -1797,33 +1797,38 @@
                 }
             });
 
-            if(data.description) dialogBlockContent.append($('<div />').addClass('description').html(data.description));
+            if(data.description && dialogOptions.description) dialogBlockContent.append($('<div />').addClass('description').html(data.description));
 
             var buttonsBlock = $('<div />');
 
-            if(data.buttons) {
+            if(dialogOptions.buttons) {
+                if (data.buttons) {
 
-                buttonsBlock.append(data.buttons);
+                    buttonsBlock.append(data.buttons);
 
-            } else if(data.downloadUrl) {
+                } else if (data.downloadUrl) {
 
-                var buttons = $('<div />').addClass('buttons');
-                var buttonsRight = $('<div />').css({'float': 'right'}).append($.modalDialog.button('close').addClass('default'));
+                    var buttons = $('<div />').addClass('buttons');
+                    var buttonsRight = $('<div />').css({'float': 'right'}).append($.modalDialog.button('close').addClass('default'));
 
-                var buttonDownload = $.modalDialog.button('download', function() { Navigation.go(data.downloadUrl); });
+                    var buttonDownload = $.modalDialog.button('download', function () {
+                        Navigation.go(data.downloadUrl);
+                    });
 
-                var buttonsLeft = $('<div />').addClass('buttons-left').append(buttonDownload);
+                    // var buttonsLeft = $('<div />').addClass('buttons-left').append(buttonDownload);
+                    var buttonsLeft = $('<div />').addClass('buttons-left');
 
-                buttons.append(buttonsLeft);
-                buttons.append(buttonsRight);
-                buttons.append($('<div />').css({'clear': 'both'}));
-                buttonsBlock.append(buttons);
+                    buttons.append(buttonsLeft);
+                    buttons.append(buttonsRight);
+                    buttons.append($('<div />').css({'clear': 'both'}));
+                    buttonsBlock.append(buttons);
 
 
-            } else {
+                } else {
 
-                buttonsBlock.append($.modalDialog.buttonsBlock('close'));
+                    buttonsBlock.append($.modalDialog.buttonsBlock('close'));
 
+                }
             }
 
 
@@ -1851,11 +1856,9 @@
 
     jQuery.modalDialog.imagesList = function(dataList, dialogOptions, startIndex) {
 
-        if(dataList.length == 0) return;
-        else if(dataList.length == 1) return jQuery.modalDialog.image(dataList[0], dialogOptions);
 
         if(!$.isPlainObject(dialogOptions)) dialogOptions = {title: dialogOptions};
-        dialogOptions = $.extend({}, {closeButton: true, easyClose: true, enablePlay: false, playInterval: 4000}, dialogOptions);
+        dialogOptions = $.extend({}, {closeButton: true, animation: 10, easyClose: true, enablePlay: false, playInterval: 5000}, dialogOptions);
 
         var selectedIndex = startIndex ? startIndex : 0;
         var onloadWrapper = dialogOptions.onload && typeof dialogOptions.onload == 'function' ? dialogOptions.onload : function() {};
@@ -2005,34 +2008,38 @@
 
         var keyListener = function(evt) {
 
-            if(evt.which == jQuery.KEY_RIGHT || evt.which == jQuery.KEY_SPACE) {
+            if(!evt.ctrlKey && !evt.altKey && !evt.shiftKey) {
 
-                evt.preventDefault();
-                evt.stopPropagation();
-                nextFunction();
+                if (evt.which == jQuery.KEY_RIGHT || evt.which == jQuery.KEY_SPACE || evt.which == jQuery.KEY_PGDOWN || evt.which == jQuery.KEY_DOWN) {
 
-            } else if(evt.which == jQuery.KEY_LEFT) {
-                evt.preventDefault();
-                evt.stopPropagation();
-                prevFunction();
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    nextFunction();
 
-            } else if(evt.which == jQuery.KEY_HOME) {
-                evt.preventDefault();
-                evt.stopPropagation();
-                setPosition(0);
+                } else if (evt.which == jQuery.KEY_LEFT || evt.which == jQuery.KEY_PGUP || evt.which == jQuery.KEY_UP) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    prevFunction();
 
-            } else if(evt.which == jQuery.KEY_END) {
-                evt.preventDefault();
-                evt.stopPropagation();
-                setPosition(jQuery.modalDialog.imagesList.dataList.length-1);
+                } else if (evt.which == jQuery.KEY_HOME) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    setPosition(0);
 
-            } else if(evt.which == jQuery.KEY_ENTER) {
-                evt.preventDefault();
-                evt.stopPropagation();
-                playPauseFunction();
+                } else if (evt.which == jQuery.KEY_END) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    setPosition(jQuery.modalDialog.imagesList.dataList.length - 1);
+
+                } else if (evt.which == jQuery.KEY_ENTER) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    playPauseFunction();
+                }
+
+            } else {
+                return false;
             }
-
-
         };
 
         var wheelListener = function (event) {
@@ -2061,7 +2068,7 @@
 
             var playContainer = $('<div />').css({'position': 'fixed', 'bottom': '50px', 'left': '0', 'width': '100%', 'height': '0'}).prependTo(listButtonsBlock);
             var playPauseButton = $('<a />').addClass('play-pause-button button').attr({'href': 'javascript: void(0)', 'title': 'Play/Pause'}).css({}).html(playButtonPlayHtml).appendTo(playContainer);
-            var downloadButton = $('<a />').addClass('download-button button').attr({'href': 'javascript: void(0)', 'title': 'Download'}).css({'margin-left': '20px'}).html('Download').appendTo(playContainer);
+            //var downloadButton = $('<a />').addClass('download-button button').attr({'href': 'javascript: void(0)', 'title': 'Download'}).css({'margin-left': '20px'}).html('Download').appendTo(playContainer);
 
             var positionBlock = $('<div />').addClass('position-block').appendTo(dialogContent).html('Imagen ' + String(selectedIndex+1) + ' / ' + String(jQuery.modalDialog.imagesList.dataList.length));
             // var positionBlock = $('<div />').addClass('position-block').html('Imagen ' + String(selectedIndex+1) + ' / ' + String(jQuery.modalDialog.imagesList.dataList.length));

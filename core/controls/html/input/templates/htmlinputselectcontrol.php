@@ -23,7 +23,7 @@ $tag_attrs = array_filter($tag_attrs);
 	
 	<?php if($default_option_enabled) { ?>
 	
-		<option value=<?php echo HTMLHelper::quote($default_option_value); ?>><?php echo $default_option_text; ?></option>
+		<option value=<?php echo HTMLHelper::quote($default_option_value); ?>><?php echo HTMLHelper::escape($default_option_text); ?></option>
 		<option value=<?php echo HTMLHelper::quote($default_option_value); ?>></option>
 	
 	<?php } ?>
@@ -31,7 +31,7 @@ $tag_attrs = array_filter($tag_attrs);
 		
 	<?php foreach((array) $options as $item) { ?>
 	
-		<option value=<?php echo HTMLHelper::quote($item['value']); ?><?php if($value == $item['value']) echo " selected='selected'"; ?>><?php echo $item['label']; ?>&nbsp;</option>
+		<option value=<?php echo HTMLHelper::quote($item['value']); ?><?php if($value == $item['value']) echo " selected='selected'"; ?>><?php echo HTMLHelper::escape($item['label']); ?>&nbsp;</option>
 			
 	<?php } ?>
 		

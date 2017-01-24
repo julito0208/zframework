@@ -331,6 +331,7 @@ class HTMLInputImageControl extends HTMLInputControl {
 		parent::prepare_params();
 
 		$this->set_param('id_uniq', uniqid('image'.$this->get_id()));
+		$this->set_param('id', $this->get_id());
 		$this->set_param('image_width', $this->_image_width);
 		$this->set_param('image_height', $this->_image_height);
 		$this->set_param('enable_delete', $this->_enable_delete); 

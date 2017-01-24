@@ -63,8 +63,9 @@ class HTMLInputCaptchaControl extends HTMLInputControl {
 	}
 
 	public function get_img_id() {
-		return ($this->_id_prefix ? $this->_id_prefix.'_' : '')."{$this->_name}_img".($this->_id_sufix ? '_'.$this->_id_sufix : '');
-		return $this;
+		$id = ($this->_id_prefix ? $this->_id_prefix.'_' : '')."{$this->_name}_img".($this->_id_sufix ? '_'.$this->_id_sufix : '');
+		$id = preg_replace('#\W+#', '', $id);
+		return $id;
 	}
 
 

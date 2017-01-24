@@ -2479,7 +2479,7 @@
 				get: function( elem ) {
 					// elem.tabIndex doesn't always return the correct value when it hasn't been explicitly set
 					// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
-					var attributeNode = elem.getAttributeNode("tabindex");
+					var attributeNode = elem.getAttribute("tabindex");
 
 					return attributeNode && attributeNode.specified ?
 						parseInt( attributeNode.value, 10 ) :
@@ -2511,7 +2511,7 @@
 							!!attr :
 
 					// fetch an attribute node for properties not recognized as boolean
-					elem.getAttributeNode( name );
+					elem.getAttribute( name );
 
 			return detail && detail.value !== false ?
 				name.toLowerCase() :
@@ -2538,7 +2538,7 @@
 	if ( !getSetInput || !getSetAttribute ) {
 		jQuery.attrHooks.value = {
 			get: function( elem, name ) {
-				var ret = elem.getAttributeNode( name );
+				var ret = elem.getAttribute( name );
 				return jQuery.nodeName( elem, "input" ) ?
 
 					// Ignore the value *property* by using defaultValue
@@ -2565,14 +2565,14 @@
 		// This fixes almost every IE6/7 issue
 		nodeHook = jQuery.valHooks.button = {
 			get: function( elem, name ) {
-				var ret = elem.getAttributeNode( name );
+				var ret = elem.getAttribute( name );
 				return ret && ( name === "id" || name === "name" || name === "coords" ? ret.value !== "" : ret.specified ) ?
 					ret.value :
 					undefined;
 			},
 			set: function( elem, value, name ) {
 				// Set the existing or create a new attribute node
-				var ret = elem.getAttributeNode( name );
+				var ret = elem.getAttribute( name );
 				if ( !ret ) {
 					elem.setAttributeNode(
 						(ret = elem.ownerDocument.createAttribute( name ))
@@ -3343,7 +3343,7 @@
 			// Events bubbling up the document may have been marked as prevented
 			// by a handler lower down the tree; reflect the correct value.
 			this.isDefaultPrevented = ( src.defaultPrevented || src.returnValue === false ||
-			src.getPreventDefault && src.getPreventDefault() ) ? returnTrue : returnFalse;
+			src.defaultPrevented && src.defaultPrevented() ) ? returnTrue : returnFalse;
 
 			// Event type
 		} else {
@@ -4116,7 +4116,7 @@
 						var m = context.getElementById( id );
 
 						return m ?
-							m.id === id || typeof m.getAttributeNode !== strundefined && m.getAttributeNode("id").value === id ?
+							m.id === id || typeof m.getAttribute !== strundefined && m.getAttribute("id").value === id ?
 								[m] :
 								undefined :
 							[];
@@ -4125,7 +4125,7 @@
 				Expr.filter["ID"] =  function( id ) {
 					var attrId = id.replace( runescape, funescape );
 					return function( elem ) {
-						var node = typeof elem.getAttributeNode !== strundefined && elem.getAttributeNode("id");
+						var node = typeof elem.getAttribute !== strundefined && elem.getAttribute("id");
 						return node && node.value === attrId;
 					};
 				};
@@ -4412,7 +4412,7 @@
 			if ( documentIsXML || support.attributes ) {
 				return elem.getAttribute( name );
 			}
-			return ( (val = elem.getAttributeNode( name )) || elem.getAttribute( name ) ) && elem[ name ] === true ?
+			return ( (val = elem.getAttribute( name )) || elem.getAttribute( name ) ) && elem[ name ] === true ?
 				name :
 				val && val.specified ? val.value : null;
 		};
@@ -6205,7 +6205,7 @@
 
 // Replace/restore the type attribute of script elements for safe DOM manipulation
 	function disableScript( elem ) {
-		var attr = elem.getAttributeNode("type");
+		var attr = elem.getAttribute("type");
 		elem.type = ( attr && attr.specified ) + "/" + elem.type;
 		return elem;
 	}

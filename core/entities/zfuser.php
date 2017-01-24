@@ -127,6 +127,5 @@ class ZfUser extends ZfUserCache
 		NavigationHelper::cookie_add_days(self::$_COOKIE_VARNAME, $hash, $days);
 
 	}
-
 }
 

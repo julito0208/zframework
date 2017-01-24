@@ -7,7 +7,7 @@ abstract class Email extends MVParamsContentControl {
 
 	//------------------------------------------------------------------------------------------------------------------------------------
 	
-	protected static $_email_pattern = '(?:[a-zA-Z0-9_\.\-\+]+?)\@(?:(?:(?:[a-zA-Z0-9\-])+\.)+(?:[a-zA-Z0-9]{2,4})+)';
+	protected static $_email_pattern = '.+?\@.+?\..+?';
 	
 	public static function validate_email($email, &$match=null) {
 		return (boolean) preg_match('/^' . self::$_email_pattern . '$/', $email, $match);

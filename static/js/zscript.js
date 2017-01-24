@@ -4207,15 +4207,7 @@ $(document).ready(function() {
                         errorBlock.addClass('form-error-block alert alert-danger');
                         errorBlock.text(error);
 
-                        if(isDialog)
-                        {
-                            form.find('.modal-body').prepend(errorBlock);
-                        }
-                        else
-                        {
-                            form.prepend(errorBlock);
-                        }
-
+                        form.prepend(errorBlock);
 
                         $('.admin-page-title').scrollWindowViewHeight();
 
@@ -4291,7 +4283,9 @@ $.fn.blockUI = function() {
         size = {width: $this.width(), height: $this.height()};
     }
 
-    var block = $('<div />').appendTo('body').addClass('loading-center-32 page-loading');
+    var block = $('<div />').appendTo('body').addClass('page-loading');
+    var loadingIcon = $('<span />').addClass('fa fa-circle-o-notch fa-spin fa-3x fa-fw').appendTo(block);
+
     block.attr('id', $this.attr('id') + '-block');
 
     block.css({
@@ -4301,7 +4295,15 @@ $.fn.blockUI = function() {
         'left': position.left,
         'width': size.width,
         'height': size.height,
-        'z-index': 9999999999
+        'z-index': 9999999999,
+        'text-align': 'center'
+    });
+
+    loadingIcon.css({
+        'margin-top': '20%',
+        'position': 'fixed',
+    //    'text-shadow': '3px 1px 5px rgba(255,255,255,0.3)',
+        'color': '#000065'
     });
 
     $this.data($.blockUIDataNode, block);
@@ -4340,3 +4342,114 @@ $.unblockUI = function() {
 
     return $(document).unblockUI();
 };
+
+//  ----------------------------------------------------------------------------------------------------------------
+
+$.fn.zIndex = function() {
+
+    var value = this.css('z-index').replace(/\D+/g, '');
+
+    if(value) {
+        return parseInt(value);
+    }
+
+    return 0;
+
+};
+
+$.fn.size = function() {
+    return {
+        'width': this.width(),
+        'height': this.height()
+    };
+};
+
+$.fn.innerSize = function() {
+    return {
+        'width': this.innerWidth(),
+        'height': this.innerHeight()
+    };
+};
+
+$.fn.outerSize = function() {
+    return {
+        'width': this.outerWidth(),
+        'height': this.outerHeight()
+    };
+};
+
+$(document).on('focusin', 'input.clear-input-icon[type=text]', function(evt) {
+
+    var $this = $(this);
+    var iconNode = $this.data('clear-input-icon');
+
+    if(!iconNode) {
+
+        iconNode = $('<span />').addClass('fa fa-close clear-input icon').appendTo('body');
+
+        var targetPosition = $this.offset();
+        var targetSize = $this.size();
+
+        iconNode.css({
+            'top': targetPosition.top + (targetSize.height / 2),
+            'left': targetPosition.left + (targetSize.width),
+            'z-index': $this.zIndex() + 1
+        });
+
+        iconNode.on('mousedown', function() {
+            $this.val('');
+            $this.trigger('change');
+        });
+
+        $this.data('clear-input-icon', iconNode);
+
+    } else {
+
+        iconNode.show();
+
+    }
+
+});
+
+
+$(document).on('focusout', 'input.clear-input-icon[type=text]', function(evt) {
+
+    var $this = $(this);
+    var iconNode = $this.data('clear-input-icon');
+
+    if(iconNode) {
+
+        iconNode.hide();
+
+    }
+
+});
+
+$.fn.ajax = function(options) {
+
+    var $this = this;
+
+    $.ajax($.extend({}, options, {
+
+        'success': function(response) {
+
+            if(options && options['success'] && typeof options['success'] == 'function') {
+                options['success'].apply(this, arguments);
+            }
+
+            $this.html(response);
+        }
+
+    }));
+
+    return $this;
+
+};
+
+/*-------------------------------------------------------------*/
+
+$(document).bind('mobileinit',function(){
+    if($.mobile) {
+        $.mobile.page.prototype.options.keepNative = "select,input,a,button";
+    }
+});

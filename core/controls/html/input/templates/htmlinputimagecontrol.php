@@ -1,11 +1,11 @@
-<div class="image-input<?=($for_modaldialog ? ' for-modaldialog' : '')?>" style="vertical-align: top; margin: 10px 0 0 10px;" id="<?=$id_uniq?>_container">
+<div class="image-input<?=($for_modaldialog ? ' for-modaldialog' : '')?>" style="vertical-align: top; margin: 10px 0 0 10px;" id="<?=$id_uniq?>_container" data-input-id="<?=$id?>">
 
 	<input class="image_contents_value" type="hidden" name="<?=HTMLHelper::escape($name)?>" id="<?=HTMLHelper::escape($id_uniq.'_value')?>" value="<?=($image_file ? $image_file->get_base64_contents(true) : '')?>" />
 
 
 	<div class="image-container" style="display: inline-block; margin: 0 30px 0 0; max-width: 210px;">
 
-		<div style="background: #CCC; min-width: 200px; max-width: 200px; max-height: 200px; overflow: auto">
+		<div style="border-radius: 5px; background-color: #CCC; min-width: 200px; max-width: 200px; max-height: 200px; overflow: auto; min-height: 150px; background-image:  url('data:image/png;base64,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'); background-position: center center; background-repeat: no-repeat;">
 			<img alt="Image" class="main-img" id="<?=HTMLHelper::escape($id_uniq.'_img')?>" src="<?=HTMLHelper::escape(ZfImageFile::get_image_url($id_image_file))?>" style="width: 100%; border: solid 1px #777; border-radius: 5px; box-shadow: 1px 1px 1px rgba(0,0,0,0.4); visibility: hidden; cursor: pointer;" onmouseover="$(this).css({'border-color': '#00F'})" onmouseout="$(this).css({'border-color': ''})" />
 		</div>
 
@@ -21,12 +21,12 @@
 
 	</div>
 
-	<div style="display: inline-block; vertical-align: top;">
+	<div style="display: inline-block; vertical-align: top; text-align: left;">
 
 		<?php if($enable_select_local) { ?>
 			<div class="local-select" style="font-weight: bold;">
 				<a class="image-button local-link icon-link" href="javascript:void(0)" id="<?=$id_uniq?>_file_link">
-					<span class="icon fa fa-desktop"></span>
+					<span class="icon fa fa-desktop" style="display: inline-block; width: 20px; text-align: left;"></span>
 					<span class="text"><?=LanguageHelper::get_text('select_image_local')?></span>
 				</a>
 				<input type="file" id="<?=$id?>" class="form-control" style="height: auto; padding: 10px 20px; background: #F5F5F5; display: none;" />
@@ -36,7 +36,7 @@
 		<?php if($enable_select_url) { ?>
 			<div style="margin-top: 20px; font-weight: bold;">
 				<a class="image-button url-link icon-link" href="javascript:void(0)" id="<?=$id_uniq?>_url_link">
-					<span class="icon fa fa-globe"></span>
+					<span class="icon fa fa-globe" style="display: inline-block; width: 20px; text-align: left;"></span>
 					<span class="text"><?=LanguageHelper::get_text('select_image_url')?></span>
 				</a>
 			</div>
@@ -45,7 +45,7 @@
 		<?php if($enable_image_search) { ?>
 			<div style="margin-top: 20px; font-weight: bold;">
 				<a class="image-button search-link icon-link" href="javascript:void(0)" id="<?=$id_uniq?>_search_link">
-					<span class="icon fa fa-search"></span>
+					<span class="icon fa fa-search" style="display: inline-block; width: 20px; text-align: left;"></span>
 					<span class="text"><?=LanguageHelper::get_text('search_images_online')?></span>
 				</a>
 			</div>
@@ -59,7 +59,7 @@
 
 					<div style="font-weight: bold; margin-top: 0px">
 						<a href="javascript:void(0)" class="icon-link" id="<?=$id_uniq?>_edit_title_link">
-							<span class="icon fa fa-info"></span>
+							<span class="icon fa fa-info" style="display: inline-block; width: 20px; text-align: left;"></span>
 							<span class="text">Cambiar T&iacute;tulo</span>
 						</a>
 					</div>
@@ -70,7 +70,7 @@
 
 					<div style="font-weight: bold; margin-top: 0px">
 						<a href="javascript:void(0)" class="icon-link" id="<?=$id_uniq?>_crop_link">
-							<span class="icon fa fa-crop"></span>
+							<span class="icon fa fa-crop" style="display: inline-block; width: 20px; text-align: left;"></span>
 							<span class="text">Recortar Imagen</span>
 						</a>
 					</div>
@@ -79,10 +79,11 @@
 
 				<?php if($enable_delete) { ?>
 
-					<div style="font-weight: bold; margin: 10px 0 0 0;">
+					<div style="font-weight: bold; margin: 10px 0 0 0; text-align: left;">
 						<span class="checkbox input-checkbox">
-							<input type="checkbox" id="<?=$id?>_delete" name="<?=$name?>_delete" value="<?=($id_image_file ? $id_image_file : '1')?>" class="align-middle" style="vertical-align: bottom; position: relative; margin-right: 0; margin-left: 0;" <?=($delete_selected ? " checked='checked'" : "")?> />
-							<label style="vertical-align: bottom" class="align-middle underline" for="<?=$id?>_delete"><?=LanguageHelper::get_text('delete_image')?></label>
+							<input type="checkbox" id="<?=$id?>_delete" name="<?=$name?>_delete" value="<?=($id_image_file ? $id_image_file : '1')?>" class="align-middle" style="vertical-align: middle; position: relative; margin-right: 0; margin-left: 0;" <?=($delete_selected ? " checked='checked'" : "")?> />
+							&nbsp;&nbsp;
+							<label style="vertical-align: middle; width: auto !important;" class="align-middle underline" for="<?=$id?>_delete"><?=LanguageHelper::get_text('delete_image')?></label>
 						</span>
 					</div>
 

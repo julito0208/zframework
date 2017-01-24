@@ -1,10 +1,13 @@
 <div class="captcha-block">
+
 	<div class="captcha-block-label" style="float: left">
-		<label for=<?=HTMLHelper::quote($text_id)?>><?=(class_exists('LanguageText') ? String::get_html('html_input_control_captcha_label') : 'Código de Seguridad')?>:</label>
-		<br />
+		<?php if($show_label_title) { ?>
+			<label for=<?=HTMLHelper::quote($text_id)?>><?=(class_exists('LanguageText') ? String::get_html('html_input_control_captcha_label') : 'Código de Seguridad')?>:</label>
+			<br />
+		<?php } ?>
 		<a class="reload-captcha" href="javascript:void(0)" style="color: #555;font-size:9pt;text-decoration:underline;" onclick=<?=HTMLHelper::quote(JSHelper::call_quote("updateCaptcha_{$img_id}"))?>><?=(class_exists('LanguageText') ? String::get_html('html_input_control_captcha_load_code') : 'Recargar')?></a>
 	</div>
-	
+
 	<div class="captcha-block-img" style="float: left; margin-left: 20px;">
 		<img  alt='Captcha' style="display: block; width: <?=$width?>px; height: <?=$height?>px;" width="<?=$width?>" height="<?=$height?>" id=<?=HTMLHelper::quote($img_id)?> />
 	</div>

@@ -291,6 +291,12 @@ span.sup { font-size: 9pt; position: relative; top: -4px; left: 2px; }
 .margin-width-auto { margin: 0 auto; }
 
 
+.loading-center-large {
+    background-image: url(./images/loading-icon-large.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100px;
+}
 
 .loading-center-32 {
 	background-image: url(./images/loading-icon-32.gif);
@@ -508,6 +514,7 @@ a.icon-link:hover span.text
     text-decoration: underline;
 }
 
+button.btn .icon,
 a.icon-link span.icon
 {
     margin-right: 5px;
@@ -546,4 +553,15 @@ label.max-width
 #personal-area
 {
     width: 250px;
+}
+
+/*-------------------------------------------------------------*/
+
+.clear-input.icon {
+    position: absolute;
+    height: 14px;
+    margin: auto;
+    font-size: 14px;
+    cursor: pointer;
+    color: #FF8585;
 }
