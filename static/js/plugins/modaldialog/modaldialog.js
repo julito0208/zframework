@@ -1692,6 +1692,9 @@
         }
         else
         {
+            if(data.title && data.firstTime) {
+                data.title = data.title.replace('%{position}', "1");
+            }
 
             var dialogBlock = $('<div />').addClass('repaint').css({'visibility': 'hidden', 'position': 'absolute', 'width': 0, 'height': 0}).appendTo(document.body);
             var dialogBlockContent = $('<div />').addClass('image-dialog-content').appendTo(dialogBlock);
@@ -1718,7 +1721,7 @@
             var updateImageSize = function()
             {
                 var avalWidth = $(window).width() - 50;
-                var avalHeight = $(window).outerHeight() - imageOptions['height-space'] - (dialogOptions.buttons ? 170 : 30);
+                var avalHeight = $(window).outerHeight() - imageOptions['height-space'] - (dialogOptions.buttons ? 170 : 10);
 
                 if(imageOptions['fill-window'])
                 {
@@ -1766,7 +1769,7 @@
                 updateImageSize();
             };
 
-            var imageBlock = $('<a />').addClass('dialog-image-container').css({'text-align': 'center'}).attr({'href': 'javascript: void(0)'});
+            var imageBlock = $('<a />').addClass('dialog-image-container').css({'text-align': 'center'}).attr({'href': dialogOptions['src']});
 
             if(data['click'])
             {
@@ -1936,6 +1939,34 @@
                 dialogBlockContent.prepend($('<div />').addClass('image-title').html(data.title));
             }
 
+            var titleText = $('#modaldialog-header-title-text');
+            var positionMatch;
+
+            if(titleText.length > 0) {
+                 positionMatch = titleText.html().match(/\%\{position\}/)
+            } else {
+                positionMatch = (data.title ? data.title : "").match(/\%\{position\}/)
+            }
+
+            var titlePattern = null;
+
+            if(positionMatch) {
+                titleText.data('title-pattern', titleText.html());
+                titlePattern = titleText.html();
+            } else {
+                if(titleText.data('title-pattern')) {
+                    titlePattern = titleText.data('title-pattern');
+                } else {
+                    titlePattern = titleText.html();
+                }
+            }
+
+            var title = (titlePattern ? titlePattern : "").replace('%{position}', index+1);
+
+            if(titleText.length > 0) {
+                titleText.html(title);    
+            }
+            
             var image = dialogBlockContent.find('.dialog-image');
 
             if(data.css)
@@ -2149,7 +2180,7 @@
             $('.dialog-image-container .dialog-image').data('modaldialog_imagelist_callbacks', true);
         }
 
-        jQuery.modalDialog.image({'src': jQuery.modalDialog.imagesList.dataList[selectedIndex]['src'], 'options': {'height-space': 30}}, dialogOptions);
+        jQuery.modalDialog.image({'src': jQuery.modalDialog.imagesList.dataList[selectedIndex]['src'], 'options': {'height-space': 30}}, $.extend({}, dialogOptions, {'firstTime': true}));
 
     };
 
