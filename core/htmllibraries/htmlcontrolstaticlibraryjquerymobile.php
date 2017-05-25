@@ -10,7 +10,7 @@ class HTMLControlStaticLibraryJQueryMobile extends HTMLControlStaticLibrary {
 	}
 	
 	public function get_library_css_files() {
-		return array(URLHelper::get_zframework_static_url('thirdparty/jquery-mobile/jquery.mobile-'.self::$_VERSION.'.css'));
+		//return array(URLHelper::get_zframework_static_url('thirdparty/jquery-mobile/jquery.mobile-'.self::$_VERSION.'.css'));
 	}
 
 	public function get_dependence_libraries() {
