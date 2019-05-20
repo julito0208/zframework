@@ -1,7 +1,11 @@
 <div class="image-input<?=($for_modaldialog ? ' for-modaldialog' : '')?>" style="vertical-align: top; margin: 10px 0 0 10px;" id="<?=$id_uniq?>_container" data-input-id="<?=$id?>">
 
-	<input class="image_contents_value" type="hidden" name="<?=HTMLHelper::escape($name)?>" id="<?=HTMLHelper::escape($id_uniq.'_value')?>" value="<?=($image_file ? $image_file->get_base64_contents(true) : '')?>" />
+	<div class="drag-block">
+		<span class="fa fa-upload icon"></span>
+		<span class="text">Cargar Imagen</span>
+	</div>
 
+	<input class="image_contents_value" type="hidden" name="<?=HTMLHelper::escape($name)?>" id="<?=HTMLHelper::escape($id_uniq.'_value')?>" value="<?=($image_file ? $image_file->get_base64_contents(true) : '')?>" />
 
 	<div class="image-container" style="display: inline-block; margin: 0 30px 0 0; max-width: 210px;">
 
@@ -13,7 +17,7 @@
 
 		<?php if($enable_title) { ?>
 
-			<div style="margin: 20px 0 0 0; font-weight: bold; " id="<?=HTMLHelper::escape($id_uniq.'_title_html')?>">
+			<div style="margin: 20px 0 0 0; font-weight: bold; " id="<?=HTMLHelper::escape($id_uniq.'_title_html')?>" class="image-title">
 				<?=HTMLHelper::escape($image_file ? $image_file->get_title() : '')?>
 			</div>
 
@@ -83,7 +87,7 @@
 						<span class="checkbox input-checkbox">
 							<input type="checkbox" id="<?=$id?>_delete" name="<?=$name?>_delete" value="<?=($id_image_file ? $id_image_file : '1')?>" class="align-middle" style="vertical-align: middle; position: relative; margin-right: 0; margin-left: 0;" <?=($delete_selected ? " checked='checked'" : "")?> />
 							&nbsp;&nbsp;
-							<label style="vertical-align: middle; width: auto !important;" class="align-middle underline" for="<?=$id?>_delete"><?=LanguageHelper::get_text('delete_image')?></label>
+							<label style="vertical-align: middle; width: auto !important;" class="delete-label align-middle underline" for="<?=$id?>_delete"><?=LanguageHelper::get_text('delete_image')?></label>
 						</span>
 					</div>
 
@@ -99,7 +103,6 @@
 </div>
 
 <script type="text/javascript">
-
 
 	$('#<?=$id_uniq?>_container a').css({'color': '#183956'});
 	$('.image-button').css({'color': '#183956'});
@@ -130,7 +133,9 @@
 
 	});
 
-	$('#<?=$id?>').bind('clear', function(title) {
+    var $imageFile = $('#<?=$id?>');
+
+    $imageFile.bind('clear', function(title) {
 
 		$('#<?=$id_uniq?>_container').find('p.image-title').html('');
 		$('#<?=$id_uniq?>_title').val('');
@@ -140,7 +145,7 @@
 		$('#<?=$id_uniq . '_value'?>').val('');
 	});
 
-	$('#<?=$id?>').data('set_title', function(parent, title) {
+    $imageFile.data('set_title', function(parent, title) {
 
 		if(title)
 		{
@@ -170,7 +175,7 @@
 		}
 	});
 
-	$('#<?=$id?>').bind('change', function() {
+    $('#<?=$id?>').bind('change', function() {
 
 		var $this = $(this);
 		var parent = $('body');
@@ -334,6 +339,119 @@
 		$.modalDialog.image({'src': src, 'options': {'fill-window': false}});
 	});
 
-	//$('#<?=$id_uniq?>_url_link').triggerHandler('click');
+	function setFormDrag(form) {
+
+	    var $form = $(form);
+        var $imageBlock = $form.find('.image-input');
+
+        $form.addClass('is-dragover');
+        $form.find('.drag-block').
+            css({
+	            'width': $imageBlock.width(),
+	            'height': $imageBlock.height()-20
+        });
+	}
+
+    function unsetFormDrag(form) {
+        $(form).removeClass('is-dragover');
+    }
+
+    ;( function ()
+    {
+        // feature detection for drag&drop upload
+        var isAdvancedUpload = function()
+        {
+            var div = document.createElement( 'div' );
+            return ( ( 'draggable' in div ) || ( 'ondragstart' in div && 'ondrop' in div ) ) && 'FormData' in window && 'FileReader' in window;
+        }();
+
+        var $form = $('#<?=$id?>').parents('form');
+        var form = $form.get(0);
+
+        var input = $('#<?=$id?>').get(0);
+
+        var label		 = form.querySelector( 'label' ),
+            errorMsg	 = form.querySelector( '.box__error span' ),
+            restart		 = form.querySelectorAll( '.box__restart' ),
+            droppedFiles = false,
+            showFiles	 = function( files )
+            {
+                input.files = files;
+                $('#<?=$id?>').trigger('change');
+            },
+            triggerFormSubmit = function()
+            {
+                var event = document.createEvent( 'HTMLEvents' );
+                event.initEvent( 'submit', true, false );
+                form.dispatchEvent( event );
+            };
+
+        // letting the server side to know we are going to make an Ajax request
+        var ajaxFlag = document.createElement( 'input' );
+        ajaxFlag.setAttribute( 'type', 'hidden' );
+        ajaxFlag.setAttribute( 'name', 'ajax' );
+        ajaxFlag.setAttribute( 'value', 1 );
+        form.appendChild( ajaxFlag );
+
+        // automatically submit the form on file select
+        input.addEventListener( 'change', function( e )
+        {
+            showFiles( e.target.files );
+        });
+
+        // drag&drop files if the feature is available
+        if( isAdvancedUpload )
+        {
+            form.classList.add( 'has-advanced-upload' ); // letting the CSS part to know drag&drop is supported by the browser
+
+            [ 'drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop' ].forEach( function( event )
+            {
+                form.addEventListener( event, function( e )
+                {
+                    // preventing the unwanted behaviours
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            });
+            [ 'dragover', 'dragenter' ].forEach( function( event )
+            {
+                form.addEventListener( event, function()
+                {
+                    setFormDrag(form);
+                });
+            });
+            [ 'dragleave', 'dragend', 'drop' ].forEach( function( event )
+            {
+                form.addEventListener( event, function()
+                {
+                    unsetFormDrag(form);
+                });
+            });
+            form.addEventListener( 'drop', function( e )
+            {
+                droppedFiles = e.dataTransfer.files; // the files that were dropped
+                showFiles( droppedFiles );
+
+            });
+        }
+
+        // restart the form if has a state of error/success
+        Array.prototype.forEach.call( restart, function( entry )
+        {
+            entry.addEventListener( 'click', function( e )
+            {
+                e.preventDefault();
+                form.classList.remove( 'is-error', 'is-success' );
+                input.click();
+            });
+        });
+
+        // Firefox focus bug fix for file input
+        input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+        input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+
+
+    }());
+
 
 </script>

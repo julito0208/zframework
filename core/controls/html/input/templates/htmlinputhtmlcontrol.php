@@ -1,5 +1,5 @@
 <div id="<?=HTMLHelper::escape($id_container)?>" style="height: <?=($height+10)?>px; overflow-y: hidden !important;">
-	<textarea id="<?=HTMLHelper::escape($id)?>" name="<?=HTMLHelper::escape($name)?>" style="visibility: hidden; width: <?=(is_numeric($width) ? "{$width}px" : HTMLHelper::escape($width))?>; height: <?=(is_numeric($height) ? "{$height}px" : HTMLHelper::escape($height))?>"><?=HTMLHelper::escape(str_replace("\n", '', $value))?></textarea>
+	<textarea id="<?=HTMLHelper::escape($id)?>" name="<?=HTMLHelper::escape($name)?>" style="visibility: hidden; width: <?=(is_numeric($width) ? "{$width}px" : HTMLHelper::escape($width))?>; height: <?=(is_numeric($height) ? "{$height}px" : HTMLHelper::escape($height))?>"><?=$value?></textarea>
 </div>
 
 <div id="<?=HTMLHelper::escape($id_container)?>_image_dialog" class="image-dialog">

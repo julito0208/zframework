@@ -1,0 +1,37 @@
+.drag-block {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    align-items: center;
+    text-align: left !important;
+    justify-items: center;
+    padding: 5% 20px;
+    font-size: 18px;
+    background: #0f478e;
+    border-radius: 5px !important;
+    border: solid 1px #CCC;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.drag-block .icon {
+    margin-right: 10px;
+}
+
+form.is-dragover .image-opacity,
+form.is-dragover .image-title,
+form.is-dragover .delete-label,
+form.is-dragover .icon-link,
+form.is-dragover .image-button,
+form.is-dragover td input,
+form.is-dragover .label-col {
+    opacity: 0.4;
+}
+
+form.is-dragover img.main-img {
+    /*opacity: 1 !important;*/
+}
+
+form.is-dragover .drag-block {
+    display: block;
+}
