@@ -1,6 +1,6 @@
 <?php 
 
-class String 
+class ZString
 {
 	public static function get($text, $arg1=null, $arg2=null)
 	{

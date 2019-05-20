@@ -183,6 +183,12 @@ class ZfImageFile extends ZfImageFileCache implements Imageable
 		}
 	}
 
+	public function exists($image_thumb_type=null)
+	{
+		$path = $this->get_thumb_path($image_thumb_type, true);
+		return file_exists($path);
+	}
+
 	public function get_thumb_url($image_thumb_type=null)
 	{
 		if($image_thumb_type)
@@ -258,6 +264,12 @@ class ZfImageFile extends ZfImageFileCache implements Imageable
 			}
 
 			$image_file = ZfImageFile::get_by_id_image_file($id_image_file);
+
+			if(!$image_file || !$image_file->exists())
+			{
+				$id_image_file = self::DEFAULT_ID_IMAGE_FILE;
+				$image_file = ZfImageFile::get_by_id_image_file($id_image_file);
+			}
 
 			if(!$image_file)
 			{

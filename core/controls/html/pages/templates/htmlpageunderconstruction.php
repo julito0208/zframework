@@ -7,5 +7,5 @@
 </style>
 
 <div style="padding: 90px 0 0; text-align: center; font-size: 14pt; font-weight: bold;">
-	<?=String::get('site_under_construction')?>
+	<?=ZString::get('site_under_construction')?>
 </div>

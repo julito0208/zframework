@@ -14,7 +14,7 @@ class SQLHelper {
 		{
 //			$escaped = mysql_real_escape_string((string) $string);
 			$escaped = mysql_escape_string((string) $string);
-			
+
 			return $escaped;
 		}
 		else
@@ -46,10 +46,15 @@ class SQLHelper {
 			
 			else {
 			
-				if(is_bool($string)) {
-				
+				if(is_bool($string))
+				{
+
 					$quoted = $string ? '1' : '0';
-					
+
+				} else if(is_float($string)) {
+
+					return $string;
+
 				} else {
 					
 					if(preg_match('#^((\-?[1-9]+[0-9]{0,15})|0)$#', $string)) return $string;
@@ -352,13 +357,13 @@ class SQLHelper {
 
 		uksort($dict, array(self, '_full_text_search_dict_sort'));
 
-		$dict['á'] = 'a';
-		$dict['é'] = 'e';
-		$dict['í'] = 'i';
-		$dict['ó'] = 'o';
-		$dict['ú'] = 'u';
-		$dict['ñ'] = 'n';
-		$dict['ü'] = 'u';
+		$dict['ï¿½'] = 'a';
+		$dict['ï¿½'] = 'e';
+		$dict['ï¿½'] = 'i';
+		$dict['ï¿½'] = 'o';
+		$dict['ï¿½'] = 'u';
+		$dict['ï¿½'] = 'n';
+		$dict['ï¿½'] = 'u';
 
 		return $dict;
 		

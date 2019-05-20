@@ -142,7 +142,7 @@ class HTMLInputSelectControl extends HTMLInputControl {
 		
 		$this->set_param('options', $this->get_options());
 		$this->set_param('default_option_enabled', $this->get_default_option_enabled());
-		$this->set_param('default_option_text', $this->get_default_option_enabled() ? ( $this->get_default_option_text() ? $this->get_default_option_text() : ($this->get_optional() ? String::get('not_specified') : String::get('select')) ) : '');
+		$this->set_param('default_option_text', $this->get_default_option_enabled() ? ( $this->get_default_option_text() ? $this->get_default_option_text() : ($this->get_optional() ? ZString::get('not_specified') : ZString::get('select')) ) : '');
 		$this->set_param('default_option_value', '');
 		
 

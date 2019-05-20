@@ -14,12 +14,12 @@ class HTMLInputCaptchaControl extends HTMLInputControl {
 		{
 			if($code_incorrect)
 			{
-				$error = class_exists('ZfLanguageText') ? String::get('html_input_control_captcha_error_code') : 'El código de seguridad es incorrecto';
+				$error = class_exists('ZfLanguageText') ? ZString::get('html_input_control_captcha_error_code') : 'El código de seguridad es incorrecto';
 			}
 
 			if($code_expired)
 			{
-				$error = class_exists('ZfLanguageText') ? String::get('html_input_control_captcha_error_expired') : 'El código de seguridad ha expirado';
+				$error = class_exists('ZfLanguageText') ? ZString::get('html_input_control_captcha_error_expired') : 'El código de seguridad ha expirado';
 			}
 
 			return false;

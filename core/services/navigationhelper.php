@@ -225,7 +225,7 @@ class NavigationHelper {
 	
 	
 	public static function location_go($url, $use_document_path=true) {
-		
+
 		if(strpos($url, '/') === 0 && $use_document_path)
 			$url = rtrim(ZPHP::get_config('site_document_path'), '/').'/'.ltrim($url, '/');
 		

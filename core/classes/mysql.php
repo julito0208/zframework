@@ -230,12 +230,13 @@ class MySQL extends DBConnection {
 	public function select_rows($sql, $limit=null, $conditions=null, $order=null, $group_by=null){
 		
 		$querys = self::_prepare_querys($sql, $conditions);
+		
 		$sql = array_pop($querys);
 		$this->_multi_query($querys);
 		
 		$sql = trim($sql);
 		if(StringHelper::starts_with($sql, 'SELECT', true)) {
-			$sql = "SELECT rows.* FROM ({$sql}) AS rows";
+			$sql = "SELECT select_rows.* FROM ({$sql}) AS select_rows";
 		} 
 		
 		$sql.= SQLHelper::prepare_conditions($conditions, true);
@@ -289,7 +290,7 @@ class MySQL extends DBConnection {
 		$sql = array_pop($querys);
 		$this->_multi_query($querys);
 		
-		$sql = "SELECT SQL_CALC_FOUND_ROWS rows.* FROM ({$sql}) AS rows";
+		$sql = "SELECT SQL_CALC_FOUND_ROWS search_rows.* FROM ({$sql}) AS search_rows";
 		
 		$sql.= SQLHelper::prepare_conditions($conditions, true);
 

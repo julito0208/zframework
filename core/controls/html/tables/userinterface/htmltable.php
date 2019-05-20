@@ -53,7 +53,7 @@ class HTMLTable extends HTMLTag
 		$this->_set_parse_all_parents_templates(false);
 		$this->_set_table_id($id);
 		self::add_global_static_library(self::STATIC_LIBRARY_DATA_TABLES);
-		$this->set_empty_html(String::get('datatables_empty_table'));
+		$this->set_empty_html(ZString::get('datatables_empty_table'));
 	}
 
 

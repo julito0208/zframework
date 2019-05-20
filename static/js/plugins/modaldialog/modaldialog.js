@@ -1720,8 +1720,8 @@
 
             var updateImageSize = function()
             {
-                var avalWidth = $(window).width() - 50;
-                var avalHeight = $(window).outerHeight() - imageOptions['height-space'] - (dialogOptions.buttons ? 170 : 10);
+                var avalWidth = $(window).width();
+                var avalHeight = $(window).outerHeight() - imageOptions['height-space'] - (dialogOptions.buttons ? 90 : 10);
 
                 if(imageOptions['fill-window'])
                 {
@@ -1749,7 +1749,7 @@
                         image.height(newHeight);
 
                         // dialogBlockContent.find('.image-title').width(newWidth);
-                        dialogBlock.find('.images-list-buttons-block').css({ 'margin-top': 0});
+                        //dialogBlock.find('.images-list-buttons-block').css({ 'margin': '0 0 0 -30px'});
                         //dialogBlock.find('.images-list-buttons-block .play-pause-button').css({'margin-top': (newHeight/2)-0});
                     }
 
@@ -1805,7 +1805,8 @@
             var buttonsBlock = $('<div />');
 
             if(dialogOptions.buttons) {
-                if (data.buttons) {
+
+                if (data.buttons && typeof data.buttons != 'boolean') {
 
                     buttonsBlock.append(data.buttons);
 
@@ -1859,9 +1860,8 @@
 
     jQuery.modalDialog.imagesList = function(dataList, dialogOptions, startIndex) {
 
-
         if(!$.isPlainObject(dialogOptions)) dialogOptions = {title: dialogOptions};
-        dialogOptions = $.extend({}, {closeButton: true, animation: 10, easyClose: true, enablePlay: false, playInterval: 5000}, dialogOptions);
+        dialogOptions = $.extend({}, {closeButton: true, animation: 10, easyClose: true, enablePlay: jQuery.modalDialog.imagesList.enablePlay, playTimeoutSeconds: jQuery.modalDialog.imagesList.playTimeoutSeconds}, dialogOptions);
 
         var selectedIndex = startIndex ? startIndex : 0;
         var onloadWrapper = dialogOptions.onload && typeof dialogOptions.onload == 'function' ? dialogOptions.onload : function() {};
@@ -1870,6 +1870,12 @@
         var playInterval = null;
         var playButtonPlayHtml = '<span class="fa fa-play"></span>&nbsp;Play';
         var playButtonPauseHtml = '<span class="fa fa-pause"></span>&nbsp;Pause';
+
+        if(dialogOptions['buttons']) {
+
+            var buttons = $('<div />');
+
+        }
 
         for(var i=0; i<dataList.length; i++)
         {
@@ -1922,13 +1928,15 @@
             jQuery(window).unbind('keydown', keyListener);
 
             $('.dialog-image-container .dialog-image').css({'visibility': 'hidden'});
-            $('.dialog-image-container .dialog-image').attr('src', jQuery.modalDialog.imagesList.dataList[index]['src']);
-            appendImage(index,-2);
-            appendImage(index,-1);
-            appendImage(index, 0);
-            appendImage(index, 1);
-            appendImage(index, 2);
-            appendImage(index, 3);
+            $('.dialog-image-container .dialog-image').
+                attr('src', jQuery.modalDialog.imagesList.dataList[index]['src']).
+                trigger('load');
+                appendImage(index,-2);
+                appendImage(index,-1);
+                appendImage(index, 0);
+                appendImage(index, 1);
+                appendImage(index, 2);
+                appendImage(index, 3);
 
             var data = jQuery.modalDialog.imagesList.dataList[index];
             var dialogBlockContent = $('.image-dialog-content');
@@ -1952,21 +1960,26 @@
 
             if(positionMatch) {
                 titleText.data('title-pattern', titleText.html());
-                titlePattern = titleText.html();
+                titlePattern = titleText.text();
             } else {
                 if(titleText.data('title-pattern')) {
                     titlePattern = titleText.data('title-pattern');
                 } else {
-                    titlePattern = titleText.html();
+                    titlePattern = titleText.text();
                 }
             }
 
             var title = (titlePattern ? titlePattern : "").replace('%{position}', index+1);
+            title = title.replace('%{total}', jQuery.modalDialog.imagesList.dataList.length);
 
-            if(titleText.length > 0) {
+            if(dialogOptions['titleCallback']) {
+                title = dialogOptions['titleCallback'].call(this, index, title);
+            }
+
+            if(title.length > 0) {
                 titleText.html(title);    
             }
-            
+
             var image = dialogBlockContent.find('.dialog-image');
 
             if(data.css)
@@ -2027,27 +2040,47 @@
             isPlaying = !isPlaying;
         };
 
+        var deleteCurrentImage = function() {
+
+            var index = jQuery.modalDialog.imagesList.selectedIndex;
+            var path = jQuery.modalDialog.imagesList.dataList.pop(index);
+
+            if(jQuery.modalDialog.imagesList.dataList.length > 0) {
+
+                if(jQuery.modalDialog.imagesList.selectedIndex >= jQuery.modalDialog.imagesList.dataList.length) {
+                    setPosition(0);
+                }  else {
+                   setPosition(jQuery.modalDialog.imagesList.selectedIndex);
+                }
+
+            } else {
+                closeFunction();
+            }
+
+            dialogOptions['deleteCallback'].call(this, index, path);
+        };
+
         var setPlayTimeout = function()
         {
             playInterval = setTimeout(function() {
                 var index = selectedIndex + 1;
                 if(index >= jQuery.modalDialog.imagesList.dataList.length) index = 0;
                 setPosition(index);
-                $('div#modaldialog-container .dialog-image-container .images-list-buttons-block').addClass('visible');
-            }, dialogOptions['playInterval']);
+                $('div#modaldialog-container .dialog-image-container .images-list-buttons-block').addClass('visible').removeClass('hide');
+            }, dialogOptions['playTimeoutSeconds']);
         }
 
         var keyListener = function(evt) {
 
             if(!evt.ctrlKey && !evt.altKey && !evt.shiftKey) {
 
-                if (evt.which == jQuery.KEY_RIGHT || evt.which == jQuery.KEY_SPACE || evt.which == jQuery.KEY_PGDOWN || evt.which == jQuery.KEY_DOWN) {
+                if (evt.which == jQuery.KEY_RIGHT || evt.which == jQuery.KEY_PGDOWN) {
 
                     evt.preventDefault();
                     evt.stopPropagation();
                     nextFunction();
 
-                } else if (evt.which == jQuery.KEY_LEFT || evt.which == jQuery.KEY_PGUP || evt.which == jQuery.KEY_UP) {
+                } else if (evt.which == jQuery.KEY_LEFT || evt.which == jQuery.KEY_PGUP) {
                     evt.preventDefault();
                     evt.stopPropagation();
                     prevFunction();
@@ -2062,10 +2095,16 @@
                     evt.stopPropagation();
                     setPosition(jQuery.modalDialog.imagesList.dataList.length - 1);
 
-                } else if (evt.which == jQuery.KEY_ENTER) {
+                } else if (evt.which == jQuery.KEY_ENTER || evt.which == jQuery.KEY_SPACE) {
                     evt.preventDefault();
                     evt.stopPropagation();
                     playPauseFunction();
+
+                } else if(dialogOptions['enableDelete'] && evt.which == jQuery.KEY_SUPR) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    deleteCurrentImage();
+
                 }
 
             } else {
@@ -2074,18 +2113,36 @@
         };
 
         var wheelListener = function (event) {
-            if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-                prevFunction();
+
+            if(dialogOptions.scrollCallback.call(this, event) !== false) {
+
+                if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+                    prevFunction();
+                }
+                else {
+                    nextFunction();
+                }
             }
-            else {
-                nextFunction();
-            }
+
             event.preventDefault();
+        };
+
+        var closeFunction = function() {
+            $.modalDialog.closeAll();
+        };
+
+        var loadImageFunction = function() {
+            var imageWidth = $('body').find('.dialog-image').width();
+            var imageHeight = $('body').find('.dialog-image').height();
+
+            $('.images-list-buttons-block').css({'margin-top': (imageHeight/2)});
         };
 
         dialogOptions['onload'] = function() {
 
-            var image = this.find('.dialog-image');
+            var image = $('body').find('.dialog-image');
+            image.on('load', loadImageFunction);
+            image.on('load', dialogOptions.loadCallback);
             image.bind('click', nextFunction);
 
             var dialogContent = this.find('.image-dialog-content');
@@ -2124,7 +2181,8 @@
             {
                 jQuery(window).bind('swipeleft', nextFunction);
                 jQuery(window).bind('swiperight', prevFunction);
-                jQuery(window).bind('swipedown', $.modalDialog.closeAll);
+                jQuery(window).bind('swipedown', closeFunction);
+                jQuery(window).bind('swipeup', playPauseFunction);
 
                 listButtonsBlock.css({'visibility':'visible'});
             }
@@ -2134,23 +2192,30 @@
 
             onloadWrapper.apply(this, arguments);
 
-            $('div#modaldialog-container .dialog-image-container').bind('mouseover', function() {
-                $('div#modaldialog-container .dialog-image-container .images-list-buttons-block').addClass('visible');
-            });
+            $('div#modaldialog-container .dialog-image-container .images-list-buttons-block').addClass('visible').removeClass('hide');
 
-            $('div#modaldialog-container .dialog-image-container').bind('mouseout', function() {
-                $('div#modaldialog-container .dialog-image-container .images-list-buttons-block').removeClass('visible');
-            });
+            // $('div#modaldialog-container .dialog-image-container').bind('mouseover', function() {
+            //     $('div#modaldialog-container .dialog-image-container .images-list-buttons-block').addClass('visible').removeClass('hide');
+            // });
+            //
+            // $('div#modaldialog-container .dialog-image-container').bind('mouseout', function() {
+            //     $('div#modaldialog-container .dialog-image-container .images-list-buttons-block').removeClass('visible').addClass('hide');
+            // });
         };
 
 
         dialogOptions['onunload'] = function() {
 
+            var image = $('body').find('.dialog-image');
+            image.off('load', loadImageFunction);
+            image.off('load', dialogOptions.loadCallback);
+
             if(ZPHP.isMobile())
             {
                 jQuery(window).unbind('swipeleft', nextFunction);
                 jQuery(window).unbind('swiperight', prevFunction);
-                jQuery(window).unbind('swipedown', $.modalDialog.closeAll);
+                jQuery(window).unbind('swipedown', closeFunction);
+                jQuery(window).unbind('swipeup', playPauseFunction);
             }
 
             jQuery(document).unbind('keydown', keyListener);
@@ -2180,8 +2245,10 @@
             $('.dialog-image-container .dialog-image').data('modaldialog_imagelist_callbacks', true);
         }
 
-        jQuery.modalDialog.image({'src': jQuery.modalDialog.imagesList.dataList[selectedIndex]['src'], 'options': {'height-space': 30}}, $.extend({}, dialogOptions, {'firstTime': true}));
+        jQuery.modalDialog.imagesList.deleteCurrent = deleteCurrentImage;
 
+        jQuery.modalDialog.image({'src': jQuery.modalDialog.imagesList.dataList[selectedIndex]['src'], 'options': {'height-space': 30}}, $.extend({}, dialogOptions, {'firstTime': true}));
+        setPosition(selectedIndex);
     };
 
 
@@ -2190,6 +2257,13 @@
     jQuery.modalDialog.imagesList.onLoad = null;
     jQuery.modalDialog.imagesList.onError = null;
     jQuery.modalDialog.imagesList.onChangeSign = 0;
+    jQuery.modalDialog.imagesList.playTimeoutSeconds = 2500;
+    jQuery.modalDialog.imagesList.enablePlay = true;
+    jQuery.modalDialog.imagesList.enableDelete = false;
+    jQuery.modalDialog.imagesList.scrollCallback = function() {};
+    jQuery.modalDialog.imagesList.deleteCallback = function() {};
+    jQuery.modalDialog.imagesList.titleCallback = function(i,s) {return s;};
+    jQuery.modalDialog.imagesList.loadCallback = function() {};
 
     jQuery.modalDialog.prompt = function(label, value, callback, title, dialogOptions, textStyle, textClass, errorStr) {
 

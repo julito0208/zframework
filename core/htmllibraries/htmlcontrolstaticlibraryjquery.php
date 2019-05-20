@@ -21,8 +21,8 @@ class HTMLControlStaticLibraryJQuery extends HTMLControlStaticLibrary {
 
 		if(ZPHP::is_mobile())
 		{
-			$jquery_mobile = self::_create_instance(self::STATIC_LIBRARY_JQUERY_MOBILE);
-			$jquery_files = array_merge($jquery_files, $jquery_mobile->get_library_css_files());
+			//$jquery_mobile = self::_create_instance(self::STATIC_LIBRARY_JQUERY_MOBILE);
+			//$jquery_files = array_merge($jquery_files, $jquery_mobile->get_library_css_files());
 		}
 
 		return $jquery_files;

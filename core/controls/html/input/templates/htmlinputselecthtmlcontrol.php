@@ -54,10 +54,10 @@ foreach($select2_options as $index => $option)
 			$(<?=JSHelper::cast_str('#'.$id)?>).select2({
 				containerCssClass: <?=JSHelper::cast_str($container_class)?>,
 				formatSearching: function() {
-					return <?=JSHelper::cast_str(String::get('searching').'...')?>;
+					return <?=JSHelper::cast_str(ZString::get('searching').'...')?>;
 				},
 				formatNoMatches: function() {
-					return <?=JSHelper::cast_str(String::get('no_matches_found'))?>;
+					return <?=JSHelper::cast_str(ZString::get('no_matches_found'))?>;
 				},
 				<? if($width) { ?>
 					width: <?=JSHelper::cast($width)?>,

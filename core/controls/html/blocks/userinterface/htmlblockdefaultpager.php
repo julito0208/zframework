@@ -23,7 +23,7 @@ class HTMLBlockDefaultPager extends HTMLBlockAbstractPagerControl {
 		$init = $this->get_page() * $this->get_limit();
 		if($init == 0) $init = 1;
 		$end = min(($this->get_page() + 1 ) * $this->get_limit(), $this->get_total_results());
-		return String::get('showing')." <span class='number init-offset'>{$init}</span><span class='separator'>-</span><span class='number end-offset'>{$end}</span> <span class='separator'>".String::get('of')."</span> <span class='number total'>".$this->get_total_results()."</span>";
+		return ZString::get('showing')." <span class='number init-offset'>{$init}</span><span class='separator'>-</span><span class='number end-offset'>{$end}</span> <span class='separator'>".ZString::get('of')."</span> <span class='number total'>".$this->get_total_results()."</span>";
 		
 	}
 	
