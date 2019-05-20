@@ -12,15 +12,18 @@ class SQLHelper {
 	private static function _escape_string($string) {
 		if($string)
 		{
-//			$escaped = mysql_real_escape_string((string) $string);
-			$escaped = mysql_escape_string((string) $string);
 
-			return $escaped;
+			$var=stripslashes($string);
+			$var=htmlentities($var);
+			$var=strip_tags($var);
+
+			return $var;
 		}
 		else
 		{
 			return '';
 		}
+
 	}
 	
 	public static function escape_bool($string){

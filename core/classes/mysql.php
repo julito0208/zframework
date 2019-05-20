@@ -230,7 +230,7 @@ class MySQL extends DBConnection {
 	public function select_rows($sql, $limit=null, $conditions=null, $order=null, $group_by=null){
 		
 		$querys = self::_prepare_querys($sql, $conditions);
-		
+
 		$sql = array_pop($querys);
 		$this->_multi_query($querys);
 		
